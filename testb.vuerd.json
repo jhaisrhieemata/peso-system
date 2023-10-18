@@ -1,0 +1,251 @@
+{
+  "canvas": {
+    "version": "2.2.11",
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -1,
+    "scrollLeft": -1,
+    "zoomLevel": 1,
+    "show": {
+      "tableComment": true,
+      "columnComment": true,
+      "columnDataType": true,
+      "columnDefault": true,
+      "columnAutoIncrement": false,
+      "columnPrimaryKey": true,
+      "columnUnique": false,
+      "columnNotNull": true,
+      "relationship": true
+    },
+    "database": "MySQL",
+    "databaseName": "testdb",
+    "canvasType": "ERD",
+    "language": "GraphQL",
+    "tableCase": "pascalCase",
+    "columnCase": "camelCase",
+    "highlightTheme": "VS2015",
+    "bracketType": "none",
+    "setting": {
+      "relationshipDataTypeSync": true,
+      "relationshipOptimization": false,
+      "columnOrder": [
+        "columnName",
+        "columnDataType",
+        "columnNotNull",
+        "columnUnique",
+        "columnAutoIncrement",
+        "columnDefault",
+        "columnComment"
+      ]
+    },
+    "pluginSerializationMap": {}
+  },
+  "table": {
+    "tables": [
+      {
+        "name": "Employment",
+        "comment": "",
+        "columns": [
+          {
+            "name": "emp_id",
+            "comment": "",
+            "dataType": "int(11)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "be049e2a-0fd5-4a5e-b3bf-f3c0cfb9327d"
+          },
+          {
+            "name": "emp_name",
+            "comment": "",
+            "dataType": "VARCHAR(220)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.0380859375,
+              "widthComment": 60,
+              "widthDataType": 94.94873046875,
+              "widthDefault": 60
+            },
+            "id": "f48dbfca-0364-4226-9511-36bcd421c53d"
+          },
+          {
+            "name": "emp_address",
+            "comment": "",
+            "dataType": "VARCHAR(220)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 80.76806640625,
+              "widthComment": 60,
+              "widthDataType": 94.94873046875,
+              "widthDefault": 60
+            },
+            "id": "0af44342-d0a9-4ff8-b1bb-5a271bbcc7b8"
+          }
+        ],
+        "ui": {
+          "active": true,
+          "left": 25,
+          "top": 23,
+          "zIndex": 85,
+          "widthName": 74.2490234375,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "4b179473-d0cc-4377-8f06-11c4f603bffc"
+      },
+      {
+        "name": "Job_Offer",
+        "comment": "",
+        "columns": [
+          {
+            "name": "job_id",
+            "comment": "",
+            "dataType": "INT(11)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "448cb9b6-e688-41f9-987a-b052da765059"
+          },
+          {
+            "name": "job_name",
+            "comment": "",
+            "dataType": "VARCHAR(220)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 94.94873046875,
+              "widthDefault": 60
+            },
+            "id": "9303247e-6059-4134-a76e-c92565487ba8"
+          },
+          {
+            "name": "emp_id",
+            "comment": "",
+            "dataType": "int(11)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6ac60759-c64f-4b3c-a6c1-56c664a111ef"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 529,
+          "top": 152,
+          "zIndex": 81,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "54d66c26-333d-4ab3-b612-42a1813bcdff"
+      }
+    ],
+    "indexes": []
+  },
+  "memo": {
+    "memos": []
+  },
+  "relationship": {
+    "relationships": [
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "4b179473-d0cc-4377-8f06-11c4f603bffc",
+          "columnIds": [
+            "be049e2a-0fd5-4a5e-b3bf-f3c0cfb9327d"
+          ],
+          "x": 427.716796875,
+          "y": 88.25,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "54d66c26-333d-4ab3-b612-42a1813bcdff",
+          "columnIds": [
+            "6ac60759-c64f-4b3c-a6c1-56c664a111ef"
+          ],
+          "x": 529,
+          "y": 217.25,
+          "direction": "left"
+        },
+        "constraintName": "fk_employment_to_job_offer",
+        "visible": true,
+        "id": "e149db8e-fa69-4aef-9f0d-81d6b9ceaddc"
+      }
+    ]
+  }
+}
