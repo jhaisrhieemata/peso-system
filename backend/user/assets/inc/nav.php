@@ -43,19 +43,19 @@
                     </div> -->
 
                     <!-- item-->
-                    <!-- <a href="mis_user_account.php" class="dropdown-item notify-item">
+                    <a href="mis_user_account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user"></i>
                         <span>My Account</span>
-                    </a> -->
+                    </a>
 
-                    <!-- <a href="mis_user_update-account.php" class="dropdown-item notify-item">
+                    <a href="mis_user_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
                         <span>Update Account</span>
-                    </a> -->
-                    <!-- <a href="mis_user_update-account.php" class="dropdown-item notify-item">
+                    </a>
+                    <a href="mis_user_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
                         <span>My Account</span>
-                    </a> -->
+                    </a>
 
 
                     <div class="dropdown-divider"></div>

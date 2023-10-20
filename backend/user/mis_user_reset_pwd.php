@@ -7,14 +7,14 @@
             
 
             $email=$_POST['email'];
-            $token = sha1(md5($_POST['token']));
-            $status = $_POST['status'];
-            $pwd = $_POST['pwd'];
+            $token=sha1(md5($_POST['token']));
+            $status=$_POST['status'];
+            $user_pwd=$_POST['user_pwd'];
 			//$ad_pwd=sha1(md5($_POST['ad_pwd']));//double encrypt to increase security
             //sql to insert captured values
-			$query="INSERT INTO mis_pwdresets (email, token, status, pwd) VALUES(?,?,?,?)";
+			$query="INSERT INTO mis_pwdresets (email, token, status, user_pwd) VALUES(?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssss', $email, $token, $status, $pwd);
+			$rc=$stmt->bind_param('ssss', $email, $token, $status, $user_pwd);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="form-group mb-3" style="display:none">
                                         <label for="emailaddress">Reset Temp Pwd</label>
-                                        <input class="form-control" name="pwd" type="text" value ="<?php echo $temp_pwd;?>">
+                                        <input class="form-control" name="user_pwd" type="text" value ="<?php echo $temp_pwd;?>">
                                     </div>
                                     <div class="form-group mb-3" style="display:none">
                                         <label for="emailaddress">Status</label>

@@ -4,8 +4,8 @@
   include('assets/inc/config.php');
   include('assets/inc/checklogin.php');
   check_login();
-  $doc_id = $_SESSION['user_id'];
-  $doc_number = $_SESSION['user_number'];
+  $user_id = $_SESSION['user_id'];
+//   $doc_number = $_SESSION['user_number'];
 ?>
 
 <!DOCTYPE html>

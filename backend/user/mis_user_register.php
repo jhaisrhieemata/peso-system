@@ -10,7 +10,7 @@
 			$user_email=$_POST['user_email'];
 			$user_pwd=sha1(md5($_POST['user_pwd']));//double encrypt to increase security
             $user_dept=$_POST['user_dept'];
-            $user_dpic=$_FILES["user_dpic"];
+            // $user_dpic=$_FILES["user_dpic"];
             //sql to insert captured values
 			$query="INSERT INTO mis_user (user_fname, user_lname, user_number, user_email, user_pwd, user_dept, user_dpic) values(?,?,?,?,?,?,?)";
 			$stmt = $mysqli->prepare($query);

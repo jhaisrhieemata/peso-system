@@ -298,7 +298,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="lastname">New Password</label>
-                                                                <input type="password" class="form-control" name="doc_pwd" id="lastname" placeholder="Enter New Password">
+                                                                <input type="password" class="form-control" name="user_pwd" id="lastname" placeholder="Enter New Password">
                                                             </div>
                                                         </div> <!-- end col -->
                                                     </div> <!-- end row -->
