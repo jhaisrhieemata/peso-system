@@ -1,12 +1,12 @@
 
 **Admin Login Details**
 
-* Email   : admin@mail.com 
+* Email   : System@mail.com 
 
-* Password: Password@123
+* Password: 1234
 
-**Doctor Login Details**
+**User Login Details**
 
-* ID      : YDS7L
+* User    : 
 
-* Password: password
+* Password:
