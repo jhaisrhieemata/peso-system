@@ -8,7 +8,7 @@ This project aims to develop the Management Information System with decision sup
 
 **User Login Details**
 
-* ID      : 
+* Email   : 
 * Password:
 
 #
