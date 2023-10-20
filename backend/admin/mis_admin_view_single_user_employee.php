@@ -36,7 +36,7 @@
                 $stmt->bind_param('i',$user_id);
                 $stmt->execute() ;//ok
                 $res=$stmt->get_result();
-                $user_number=$_GET['user_number'];
+                // $user_number=$_GET['user_number'];
                 //$cnt=1;
                 while($row=$res->fetch_object())
             {
