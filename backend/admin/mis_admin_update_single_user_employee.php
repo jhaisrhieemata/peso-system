@@ -8,15 +8,16 @@
 			$user_lname=$_POST['user_lname'];
             $user_email=$_POST['user_email'];
             $user_number=$_POST['user_number'];
-            $user_dept=$_POST['user_dept'];
+            $user_pwd=sha1(md5($_POST['user_pwd']));//double encrypt to increase security
+            $user_pwd_confirm=sha1(md5($_POST['user_pwd_confirm']));//double encrypt to increase security
             // $user_pwd=sha1(md5($_POST['user_pwd']));
             $user_dpic=$_FILES["user_dpic"]["name"];
 		    move_uploaded_file($_FILES["user_dpic"]["tmp_name"],"../user/assets/images/users/".$_FILES["user_dpic"]["name"]);
 
             //sql to insert captured values
-			$query="UPDATE mis_user SET user_fname=?, user_lname=?,user_email=?, user_number=?, user_dept=?, user_dpic=? WHERE user_id = ?";
+			$query="UPDATE mis_user SET user_fname=?, user_lname=?,user_email=?, user_number=?, user_pwd=?, user_pwd_confirm=?, user_dpic=? WHERE user_id = ?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssssssi', $user_fname, $user_lname,$user_email, $user_number, $user_dept, $user_dpic, $user_id);
+			$rc=$stmt->bind_param('sssssssi', $user_fname, $user_lname,$user_email, $user_number, $user_pwd, $user_pwd_confirm, $user_dpic, $user_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -115,19 +116,36 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="inputusernumber" class="col-form-label">Contact Number</label>
-                                                    <input required="required" type="text" value="<?php echo $row->user_number;?>" class="form-control" name="user_number" id="inputusernumber">
+                                                    <input required="required" type="number" value="<?php echo $row->user_number;?>" class="form-control" name="user_number" id="inputusernumber">
                                                   </div>
                                             </div>
                                             <div class="form-row">
-                                                 <div class="form-group col-md-6">
-                                                    <label for="inputuserdepartment" class="col-form-label">Department</label>
-                                                    <input required="required" type="text" value="<?php echo $row->user_dept;?>" name="user_dept" class="form-control"  id="inputuserdepartment">
+                                                  <div class="form-group col-md-6">
+                                                       <label for="user_pwd" class="col-form-label">Password</label>
+                                                       <input required="required" type="password"  name="user_pwd" class="form-control"  id="user_pwd" placeholder="Password">
                                                    </div>
-                                                   <div class="form-group col-md-6">
-                                                    <label for="inputuserpassword" class="col-form-label">Password</label>
-                                                    <input required="required" type="password" value="<?php echo $row->user_pwd;?>" name="user_dpic" class="form-control"  id="inputuserpassword">
-                                                   </div>
-                                            </div> 
+                                                     <div class="form-group col-md-6">
+                                                              <label for="user_pwd_confirm">Confirm Password</label>
+                                                              <input required="required" class="form-control"  type="password"  class="form-control"  name="user_pwd_confirm" id="user_pwd_confirm" placeholder="Confirm Password">
+                                                                           <span id="password-error" style="color: red;"></span>
+                                                               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                                                    <script>
+                                                                          $(document).ready(function() {
+                                                                             $("#user_pwd_confirm").on("keyup", function() {
+                                                                            var password = $("#user_pwd").val();
+                                                                               var confirmPassword = $(this).val();
+                                                                            var passwordError = $("#password-error");
+
+                                                                           if (password !== confirmPassword) {
+                                                                            passwordError.text("Passwords do not match");
+                                                                           } else {
+                                                                             passwordError.text("");
+                                                                                 }
+                                                                              });
+                                                                           });
+                                                                       </script>
+                                                         </div>   
+                                             </div> 
                                             <div class="form-row">   
                                                 <div class="form-group col-md-6">
                                                     <label for="inputuserprofilepicture" class="col-form-label">Profile Picture</label>

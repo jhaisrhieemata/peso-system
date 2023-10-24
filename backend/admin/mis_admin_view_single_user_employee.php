@@ -74,7 +74,6 @@
                                     <div class="text-centre mt-3">
                                         
                                         <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2"><?php echo $row->user_fname;?> <?php echo $row->user_lname;?></span></p>
-                                       <p class="text-muted mb-2 font-13"><strong>Department :</strong> <span class="ml-2"><?php echo $row->user_dept;?></span></p>
                                        <p class="text-muted mb-2 font-13"><strong>Contact Number :</strong> <span class="ml-2"><?php echo $row->user_number;?></span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2"><?php echo $row->user_email;?></span></p>
 

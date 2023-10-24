@@ -6,13 +6,17 @@
         // $user_number = $_POST['user_number'];
         $user_email = $_POST['user_email'];
         $user_pwd = sha1(md5($_POST['user_pwd']));//double encrypt to increase security
-        $stmt=$mysqli->prepare("SELECT user_email, user_pwd, user_id FROM mis_user WHERE  user_email=? AND user_pwd=? ");//sql to log in user
+        $stmt=$mysqli->prepare("SELECT u.user_email, u.user_pwd, u.user_id, r.user_reset_pwd_id
+        FROM mis_user AS u
+        INNER JOIN mis_pwdresets AS r ON u.user_id = r.user_reset_pwd_id
+        WHERE u.user_email = ? AND u.user_pwd = ?");//sql to log in user
         $stmt->bind_param('ss', $user_email, $user_pwd);//bind fetched parameters
         $stmt->execute();//execute bind
-        $stmt -> bind_result($user_email, $user_pwd ,$user_id);//bind result
+        $stmt -> bind_result($user_email, $user_pwd ,$user_id, $user_reset_pwd_id);//bind result
         $rs=$stmt->fetch();
         $_SESSION['user_id'] = $user_id;
         $_SESSION['user_email'] = $user_email;//Assign session to user_number id
+        // $_SESSION['user_reset_pwd_id'] = $user_reset_pwd_id;
         //$uip=$_SERVER['REMOTE_ADDR'];
         //$ldate=date('d/m/Y h:i:s', time());
         if($rs)

@@ -2,6 +2,10 @@
 <?php
 	session_start();
 	include('assets/inc/config.php');
+
+        if($mysqli->connect_error){
+            die("Connection Failed: " . $mysqli->connect_error);
+        }
 		if(isset($_POST['add_employment']))
 		{
 			$surname=$_POST['surname'];

@@ -9,12 +9,23 @@
             $user_number=$_POST['user_number'];
 			$user_email=$_POST['user_email'];
 			$user_pwd=sha1(md5($_POST['user_pwd']));//double encrypt to increase security
-            $user_dept=$_POST['user_dept'];
+            $user_pwd_confirm=sha1(md5($_POST['user_pwd_confirm']));//double encrypt to increase security
             // $user_dpic=$_FILES["user_dpic"];
+            $checkEmailQuery = "SELECT user_email FROM mis_user WHERE user_email = ?";
+            $stmt = $mysqli->prepare($checkEmailQuery);
+            $stmt->bind_param('s', $user_email);
+            $stmt->execute();
+            $stmt->store_result();
+            if ($stmt->num_rows > 0) {
+                $err = "Email already exists. Please use a different email address.";
+            } else {
+                if ($user_pwd !== $user_pwd_confirm) {
+                    $err = "Passwords do not match";
+                } else {
             //sql to insert captured values
-			$query="INSERT INTO mis_user (user_fname, user_lname, user_number, user_email, user_pwd, user_dept, user_dpic) values(?,?,?,?,?,?,?)";
-			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('sssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd, $user_dept, $user_dpic);
+			$insertQuery ="INSERT INTO mis_user (user_fname, user_lname, user_number, user_email, user_pwd, user_pwd_confirm, user_dpic) values(?,?,?,?,?,?,?)";
+			$stmt = $mysqli->prepare($insertQuery);
+			$rc=$stmt->bind_param('sssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd, $user_pwd_confirm, $user_dpic);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -23,7 +34,7 @@
 			//declare a varible which will be passed to alert function
 			if($stmt)
 			{
-				$success = "Created Account Proceed To Log In";
+				$success = "Created Account. Proceed To Log In";
 			}
 			else {
 				$err = "Please Try Again Or Try Later";
@@ -31,6 +42,10 @@
 			
 			
 		}
+
+       }
+
+    }
 ?>
 <!--End Server Side-->
 <!--End Login-->
@@ -105,32 +120,50 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="inputlastname">Last Name</label>
-                                        <input required="required"  type="text" class="form-control"  name="user_lname" id="inputlastname" placeholder="Enter your name" required>
+                                        <input required="required"  type="text" class="form-control"  name="user_lname" id="inputlastname" placeholder="Enter your lastname" required>
                                     </div>
                                     <div class="form-group col-md-2" style="display:none">
-                                                    <?php 
+                                                    <!-- <?php 
                                                         $length = 5;    
                                                         $user_number =  substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$length);
-                                                    ?>
+                                                    ?> -->
                                                     <label for="inputZip" class="col-form-label">user Number</label>
-                                                    <input type="text" name="user_number" value="<?php echo $user_number;?>" class="form-control" id="inputZip">
+                                                    <input type="number" name="user_number" value="<?php echo $user_number;?>" class="form-control" id="inputZip">
                                                 </div>
                                     <div class="form-group">
                                         <label for="inputemailaddress">Email address</label>
                                         <input required="required" type="email" class="form-control" name="user_email"  id="inputemailaddress" required placeholder="Enter your email">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputpassword">Password</label>
-                                        <input required="required"  type="password"  class="form-control" name="user_pwd" id="inputpassword" placeholder="Enter your password">
+                                        <label for="user_pwd">Password</label>
+                                        <input class="form-control"  type="password"  class="form-control" name="user_pwd" id="user_pwd" placeholder="Enter your password">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputdepartment">Department</label>
-                                        <input required="required" type="text" class="form-control" name="user_dept" id="inputdepartment" placeholder="Enter your Department">
+                                        <label for="user_pwd_confirm">Confirm Password</label>
+                                        <input class="form-control"  type="password"  class="form-control"  name="user_pwd_confirm" id="user_pwd_confirm" placeholder="Confirm Password">
+                                                 <span id="password-error" style="color: red;"></span>
+                                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                                    <script>
+                                                         $(document).ready(function() {
+                                                            $("#user_pwd_confirm").on("keyup", function() {
+                                                                 var password = $("#user_pwd").val();
+                                                                 var confirmPassword = $(this).val();
+                                                                 var passwordError = $("#password-error");
+
+                                                                  if (password !== confirmPassword) {
+                                                                     passwordError.text("Passwords do not match");
+                                                                      } else {
+                                                                   passwordError.text("");
+                                                                      }
+                                                                  });
+                                                              });
+                                                        </script>
+
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="inputprofilepicture">Profile Picture</label>
                                         <input required="required" type="file" class="form-control" name="user_dpic"  id="inputprofilepicture">
-                                    </div>
+                                    </div> -->
                                     
                                     
                                     <div class="form-group mb-0 text-center">

@@ -92,7 +92,6 @@
                                                 <th data-toggle="true">Name</th>
                                                 <th data-hide="phone">Email</th>
                                                 <th data-hide="phone">Contact Number</th>
-                                                <th data-hide="phone">Department</th>
                                                 <th data-hide="phone">Action</th>
                                             </tr>
                                             </thead>
@@ -117,7 +116,6 @@
                                                     <td><?php echo $row->user_fname;?> <?php echo $row->user_lname;?></td>
                                                     <td><?php echo $row->user_email;?></td>
                                                     <td><?php echo $row->user_number;?></td>
-                                                    <td><?php echo $row->user_dept;?></td>
                                                     
                                                     
                                                     <td>

@@ -7,14 +7,14 @@
             
 
             $email=$_POST['email'];
-            $token=sha1(md5($_POST['token']));
+            // $token=sha1(md5($_POST['token']));
             $status=$_POST['status'];
             $user_pwd=$_POST['user_pwd'];
 			//$ad_pwd=sha1(md5($_POST['ad_pwd']));//double encrypt to increase security
             //sql to insert captured values
-			$query="INSERT INTO mis_pwdresets (email, token, status, user_pwd) VALUES(?,?,?,?)";
+			$query="INSERT INTO mis_pwdresets (email, status, user_pwd) VALUES(?,?,?)";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssss', $email, $token, $status, $user_pwd);
+			$rc=$stmt->bind_param('sss', $email, $status, $user_pwd);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -32,9 +32,9 @@
 			
         }
         $length_pwd = 10;
-        $length_token = 30;
+        // $length_token = 30;
         $temp_pwd = substr(str_shuffle('0123456789QWERTYUIOPPLKJHGFDSAZCVBNMqwertyuioplkjhgfdsazxcvbnm'),1,$length_pwd);
-        $_token = substr(str_shuffle('0123456789QWERTYUIOPPLKJHGFDSAZCVBNMqwertyuioplkjhgfdsazxcvbnm'),1,$length_token);       
+        // $_token = substr(str_shuffle('0123456789QWERTYUIOPPLKJHGFDSAZCVBNMqwertyuioplkjhgfdsazxcvbnm'),1,$length_token);       
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,10 +107,10 @@
                                         <label for="emailaddress">Email address</label>
                                         <input class="form-control" name="email" type="email" id="emailaddress" required="" placeholder="Enter your email">
                                     </div>
-                                    <div class="form-group mb-3" style="display:none">
+                                    <!-- <div class="form-group mb-3" style="display:none">
                                         <label for="emailaddress">Reset Token</label>
                                         <input class="form-control" name="token" type="text" value="<?php echo $_token;?>">
-                                    </div>
+                                    </div> -->
                                     <div class="form-group mb-3" style="display:none">
                                         <label for="emailaddress">Reset Temp Pwd</label>
                                         <input class="form-control" name="user_pwd" type="text" value ="<?php echo $temp_pwd;?>">

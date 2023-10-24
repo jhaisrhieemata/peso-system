@@ -113,7 +113,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                          <ul class="nav-second-level" aria-expanded="false">
+                                          <!-- <ul class="nav-second-level" aria-expanded="false">
                                                 <li>
                                                      <a href="javascript: void(0);">
                                                           <i class=" fas fa-chalkboard-teacher "></i>
@@ -130,67 +130,10 @@
                                                        </li>
                                                   </ul>
                                              </li>
-                                         </ul>
+                                         </ul> -->
                                  </li>
                     
-                             <li>
-                                   <a href="javascript: void(0);">
-                                        <i class="far fa-user-circle "></i>
-                                        <span> Report Management</span>
-                                       <span class="menu-arrow"></span>
-                                     </a>
-                                              <ul class="nav-second-level" aria-expanded="false">
-                                                   <li>
-                                                      <a href="javascript: void(0);">
-                                                          <i class=" far fa-user-circle "></i>
-                                                            <span> Peso </span>
-                                                            <span class="menu-arrow"></span>
-                                                       </a>                                     
-                                                       <ul class="nav-third-level" aria-expanded="false">
-                                                                 <li>
-                                                                   <a href="mis_user_report_jobseeker.php">Employment</a>
-                                                                   </li>
-                                                                    <li>
-                                                                        <a href="mis_user_report_scholarship.php">Scholarship</a>
-                                                                    </li>
-                                           
-                                                                    <li>
-                                                                        <a href="mis_auser_report_scholarship.php">SPES</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="mis_user_report_scholarship.php">GIP</a>
-                                                                    </li>
-                                                                    <li>
-                                                                     <a href="mis_user_report_scholarship.php">Job Opening</a>
-                                                                   </li>
-                                                                   <li>
-                                                               <a href="mis_user_report_claimclearance.php">Peso Clearance </a>
-                                                              </li> 
-                                                           <li>
-                                                              <a href="mis_user_report_otherprogram.php">Other Program</a>
-                                                           </li>
-                                                     </ul>
-                                                 </li>
-                                             </ul>
-                                               <ul class="nav-second-level" aria-expanded="false">
-                                                    <li>
-                                                       <a href="javascript: void(0);">
-                                                          <i class=" fas fa-chalkboard-teacher "></i>
-                                                           <span> Tesda </span>
-                                                           <span class="menu-arrow"></span>
-                                                         </a>
-                                       
-                                                                <ul class="nav-third-level" aria-expanded="false">
-                                                                    <li>
-                                                                        <a href="mis_user_report_tesdatraining.php">Tesda Training </a>
-                                                                    </li> 
-                                                                         <li>
-                                                                             <a href="mis_user_report_assessment.php">Assessment</a>
-                                                                           </li>
-                                                                </ul>
-                                                   </li>
-                                               </ul>
-                             </li>
+                             
                         </ul>
 
                     </div>
