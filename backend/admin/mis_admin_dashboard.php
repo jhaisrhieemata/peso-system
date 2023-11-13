@@ -111,7 +111,7 @@
 
                             <!--Start Employees-->
                             <div class="col-md-6 col-xl-4">
-                             <a href="mis_admin_view_user_employee.php">
+                             <a href="mis_admin_view_users.php">
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
@@ -131,7 +131,7 @@
                                                     $stmt->close();
                                                 ?>
                                                 <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $user_employee;?></span></h3>
-                                                <p class="text-muted mb-1 text-truncate">User Employee</p>
+                                                <p class="text-muted mb-1 text-truncate">Users</p>
                                             </div>
                                         </div>
                                     </div> <!-- end row-->
@@ -330,7 +330,7 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card-box">
-                                    <h4 class="header-title mb-3">User Employees</h4>
+                                    <h4 class="header-title mb-3">Users</h4>
 
                                     <div class="table-responsive">
                                         <table class="table table-borderless table-hover table-centered m-0">
@@ -341,7 +341,8 @@
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Contact Number</th>
-                                                    <th>Department</th>
+                                                    <th>Registration Type</th>
+                                                    <!-- <th>Department</th> -->
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -372,10 +373,10 @@
                                                         <?php echo $row->user_number;?>
                                                     </td>
                                                     <td>
-                                                        <?php echo $row->user_dept;?>
-                                                    </td>
+                                                        <?php echo $row->regtype;?>
+                                                    </td> 
                                                     <td>
-                                                        <a href="mis_admin_view_single_user_employee.php?user_id=<?php echo $row->user_id;?>&&user_email=<?php echo $row->user_email;?>" class="btn btn-xs btn-primary"><i class="mdi mdi-eye"></i> View</a>
+                                                        <a href="mis_admin_view_single_user.php?user_id=<?php echo $row->user_id;?>&&user_email=<?php echo $row->user_email;?>" class="btn btn-xs btn-primary"><i class="mdi mdi-eye"></i> View</a>
                                                     </td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
                                                 </tr>
                                             </tbody>

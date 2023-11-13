@@ -1,35 +1,55 @@
 <?php
-    session_start();
-    include('assets/inc/config.php');//get configuration file
-    if(isset($_POST['user_login']))
-    {
-        // $user_number = $_POST['user_number'];
-        $user_email = $_POST['user_email'];
-        $user_pwd = sha1(md5($_POST['user_pwd']));//double encrypt to increase security
-        $stmt=$mysqli->prepare("SELECT u.user_email, u.user_pwd, u.user_id, r.user_reset_pwd_id
-        FROM mis_user AS u
-        INNER JOIN mis_pwdresets AS r ON u.user_id = r.user_reset_pwd_id
-        WHERE u.user_email = ? AND u.user_pwd = ?");//sql to log in user
-        $stmt->bind_param('ss', $user_email, $user_pwd);//bind fetched parameters
-        $stmt->execute();//execute bind
-        $stmt -> bind_result($user_email, $user_pwd ,$user_id, $user_reset_pwd_id);//bind result
-        $rs=$stmt->fetch();
-        $_SESSION['user_id'] = $user_id;
-        $_SESSION['user_email'] = $user_email;//Assign session to user_number id
-        // $_SESSION['user_reset_pwd_id'] = $user_reset_pwd_id;
-        //$uip=$_SERVER['REMOTE_ADDR'];
-        //$ldate=date('d/m/Y h:i:s', time());
-        if($rs)
-            {//if its sucessfull
-                header("location:mis_user_dashboard.php");
-            }
+session_start();
+include('assets/inc/config.php');
 
-        else
-            {
-            #echo "<script>alert('Access Denied Please Check Your Credentials');</script>";
-                $err = "Access Denied Please Check Your Credentials";
-            }
+if (isset($_POST['user_login'])) {
+    $user_email = $_POST['user_email'];
+    $user_pwd = sha1(md5($_POST['user_pwd'])); // double encrypt to increase security
+    // $regtype = $_POST['regtype'];
+
+    $stmt = $mysqli->prepare("SELECT user_email, user_pwd, regtype, user_id FROM mis_user WHERE user_email = ? AND user_pwd = ?");
+    $stmt->bind_param('ss', $user_email, $user_pwd);
+    $stmt->execute();
+    $stmt->bind_result($user_email, $user_pwd, $regtype, $user_id);
+    $rs = $stmt->fetch();
+
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['user_email'] = $user_email;
+    $_SESSION['regtype'] = $regtype;
+
+//     if ($rs) {
+//         header("location: mis_user_dashboard.php");
+//     } else {
+//         $err = "Access Denied. Please check your credentials.";
+//     }
+// }
+    if ($rs) {
+        // Check 'regtype' value and navigate to a specific page accordingly
+        switch ($regtype) {
+            case "Employment":
+                header("Location: mis_user_register_employment.php");
+                break;
+            case "Scholarship":
+                header("Location: mis_user_register_scholarship.php");
+                break;
+            case "SPES":
+                header("Location: mis_user_register_spes.php");
+                break;
+            case "GIP":
+                header("Location: mis_user_register_gip.php");
+                break;
+            case "TesdaTraining":
+                header("Location: mis_user_register_tesdatraining.php");
+                break;
+            // Add other cases as needed
+            default:
+                $err = "Invalid regtype"; // Handling other regtype values
+                break;
+        }
+    } else {
+        $err = "Access Denied. Please check your credentials.";
     }
+}
 ?>
 <!--End Login-->
 <!DOCTYPE html>
@@ -144,7 +164,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p> <a href="mis_user_reset_pwd.php" class="text-white-50 ml-1">Forgot your password?</a></p>
+                                <!-- <p> <a href="mis_user_reset_pwd.php" class="text-white-50 ml-1">Forgot your password?</a></p> -->
                                <p class="text-white-50">Don't have an account? <a href="mis_user_register.php" class="text-white ml-1"><b>Sign Up</b></a></p>
                             </div> <!-- end col -->
                         </div>

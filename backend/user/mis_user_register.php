@@ -1,52 +1,55 @@
 <!--Server side code to handle  sign up-->
 <?php
-	session_start();
-	include('assets/inc/config.php');
-		if(isset($_POST['user_signup']))
-		{
-			$user_fname=$_POST['user_fname'];
-			$user_lname=$_POST['user_lname'];
-            $user_number=$_POST['user_number'];
-			$user_email=$_POST['user_email'];
-			$user_pwd=sha1(md5($_POST['user_pwd']));//double encrypt to increase security
-            $user_pwd_confirm=sha1(md5($_POST['user_pwd_confirm']));//double encrypt to increase security
-            // $user_dpic=$_FILES["user_dpic"];
-            $checkEmailQuery = "SELECT user_email FROM mis_user WHERE user_email = ?";
-            $stmt = $mysqli->prepare($checkEmailQuery);
-            $stmt->bind_param('s', $user_email);
-            $stmt->execute();
-            $stmt->store_result();
-            if ($stmt->num_rows > 0) {
-                $err = "Email already exists. Please use a different email address.";
+session_start();
+include('assets/inc/config.php');
+
+if (isset($_POST['user_signup'])) {
+    $user_fname = $_POST['user_fname'];
+    $user_lname = $_POST['user_lname'];
+    $user_number = $_POST['user_number'];
+    $user_email = $_POST['user_email'];
+    $user_pwd = sha1(md5($_POST['user_pwd'])); // double encrypt to increase security
+    $user_pwd_confirm = sha1(md5($_POST['user_pwd_confirm'])); // double encrypt to increase security
+    $regtype = $_POST['regtype'];
+
+    // $user_dpic=$_FILES["user_dpic"];
+
+    $checkEmailQuery = "SELECT user_email FROM mis_user WHERE user_email = ?";
+    $stmt = $mysqli->prepare($checkEmailQuery);
+    $stmt->bind_param('s', $user_email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $err = "Email already exists. Please use a different email address.";
+    } else {
+        if ($user_pwd !== $user_pwd_confirm) {
+            $err = "Passwords do not match";
+        } else {
+            // SQL to insert captured values
+            // First INSERT statement for mis_user
+            $insertUserQuery = "INSERT INTO mis_user (user_fname, user_lname, user_number, user_email, user_pwd, user_pwd_confirm, regtype, user_dpic) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmtUser = $mysqli->prepare($insertUserQuery);
+
+            // Assuming you have a user_dpic field to insert, make sure to bind it
+            // $stmtUser->bind_param('ssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd, $user_dpic);
+
+            $stmtUser->bind_param('ssssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd, $user_pwd_confirm, $regtype, $user_dpic);
+            $stmtUser->execute();
+
+           
+
+            // Declare a variable which will be passed to the alert function
+            if ($stmtUser) {
+                $success = "Created Account. Proceed To Log In";
             } else {
-                if ($user_pwd !== $user_pwd_confirm) {
-                    $err = "Passwords do not match";
-                } else {
-            //sql to insert captured values
-			$insertQuery ="INSERT INTO mis_user (user_fname, user_lname, user_number, user_email, user_pwd, user_pwd_confirm, user_dpic) values(?,?,?,?,?,?,?)";
-			$stmt = $mysqli->prepare($insertQuery);
-			$rc=$stmt->bind_param('sssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd, $user_pwd_confirm, $user_dpic);
-			$stmt->execute();
-			/*
-			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
-			*echo"<script>alert('Successfully Created Account Proceed To Log In ');</script>";
-			*/ 
-			//declare a varible which will be passed to alert function
-			if($stmt)
-			{
-				$success = "Created Account. Proceed To Log In";
-			}
-			else {
-				$err = "Please Try Again Or Try Later";
-			}
-			
-			
-		}
-
-       }
-
+                $err = "Please Try Again Or Try Later";
+            }
+        }
     }
+}
 ?>
+
 <!--End Server Side-->
 <!--End Login-->
 <!DOCTYPE html>
@@ -116,11 +119,11 @@
 
                                     <div class="form-group">
                                         <label for="inputfirstname">First Name</label>
-                                        <input required="required" class="form-control" type="text"  name = "user_fname" id="inputfirstname" placeholder="Enter your name">
+                                        <input required="required" class="form-control" type="text"  name="user_fname" id="inputfirstname" placeholder="Enter your name">
                                     </div>
                                     <div class="form-group">
                                         <label for="inputlastname">Last Name</label>
-                                        <input required="required"  type="text" class="form-control"  name="user_lname" id="inputlastname" placeholder="Enter your lastname" required>
+                                        <input required="required"  type="text" class="form-control"  name="user_lname"  id="inputlastname" placeholder="Enter your lastname" required>
                                     </div>
                                     <div class="form-group col-md-2" style="display:none">
                                                     <!-- <?php 
@@ -164,6 +167,18 @@
                                         <label for="inputprofilepicture">Profile Picture</label>
                                         <input required="required" type="file" class="form-control" name="user_dpic"  id="inputprofilepicture">
                                     </div> -->
+            
+                                    <div class="form-group">
+                                                    <label for="regtype" class="col-form-label">Registration Type</label>
+                                                    <select id="regtype" required="required" name="regtype" class="form-control">
+                                                    <option value="">-Select-</option>
+                                                       <option>Employment</option>
+                                                        <option>Scholarship</option>
+                                                        <option>SPES</option>
+                                                        <option>GIP</option>
+                                                        <option>TesdaTraining</option>
+                                                    </select>
+                                                </div>
                                     
                                     
                                     <div class="form-group mb-0 text-center">

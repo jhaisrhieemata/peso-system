@@ -154,15 +154,15 @@
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fas fa-users"></i>
-                                    <span> Users Employee</span>
+                                    <span> Users </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li>
-                                        <a href="mis_admin_add_user_employee.php">Add</a>
+                                        <a href="mis_admin_add_users.php">Add</a>
                                     </li>
                                     <li>
-                                        <a href="mis_admin_manage_user_employee.php">Manage</a>
+                                        <a href="mis_admin_manage_users.php">Manage</a>
                                     </li>
 
                                 </ul>

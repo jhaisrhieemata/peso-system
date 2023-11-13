@@ -23,7 +23,7 @@
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-            <?php include('assets/inc/sidebar.php');?>
+            
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -41,7 +41,7 @@
                             <div class="col-12">
                                 <div class="page-title-box">
                                     
-                                    <h4 class="page-title">Management Information System Dashboard</h4>
+                                    <h4 class="page-title">Hello,</h4>
                                 </div>
                             </div>
                         </div>     
@@ -208,139 +208,7 @@
 
                         
                         <!--Recently Employed Employees-->
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card-box">
-                                    <h4 class="header-title mb-3">Peso Employment</h4>
-
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless table-hover table-centered m-0">
-
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th>Full Name</th>
-                                                    <th>Date of Birth</th>
-                                                    <th>Sex</th>
-                                                    <th>Address</th>
-                                                    <th>Religion</th>
-                                                    <th>Civil Status</th>
-                                                    <th>Contact</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <?php
-                                                $ret="SELECT * FROM mis_employment ORDER BY RAND() LIMIT 100 "; 
-                                                //sql code to get to ten user  randomly
-                                                $stmt= $mysqli->prepare($ret) ;
-                                                $stmt->execute() ;//ok
-                                                $res=$stmt->get_result();
-                                                $cnt=1;
-                                                while($row=$res->fetch_object())
-                                                {
-                                            ?>
-                                            <tbody>
-                                                <tr>
-                                                    
-                                                    <td>
-                                                        <?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->date_of_birth;?>
-                                                    </td>    
-                                                    <td>
-                                                        <?php echo $row->sex;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->barangay;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->religion;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->civil_status;?> 
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->contact_number;?> 
-                                                    </td>
-                                                    <td>
-                                                    <!--mis_admin_view_single_jobseeker.php-->
-                                                   <!-- mis_user_view_single_jobseeker.php-->
-                                                        <a href="mis_user_view_single_employment.php?employment_id=<?php echo $row->employment_id;?>&&job_sname=<?php echo $row->surname;?>&&firstname=<?php echo $row->firstname;?>_<?php echo $row->middlename;?>" class="btn btn-xs btn-success"><i class="mdi mdi-eye"></i> View</a>
-                                                    </td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                </tr>
-                                            </tbody>
-                                            <?php }?>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->                                                                                                                                                                                                                                         
-                        </div><!-- end col -->   
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card-box">
-                                    <h4 class="header-title mb-3">Tesda Trainee</h4>
-
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless table-hover table-centered m-0">
-
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th>Full Name</th>
-                                                    <th>Date of Birth</th>
-                                                    <th>Sex</th>
-                                                    <th>Address</th>
-                                                    <th>Religion</th>
-                                                    <th>Civil Status</th>
-                                                    <th>Contact</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <?php
-                                                $ret="SELECT * FROM mis_tesdatraining ORDER BY RAND() LIMIT 100 "; 
-                                                //sql code to get to ten user  randomly
-                                                $stmt= $mysqli->prepare($ret) ;
-                                                $stmt->execute() ;//ok
-                                                $res=$stmt->get_result();
-                                                $cnt=1;
-                                                while($row=$res->fetch_object())
-                                                {
-                                            ?>
-                                            <tbody>
-                                                <tr>
-                                                    
-                                                    <td>
-                                                        <?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->date_of_birth;?>
-                                                    </td>    
-                                                    <td>
-                                                        <?php echo $row->sex;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->barangay;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->religion;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->civil_status;?> 
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->contact_number;?> 
-                                                    </td>
-                                                    <td>
-                                                    <!--mis_admin_view_single_jobseeker.php-->
-                                                   <!-- mis_user_view_single_jobseeker.php-->
-                                                        <a href="mis_user_view_single_tesdatraining.php?tesdatraining_id=<?php echo $row->tesdatraining_id;?>&&surname=<?php echo $row->surname;?>&&firstname=<?php echo $row->firstname;?>_<?php echo $row->middlename;?>" class="btn btn-xs btn-success"><i class="mdi mdi-eye"></i> View</a>
-                                                    </td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                </tr>
-                                            </tbody>
-                                            <?php }?>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                           
                         </div>                                                                                                                                                                                                                                     
                     
                         

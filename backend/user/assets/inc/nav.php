@@ -1,9 +1,10 @@
 <?php
     $user_id = $_SESSION['user_id'];
     $user_email = $_SESSION['user_email'];
-    $ret="SELECT * FROM  mis_user WHERE user_id = ? AND user_email = ?";
+    $regtype=$_SESSION['regtype'];
+    $ret="SELECT * FROM  mis_user WHERE user_id = ? AND user_email = ? AND regtype = ?";
     $stmt= $mysqli->prepare($ret) ;
-    $stmt->bind_param('is',$user_id, $user_email);
+    $stmt->bind_param('iss',$user_id, $user_email, $regtype);
     $stmt->execute() ;//ok
     $res=$stmt->get_result();
     //$cnt=1;
@@ -13,20 +14,6 @@
     <div class="navbar-custom">
         <ul class="list-unstyled topnav-menu float-right mb-0">
 
-            <li class="d-none d-sm-block">
-                <form class="app-search">
-                    <div class="app-search-box">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <div class="input-group-append">
-                                <button class="btn" type="submit">
-                                    <i class="fe-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </li>
 
             
             <li class="dropdown notification-list">
@@ -38,23 +25,23 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
-                    <!-- <div class="dropdown-header noti-title">
+                    <div class="dropdown-header noti-title">
                         <h6 class="text-overflow m-0">Welcome !</h6>
-                    </div> -->
+                    </div>
 
                     <!-- item-->
-                    <a href="mis_user_account.php" class="dropdown-item notify-item">
+                    <a href="mis_user_dashboard.php" class="dropdown-item notify-item">
                         <i class="fas fa-user"></i>
-                        <span>My Account</span>
+                        <span>Dashboard</span>
                     </a>
 
-                    <a href="mis_user_update-account.php" class="dropdown-item notify-item">
+                    <a href="mis_user_register_<?php echo $regtype; ?>.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
-                        <span>Update Account</span>
+                        <span>Profile</span>
                     </a>
                     <a href="mis_user_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
-                        <span>My Account</span>
+                        <span>Manage Account</span>
                     </a>
 
 
@@ -86,60 +73,5 @@
                 </span>
             </a>
         </div>
-
-        <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
-            <li>
-                <button class="button-menu-mobile waves-effect waves-light">
-                    <i class="fe-menu"></i>
-                </button>
-            </li>
-
-            <li class="dropdown d-none d-lg-block">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    Create New
-                    <i class="mdi mdi-chevron-down"></i> 
-                </a>
-                <div class="dropdown-menu">
-
-                    <!-- item-->
-                    <a href="mis_admin_register_jobseeker.php" class="dropdown-item">
-                        <i class="far fa-user-circle"></i>
-                        <span>Peso Client</span>
-                    </a> 
-                    <a href="mis_admin_register_jobseeker_TesdaClient.php" class="dropdown-item">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Tesda Client</span>
-                    </a> 
-                    <a href="mis_admin_register_claimclearance.php" class="dropdown-item">
-                        <i class="fa fa-address-card "></i>
-                        <span>Claim Clerance</span>
-                    </a> 
-                    <a href="mis_admin_register_employment.php" class="dropdown-item">
-                        <i class="fas fa-user-edit"></i>
-                        <span>Employment</span>
-                    </a> 
-                    <a href="mis_admin_register_otherprogram.php" class="dropdown-item">
-                        <i class="fas fa-ellipsis-h"></i>
-                        <span>Other Program</span>
-                    </a> 
-                    <a href="mis_admin_register_joboffer.php" class="dropdown-item">
-                        <i class="fa fa-newspaper"></i>
-                        <span>Job Offer</span>
-                    </a> 
-                    <a href="mis_admin_register_scholarship.php" class="dropdown-item">
-                        <i class="fa fa-graduation-cap"></i>
-                        <span>Scholarship</span>
-                    </a> 
-                          
-
-
-                    
-                     <div class="dropdown-divider"></div>
-
-                    
-                </div>
-            </li>
-
-        </ul>
     </div>
 <?php }?>

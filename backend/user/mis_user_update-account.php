@@ -3,19 +3,18 @@
 	include('assets/inc/config.php');
 		if(isset($_POST['update_profile']))
 		{
-			$user_fname=$_POST['user_fname'];
-			$user_lname=$_POST['user_lname'];
-            // $user_number=$_POST['user_number'];
 			$user_id=$_SESSION['user_id'];
+            $user_fname=$_POST['user_fname'];
+			$user_lname=$_POST['user_lname'];
             $user_email=$_POST['user_email'];
-           // $user_pwd=sha1(md5($_POST['user_pwd']));
+            $user_number=$_POST['user_number'];
             $user_dpic=$_FILES["user_dpic"]["name"];
 		    move_uploaded_file($_FILES["user_dpic"]["tmp_name"],"assets/images/users/".$_FILES["user_dpic"]["name"]);
 
             //sql to insert captured values
-			$query="UPDATE mis_user SET user_fname=?, user_lname=?, user_email=?, user_dpic=? WHERE user_id = ?";
+			$query="UPDATE mis_user SET user_fname=?, user_lname=?, user_email=?, user_number=?, user_dpic=? WHERE user_id = ?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssssi', $user_fname, $user_lname, $user_email, $user_dpic, $user_id);
+			$rc=$stmt->bind_param('sssssi', $user_fname, $user_lname, $user_email, $user_number, $user_dpic, $user_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -37,11 +36,12 @@
 		{
             $user_id=$_SESSION['user_id'];
             $user_pwd=sha1(md5($_POST['user_pwd']));//double encrypt 
+            $user_pwd_confirm=sha1(md5($_POST['user_pwd_confirm']));//double encrypt 
             
             //sql to insert captured values
-			$query="UPDATE mis_user SET user_pwd =? WHERE user_id = ?";
+			$query="UPDATE mis_user SET user_pwd =?, user_pwd_confirm=? WHERE user_id = ?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('si', $user_pwd, $user_id);
+			$rc=$stmt->bind_param('ssi', $user_pwd, $user_pwd_confirm, $user_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -58,6 +58,27 @@
 			
 			
 		}
+        include('assets/inc/checklogin.php');
+check_login();
+$user_id = $_SESSION['user_id'];
+if(isset($_GET['update']))
+{
+      $id=intval($_GET['delete']);
+      $adn="updatefrom mis_employment where employment_id=?";
+      $stmt= $mysqli->prepare($adn);
+      $stmt->bind_param('i',$id);
+      $stmt->execute();
+      $stmt->close();	 
+
+        if($stmt)
+        {
+          $success = "Employment Records Updated";
+        }
+          else
+          {
+              $err = "Try Again Later";
+          }
+  } 
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -72,7 +93,7 @@
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-                <?php include('assets/inc/sidebar.php');?>
+            
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -101,11 +122,12 @@
                                     <div class="page-title-box">
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                                <li class="breadcrumb-item active">Profile</li>
+                                                <li class="breadcrumb-item"><a href="mis_user_dashboard.php">Dashboard</a></li>
+                                                <!-- <li class="breadcrumb-item"><a href="mis_user_update_single_employment.php?employment_id=1">Profile</a></li> -->
+                                                <li class="breadcrumb-item active">Account</li>
                                             </ol>
                                         </div>
-                                        <h4 class="page-title"><?php echo $row->user_fname;?> <?php echo $row->user_lname;?>'s Profile</h4>
+                                        <h4 class="page-title">Manage your account</h4>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +143,8 @@
                                     <div class="text-left mt-3">
                                         
                                         <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2"><?php echo $row->user_fname;?> <?php echo $row->user_lname;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Department :</strong> <span class="ml-2"><?php echo $row->user_dept;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Contact Number:</strong> <span class="ml-2"><?php echo $row->user_number;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Registration Type :</strong> <span class="ml-2"><?php echo $row->regtype;?></span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2"><?php echo $row->user_email;?></span></p>
 
 
@@ -136,7 +159,7 @@
                                         <ul class="nav nav-pills navtab-bg nav-justified">
                                             <li class="nav-item">
                                                 <a href="#aboutme" data-toggle="tab" aria-expanded="false" class="nav-link active">
-                                                    Update Profile
+                                                    Update Account
                                                 </a>
                                             </li>
                                             
@@ -174,8 +197,24 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="useremail">Profile Picture</label>
-                                                                <input  required="required" type="file" name="user_dpic" class="form-control btn btn-success" id="useremail" >
+                                                                <label for="user_number">Contact Number</label>
+                                                                <input  required="required" type="number" name="user_number" class="form-control" id="user_number" placeholder="<?php echo $row->user_number;?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="user_dpic">Profile Picture</label>
+                                                                <!-- If the file exists, set the input value to display the file name -->
+                                                                 <input required="required" type="file" name="user_dpic" class="form-control btn btn-success" id="user_dpic" value="<?php echo isset($row->user_dpic) ? $row->user_dpic : ''; ?>">
+                                                            </div>
+                                                            <div id="file-name"></div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="regtype">Registration Type</label>
+                                                                <input required="required" type="text" name="regtype" class="form-control" id="regtype" placeholder="<?php echo $row->regtype;?>" disabled>
                                                             </div>
                                                         </div>
                                                         
@@ -291,21 +330,22 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="firstname">Old Password</label>
-                                                                <input type="password" class="form-control" id="firstname" placeholder="Enter Old Password">
+                                                                <label for="Old_Password">Old Password</label>
+                                                                <input type="password" required="required" class="form-control" name="user_pwd" id="Old_Password" placeholder="Enter Old Password">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="lastname">New Password</label>
-                                                                <input type="password" class="form-control" name="user_pwd" id="lastname" placeholder="Enter New Password">
+                                                                <label for="user_pwd">New Password</label>
+                                                                <input type="password" required="required" class="form-control" name="user_pwd" id="user_pwd" placeholder="Enter New Password">
                                                             </div>
                                                         </div> <!-- end col -->
                                                     </div> <!-- end row -->
 
                                                     <div class="form-group">
-                                                        <label for="useremail">Confirm Password</label>
-                                                        <input type="password" class="form-control" id="useremail" placeholder="Confirm New Password">
+                                                        <label for="user_pwd_confirm">Confirm Password</label>
+                                                        <input type="password"  required="required" class="form-control" name="user_pwd_confirm" id="user_pwd_confirm" placeholder="Confirm New Password">
+                                                        <span id="password-error" style="color: red;"></span> 
                                                     </div>
 
                                                     <div class="text-right">
@@ -349,6 +389,27 @@
 
         <!-- App js -->
         <script src="assets/js/app.min.js"></script>
+        <script>
+                                                                          $(document).ready(function() {
+                                                                             $("#user_pwd_confirm").on("keyup", function() {
+                                                                            var password = $("#user_pwd").val();
+                                                                               var confirmPassword = $(this).val();
+                                                                            var passwordError = $("#password-error");
+
+                                                                           if (password !== confirmPassword) {
+                                                                            passwordError.text("Passwords do not match");
+                                                                           } else {
+                                                                             passwordError.text("");
+                                                                                 }
+                                                                              });
+                                                                           });
+                                                                       </script>
+<!-- to show file name of profile picture -->
+<script>
+document.getElementById('user_dpic').onchange = function() {
+    document.getElementById('file-name').textContent = this.files[0].name;
+};
+</script>
 
     </body>
 

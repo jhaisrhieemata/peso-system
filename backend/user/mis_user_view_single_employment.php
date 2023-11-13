@@ -3,7 +3,7 @@
   include('assets/inc/config.php');
   include('assets/inc/checklogin.php');
   check_login();
-  $aid=$_SESSION['ad_id'];
+  $user_id=$_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-                <?php include("assets/inc/sidebar.php");?>
+          
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -30,7 +30,7 @@
 
             <!--Get Details Of A Single User And Display Them Here-->
             <?php
-                $middlename=$_GET['middlename'];
+                // $middlename=$_GET['middlename'];
                 $employment_id=$_GET['employment_id'];
                 $ret="SELECT  * FROM mis_employment WHERE employment_id=?";
                 $stmt= $mysqli->prepare($ret) ;
@@ -59,19 +59,17 @@
                                             <li class="breadcrumb-item active">Profile Peso client</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title"><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?>'s Profile</h4>
+                                    <h4 class="page-title"> Hello, <?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></h4>
                                 </div>
                             </div>
                         </div>
                         <!-- end page title -->
 
                         <div class="row">
-                            <div class="col-lg-4 col-xl-4">
+                        <div class="col-lg-4 col-xl-4">
                                 <div class="card-box text-center">
-                                    <img src="assets/images/users/User Default.png" class="rounded-circle avatar-lg img-thumbnail"
-                                        alt="profile-image">
+                                    <img src="assets/images/users/User Default.png" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
-                                    
                                     <div class="text-left mt-3">
                                         
                                         <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2"><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></span></p>
@@ -95,6 +93,7 @@
 
                             </div> <!-- end col-->
                             
+                            
                             <?php }?>
                             <div class="col-lg-4 col-xl-4">
                                 <div class="card-box">
@@ -117,11 +116,11 @@
                             </div> <!-- end col -->
                         </div>
                         <!-- end row-->
-                        <div class="mt-4 mb-1">
+                        <!-- <div class="mt-4 mb-1">
                                             <div class="text-right d-print-none">
                                                 <a href="javascript:window.print()" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-printer mr-1"></i> Print</a>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                     </div> <!-- container -->
 
