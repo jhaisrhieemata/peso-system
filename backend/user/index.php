@@ -113,7 +113,7 @@ if (isset($_POST['user_login'])) {
                                 
                                 <div class="text-center w-75 m-auto">
                                     <a href="index.php">
-                                        <span><img src="assets/images/Peso_log.png" alt="" height="100"></span>
+                                        <span><img src="assets/images/Peso_log.png" alt="" height="80"></span>
                                     </a>
                                     <p class="text-muted mb-4 mt-3">Enter your email address and password to access User Employee panel.</p>
                                 </div>

@@ -23,6 +23,26 @@
                         <?php echo $row->user_fname;?> <?php echo $row->user_lname;?> <i class="mdi mdi-chevron-down"></i> 
                     </span>
                 </a>
+                                            <?php
+                                           $ret = "SELECT e.user_id, e.user_fname, e.user_lname, e.regtype, em.employment_id, em.firstname, s.scholarship_id, s.firstname, sp.spes_id, sp.firstname, g.gip_id, g.firstname, t.tesdatraining_id, t.firstname 
+                                           FROM mis_user e
+                                           LEFT JOIN mis_employment em ON e.user_id = em.employment_id 
+                                           LEFT JOIN mis_scholarship s ON e.user_id = s.user_id
+                                           LEFT JOIN mis_spes sp ON e.user_id = sp.user_id
+                                           LEFT JOIN mis_gip g ON e.user_id = g.user_id
+                                           LEFT JOIN mis_tesdatraining t ON e.user_id = t.user_id 
+                                           ORDER BY em.employment_id, s.scholarship_id, sp.spes_id, g.gip_id, t.tesdatraining_id";
+                                           
+                                    
+                                               // Prepare and execute the query
+                                         $stmt = $mysqli->prepare($ret);
+                                         $stmt->execute();
+                                        $res = $stmt->get_result();
+                                        // $cnt=1;
+
+                                        while ($row = $res->fetch_object()) {
+                                            ?>
+                                            
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
                     <div class="dropdown-header noti-title">
@@ -35,10 +55,34 @@
                         <span>Dashboard</span>
                     </a>
 
-                    <a href="mis_user_register_<?php echo $regtype; ?>.php" class="dropdown-item notify-item">
+
+                    <!-- <a href="mis_user_update_single_<?php echo $regtype; ?>.php?tesdatraining_id=<?php echo $row->tesdatraining_id;?>" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
                         <span>Profile</span>
-                    </a>
+                    </a> -->
+                    <?php
+// Assuming $regtype and $row->tesdatraining_id are available
+
+// Set the condition for $regtype
+if ($regtype === 'Employment') {
+    $url = "mis_user_update_single_employment.php?employment_id={$row->employment_id}";
+} elseif ($regtype === 'Scholarship') {
+    $url = "mis_user_update_single_scholarship.php?scholarship_id={$row->scholarship_id}";
+} elseif ($regtype === 'SPES') {
+    $url = "mis_user_update_single_spes.php?spes_id={$row->spes_id}";
+} elseif ($regtype === 'GIP') {
+    $url = "mis_user_update_single_gip.php?gip_id={$row->gip_id}";
+} else {
+    $url = "mis_user_update_single_tesdatraining.php?tesdatraining_id={$row->tesdatraining_id}";
+
+}
+?>
+
+<a href="<?php echo $url; ?>" class="dropdown-item notify-item">
+    <i class="fas fa-user-tag"></i>
+    <span>Profile</span>
+</a>
+
                     <a href="mis_user_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
                         <span>Manage Account</span>
@@ -54,6 +98,7 @@
                     </a>
 
                 </div>
+        <?php }?>
             </li>
 
            

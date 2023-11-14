@@ -542,7 +542,7 @@
                                                       <input required="required" type="text" name="recieved_by" class="form-control"  id="inputrecievedby" placeholder="Recieved by">
                                                 </div>  
                                             </div>                      
-                                           <button type="submit" name="add_scholarship" class="ladda-button btn btn-primary" data-style="expand-right">Add Scholarship</button>
+                                           <button type="submit" name="add_scholarship" class="btn btn-success waves-effect waves-light mt-2" data-style="expand-right">Add Scholarship</button>
                                         </form>
                                         <!--End scholarship Form-->
                                     </div> <!-- end card-body -->

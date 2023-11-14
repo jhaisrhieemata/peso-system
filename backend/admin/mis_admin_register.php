@@ -8,10 +8,12 @@
 			$ad_lname=$_POST['ad_lname'];
 			$ad_email=$_POST['ad_email'];
 			$ad_pwd=sha1(md5($_POST['ad_pwd']));//double encrypt to increase security
+            $ad_dpic=$_FILES["ad_dpic"]["name"];
+		    move_uploaded_file($_FILES["ad_dpic"]["tmp_name"],"assets/images/users/".$_FILES["ad_dpic"]["name"]);
             //sql to insert captured values
-			$query="insert into mis_admin (ad_fname, ad_lname, ad_email, ad_pwd) values(?,?,?,?)";
+			$query="insert into mis_admin (ad_fname, ad_lname, ad_email, ad_pwd, ad_dpic) values(?,?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssss', $ad_fname, $ad_lname, $ad_email, $ad_pwd);
+			$rc=$stmt->bind_param('sssss', $ad_fname, $ad_lname, $ad_email, $ad_pwd, $ad_dpic);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -36,7 +38,7 @@
     
 <head>
         <meta charset="utf-8" />
-        <title>Hospital Management Information System -A Super Responsive Information System</title>
+        <title>Management Information System </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -88,8 +90,8 @@
                             <div class="card-body p-4">
                                 
                                 <div class="text-center w-75 m-auto">
-                                    <a href="his_admin_register.php">
-                                        <span><img src="assets/images/logo-dark.png" alt="" height="22"></span>
+                                    <a href="mis_admin_register.php">
+                                        <span><img src="assets/images/Peso_logo.png" alt="" height="80"></span>
                                     </a>
                                     <p class="text-muted mb-4 mt-3">Don't have an account? Create your account, it takes less than a minute</p>
                                 </div>
@@ -111,6 +113,10 @@
                                     <div class="form-group">
                                         <label for="password">Password</label>
                                         <input class="form-control" name="ad_pwd" type="password" required id="password" placeholder="Enter your password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profilepicture">Profile Picture</label>
+                                        <input required="required" type="file" class="form-control btn btn-primary" name="ad_dpic"  id="profilepicture">
                                     </div>
                                     
                                     <div class="form-group mb-0 text-center">

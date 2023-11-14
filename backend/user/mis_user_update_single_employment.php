@@ -2,6 +2,9 @@
 <?php
 	session_start();
 	include('assets/inc/config.php');
+    include('assets/inc/checklogin.php');
+    check_login();
+    $user_id = $_SESSION['user_id'];
 		if(isset($_POST['update_employment']))
 		{
             $employment_id=$_GET['employment_id'];
@@ -142,7 +145,7 @@
                                                                </div>
                                                                <div class="form-group">
                                                                      <label for="inputor_no" class="col-form-label"></label>         
-                                                                          <input type="text" id="inputor_no" name="or_no"  class="form-control" value="<?php echo $row->or_no; ?>" >
+                                                                          <input type="text" id="inputor_no" name="or_no"  class="form-control" value="<?php echo $row->or_no; ?>" disabled>
                                                                      </div>
                                                                      <style>
                                                                            #enableFieldsLabel {
@@ -537,7 +540,7 @@
     </div>
 </div>
 
-                                               <button type="submit" id="update_employment" name="update_employment" class="ladda-button btn btn-primary" data-style="expand-right" disabled>Update Employment</button>
+                                               <button type="submit" id="update_employment" name="update_employment" class="btn btn-success waves-effect waves-light mt-2" data-style="expand-right" disabled>Update Employment</button>
                                          </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->
@@ -592,7 +595,7 @@
                                                                          var isChecked = $(this).is(':checked');
         
                                                                           // Get all input fields that should be enabled/disabled
-                                                                       var inputFields = $('#inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputprc, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_employment'); // Add more fields if needed
+                                                                       var inputFields = $('#inputor_no, #inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputprc, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_employment'); // Add more fields if needed
         
                                                                          // Enable or disable the input fields based on the global checkbox state
                                                                       inputFields.prop('disabled', !isChecked);

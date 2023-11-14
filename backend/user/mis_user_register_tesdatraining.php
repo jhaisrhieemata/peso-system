@@ -57,7 +57,7 @@
 			//declare a varible which will be passed to alert function
 			if($stmt)
 			{
-				$success = "Details Added";
+				$success = "Successfully Save!";
 			}
 			else {
 				$err = "Please Try Again Or Try Later";
@@ -506,7 +506,7 @@
                                                      </div>
                                             
                                                    
-                                           <button type="submit" name="add_TesdaClient" class="ladda-button btn btn-primary" data-style="expand-right">Add Tesda Trainee</button>
+                                           <button type="submit" name="add_TesdaClient" class="btn btn-success waves-effect waves-light mt-2" data-style="expand-right">Save Information</button>
                                         </form>
                                         <!--End tesda training Form-->
                                     </div> <!-- end card-body -->

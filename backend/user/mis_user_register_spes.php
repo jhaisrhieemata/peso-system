@@ -548,7 +548,7 @@
                                                       <input required="required" type="text" name="recieved_by" class="form-control"  id="inputrecievedby" placeholder="Recieved by">
                                                 </div>  
                                             </div>                              
-                                           <button type="submit" name="add_spes" class="ladda-button btn btn-primary" data-style="expand-right">Add SPES</button>
+                                           <button type="submit" name="add_spes" class="btn btn-success waves-effect waves-light mt-2" data-style="expand-right">Add SPES</button>
                                         </form>
                                         <!--End spes Form-->
                                     </div> <!-- end card-body -->

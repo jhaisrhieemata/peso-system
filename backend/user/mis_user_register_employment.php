@@ -519,7 +519,7 @@
                                                      </div>
                                             
                                                    
-                                           <button type="submit" name="add_employment" class="ladda-button btn btn-primary" data-style="expand-right">Add Employment</button>
+                                           <button type="submit" name="add_employment" class="btn btn-success waves-effect waves-light mt-2" data-style="expand-right">Add Employment</button>
                                         </form>
                                         <!--End employment Form-->
                                     </div> <!-- end card-body -->
