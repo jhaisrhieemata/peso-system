@@ -8,6 +8,9 @@
         }
 		if(isset($_POST['add_employment']))
 		{
+            // if possible include -in  applicant if can't able to register through user portal
+
+            
 			$surname=$_POST['surname'];
 			$firstname=$_POST['firstname'];
 			$middlename=$_POST['middlename'];
@@ -94,6 +97,18 @@
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
+            <?php
+                $user_id=$_SESSION['user_id'];
+                // $user_dpic=$_GET['user_dpic'];
+                $ret="SELECT * FROM  mis_user where user_id=?";
+                $stmt= $mysqli->prepare($ret) ;
+                $stmt->bind_param('i',$user_id);
+                $stmt->execute() ;//ok
+                $res=$stmt->get_result();
+                //$cnt=1;
+                while($row=$res->fetch_object())
+                {
+            ?>
 
             <div class="content-page">
                 <div class="content">
@@ -107,9 +122,9 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="mis_user_dashboard.php">Dashboard</a></li>
+                                            <!-- <li class="breadcrumb-item"><a href="mis_user_dashboard.php">Dashboard</a></li> -->
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Employment</a></li>
-                                            <li class="breadcrumb-item active">New Employment</li>
+                                            <li class="breadcrumb-item active">New </li>
                                         </ol>
                                     </div>
                                     <h4 class="page-title">Create New Employment </h4>
@@ -128,11 +143,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="inputSurName" class="col-form-label">Surname</label>
-                                                    <input type="text" required="required" name="surname" class="form-control" id="inputSurName" placeholder="SurName">
+                                                    <input type="text" required="required"  value="<?php echo ucwords($row->user_lname);?>" name="surname" class="form-control" id="inputSurName" placeholder="SurName">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="inputFirstName" class="col-form-label">First Name</label>
-                                                    <input required="required" type="text" name="firstname" class="form-control"  id="inputFirstName" placeholder="First Name">
+                                                    <input required="required" type="text" value="<?php echo ucwords($row->user_fname);?>" name="firstname" class="form-control"  id="inputFirstName" placeholder="First Name">
                                                 </div>
                                             </div>
 
@@ -261,14 +276,14 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputContactNumber" class="col-form-label">Contact Number</label>
-                                                    <input required="required" type="number" name="contact_number" class="form-control" id="inputContactNumber" placeholder="Contact Number" pattern="\d{11}" title="Please enter 11 digits">
+                                                    <input required="required" type="number" value="<?php echo $row->user_number;?>"  name="contact_number" class="form-control" id="inputContactNumber" placeholder="Contact Number" pattern="\d{11}" title="Please enter 11 digits">
                                                 </div>
                                             </div>
 
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="inputEmail" class="col-form-label">Email</label>
-                                                    <input type="email" required="required" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                    <input type="email" required="required" value="<?php echo $row->user_email;?>" name="email" class="form-control" id="inputEmail" placeholder="Email">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="inpuEmploymentStatus" class="col-form-label">Employment Status</label>
@@ -283,8 +298,7 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="input_emplo_stat_employed" class="col-form-label">Employed</label>
                                                     <select id="input_emplo_stat_employed" required="required" name="employment_status_employed" class="form-control">
-                                                    <option value="">-Select-</option>
-                                                       <option>NA</option>
+                                                    <option value="NA">NA</option>
                                                         <option>Wage employed</option>
                                                         <option>Self-employed (Fisherman/Fisherfolk)</option>
                                                         <option>Self-employed (Vendor/Retailer)</option>
@@ -299,8 +313,7 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="input_emplo_stat_unemployed" class="col-form-label">Unemployed</label>
                                                     <select id="input_emplo_stat_unemployed" required="required" name="employment_status_unemployed" class="form-control">
-                                                    <option value="">-Select-</option>
-                                                       <option>NA</option>
+                                                    <option value="NA">NA</option>
                                                         <option>New Emtrant/Fresh Graduate</option>
                                                         <option>Finish Contract</option>
                                                         <option>Resigned</option>
@@ -519,7 +532,7 @@
                                                      </div>
                                             
                                                    
-                                           <button type="submit" name="add_employment" class="btn btn-success waves-effect waves-light mt-2" data-style="expand-right">Add Employment</button>
+                                           <button type="submit" name="add_employment" class="ladda-button btn btn-primary" data-style="expand-right">Add Employment</button>
                                         </form>
                                         <!--End employment Form-->
                                     </div> <!-- end card-body -->
@@ -537,6 +550,7 @@
                 <!-- end Footer -->
 
             </div>
+            <?php }?>
 
             <!-- ============================================================== -->
             <!-- End Page content -->
@@ -561,6 +575,31 @@
 
         <!-- Buttons init js-->
         <script src="assets/js/pages/loading-btn.init.js"></script>
+
+         <!-- // jQuery code  employed enable or disable -->
+         <!-- <script>
+      
+      $(document).ready(function() {
+          // Attach an event listener to the Employment Status select box
+          $("#inpuEmploymentStatus").change(function() {
+              // Get the selected value
+              var selectedValue = $(this).val();
+
+              // Disable or enable the corresponding select boxes based on the selected value
+              if (selectedValue === "Employed") {
+                  $("#input_emplo_stat_unemployed").prop("disabled", true);
+                  $("#input_emplo_stat_employed").prop("disabled", false);
+              } else if (selectedValue === "Unemployed") {
+                  $("#input_emplo_stat_unemployed").prop("disabled", false);
+                  $("#input_emplo_stat_employed").prop("disabled", true);
+              } else {
+                  // Reset if neither Employed nor Unemployed is selected
+                  $("#input_emplo_stat_unemployed").prop("disabled", true);
+                  $("#input_emplo_stat_employed").prop("disabled", true);
+              }
+          });
+      });
+  </script> -->
         
     </body>
 

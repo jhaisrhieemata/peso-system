@@ -12,7 +12,7 @@ if (isset($_POST['user_signup'])) {
     $user_pwd_confirm = sha1(md5($_POST['user_pwd_confirm'])); // double encrypt to increase security
     $regtype = $_POST['regtype'];
     $user_dpic=$_FILES["user_dpic"]["name"];
-		    move_uploaded_file($_FILES["user_dpic"]["tmp_name"],"assets/images/users/".$_FILES["user_dpic"]["name"]);
+    move_uploaded_file($_FILES["user_dpic"]["tmp_name"],"assets/images/users/".$_FILES["user_dpic"]["name"]);
 
     // $user_dpic=$_FILES["user_dpic"];
 
@@ -111,8 +111,8 @@ if (isset($_POST['user_signup'])) {
                             <div class="card-body p-4">
                                 
                                 <div class="text-center w-75 m-auto">
-                                    <a href="mis_user_register.php">
-                                        <span><img src="assets/images/Peso_log.png" alt="" height="80"></span>
+                                    <a href="his_admin_register.php">
+                                        <span><img src="assets/images/Peso_logo.png" alt="" height="50"></span>
                                     </a>
                                     <p class="text-muted mb-4 mt-3">Don't have an account? Create your account, it takes less than a minute</p>
                                 </div>
@@ -167,7 +167,7 @@ if (isset($_POST['user_signup'])) {
                                     </div>
                                     <div class="form-group">
                                         <label for="contactnumber">Contact Number</label>
-                                        <input required="required" type="number" class="form-control" name="user_number"  id="contactnumber">
+                                        <input required="required" type="number" class="form-control" name="user_number"  id="contactnumber" placeholder="Contact Number" pattern="\d{11}" title="Please enter 11 digits">
                                     </div>
             
                                     <div class="form-group">
@@ -181,8 +181,7 @@ if (isset($_POST['user_signup'])) {
                                                         <option>TesdaTraining</option>
                                                     </select>
                                                 </div>
-                                    
-                                    <div class="form-group">
+                                 <div class="form-group">
                                         <label for="inputprofilepicture">Profile Picture</label>
                                         <input required="required" type="file" class="form-control btn btn-success" name="user_dpic"  id="inputprofilepicture">
                                     </div>
@@ -192,7 +191,7 @@ if (isset($_POST['user_signup'])) {
                                     </div>
 
                                 </form>
-                                <!-- Lets Disable This For We tryna implement it in later versions of this system
+                                <!--Lets Disable This For We tryna implement it in later versions of this system
                                 <div class="text-center">
                                     <h5 class="mt-3 text-muted">Sign up using</h5>
                                     <ul class="social-list list-inline mt-3 mb-0">
@@ -209,8 +208,8 @@ if (isset($_POST['user_signup'])) {
                                             <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github-circle"></i></a>
                                         </li>
                                     </ul>
-                                </div> -->
-                               
+                                </div>
+                                -->
 
                             </div> <!-- end card-body -->
                         </div>

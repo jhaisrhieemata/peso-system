@@ -29,8 +29,8 @@
                             <div class="card-body p-4">
                                 
                                 <div class="text-center w-75 m-auto">
-                                    <a href="mis_user_logout.php">
-                                        <span><img src="assets/images/Peso_log.png" alt="" height="80"></span>
+                                    <a href="his_admin_logout.php">
+                                        <span><img src="assets/images/Peso_logo.png" alt="" height="50"></span>
                                     </a>
                                 </div>
 

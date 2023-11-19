@@ -59,10 +59,10 @@
 			
 		}
         include('assets/inc/checklogin.php');
-check_login();
-$user_id = $_SESSION['user_id'];
-if(isset($_GET['update']))
-{
+         check_login();
+         $user_id = $_SESSION['user_id'];
+           if(isset($_GET['update']))
+        {
       $id=intval($_GET['delete']);
       $adn="updatefrom mis_employment where employment_id=?";
       $stmt= $mysqli->prepare($adn);
@@ -101,7 +101,6 @@ if(isset($_GET['update']))
             <!-- ============================================================== -->
             <?php
                 $user_id=$_SESSION['user_id'];
-                // $user_dpic=$_GET['user_dpic'];
                 $ret="SELECT * FROM  mis_user where user_id=?";
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$user_id);
@@ -204,11 +203,9 @@ if(isset($_GET['update']))
                                                         </div>
                                                     </div>
                                                         <div class="row">
-                                                          <div class="col-md-6">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="user_dpic">Profile Picture</label>
-                                                                <!-- If the file exists, set the input value to display the file name -->
-                                                                <!-- Display the current file name -->
                                                                 <!-- Display the current file name (shortened) -->
                                                                 <p>Current File: <?php echo isset($row->user_dpic) ? (strlen($row->user_dpic) > 20 ? substr($row->user_dpic, 0, 20) . '...' : $row->user_dpic) : 'No file uploaded'; ?></p>
 
@@ -217,21 +214,20 @@ if(isset($_GET['update']))
 
                                                                        <!-- Hidden input to store the current file name (for server-side processing) -->
                                                                           <input type="hidden" name="user_dpic" value="<?php echo isset($row->user_dpic) ? $row->user_dpic : ''; ?>">
-
                                                             </div>
                                                             <div id="file-name"></div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="regtype">Registration Type</label>
-                                                                <input required="required" type="text" name="regtype" class="form-control" id="regtype" value="<?php echo $row->regtype;?>" disabled>
+                                                                <input required="required" type="text" name="regtype" class="form-control" id="regtype" placeholder="<?php echo $row->regtype;?>" disabled>
                                                             </div>
                                                         </div>
                                                         
                                                     </div> <!-- end row -->
 
-                                                    
-                                                    <!-- <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building mr-1"></i> Company Info</h5>
+                                                    <!--
+                                                    <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building mr-1"></i> Company Info</h5>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
@@ -358,10 +354,8 @@ if(isset($_GET['update']))
                                                         <span id="password-error" style="color: red;"></span> 
                                                     </div>
 
-                                                    <div class="col-md-6">
-                                                         <div class="form-group">
+                                                    <div class="text-right">
                                                         <button type="submit" name="update_pwd" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Update Password</button>
-                                                      </div>
                                                     </div>
                                                 </form>
                                             </div>

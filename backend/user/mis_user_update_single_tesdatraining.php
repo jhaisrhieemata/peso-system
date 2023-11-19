@@ -2,9 +2,6 @@
 <?php
 	session_start();
 	include('assets/inc/config.php');
-    include('assets/inc/checklogin.php');
-    check_login();
-    $user_id = $_SESSION['user_id'];
 		if(isset($_POST['update_tesdatraining']))
 		{
             $tesdatraining_id=$_GET['tesdatraining_id'];
@@ -88,7 +85,7 @@
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-           
+          
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -525,7 +522,7 @@
                                                                                          </script> -->
                                                           </div>    
                                                      </div>
-                                           <button type="submit" name="update_tesdatraining" class="btn btn-success waves-effect waves-light mt-2" data-style="expand-right">Update Tesda Trainee</button>
+                                           <button type="submit" name="update_tesdatraining" class="ladda-button btn btn-primary" data-style="expand-right">Update Tesda Trainee</button>
                                         </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->

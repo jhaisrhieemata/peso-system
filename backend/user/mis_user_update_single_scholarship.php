@@ -4,7 +4,7 @@
 	include('assets/inc/config.php');
     include('assets/inc/checklogin.php');
     check_login();
-    $user_id = $_SESSION['user_id'];
+
 		if(isset($_POST['update_scholarship']))
 		{
 			
@@ -104,7 +104,7 @@
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-            
+
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -559,7 +559,7 @@
                                                       <input required="required" type="text" value="<?php echo $row->recieved_by;?>" name="recieved_by" class="form-control"  id="inputrecievedby" placeholder="Recieved by">
                                                 </div>  
                                             </div>                      
-                                           <button type="submit" name="update_scholarship" class="btn btn-success waves-effect waves-light mt-2" data-style="expand-right">Update Scholarship</button>
+                                           <button type="submit" name="update_scholarship" class="ladda-button btn btn-primary" data-style="expand-right">Update Scholarship</button>
                                         </form>
                                         <!--End scholarship Form-->
                                     </div> <!-- end card-body -->
