@@ -11,6 +11,8 @@ if (isset($_POST['user_signup'])) {
     $user_pwd = sha1(md5($_POST['user_pwd'])); // double encrypt to increase security
     $user_pwd_confirm = sha1(md5($_POST['user_pwd_confirm'])); // double encrypt to increase security
     $regtype = $_POST['regtype'];
+    $user_dpic=$_FILES["user_dpic"]["name"];
+    move_uploaded_file($_FILES["user_dpic"]["tmp_name"],"assets/images/users/".$_FILES["user_dpic"]["name"]);
 
     // $user_dpic=$_FILES["user_dpic"];
 
@@ -115,7 +117,7 @@ if (isset($_POST['user_signup'])) {
                                     <p class="text-muted mb-4 mt-3">Don't have an account? Create your account, it takes less than a minute</p>
                                 </div>
 
-                                <form  method='post'>
+                                <form  method="post" enctype="multipart/form-data">
 
                                     <div class="form-group">
                                         <label for="inputfirstname">First Name</label>
@@ -163,10 +165,10 @@ if (isset($_POST['user_signup'])) {
                                                         </script>
 
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <label for="inputprofilepicture">Profile Picture</label>
-                                        <input required="required" type="file" class="form-control" name="user_dpic"  id="inputprofilepicture">
-                                    </div> -->
+                                    <div class="form-group">
+                                        <label for="contactnumber">Contact Number</label>
+                                        <input required="required" type="number" class="form-control" name="user_number"  id="contactnumber" placeholder="Contact Number" pattern="\d{11}" title="Please enter 11 digits">
+                                    </div>
             
                                     <div class="form-group">
                                                     <label for="regtype" class="col-form-label">Registration Type</label>
@@ -179,7 +181,10 @@ if (isset($_POST['user_signup'])) {
                                                         <option>TesdaTraining</option>
                                                     </select>
                                                 </div>
-                                    
+                                 <div class="form-group">
+                                        <label for="inputprofilepicture">Profile Picture</label>
+                                        <input required="required" type="file" class="form-control btn btn-success" name="user_dpic"  id="inputprofilepicture">
+                                    </div>
                                     
                                     <div class="form-group mb-0 text-center">
                                         <button class="btn btn-success btn-block" name="user_signup" type="submit"> Sign Up </button>

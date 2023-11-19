@@ -151,13 +151,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="inputadminfirstname">First Name</label>
-                                                                <input  required="required" type="text" name="ad_fname"  class="form-control" id="inputadminfirstname" placeholder="<?php echo $row->ad_fname;?>">
+                                                                <input  required="required" type="text" name="ad_fname"  class="form-control" id="inputadminfirstname" value="<?php echo $row->ad_fname;?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="inputadminlastname">Last Name</label>
-                                                                <input  required="required" type="text" name="ad_lname" class="form-control" id="inputadminlastname" placeholder="<?php echo $row->ad_lname;?>">
+                                                                <input  required="required" type="text" name="ad_lname" class="form-control" id="inputadminlastname" value="<?php echo $row->ad_lname;?>">
                                                             </div>
                                                         </div> <!-- end col -->
                                                     </div> <!-- end row -->
@@ -165,13 +165,22 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="inputadminemail">Email Address</label>
-                                                                <input  required="required" type="email" name="ad_email" class="form-control" id="inputadminemail" placeholder="<?php echo $row->ad_email;?>">
+                                                                <input  required="required" type="email" name="ad_email" class="form-control" id="inputadminemail" value="<?php echo $row->ad_email;?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="inputadminprofilepicture">Profile Picture</label>
-                                                                <input  required="required" type="file" name="ad_dpic" class="form-control btn btn-success" id="inputadminprofilepicture" placeholder="<?php echo $row->ad_email;?>">
+                                                                 <!-- If the file exists, set the input value to display the file name -->
+                                                                <!-- Display the current file name -->
+                                                                 <!-- Display the current file name (shortened) -->
+                                                                 <p>Current File: <?php echo isset($row->ad_dpic) ? (strlen($row->ad_dpic) > 20 ? substr($row->ad_dpic, 0, 20) . '...' : $row->ad_dpic) : 'No file uploaded'; ?></p>
+
+                                                                    <!-- File input for uploading a new file -->
+                                                                     <input required="required" type="file" name="ad_dpic" class="form-control btn btn-success" id="ad_dpic">
+
+                                                                       <!-- Hidden input to store the current file name (for server-side processing) -->
+                                                                          <input type="hidden" name="ad_dpic" value="<?php echo isset($row->ad_dpic) ? $row->ad_dpic : ''; ?>">
                                                             </div>
                                                         </div>
                                                         

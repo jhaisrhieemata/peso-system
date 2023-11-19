@@ -59,10 +59,10 @@
 			
 		}
         include('assets/inc/checklogin.php');
-check_login();
-$user_id = $_SESSION['user_id'];
-if(isset($_GET['update']))
-{
+         check_login();
+         $user_id = $_SESSION['user_id'];
+           if(isset($_GET['update']))
+        {
       $id=intval($_GET['delete']);
       $adn="updatefrom mis_employment where employment_id=?";
       $stmt= $mysqli->prepare($adn);
@@ -178,13 +178,13 @@ if(isset($_GET['update']))
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="firstname">First Name</label>
-                                                                <input  required="required" type="text" name="user_fname"  class="form-control" id="firstname" placeholder="<?php echo $row->user_fname;?>">
+                                                                <input  required="required" type="text" name="user_fname"  class="form-control" id="firstname" value="<?php echo $row->user_fname;?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="lastname">Last Name</label>
-                                                                <input  required="required" type="text" name="user_lname" class="form-control" id="lastname" placeholder="<?php echo $row->user_lname;?>">
+                                                                <input  required="required" type="text" name="user_lname" class="form-control" id="lastname" value="<?php echo $row->user_lname;?>">
                                                             </div>
                                                         </div> <!-- end col -->
                                                     </div> <!-- end row -->
@@ -192,13 +192,13 @@ if(isset($_GET['update']))
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="useremail">Email Address</label>
-                                                                <input  required="required" type="email" name="user_email" class="form-control" id="useremail" placeholder="<?php echo $row->user_email;?>">
+                                                                <input  required="required" type="email" name="user_email" class="form-control" id="useremail" value="<?php echo $row->user_email;?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="user_number">Contact Number</label>
-                                                                <input  required="required" type="number" name="user_number" class="form-control" id="user_number" placeholder="<?php echo $row->user_number;?>">
+                                                                <input  required="required" type="number" name="user_number" class="form-control" id="user_number" value="<?php echo $row->user_number;?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -206,8 +206,14 @@ if(isset($_GET['update']))
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="user_dpic">Profile Picture</label>
-                                                                <!-- If the file exists, set the input value to display the file name -->
-                                                                 <input required="required" type="file" name="user_dpic" class="form-control btn btn-success" id="user_dpic" value="<?php echo isset($row->user_dpic) ? $row->user_dpic : ''; ?>">
+                                                                <!-- Display the current file name (shortened) -->
+                                                                <p>Current File: <?php echo isset($row->user_dpic) ? (strlen($row->user_dpic) > 20 ? substr($row->user_dpic, 0, 20) . '...' : $row->user_dpic) : 'No file uploaded'; ?></p>
+
+                                                                    <!-- File input for uploading a new file -->
+                                                                     <input required="required" type="file" name="user_dpic" class="form-control btn btn-success" id="user_dpic">
+
+                                                                       <!-- Hidden input to store the current file name (for server-side processing) -->
+                                                                          <input type="hidden" name="user_dpic" value="<?php echo isset($row->user_dpic) ? $row->user_dpic : ''; ?>">
                                                             </div>
                                                             <div id="file-name"></div>
                                                         </div>

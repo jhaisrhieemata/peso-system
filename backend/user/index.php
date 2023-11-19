@@ -17,39 +17,39 @@ if (isset($_POST['user_login'])) {
     $_SESSION['user_email'] = $user_email;
     $_SESSION['regtype'] = $regtype;
 
-//     if ($rs) {
-//         header("location: mis_user_dashboard.php");
-//     } else {
-//         $err = "Access Denied. Please check your credentials.";
-//     }
-// }
     if ($rs) {
-        // Check 'regtype' value and navigate to a specific page accordingly
-        switch ($regtype) {
-            case "Employment":
-                header("Location: mis_user_register_employment.php");
-                break;
-            case "Scholarship":
-                header("Location: mis_user_register_scholarship.php");
-                break;
-            case "SPES":
-                header("Location: mis_user_register_spes.php");
-                break;
-            case "GIP":
-                header("Location: mis_user_register_gip.php");
-                break;
-            case "TesdaTraining":
-                header("Location: mis_user_register_tesdatraining.php");
-                break;
-            // Add other cases as needed
-            default:
-                $err = "Invalid regtype"; // Handling other regtype values
-                break;
-        }
+        header("location: mis_user_dashboard.php");
     } else {
         $err = "Access Denied. Please check your credentials.";
     }
 }
+//     if ($rs) {
+//         // Check 'regtype' value and navigate to a specific page accordingly
+//         switch ($regtype) {
+//             case "Employment":
+//                 header("Location: mis_user_register_employment.php");
+//                 break;
+//             case "Scholarship":
+//                 header("Location: mis_user_register_scholarship.php");
+//                 break;
+//             case "SPES":
+//                 header("Location: mis_user_register_spes.php");
+//                 break;
+//             case "GIP":
+//                 header("Location: mis_user_register_gip.php");
+//                 break;
+//             case "TesdaTraining":
+//                 header("Location: mis_user_register_tesdatraining.php");
+//                 break;
+//             // Add other cases as needed
+//             default:
+//                 $err = "Invalid regtype"; // Handling other regtype values
+//                 break;
+//         }
+//     } else {
+//         $err = "Access Denied. Please check your credentials.";
+//     }
+// }
 ?>
 <!--End Login-->
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ if (isset($_POST['user_login'])) {
                                     <a href="index.php">
                                         <span><img src="assets/images/Peso_log.png" alt="" height="100"></span>
                                     </a>
-                                    <p class="text-muted mb-4 mt-3">Enter your email address and password to access User Employee panel.</p>
+                                    <p class="text-muted mb-4 mt-3">Enter your email address and password to access User panel.</p>
                                 </div>
 
                                 <form method='post' >

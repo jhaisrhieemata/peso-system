@@ -4,24 +4,30 @@ include('assets/inc/config.php');
 include('assets/inc/checklogin.php');
 check_login();
 $aid = $_SESSION['ad_id'];
-if(isset($_GET['delete']))
-{
-      $id=intval($_GET['delete']);
-      $adn="delete from mis_employment where employment_id=?";
-      $stmt= $mysqli->prepare($adn);
-      $stmt->bind_param('i',$id);
-      $stmt->execute();
-      $stmt->close();	 
 
-        if($stmt)
-        {
-          $success = "Employment Records Deleted";
-        }
-          else
-          {
-              $err = "Try Again Later";
-          }
-  } 
+if (isset($_POST['delete'])) {
+    $id = intval($_POST['delete']);
+    
+    // Backup the deleted record to the backup table
+    $backupQuery = "INSERT INTO mis_employment_backup SELECT * FROM mis_employment WHERE employment_id = ?";
+    $backupStmt = $mysqli->prepare($backupQuery);
+    $backupStmt->bind_param('i', $id);
+    $backupStmt->execute();
+    $backupStmt->close();
+
+    // Delete the record from the original table
+    $deleteQuery = "DELETE FROM mis_employment WHERE employment_id = ?";
+    $deleteStmt = $mysqli->prepare($deleteQuery);
+    $deleteStmt->bind_param('i', $id);
+    $deleteStmt->execute();
+    $deleteStmt->close();
+
+    if ($backupStmt && $deleteStmt) {
+        $success = "Employment Record Deleted and Backed Up";
+    } else {
+        $err = "Try Again Later";
+    }
+}
 
 // Function to retrieve employment records based on search and filter criteria
 function getEmploymentRecords($mysqli, $search, $dateJoined, $employmentStatus)
@@ -115,6 +121,8 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                 </select>
                                                 <button type="Submit" class="btn btn-primary">Filter</button>
                                                 <a href="mis_admin_manage_employment.php" class="btn btn-danger">Reset</a>
+                                                <a href="mis_admin_export_employment.php" class="btn btn-success" title="Click to export">Export</a>
+
                                             </div>
                                         </div>
                                     </form>
@@ -149,7 +157,12 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                         <td><?php echo $row['employment_status']; ?></td>
                                                         <td><?php echo $row['date_joined']; ?></td>
                                                         <td>
-                                                            <a href="mis_admin_manage_employment.php?delete=<?php echo $row['employment_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
+                                                        <form action="mis_admin_manage_employment.php" method="POST" style="display: inline;">
+                                                            <input type="hidden" name="delete" value="<?php echo $row['employment_id']; ?>">
+                                                            <button type="submit" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this record?')">
+                                                                <i class="mdi mdi-trash-can-outline"></i> Delete
+                                                            </button>
+                                                        </form>
                                                             <a href="mis_admin_view_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
                                                             <a href="mis_admin_update_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
                                                         </td>

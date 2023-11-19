@@ -89,6 +89,18 @@
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
+            <?php
+                $user_id=$_SESSION['user_id'];
+                // $user_dpic=$_GET['user_dpic'];
+                $ret="SELECT * FROM  mis_user where user_id=?";
+                $stmt= $mysqli->prepare($ret) ;
+                $stmt->bind_param('i',$user_id);
+                $stmt->execute() ;//ok
+                $res=$stmt->get_result();
+                //$cnt=1;
+                while($row=$res->fetch_object())
+                {
+            ?>
 
             <div class="content-page">
                 <div class="content">
@@ -123,11 +135,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="inputSurName" class="col-form-label">SurName</label>
-                                                    <input type="text" required="required" name="surname" class="form-control" id="inputSurName" placeholder="SurName">
+                                                    <input type="text" required="required" value="<?php echo ucwords($row->user_lname);?>" name="surname" class="form-control" id="inputSurName" placeholder="SurName">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="inputFirstName" class="col-form-label">First Name</label>
-                                                    <input required="required" type="text" name="firstname" class="form-control"  id="inputFirstName" placeholder="Firts Name">
+                                                    <input required="required" type="text" value="<?php echo ucwords($row->user_fname);?>" name="firstname" class="form-control"  id="inputFirstName" placeholder="Firts Name">
                                                 </div>
                                             </div>
 
@@ -256,14 +268,14 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputContactNumber" class="col-form-label">Contact Number</label>
-                                                    <input required="required" type="text" name="contact_number" class="form-control" id="inputContactNumber" placeholder="Contact Number">
+                                                    <input required="required" type="text" value="<?php echo $row->user_number;?>" name="contact_number" class="form-control" id="inputContactNumber" placeholder="Contact Number">
                                                 </div>
                                             </div>
 
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="inputEmail" class="col-form-label">Email</label>
-                                                    <input type="email" required="required" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                    <input type="email" required="required" value="<?php echo $row->user_email;?>" name="email" class="form-control" id="inputEmail" placeholder="Email">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="inpuEmploymentStatus" class="col-form-label">Employment Status</label>
@@ -524,6 +536,7 @@
                 <!-- end Footer -->
 
             </div>
+            <?php }?>
 
             <!-- ============================================================== -->
             <!-- End Page content -->

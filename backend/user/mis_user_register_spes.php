@@ -104,6 +104,18 @@
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
+            <?php
+                $user_id=$_SESSION['user_id'];
+                // $user_dpic=$_GET['user_dpic'];
+                $ret="SELECT * FROM  mis_user where user_id=?";
+                $stmt= $mysqli->prepare($ret) ;
+                $stmt->bind_param('i',$user_id);
+                $stmt->execute() ;//ok
+                $res=$stmt->get_result();
+                //$cnt=1;
+                while($row=$res->fetch_object())
+                {
+            ?>
 
             <div class="content-page">
                 <div class="content">
@@ -163,11 +175,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <label for="inputsurname" class="col-form-label">Surname</label>
-                                                    <input type="text" required="required" name="surname" class="form-control" id="inputsurname" placeholder="Surname">
+                                                    <input type="text" required="required" value="<?php echo ucwords($row->user_lname);?>" name="surname" class="form-control" id="inputsurname" placeholder="Surname">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputfirstname" class="col-form-label">First Name</label>
-                                                    <input required="required" type="text" name="firstname" class="form-control"  id="inputfirstname" placeholder="Firts Name">
+                                                    <input type="text" required="required"  value="<?php echo ucwords($row->user_fname);?>"  name="firstname" class="form-control"  id="inputfirstname" placeholder="Firts Name">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputmiddlename" class="col-form-label">Middle Name</label>
@@ -189,7 +201,7 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputcontact" class="col-form-label">Contact</label>
-                                                    <input required="required" type="number" name="contact" class="form-control"  id="inputcontact" placeholder="Contact" pattern="\d{11}" title="Please enter 11 digits">
+                                                    <input required="required" type="number" value="<?php echo $row->user_number;?>" name="contact" class="form-control"  id="inputcontact" placeholder="Contact" pattern="\d{11}" title="Please enter 11 digits">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                 <label for="inputcivilstatus" class="col-form-label">Civil Status</label>
@@ -566,6 +578,7 @@
                 <!-- end Footer -->
 
             </div>
+            <?php }?>
 
             <!-- ============================================================== -->
             <!-- End Page content -->
