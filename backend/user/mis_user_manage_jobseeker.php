@@ -2,7 +2,7 @@
   session_start();
   include('assets/inc/config.php');
   include('assets/inc/checklogin.php');
-//   check_login();
+  check_login();
   //$aid=$_SESSION['ad_id'];
   $user_id = $_SESSION['user_id'];
   /*

@@ -67,9 +67,9 @@
                                                                       <li>
                                                                       <a href="mis_admin_register_tesdatraining.php">Tesda Training </a>
                                                                       </li>                
-                                                                       <!-- <li>
-                                                                             <a href="mis_admin_register_accessment.php">Accessment </a>
-                                                                     </li>  -->
+                                                                      <li>
+                                                                      <a href="mis_admin_register_tesdatraining.php">Tesda course </a>
+                                                                      </li> 
                                                                  </ul>
                                              </li>
                                          </ul>
@@ -167,64 +167,13 @@
 
                                 </ul>
                             </li>
-                             <!-- <li>
-                                   <a href="javascript: void(0);">
-                                        <i class="far fa-file-alt "></i>
-                                        <span> Reports</span>
-                                       <span class="menu-arrow"></span>
-                                     </a>
-                                              <ul class="nav-second-level" aria-expanded="false">
-                                                   <li>
-                                                      <a href="javascript: void(0);">
-                                                          <i class=" far fa-user-circle "></i>
-                                                            <span> Peso </span>
-                                                            <span class="menu-arrow"></span>
-                                                       </a>                                     
-                                                       <ul class="nav-third-level" aria-expanded="false">
-                                                                 <li>
-                                                                   <a href="mis_admin_report_jobseeker.php">Employment</a>
-                                                                   </li>
-                                                                    <li>
-                                                                        <a href="mis_admin_report_scholarship.php">Scholarship</a>
-                                                                    </li>
-                                           
-                                                                    <li>
-                                                                        <a href="mis_admin_report_scholarship.php">SPES</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="mis_admin_report_scholarship.php">GIP</a>
-                                                                    </li>
-                                                                    <li>
-                                                                     <a href="mis_admin_report_scholarship.php">Job Opening</a>
-                                                                   </li>
-                                                                   <li>
-                                                               <a href="mis_admin_report_claimclearance.php">Peso Clearance </a>
-                                                              </li> 
-                                                           <li>
-                                                              <a href="mis_admin_report_otherprogram.php">Other Program</a>
-                                                           </li>
-                                                     </ul>
-                                                 </li>
-                                             </ul>
-                                               <ul class="nav-second-level" aria-expanded="false">
-                                                    <li>
-                                                       <a href="javascript: void(0);">
-                                                          <i class=" fas fa-chalkboard-teacher "></i>
-                                                           <span> Tesda </span>
-                                                           <span class="menu-arrow"></span>
-                                                         </a>
-                                       
-                                                                <ul class="nav-third-level" aria-expanded="false">
-                                                                    <li>
-                                                                        <a href="mis_admin_report_tesdatraining.php">Tesda Training </a>
-                                                                    </li> 
-                                                                         <li>
-                                                                             <a href="mis_admin_report_assessment.php">Assessment</a>
-                                                                           </li>
-                                                                </ul>
-                                                   </li>
-                                               </ul>
-                             </li> -->
+                            <li>
+                                <a href="mis_admin_manage_trash.php">
+                                    <i class="icon-trash"></i>
+                                    <span> Trash </span>
+                                </a>
+                                
+                            </li>
                         </ul>
 
                     </div>

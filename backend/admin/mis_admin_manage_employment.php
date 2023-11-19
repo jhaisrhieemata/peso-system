@@ -2,7 +2,7 @@
 session_start();
 include('assets/inc/config.php');
 include('assets/inc/checklogin.php');
-check_login();
+// check_login();
 $aid = $_SESSION['ad_id'];
 
 if (isset($_POST['delete'])) {
@@ -157,7 +157,7 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                         <td><?php echo $row['employment_status']; ?></td>
                                                         <td><?php echo $row['date_joined']; ?></td>
                                                         <td>
-                                                        <form action="mis_admin_manage_employment.php" method="POST" style="display: inline;">
+                                                        <form action="mis_admin_manage_employment.php" method="POST" style="display: red-inline;">
                                                             <input type="hidden" name="delete" value="<?php echo $row['employment_id']; ?>">
                                                             <button type="submit" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this record?')">
                                                                 <i class="mdi mdi-trash-can-outline"></i> Delete

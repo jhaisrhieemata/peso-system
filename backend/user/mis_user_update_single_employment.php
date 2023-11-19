@@ -45,13 +45,13 @@
             $company_name=$_POST['company_name'];
             $position=$_POST['position'];
             $number_of_months=$_POST['number_of_months'];
-            $other_skills=$_POST['other_skills'];
+            $special_skill=$_POST['special_skill'];
             $referred_to=$_POST['referred_to'];
             $date_joined=$_POST['date_joined'];
             //sql to update captured values
-		    $query="UPDATE  mis_employment SET or_no=?, surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, professional_licence=?, company_name=?, position=?, number_of_months=?, other_skills=?, referred_to=?, date_joined=? WHERE employment_id = ?";
+		    $query="UPDATE  mis_employment SET or_no=?, surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, professional_licence=?, company_name=?, position=?, number_of_months=?, special_skill=?, referred_to=?, date_joined=? WHERE employment_id = ?";
             $stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssi',$or_no, $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $professional_licence, $company_name, $position, $number_of_months, $other_skills, $referred_to, $date_joined, $employment_id);
+			$rc=$stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssi',$or_no, $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $professional_licence, $company_name, $position, $number_of_months, $special_skill, $referred_to, $date_joined, $employment_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Javascript Alerts
@@ -142,7 +142,7 @@
                                                                </div>
                                                                <div class="form-group">
                                                                      <label for="inputor_no" class="col-form-label"></label>         
-                                                                          <input type="text" id="inputor_no" name="or_no"  class="form-control" value="<?php echo $row->or_no; ?>" >
+                                                                          <input type="text" id="inputor_no" name="or_no"  class="form-control" value="<?php echo $row->or_no; ?>" disabled>
                                                                      </div>
                                                                      <style>
                                                                            #enableFieldsLabel {
@@ -494,7 +494,7 @@
                                                 <div class="form-row">
     <div class="form-group col-md-4">
         <label for="inputOtherSkills" class="col-form-label">Other Skills</label>
-        <input type="text" value="<?php echo $row->other_skills; ?>" name="other_skills" class="form-control" id="inputOtherSkills" placeholder="Other Skills" disabled>
+        <input type="text" value="<?php echo $row->special_skill; ?>" name="special_skill" class="form-control" id="inputOtherSkills" placeholder="Other Skills" disabled>
     </div>
     <div class="form-group col-md-4">
         <label for="inputReferredTo" class="col-form-label">Referred To</label>

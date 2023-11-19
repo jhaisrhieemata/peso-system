@@ -1,5 +1,5 @@
 <?php
-    $aid=$_SESSION['ad_id'];
+     $aid=$_SESSION['ad_id'];
     $ret="select * from mis_admin where ad_id=?";
     $stmt= $mysqli->prepare($ret) ;
     $stmt->bind_param('i',$aid);
@@ -109,7 +109,7 @@
                         <i class="fas fa-user-edit"></i>
                         <span>GIP</span>
                     </a>
-                    <a href="mis_admin_register_claimclearance.php" class="dropdown-item">
+                    <a href="mis_admin_add_clearance.php" class="dropdown-item">
                         <i class="fa fa-address-card "></i>
                         <span>Peso Clearance</span>
                     </a>
@@ -137,7 +137,7 @@
                     
                     
                                         <!-- item-->
-                    <a href="mis_admin_add_user_employee.php" class="dropdown-item">
+                    <a href="mis_admin_add_users.php" class="dropdown-item">
                         <i class="fas fa-users"></i>
                         <span>User Employee</span>
                     </a>

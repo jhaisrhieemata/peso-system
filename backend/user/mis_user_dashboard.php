@@ -31,9 +31,17 @@
             <!-- ============================================================== -->
             <?php
                 $user_id=$_SESSION['user_id'];
-                $ret="SELECT mis_user.user_fname, mis_user.user_lname, mis_employment.other_skills
-                FROM mis_user 
-                INNER JOIN mis_employment ON mis_user.employment_id = mis_employment.employment_id
+                $ret="SELECT 
+                mis_employment.employment_id, 
+                mis_employment.special_skill,
+                mis_scholarship.scholarship_id,
+                mis_user.user_id,
+                mis_user.user_email, 
+                mis_user.user_fname, 
+                mis_user.user_lname 
+            FROM mis_user
+            LEFT JOIN mis_employment ON mis_user.user_id = mis_employment.user_id
+            LEFT JOIN mis_scholarship ON mis_user.user_id = mis_scholarship.user_id
                  WHERE mis_user.user_id = ?";
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$user_id );
@@ -78,12 +86,12 @@
 			              <div class="tab-content clearfix">
 			                 <div class="tab-pane active" id="1a">
                              <?php
-                                   $other_skills = $row->other_skills;
+                                   $special_skill = $row->special_skill;
                                    $job_prediction = "";
                                
                                    // Define a mapping of skills to jobs
                                    $skill_to_job_mapping = array(
-                                       "Coding/Programming" => "Software Developer",
+                                       "Coding/Programming" => "Sofware developer",
                                        "Data Analysis" => "Data Scientist",
                                        "Digital Marketing" => "Marketing Manager",
                                        "Communication" => "Teacher",
@@ -95,14 +103,25 @@
                                        "Foreign Language Proficiency" => "Language Interpreter"
                                    );
                                
-                                   // Check if the other_skills exist in the mapping
-                                   if (isset($skill_to_job_mapping[$other_skills])) {
-                                       $job_prediction = $skill_to_job_mapping[$other_skills];
+                                   // Check if the special_skill exist in the mapping
+                                   if (isset($skill_to_job_mapping[$special_skill])) {
+                                       $job_prediction = $skill_to_job_mapping[$special_skill];
                                        echo "<h5>Your predicted job: $job_prediction</h5>";
                                    } else {
                                        echo "<h4>There are no matched jobs for you now. Keep your profile up-to-date to see jobs that match your skills and qualifications.</h4>";
                                    }
-                                   ?>
+                             ?>
+                             <!-- <script>
+                                      // Display the default content for tabs
+                                      document.getElementById('1a').classList.add('active'); // Make 'Matched jobs' tab active
+                                      document.getElementById('2a').classList.remove('active'); // Remove 'Job List' tab active state
+                                      document.getElementById('3a').classList.remove('active'); // Remove 'Tesda Course List' tab active state
+                                    
+                                      // Display default content for 'Matched jobs' tab
+                                      document.getElementById('1a').innerHTML = "<?php echo addslashes("<h5>Your predicted job: $job_prediction</h5>"); ?>";
+                                      document.getElementById('2a').innerHTML = "<?php echo addslashes("<h4>Coming Soon!</h4>"); ?>"; // Default content for 'Job List' tab
+                                      document.getElementById('3a').innerHTML = "<?php echo addslashes("<h4>Tesda course Coming Soon!</h4>"); ?>"; // Default content for 'Tesda Course List' tab
+                                    </script> -->
 				             </div>
 			                	<div class="tab-pane" id="2a">
                                       <h4>Coming Soon!</h4>

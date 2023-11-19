@@ -1,10 +1,30 @@
 <?php
     $user_id = $_SESSION['user_id'];
+    // $user_fname=$_SESSION['user_fname'];
+    // $user_lname=$_SESSION['user_lname'];
     $user_email = $_SESSION['user_email'];
     $regtype=$_SESSION['regtype'];
-    $ret="SELECT * FROM  mis_user WHERE user_id = ? AND user_email = ? AND regtype = ?";
+    $ret = "SELECT 
+                                           mis_employment.employment_id, 
+                                           mis_scholarship.scholarship_id, 
+                                           mis_spes.spes_id, 
+                                           mis_gip.gip_id, 
+                                           mis_tesdatraining.tesdatraining_id, 
+                                           mis_user.user_id,
+                                           mis_user.user_email, 
+                                           mis_user.user_fname, 
+                                           mis_user.user_lname, 
+                                           mis_user.user_dpic,
+                                           mis_user.regtype 
+                                       FROM mis_user
+                                       LEFT JOIN mis_employment ON mis_user.user_id = mis_employment.user_id
+                                       LEFT JOIN mis_scholarship ON mis_user.user_id = mis_scholarship.user_id
+                                       LEFT JOIN mis_spes ON mis_user.user_id = mis_spes.user_id
+                                       LEFT JOIN mis_gip ON mis_user.user_id = mis_gip.user_id
+                                       LEFT JOIN mis_tesdatraining ON mis_user.user_id = mis_tesdatraining.user_id
+                                       WHERE mis_user.user_id = ?";
     $stmt= $mysqli->prepare($ret) ;
-    $stmt->bind_param('iss',$user_id, $user_email, $regtype);
+    $stmt->bind_param('i',$user_id);
     $stmt->execute() ;//ok
     $res=$stmt->get_result();
     //$cnt=1;
@@ -23,14 +43,15 @@
                         <?php echo $row->user_fname;?> <?php echo $row->user_lname;?> <i class="mdi mdi-chevron-down"></i> 
                     </span>
                 </a>
-                <?php
+                <!-- <?php
                                            $ret = "SELECT 
                                            mis_employment.employment_id, 
                                            mis_scholarship.scholarship_id, 
                                            mis_spes.spes_id, 
                                            mis_gip.gip_id, 
                                            mis_tesdatraining.tesdatraining_id, 
-                                           mis_user.user_id, 
+                                           mis_user.user_id,
+                                           mis_user.user_email, 
                                            mis_user.user_fname, 
                                            mis_user.user_lname, 
                                            mis_user.regtype 
@@ -51,7 +72,7 @@
                                         // $cnt=1;
 
                                         while ($row = $res->fetch_object()) {
-                                            ?>
+                        ?> -->
 
 
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -147,7 +168,7 @@
                     </a>
 
                 </div>
-                <?php }?>
+                <!-- <?php }?> -->
             </li>
 
            

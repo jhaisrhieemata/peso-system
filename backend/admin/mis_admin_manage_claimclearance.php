@@ -99,6 +99,9 @@ if (isset($_GET['search'])) {
                                                                                                                         <button type="Submit" class="btn btn-primary">Search</button>
                                                                                                                         <a href="mis_admin_manage_claimclearance.php" class="btn btn-danger">Reset</a>
                                             </div>
+                                            <!-- <div class="form-group">
+                                                    <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                                </div> -->
                                         </div>
                                     </form>
                                 </div>
@@ -118,11 +121,23 @@ if (isset($_GET['search'])) {
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
+                                
                                         <tbody>
                                             <?php
                                             if ($employmentRecords->num_rows > 0) {
                                                 while ($row = $employmentRecords->fetch_assoc()) {
                                                     ?>
+                                                    <!-- <tr>
+                                                    <td><?php echo $employment_id;?></td>
+                                                    <td><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></td>
+                                                    <td><?php echo $row->barangay;?> <?php echo $row->municipality;?> <?php echo $row->province;?> </td>
+                                                    <td><?php echo $row->sex;?></td>
+                                                    <td><?php echo $row->or_no;?></td>
+                                                    <td><?php echo $row->date_joined;?></td>
+                                                    <td><?php echo $row->contact_number;?></td>
+                                                    <td><?php echo $row->employment_status;?></td>
+                                                    
+                                                    <td> -->
                                                     <tr>
                                                         <td><?php echo $row['employment_id']; ?></td>
                                                         <td><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['surname']; ?></td>
@@ -131,9 +146,7 @@ if (isset($_GET['search'])) {
                                                         <td><?php echo $row['or_no']; ?></td>
                                                         <td><?php echo $row['date_joined']; ?></td>
                                                         <td><?php echo $row['contact_number']; ?></td>
-                                                        <td><?php echo $row['employment_status']; ?></td>
-                                                        <!-- <td><?php echo $row['email']; ?></td> -->
-                                                       
+                                                        <td><?php echo $row['employment_status']; ?></td>                           
                                                         <td>
                                                             <a href="mis_admin_manage_claimclearance.php?delete=<?php echo $row['employment_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
                                                             <!-- <a href="mis_admin_view_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a> -->
@@ -151,6 +164,8 @@ if (isset($_GET['search'])) {
                                             <?php
                                             }
                                             ?>
+                                        
+
                                         </tbody>
                                         <tfoot>
                                             <tr class="active">
