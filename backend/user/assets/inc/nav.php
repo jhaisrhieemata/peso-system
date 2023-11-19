@@ -18,31 +18,42 @@
             
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="assets/images/users/<?php echo $row->user_dpic;?>" alt="dpic" class="rounded-circle">
+                    <img src="assets/images/users/<?php echo $row->user_dpic;?>"  alt="pic" class="rounded-circle">
                     <span class="pro-user-name ml-1">
                         <?php echo $row->user_fname;?> <?php echo $row->user_lname;?> <i class="mdi mdi-chevron-down"></i> 
                     </span>
                 </a>
-                                            <?php
-                                           $ret = "SELECT e.user_id, e.user_fname, e.user_lname, e.regtype, em.employment_id, em.firstname, s.scholarship_id, s.firstname, sp.spes_id, sp.firstname, g.gip_id, g.firstname, t.tesdatraining_id, t.firstname 
-                                           FROM mis_user e
-                                           LEFT JOIN mis_employment em ON e.user_id = em.employment_id 
-                                           LEFT JOIN mis_scholarship s ON e.user_id = s.user_id
-                                           LEFT JOIN mis_spes sp ON e.user_id = sp.user_id
-                                           LEFT JOIN mis_gip g ON e.user_id = g.user_id
-                                           LEFT JOIN mis_tesdatraining t ON e.user_id = t.user_id 
-                                           ORDER BY em.employment_id, s.scholarship_id, sp.spes_id, g.gip_id, t.tesdatraining_id";
+                <?php
+                                           $ret = "SELECT 
+                                           mis_employment.employment_id, 
+                                           mis_scholarship.scholarship_id, 
+                                           mis_spes.spes_id, 
+                                           mis_gip.gip_id, 
+                                           mis_tesdatraining.tesdatraining_id, 
+                                           mis_user.user_id, 
+                                           mis_user.user_fname, 
+                                           mis_user.user_lname, 
+                                           mis_user.regtype 
+                                       FROM mis_user
+                                       LEFT JOIN mis_employment ON mis_user.user_id = mis_employment.user_id
+                                       LEFT JOIN mis_scholarship ON mis_user.user_id = mis_scholarship.user_id
+                                       LEFT JOIN mis_spes ON mis_user.user_id = mis_spes.user_id
+                                       LEFT JOIN mis_gip ON mis_user.user_id = mis_gip.user_id
+                                       LEFT JOIN mis_tesdatraining ON mis_user.user_id = mis_tesdatraining.user_id
+                                       WHERE mis_user.user_id = ?"; // Assuming you want to filter by user_id, replace it with the actual column you want to filter on
                                            
                                     
                                                // Prepare and execute the query
                                          $stmt = $mysqli->prepare($ret);
+                                         $stmt->bind_param("i", $user_id); 
                                          $stmt->execute();
                                         $res = $stmt->get_result();
                                         // $cnt=1;
 
                                         while ($row = $res->fetch_object()) {
                                             ?>
-                                            
+
+
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
                     <div class="dropdown-header noti-title">
@@ -54,34 +65,72 @@
                         <i class="fas fa-user"></i>
                         <span>Dashboard</span>
                     </a>
-
-
-                    <!-- <a href="mis_user_update_single_<?php echo $regtype; ?>.php?tesdatraining_id=<?php echo $row->tesdatraining_id;?>" class="dropdown-item notify-item">
-                        <i class="fas fa-user-tag"></i>
-                        <span>Profile</span>
-                    </a> -->
                     <?php
-// Assuming $regtype and $row->tesdatraining_id are available
-
-// Set the condition for $regtype
-if ($regtype === 'Employment') {
-    $url = "mis_user_update_single_employment.php?employment_id={$row->employment_id}";
-} elseif ($regtype === 'Scholarship') {
-    $url = "mis_user_update_single_scholarship.php?scholarship_id={$row->scholarship_id}";
-} elseif ($regtype === 'SPES') {
-    $url = "mis_user_update_single_spes.php?spes_id={$row->spes_id}";
-} elseif ($regtype === 'GIP') {
-    $url = "mis_user_update_single_gip.php?gip_id={$row->gip_id}";
-} else {
-    $url = "mis_user_update_single_tesdatraining.php?tesdatraining_id={$row->tesdatraining_id}";
-
-}
-?>
-
-<a href="<?php echo $url; ?>" class="dropdown-item notify-item">
-    <i class="fas fa-user-tag"></i>
-    <span>Profile</span>
-</a>
+                     // Assuming $regtype and $row->tesdatraining_id are available
+                       // Use switch statement to set the appropriate ID based on $regtype
+                     switch ($regtype) {
+                       case 'Employment':
+                           $id = $row->employment_id;
+                           break;
+                       case 'Scholarship':
+                           $id = $row->scholarship_id;
+                           break;
+                       case 'SPES':
+                           $id = $row->spes_id;
+                           break;
+                       case 'GIP':
+                           $id = $row->gip_id;
+                           break;
+                       case 'TesdaTraining':
+                           $id = $row->tesdatraining_id;
+                           break;
+                      }
+                          // Output the URL directly in the href attribute
+                   ?>
+                    <?php
+                        if (!empty($id)) {
+                            // $id is not empty, generate the link to update the user
+                            ?>
+                            <a href="#" class="dropdown-item notify-item" id="updateLink" onclick="updateRegtype('<?php echo strtolower($regtype); ?>',<?php echo $id; ?>,)">
+                                <i class="fas fa-user-tag"></i>
+                                <span><?php echo $regtype; ?></span>
+                            </a>
+                            <script>
+                                 function updateRegtype(regtype,id) {
+                                     var confirmUpdate = confirm("You are going to update ?");
+                                     if (confirmUpdate) {
+                                         window.location.href = "mis_user_update_single_" + regtype + ".php?" + regtype + "_id=" + id;
+                                         document.getElementById('updateLink').style.display = 'none';
+                                     } else {
+                                         // User clicked Cancel, you can handle this case accordingly
+                                     }
+                                 }
+                            </script>
+                            <?php
+                                    } else {
+                                        // $id is empty, show a confirmation prompt to register first
+                                    ?>
+                                        <a href="#" class="dropdown-item notify-item" id="registerLink" onclick="registerFirst('<?php echo strtolower($regtype); ?>')">
+                                            <i class="fas fa-user-plus"></i>
+                                            <span>Register <?php echo $regtype; ?></span>
+                                        </a>
+                                    
+                                        <script>
+                                            function registerFirst(regtype) {
+                                                var confirmRegister = confirm("You are going to Proceed this?");
+                                                if (confirmRegister) {
+                                                    window.location.href = "mis_user_register_" + regtype + ".php";
+                                                    // Hide the registration link after clicking and confirming
+                                                    document.getElementById('registerLink').style.display = 'none';
+                                                } else {
+                                                    // User clicked Cancel, you can handle this case accordingly
+                                                }
+                                            }
+                                           
+                                        </script>
+                                 <?php
+                        }
+                    ?>
 
                     <a href="mis_user_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
@@ -98,7 +147,7 @@ if ($regtype === 'Employment') {
                     </a>
 
                 </div>
-        <?php }?>
+                <?php }?>
             </li>
 
            
@@ -109,12 +158,12 @@ if ($regtype === 'Employment') {
         <div class="logo-box">
             <a href="mis_user_dashboard.php" class="logo text-center">
                 <span class="logo-lg">
-                    <img src="assets/images/Peso_logo.png" alt="" height="50">
+                    <img src="assets/images/Peso_log.png" alt="" height="50">
                     <!-- <span class="logo-lg-text-light">UBold</span> -->
                 </span>
                 <span class="logo-sm">
                     <!-- <span class="logo-sm-text-dark">U</span> -->
-                    <img src="assets/images/Peso_logo.png" alt="" height="30">
+                    <img src="assets/images/Peso_log.png" alt="" height="30">
                 </span>
             </a>
         </div>
