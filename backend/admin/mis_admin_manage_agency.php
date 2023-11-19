@@ -124,9 +124,7 @@ if (isset($_GET['search']) || isset($_GET['date_created']) || isset($_GET['agenc
                                         <thead>
                                             <tr>
                                                 <th>id</th>
-                                                <th>Company Name</th>
-                                                <th>Job Name</th>           
-                                                <th>Description</th>
+                                                <th>Company Name</th>         
                                                 <th>Address</th>
                                                 <th>Contact</th>
                                                 <th>Email</th>
@@ -142,8 +140,6 @@ if (isset($_GET['search']) || isset($_GET['date_created']) || isset($_GET['agenc
                                                     <tr>
                                                         <td><?php echo $row['agency_id']; ?></td>
                                                         <td><?php echo $row['agency_name']; ?></td>
-                                                        <td><?php echo $row['address']; ?></td>
-                                                        <td><?php echo $row['contact']; ?></td>
                                                         <td><?php echo $row['address']; ?></td>
                                                         <td><?php echo $row['contact']; ?></td>     
                                                         <td><?php echo $row['email']; ?></td>

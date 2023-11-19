@@ -142,7 +142,7 @@
                                                                </div>
                                                                <div class="form-group">
                                                                      <label for="inputor_no" class="col-form-label"></label>         
-                                                                          <input type="text" id="inputor_no" name="or_no"  class="form-control" value="<?php echo $row->or_no; ?>"  disabled>
+                                                                          <input type="text" id="inputor_no" name="or_no"  class="form-control" value="<?php echo $row->or_no; ?>" >
                                                                      </div>
                                                                      <style>
                                                                            #enableFieldsLabel {
@@ -592,7 +592,7 @@
                                                                          var isChecked = $(this).is(':checked');
         
                                                                           // Get all input fields that should be enabled/disabled
-                                                                       var inputFields = $('#inputor_no, #inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputprc, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_employment'); // Add more fields if needed
+                                                                       var inputFields = $('#inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputprc, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_employment'); // Add more fields if needed
         
                                                                          // Enable or disable the input fields based on the global checkbox state
                                                                       inputFields.prop('disabled', !isChecked);

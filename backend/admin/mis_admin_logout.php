@@ -30,7 +30,7 @@
                                 
                                 <div class="text-center w-75 m-auto">
                                     <a href="his_admin_logout.php">
-                                        <span><img src="assets/images/Peso_logo.png" alt="" height="80"></span>
+                                        <span><img src="assets/images/Peso_logo.png" alt="" height="50"></span>
                                     </a>
                                 </div>
 

@@ -170,8 +170,8 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                            <label for="ad_dpic">Profile Picture</label>
-                                                                <!-- If the file exists, set the input value to display the file name -->
+                                                                <label for="inputadminprofilepicture">Profile Picture</label>
+                                                                 <!-- If the file exists, set the input value to display the file name -->
                                                                 <!-- Display the current file name -->
                                                                  <!-- Display the current file name (shortened) -->
                                                                  <p>Current File: <?php echo isset($row->ad_dpic) ? (strlen($row->ad_dpic) > 20 ? substr($row->ad_dpic, 0, 20) . '...' : $row->ad_dpic) : 'No file uploaded'; ?></p>

@@ -283,8 +283,7 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="input_emplo_stat_employed" class="col-form-label">Employed</label>
                                                     <select id="input_emplo_stat_employed" required="required" name="employment_status_employed" class="form-control">
-                                                    <option value="">-Select-</option>
-                                                       <option>NA</option>
+                                                    <option value="NA">NA</option>
                                                         <option>Wage employed</option>
                                                         <option>Self-employed (Fisherman/Fisherfolk)</option>
                                                         <option>Self-employed (Vendor/Retailer)</option>
@@ -299,8 +298,7 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="input_emplo_stat_unemployed" class="col-form-label">Unemployed</label>
                                                     <select id="input_emplo_stat_unemployed" required="required" name="employment_status_unemployed" class="form-control">
-                                                    <option value="">-Select-</option>
-                                                       <option>NA</option>
+                                                    <option value="NA">NA</option>
                                                         <option>New Emtrant/Fresh Graduate</option>
                                                         <option>Finish Contract</option>
                                                         <option>Resigned</option>
@@ -561,6 +559,31 @@
 
         <!-- Buttons init js-->
         <script src="assets/js/pages/loading-btn.init.js"></script>
+
+         <!-- // jQuery code  employed enable or disable -->
+         <!-- <script>
+      
+      $(document).ready(function() {
+          // Attach an event listener to the Employment Status select box
+          $("#inpuEmploymentStatus").change(function() {
+              // Get the selected value
+              var selectedValue = $(this).val();
+
+              // Disable or enable the corresponding select boxes based on the selected value
+              if (selectedValue === "Employed") {
+                  $("#input_emplo_stat_unemployed").prop("disabled", true);
+                  $("#input_emplo_stat_employed").prop("disabled", false);
+              } else if (selectedValue === "Unemployed") {
+                  $("#input_emplo_stat_unemployed").prop("disabled", false);
+                  $("#input_emplo_stat_employed").prop("disabled", true);
+              } else {
+                  // Reset if neither Employed nor Unemployed is selected
+                  $("#input_emplo_stat_unemployed").prop("disabled", true);
+                  $("#input_emplo_stat_employed").prop("disabled", true);
+              }
+          });
+      });
+  </script> -->
         
     </body>
 
