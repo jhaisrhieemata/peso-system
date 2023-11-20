@@ -111,8 +111,8 @@
                                         </li>
                                 
                                     </ul>
-                                    <!--Medical History-->
-                               </div> <!-- end card-box-->
+                                   
+                               </div> 
 
                             </div>  -->
                         </div>

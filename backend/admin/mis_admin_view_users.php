@@ -59,13 +59,10 @@
                                         <div class="row">
                                             <div class="col-12 text-sm-center form-inline" >
                                                 <div class="form-group mr-2" style="display:none">
-                                                    <!-- <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
+                                                    <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
                                                         <option value="">Show all</option>
-                                                        <option value="Discharged">Discharged</option>
-                                                        <option value="OutPatients">OutPatients</option>
-                                                        <option value="InPatients">InPatients</option>
                                                     </select>
-                                                </div> -->
+                                                </div>
                                                 <div class="form-group">
                                                     <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
                                                 </div>
@@ -74,7 +71,7 @@
                                     </div>
                                     
                                     <div class="table-responsive">
-                                        <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="7">
+                                        <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -90,7 +87,7 @@
                                                 *get details of allpatients
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_user ORDER BY user_id "; 
+                                                $ret="SELECT * FROM  mis_user ORDER BY user_id ASC"; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok

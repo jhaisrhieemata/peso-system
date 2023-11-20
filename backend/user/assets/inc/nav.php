@@ -5,7 +5,8 @@
     $user_email = $_SESSION['user_email'];
     $regtype=$_SESSION['regtype'];
     $ret = "SELECT 
-                                           mis_employment.employment_id, 
+                                           mis_employment.employment_id,
+                                           mis_employment.user_id, 
                                            mis_scholarship.scholarship_id, 
                                            mis_spes.spes_id, 
                                            mis_gip.gip_id, 
@@ -108,50 +109,69 @@
                       }
                           // Output the URL directly in the href attribute
                    ?>
-                    <?php
+                  <?php
                         if (!empty($id)) {
                             // $id is not empty, generate the link to update the user
                             ?>
-                            <a href="#" class="dropdown-item notify-item" id="updateLink" onclick="updateRegtype('<?php echo strtolower($regtype); ?>',<?php echo $id; ?>,)">
+                            <a href="#" class="dropdown-item notify-item" id="updateLink" onclick="updateRegtype('<?php echo strtolower($regtype); ?>',<?php echo $id; ?>)">
                                 <i class="fas fa-user-tag"></i>
                                 <span><?php echo $regtype; ?></span>
                             </a>
                             <script>
-                                 function updateRegtype(regtype,id) {
-                                     var confirmUpdate = confirm("You are going to update ?");
-                                     if (confirmUpdate) {
-                                         window.location.href = "mis_user_update_single_" + regtype + ".php?" + regtype + "_id=" + id;
-                                         document.getElementById('updateLink').style.display = 'none';
-                                     } else {
-                                         // User clicked Cancel, you can handle this case accordingly
-                                     }
-                                 }
+                                function updateRegtype(regtype, id) {
+                                    var confirmUpdate = confirm("You are going to update?");
+                                    if (confirmUpdate) {
+                                        window.location.href = "mis_user_update_single_" + regtype + ".php?" + regtype + "_id=" + id;
+                                        document.getElementById('updateLink').style.display = 'none';
+                                    } else {
+                                        // User clicked Cancel, you can handle this case accordingly
+                                    }
+                                }
                             </script>
                             <?php
+                        } else {
+                            // $id is empty, show a confirmation prompt to register first
+                            ?>
+                            <a href="#" class="dropdown-item notify-item" id="registerLink" onclick="registerFirst('<?php echo strtolower($regtype); ?>')">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Register <?php echo $regtype; ?></span>
+                            </a>
+                            <script>
+                                function registerFirst(regtype) {
+                                    var confirmRegister = confirm("You are going to proceed with registration?");
+                                    if (confirmRegister) {
+                                        window.location.href = "mis_user_register_" + regtype + ".php";
+                                        // Hide the registration link after clicking and confirming
+                                        document.getElementById('registerLink').style.display = 'none';
                                     } else {
-                                        // $id is empty, show a confirmation prompt to register first
-                                    ?>
-                                        <a href="#" class="dropdown-item notify-item" id="registerLink" onclick="registerFirst('<?php echo strtolower($regtype); ?>')">
-                                            <i class="fas fa-user-plus"></i>
-                                            <span>Register <?php echo $regtype; ?></span>
-                                        </a>
-                                    
-                                        <script>
-                                            function registerFirst(regtype) {
-                                                var confirmRegister = confirm("You are going to Proceed this?");
-                                                if (confirmRegister) {
-                                                    window.location.href = "mis_user_register_" + regtype + ".php";
-                                                    // Hide the registration link after clicking and confirming
-                                                    document.getElementById('registerLink').style.display = 'none';
-                                                } else {
-                                                    // User clicked Cancel, you can handle this case accordingly
-                                                }
-                                            }
-                                           
-                                        </script>
-                                 <?php
+                                        // User clicked Cancel, you can handle this case accordingly
+                                    }
+                                }
+                            </script>
+                            <?php
+                            // Check if registration is successful, then display the update link
+                            if (!empty($id)) {
+                                ?>
+                                <a href="#" class="dropdown-item notify-item" id="updateLinkAfterRegister" onclick="updateRegtype('<?php echo strtolower($regtype); ?>',<?php echo $id; ?>)">
+                                    <i class="fas fa-user-tag"></i>
+                                    <span>Update <?php echo $regtype; ?></span>
+                                </a>
+                            <script>
+                                function updateRegtype(regtype, id) {
+                                    var confirmUpdate = confirm("You are going to update?");
+                                    if (confirmUpdate) {
+                                        window.location.href = "mis_user_update_single_" + regtype + ".php?" + regtype + "_id=" + id;
+                                        document.getElementById('updateLinkAfterRegister').style.display = 'none';
+                                    } else {
+                                        // User clicked Cancel, you can handle this case accordingly
+                                    }
+                                }
+                            </script>
+                                <?php
+                            }
                         }
-                    ?>
+                        ?>
+
 
                     <a href="mis_user_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>

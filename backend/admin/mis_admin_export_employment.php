@@ -27,7 +27,20 @@ $fields = array('employment_id','or_no','surname','firstname','middlename','suff
 $excelData = implode("\t", array_values($fields)) . "\n"; 
 
 // Get values from $_GET
+$startDate = isset($_GET['date_joined']) ? $_GET['date_joined'] : '';
+$employmentStatus = isset($_GET['employment_status']) ? $_GET['employment_status'] : '';
 
+// Check if both date and employment status are selected
+if (!empty($startDate) && $employmentStatus !== '-select-') {
+    // Fetch records from the database based on selected date and employment status
+    $query = $conn->query("SELECT * FROM mis_employment 
+                          WHERE date_joined = '$startDate' 
+                          AND employment_status = '$employmentStatus' 
+                          ORDER BY employment_id ASC");
+} else {
+    // Handle other cases or show an error message
+    $excelData .= 'Please select both date and employment status to export data.' . "\n";
+}
 // Fetch records from database 
 // Your query
 $query = $conn->query("SELECT * FROM mis_employment ORDER BY employment_id ASC");

@@ -58,7 +58,11 @@
                                     <div class="mb-2">
                                         <div class="row">
                                             <div class="col-12 text-sm-center form-inline" >
-                                              
+                                            <div class="form-group mr-2" style="display:none">
+                                                    <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
+                                                        <option value="">Show all</option>
+                                                    </select>
+                                                  </div>
                                                 <div class="form-group">
                                                     <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
                                                 </div>
@@ -67,7 +71,7 @@
                                     </div>
                                     
                                     <div class="table-responsive">
-                                        <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="7">
+                                        <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -85,7 +89,7 @@
                                                 *get details of all Jobseeker
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_employment ORDER BY employment_id "; 
+                                                $ret="SELECT * FROM  mis_employment ORDER BY employment_id ASC "; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -112,7 +116,7 @@
                                             <?php  $cnt = $cnt +1 ; }?>
                                             <tfoot>
                                             <tr class="active">
-                                                <td colspan="8">
+                                                <td colspan="10">
                                                     <div class="text-right">
                                                         <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0"></ul>
                                                     </div>

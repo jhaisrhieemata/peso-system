@@ -91,7 +91,7 @@ if (isset($_GET['search'])) {
                                 <h4 class="header-title"></h4>
                                 <div class="mb-2">
                                     <form action="" method="GET">
-                                        <div class="form-row">
+                                        <!-- <div class="form-row">
                                             <div class="input-group mb-3">
                                                 <input id="demo-foo-search" type="text" class="form-control" value="<?php if (isset($_GET['search'])) {
                                                                                                                             echo $_GET['search'];
@@ -99,11 +99,23 @@ if (isset($_GET['search'])) {
                                                                                                                         <button type="Submit" class="btn btn-primary">Search</button>
                                                                                                                         <a href="mis_admin_manage_claimclearance.php" class="btn btn-danger">Reset</a>
                                             </div>
-                                            <!-- <div class="form-group">
-                                                    <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
-                                                </div> -->
                                         </div>
-                                    </form>
+                                    </form> -->
+                                    <div class="row">
+                                            <div class="col-12 text-sm-center form-inline" >
+                                                <div class="form-group mr-2" style="display:none">
+                                                    <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
+                                                        <option value="">Show all</option>
+                                                        <!-- <option value="Discharged">Discharged</option>
+                                                        <option value="OutPatients">OutPatients</option>
+                                                        <option value="InPatients">InPatients</option> -->
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
                                 <div class="table-responsive">
                                     <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">

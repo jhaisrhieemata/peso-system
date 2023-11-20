@@ -68,8 +68,8 @@
                                                                       <a href="mis_admin_register_tesdatraining.php">Tesda Training </a>
                                                                       </li>                
                                                                       <li>
-                                                                      <a href="mis_admin_register_tesdatraining.php">Tesda course </a>
-                                                                      </li> 
+                                                                        <a href="mis_admin_add_Tesda_Course_list.php">Tesda Course</a>
+                                                                        </li>
                                                                  </ul>
                                              </li>
                                          </ul>
@@ -125,9 +125,9 @@
                                                      <li> 
                                                         <a href="mis_admin_manage_tesdatraining.php">Tesda Training </a>
                                                      </li>
-                                                      <!-- <li>
-                                                         <a href="mis_admin_manage_assessment.php">Assessment</a>
-                                                       </li> -->
+                                                     <li>
+                                                     <a href="mis_admin_manage_tesda_course_list.php">Tesda Course</a>
+                                                     </li>
                                                   </ul>
                                              </li>
                                          </ul>

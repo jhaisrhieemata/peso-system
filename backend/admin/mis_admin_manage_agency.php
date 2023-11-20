@@ -24,13 +24,9 @@ if(isset($_GET['delete']))
   } 
 
 // Function to retrieve employment records based on search and filter criteria
-function getagencyRecords($mysqli, $search, $dateposted, $typeagency)
+function getagencyRecords($mysqli, $dateposted, $typeagency)
 {
     $query = "SELECT * FROM  mis_agency WHERE 1";
-
-    if (!empty($search)) {
-        $query .= " AND CONCAT(agency_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_created LIKE '%$search%')";
-    }
 
     if (!empty($dateposted)) {
         $query .= " AND date_created = '$dateposted'";
@@ -48,13 +44,13 @@ function getagencyRecords($mysqli, $search, $dateposted, $typeagency)
 // Initial query to retrieve all employment records
 $agencyRecords = getagencyRecords($mysqli, '', '', '');
 
-if (isset($_GET['search']) || isset($_GET['date_created']) || isset($_GET['agency_name'])) {
+if (isset($_GET['date_created']) || isset($_GET['agency_name'])) {
     // If search or filter parameters are provided in the URL, re-query the database
-    $search = isset($_GET['search']) ? $_GET['search'] : '';
+
     $dateposted = isset($_GET['date_created']) ? $_GET['date_created'] : '';
     $typeagency = isset($_GET['agency_name']) ? $_GET['agency_name'] : '';
 
-    $agencyRecords = getagencyRecords($mysqli, $search, $dateposted, $typeagency);
+    $agencyRecords = getagencyRecords($mysqli, $dateposted, $typeagency);
 }
 ?>
 
@@ -86,11 +82,11 @@ if (isset($_GET['search']) || isset($_GET['date_created']) || isset($_GET['agenc
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Job Opening </a></li>
-                                        <li class="breadcrumb-item active">Manage Job Opening</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Agency </a></li>
+                                        <li class="breadcrumb-item active">Manage Agency</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Manage Job Opening Details</h4>
+                                <h4 class="page-title">Manage Agency Details</h4>
                             </div>
                         </div>
                     </div>
@@ -99,14 +95,12 @@ if (isset($_GET['search']) || isset($_GET['date_created']) || isset($_GET['agenc
                         <div class="col-12">
                             <div class="card-box">
                                 <h4 class="header-title"></h4>
+                                  
                                 <div class="mb-2">
                                     <form action="" method="GET">
                                         <div class="form-row">
                                             <div class="input-group mb-3">
-                                                <!-- <input id="demo-foo-search" type="text" class="form-control" value="<?php if (isset($_GET['search'])) {
-                                                                                                                            echo $_GET['search'];
-                                                                                                                        } ?>" name="search" placeholder="Search" autocomplete="on"> -->
-                                                                                                                        <!-- <button type="Submit" class="btn btn-primary">Search</button> -->
+                                            
                                                 <input type="date" name="date_created" value="<?= isset($_GET['date_created']) == true ? $_GET['date_created'] : '' ?>" class="form-control">
                                                 <select name="agency_name" class="form-control">
                                                     <option value="-select-">-select-</option>
@@ -119,6 +113,20 @@ if (isset($_GET['search']) || isset($_GET['date_created']) || isset($_GET['agenc
                                         </div>
                                     </form>
                                 </div>
+                                 <div class="mb-2">
+                                        <div class="row">
+                                            <div class="col-12 text-sm-center form-inline" >
+                                                <div class="form-group mr-2" style="display:none">
+                                                    <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
+                                                        <option value="">Show all</option>
+                                                    </select>
+                                                  </div>
+                                                    <div class="form-group">
+                                                    <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                                   </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <div class="table-responsive">
                                     <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
                                         <thead>

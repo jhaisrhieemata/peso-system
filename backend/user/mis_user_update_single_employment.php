@@ -5,7 +5,7 @@
 		if(isset($_POST['update_employment']))
 		{
             $employment_id=$_GET['employment_id'];
-            $or_no=$_POST['or_no'];
+            // $or_no=$_POST['or_no'];
 			$surname=$_POST['surname'];
 			$firstname=$_POST['firstname'];
 			$middlename=$_POST['middlename'];
@@ -140,10 +140,10 @@
                                                                <input type="checkbox" id="enableFields" class="form-check-input">
                                                                   <label for="enableFields" class="form-check-label" id="enableFieldsLabel">Enable Fields</label>
                                                                </div>
-                                                               <div class="form-group">
+                                                               <!-- <div class="form-group">
                                                                      <label for="inputor_no" class="col-form-label"></label>         
                                                                           <input type="text" id="inputor_no" name="or_no"  class="form-control" value="<?php echo $row->or_no; ?>" disabled>
-                                                                     </div>
+                                                                     </div> -->
                                                                      <style>
                                                                            #enableFieldsLabel {
                                                                                   color: red;
@@ -520,7 +520,7 @@
                 if (selectedOption === "") {
                     // Hide the select and show the input field
                     document.getElementById("inputReferredTo").style.display = "none";
-                    document.getElementById("otherTextReferredTo").style display = "block";
+                    document.getElementById("otherTextReferredTo").style.display = "block";
                     document.getElementById("otherTextReferredTo").value = ""; // Clear the input field
                     document.getElementById("otherTextReferredTo").focus(); // Focus on the input field
                 } else {

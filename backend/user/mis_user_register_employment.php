@@ -53,16 +53,23 @@
             $special_skill=$_POST['special_skill'];
             $referred_to=$_POST['referred_to'];
             //sql to insert captured values
-			$query="insert into mis_employment (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, professional_licence, company_name, position, number_of_months, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('sssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $professional_licence, $company_name, $position, $number_of_months, $special_skill, $referred_to);
-			$stmt->execute();
+			$query1="insert into mis_employment (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, professional_licence, company_name, position, number_of_months, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			$stmt1 = $mysqli->prepare($query1);
+			$rc1=$stmt1->bind_param('sssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $professional_licence, $company_name, $position, $number_of_months, $special_skill, $referred_to);
+			$stmt1->execute();
+            $stmt1->close();
+
+            $query2="INSERT INTO mis_employment SELECT mis_user.user_id FROM mis_user WHERE user_id =?";
+            $stmt2 = $mysqli->prepare($query2);
+            $rc2=$stmt2->bind_param('i',$user_id);
+            // $stmt2->execute();
+            $stmt2->close();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
 			*echo"<script>alert('Successfully Created Account Proceed To Log In ');</script>";
 			*/ 
 			//declare a varible which will be passed to alert function
-			if($stmt)
+			if($stmt1 && $stmt2)
 			{
 				$success = "Details Added";
 			}
@@ -518,7 +525,7 @@
                                                                                });
                                                                         </script>
                                                                                <!-- <input placeholder="Specify here" type="text" id="others_text" required="required" class="form-control" value="" hidden/>
-                                                                               <script src="../../assets/js/vendor/jquery-2.2.4.min.js"></script>
+                                                                               <script src="../../assets/js/vendor/jquery1-2.2.4.min.js"></script>
                                                                                   <script>
                                                                                      $('#selector_1').on('change',function(){
                                                                                        if($(this).val()==='Others'){
@@ -576,7 +583,7 @@
         <!-- Buttons init js-->
         <script src="assets/js/pages/loading-btn.init.js"></script>
 
-         <!-- // jQuery code  employed enable or disable -->
+         <!-- // jQuery1 code  employed enable or disable -->
          <!-- <script>
       
       $(document).ready(function() {
