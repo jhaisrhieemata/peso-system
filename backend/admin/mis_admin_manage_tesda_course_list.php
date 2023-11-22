@@ -125,7 +125,7 @@
                                                     
                                                     <td>
                                                         <a href="mis_admin_manage_tesda_course_list.php?delete=<?php echo $row->tesda_course_id;?>" class="badge badge-danger"><i class=" mdi mdi-trash-can-outline "></i> Delete</a>
-                                                        <a href="mis_admin_view_tesda_course.php?tesda_course_id=<?php echo $row->tesda_course_id;?>&&course_offered=<?php echo $row->course_offered;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                        <a href="mis_admin_view_single_tesda_course.php?tesda_course_id=<?php echo $row->tesda_course_id;?>&&course_offered=<?php echo $row->course_offered;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
                                                         <a href="mis_admin_update_single_tesda_course.php?tesda_course_id=<?php echo $row->tesda_course_id;?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline "></i> Update</a>
                                                     </td>
                                                 </tr>

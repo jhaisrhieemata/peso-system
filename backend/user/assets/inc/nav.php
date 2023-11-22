@@ -88,7 +88,7 @@
                         <i class="fas fa-user"></i>
                         <span>Dashboard</span>
                     </a>
-                    <?php
+                    <!-- <?php
                   
                        // Use switch statement to set the appropriate ID based on $regtype
                      switch ($regtype) {
@@ -171,7 +171,7 @@
                                 <?php
                             }
                         }
-                        ?>
+                        ?> -->
 
 
                     <a href="mis_user_update-account.php" class="dropdown-item notify-item">
