@@ -10,7 +10,7 @@ check_login();
     
     <!--Head Code-->
     <?php include("assets/inc/head.php");?>
-
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <body>
 
         <!-- Begin page -->

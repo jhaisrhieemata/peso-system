@@ -133,7 +133,6 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="mis_user_dashboard.php">Dashboard</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">scholarship</a></li>
                                             <li class="breadcrumb-item active">New scholarship </li>
                                         </ol>
                                     </div>

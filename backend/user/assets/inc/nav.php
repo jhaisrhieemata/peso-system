@@ -45,38 +45,6 @@
                         <?php echo $row->user_fname;?> <?php echo $row->user_lname;?> <i class="mdi mdi-chevron-down"></i> 
                     </span>
                 </a>
-                <!-- <?php
-                                           $ret = "SELECT 
-                                           mis_employment.employment_id, 
-                                           mis_scholarship.scholarship_id, 
-                                           mis_spes.spes_id, 
-                                           mis_gip.gip_id, 
-                                           mis_tesdatraining.tesdatraining_id, 
-                                           mis_user.user_id,
-                                           mis_user.user_email, 
-                                           mis_user.user_fname, 
-                                           mis_user.user_lname, 
-                                           mis_user.regtype 
-                                       FROM mis_user
-                                       LEFT JOIN mis_employment ON mis_user.user_id = mis_employment.user_id
-                                       LEFT JOIN mis_scholarship ON mis_user.user_id = mis_scholarship.user_id
-                                       LEFT JOIN mis_spes ON mis_user.user_id = mis_spes.user_id
-                                       LEFT JOIN mis_gip ON mis_user.user_id = mis_gip.user_id
-                                       LEFT JOIN mis_tesdatraining ON mis_user.user_id = mis_tesdatraining.user_id
-                                       WHERE mis_user.user_id = ?"; // Assuming you want to filter by user_id, replace it with the actual column you want to filter on
-                                           
-                                    
-                                               // Prepare and execute the query
-                                         $stmt = $mysqli->prepare($ret);
-                                         $stmt->bind_param("i", $user_id); 
-                                         $stmt->execute();
-                                        $res = $stmt->get_result();
-                                        // $cnt=1;
-
-                                        while ($row = $res->fetch_object()) {
-                        ?> -->
-
-
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
                     <div class="dropdown-header noti-title">
@@ -88,7 +56,7 @@
                         <i class="fas fa-user"></i>
                         <span>Dashboard</span>
                     </a>
-                    <!-- <?php
+                    <?php
                   
                        // Use switch statement to set the appropriate ID based on $regtype
                      switch ($regtype) {
@@ -171,7 +139,7 @@
                                 <?php
                             }
                         }
-                        ?> -->
+                        ?>
 
 
                     <a href="mis_user_update-account.php" class="dropdown-item notify-item">
@@ -189,7 +157,7 @@
                     </a>
 
                 </div>
-                <!-- <?php }?> -->
+        
             </li>
 
            
@@ -209,7 +177,7 @@
                 </span>
             </a>
         </div> -->
-        <!-- <span class="logo-lg-text-light">UBold</span> -->
-         <!-- <span class="logo-sm-text-dark">U</span> -->
+        <!-- <span class="logo-lg-text-light">UBold</span>
+         <span class="logo-sm-text-dark">U</span> -->
     </div>
 <?php }?>
