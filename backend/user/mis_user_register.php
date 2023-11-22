@@ -11,10 +11,10 @@ if (isset($_POST['user_signup'])) {
     $user_pwd = sha1(md5($_POST['user_pwd'])); // double encrypt to increase security
     $user_pwd_confirm = sha1(md5($_POST['user_pwd_confirm'])); // double encrypt to increase security
     $regtype = $_POST['regtype'];
-    $user_dpic=$_FILES["user_dpic"]["name"];
-    move_uploaded_file($_FILES["user_dpic"]["tmp_name"],"assets/images/users/".$_FILES["user_dpic"]["name"]);
+    //=$_FILES"]["name"];
+    // move_uploaded_file($_FILES"]["tmp_name"],"assets/images/users/".$_FILES"]["name"]);
 
-    // $user_dpic=$_FILES["user_dpic"];
+    //=$_FILES"];
 
     $checkEmailQuery = "SELECT user_email FROM mis_user WHERE user_email = ?";
     $stmt = $mysqli->prepare($checkEmailQuery);
@@ -30,13 +30,13 @@ if (isset($_POST['user_signup'])) {
         } else {
             // SQL to insert captured values
             // First INSERT statement for mis_user
-            $insertUserQuery = "INSERT INTO mis_user (user_fname, user_lname, user_number, user_email, user_pwd, user_pwd_confirm, regtype, user_dpic) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $insertUserQuery = "INSERT INTO mis_user (user_fname, user_lname, user_number, user_email, user_pwd, user_pwd_confirm, regtype) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmtUser = $mysqli->prepare($insertUserQuery);
 
-            // Assuming you have a user_dpic field to insert, make sure to bind it
-            // $stmtUser->bind_param('ssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd, $user_dpic);
+            // Assuming you have  field to insert, make sure to bind it
+            // $stmtUser->bind_param('ssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd,);
 
-            $stmtUser->bind_param('ssssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd, $user_pwd_confirm, $regtype, $user_dpic);
+            $stmtUser->bind_param('sssssss', $user_fname, $user_lname, $user_number, $user_email, $user_pwd, $user_pwd_confirm, $regtype,);
             $stmtUser->execute();
 
            
@@ -181,10 +181,11 @@ if (isset($_POST['user_signup'])) {
                                                         <option>TesdaTraining</option>
                                                     </select>
                                                 </div>
-                                 <div class="form-group">
+                                                <!--  (Special Program for Employment of Students)   (Government Internship Program)-->
+                                 <!-- <div class="form-group">
                                         <label for="inputprofilepicture">Profile Picture</label>
-                                        <input required="required" type="file" class="form-control btn btn-success" name="user_dpic"  id="inputprofilepicture">
-                                    </div>
+                                        <input required="required" type="file" class="form-control btn btn-success" name"  id="inputprofilepicture">
+                                    </div> -->
                                     
                                     <div class="form-group mb-0 text-center">
                                         <button class="btn btn-success btn-block" name="user_signup" type="submit"> Sign Up </button>
