@@ -114,11 +114,11 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                                                                                         } ?>" name="search" placeholder="Search" autocomplete="on"> -->
                                                                                                                         <!-- <button type="Submit" class="btn btn-primary">Search</button> -->
                                                 <input type="date" name="date_joined" value="<?= isset($_GET['date_joined']) == true ? $_GET['date_joined'] : '' ?>" class="form-control">
-                                                <select name="employment_status" class="form-control">
+                                                <!-- <select name="employment_status" class="form-control">
                                                     <option value="-select-">-select-</option>
                                                     <option value="Employed" <?= isset($_GET['employment_status']) == true ? ($_GET['employment_status'] == 'Employed' ? 'selected' : '') : '' ?>>Employed</option>
                                                     <option value="Unemployed" <?= isset($_GET['employment_status']) == true ? ($_GET['employment_status'] == 'Unemployed' ? 'selected' : '') : '' ?>>Unemployed</option>
-                                                </select>
+                                                </select> -->
                                                 <button type="Submit" class="btn btn-primary">Filter</button>
                                                 <a href="mis_admin_manage_employment.php" class="btn btn-danger">Reset</a>
                                                 <a href="mis_admin_export_employment.php" class="btn btn-success" title="Click to export">Export</a>
