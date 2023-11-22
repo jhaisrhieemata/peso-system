@@ -204,7 +204,7 @@
                                                                                           ?>
                                                                                                     <h4 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $tesda_course;?> </span> Tesda Courses</h4>
                                                                            
-                                                                                                 <h4 class="header-title"></h4>
+                                                                                                 <!-- <h4 class="header-title"></h4>
                                                                                                  <div class="mb-2">
                                                                                                      <div class="row">
                                                                                                          <div class="col-12 text-sm-center form-inline" >
@@ -218,7 +218,7 @@
                                                                                                              </div>
                                                                                                          </div>
                                                                                                      </div>
-                                                                                                 </div>
+                                                                                                 </div> -->
                                                                                                  
                                                                                                  <div class="table-responsive">
                                                                                                      <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
