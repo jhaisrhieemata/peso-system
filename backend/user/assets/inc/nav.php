@@ -89,7 +89,7 @@
                         <span>Dashboard</span>
                     </a>
                     <?php
-                     // Assuming $regtype and $row->tesdatraining_id are available
+                  
                        // Use switch statement to set the appropriate ID based on $regtype
                      switch ($regtype) {
                        case 'Employment':
