@@ -146,9 +146,9 @@
                                                                                          <th data-toggle="true">Job Name</th>
                                                                                          <th data-hide="phone">JOb Description</th>
                                                                                          <th data-hide="phone">Company Name</th>
-                                                                                         <th data-hide="phone">Address</th>
+                                                                                         <!-- <th data-hide="phone">Address</th>
                                                                                          <th data-hide="phone">Contact</th>
-                                                                                         <th data-hide="phone">Email</th>
+                                                                                         <th data-hide="phone">Email</th> -->
                                                                                          <th data-hide="phone">Action</th>
                                                                                      </tr>
                                                                                      </thead>
@@ -173,10 +173,10 @@
                                                                                              <td><?php echo $row->job_name;?></td>
                                                                                              <td><?php echo $row->job_description;?></td> 
                                                                                              <td><?php echo $row->com_name;?></td>  
-                                                                                             <td><?php echo $row->address;?></td> 
+                                                                                             <!-- <td><?php echo $row->address;?></td> 
                                                                                              <td><?php echo $row->contact;?></td> 
-                                                                                             <td><?php echo $row->email;?></td>                                                      
-                                                                                             <td><a href="mis_admin_view_single_joboffer.php?job_opening_id=<?php echo $row->job_opening_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                                                             <td><?php echo $row->email;?></td>                                                       -->
+                                                                                             <td><a href="mis_user_view_single_joboffer.php?job_opening_id=<?php echo $row->job_opening_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                                                          </tr>
                                                                                          </tbody>
                                                                                      <?php  $cnt = $cnt +1 ; }?>
@@ -192,16 +192,17 @@
                                                                                  </table>
                                                                              </div> <!-- end .table-responsive-->
                                                                          </div>
-                                                                     <div class="tab-pane" id="3a">
-                                                                                         <?php
-                                                                                              //code for summing up number of out jobseeker 
-                                                                                              $result ="SELECT count(*) FROM  mis_tesda_course";
+                                                                         <div class="tab-pane" id="3a">
+                                                                                        <?php
+                                                                                              //code for summing up number of out tesda course 
+                                                                                              $result ="SELECT count(*) FROM  mis_tesda_course ";
                                                                                               $stmt = $mysqli->prepare($result);
                                                                                               $stmt->execute();
                                                                                               $stmt->bind_result($tesda_course);
                                                                                               $stmt->fetch();
                                                                                               $stmt->close();
                                                                                           ?>
+<<<<<<< HEAD
                                                                                                     <h4 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $tesda_course;?> </span> Tesda Courses</h4>
                                                                            
                                                                                                  <!-- <h4 class="header-title"></h4>
@@ -269,6 +270,75 @@
                                                                                                          </tfoot>
                                                                                                      </table>
                                                                                                  </div> <!-- end .table-responsive-->
+=======
+                                                                             <h4 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $tesda_course;?> </span> Tesda Courses</h4>
+                                                                             <!-- <h4 class="header-title"> </h4>
+                                                                              <div class="mb-2">
+                                                                                 <div class="row">
+                                                                                     <div class="col-12 text-sm-center form-inline" >
+                                                                                         <div class="form-group mr-2" style="display:none">
+                                                                                             <select id="demo-foo-filter-status_1" class="custom-select custom-select-sm">
+                                                                                                 <option value="">Show all</option>
+                                                                                             </select>
+                                                                                         </div>
+                                                                                         <div class="form-group">
+                                                                                             <input id="demo-foo-search_1" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                                                                         </div>
+                                                                                     </div>
+                                                                                 </div>
+                                                                             </div> -->
+                                    
+                                                                             <div class="table-responsive">
+                                                                                 <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
+                                                                                     <thead>
+                                                                                     <tr>
+                                                                                         <!-- <th>#</th> -->
+                                                                                         <th data-toggle="true">Course Offerd</th>
+                                                                                         <th data-hide="phone">Training Hours</th>
+                                                                                         <!-- <th data-hide="phone">Trainer</th> -->
+                                                                                         <th data-hide="phone">Status</th>
+                                                                                         <th data-hide="phone">Action</th>
+                                                                                     </tr>
+                                                                                     </thead>
+                                                                                     <?php
+                                                                                     /*
+                                                                                         *get details of tesda course
+                                                                                         *
+                                                                                     */
+                                                                                         $ret="SELECT * FROM  mis_tesda_course ORDER BY tesda_course_id ASC "; 
+                                                                                         //sql code to get to ten user  randomly
+                                                                                         $stmt= $mysqli->prepare($ret) ;
+                                                                                         $stmt->execute() ;//ok
+                                                                                         $res=$stmt->get_result();
+                                                                                         $cnt=1;
+                                                                                         while($row=$res->fetch_object())
+                                                                                         {
+                                                                                     ?>
+                                         
+                                                                                         <tbody>
+                                                                                         <tr>
+                                                                                             <!-- <td><?php echo $cnt;?></td> -->
+                                                                                             <td><?php echo $row->course_offered;?></td>
+                                                                                             <td><?php echo $row->trainer_hours;?></td> 
+                                                                                             <!-- <td><?php echo $row->trainer;?></td>   -->
+                                                                                             <td><?php echo $row->status;?></td>                                                       
+                                                                                             <td><a href="mis_user_view_single_tesda_course.php?tesda_course_id=<?php echo $row->tesda_course_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                                                         </tr>
+                                                                                         </tbody>
+                                                                                     <?php  $cnt = $cnt +1 ; }?>
+                                                                                     <tfoot>
+                                                                                     <tr class="active">
+                                                                                         <td colspan="8">
+                                                                                             <div class="text-right">
+                                                                                                 <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0"></ul>
+                                                                                             </div>
+                                                                                         </td>
+                                                                                     </tr>
+                                                                                     </tfoot>
+                                                                                 </table>
+                                                                             </div> <!-- end .table-responsive-->
+                                                                         </div>
+>>>>>>> 581ff1f719d87fc7133ea00e338de4ba3c7d359c
                                                                                                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	                                                                                                  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
                                      </div> <!-- end card-box -->

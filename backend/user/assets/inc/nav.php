@@ -39,7 +39,8 @@
             
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="assets/images/users/<?php echo $row->user_dpic;?>"  alt="pic" class="rounded-circle">
+                    <!-- <img src="assets/images/users/<?php echo $row->user_dpic;?>"  alt="pic" class="rounded-circle"> -->
+                    <span><img src="assets/images/Peso_logo.png" alt="" height="50"></span>
                     <span class="pro-user-name ml-1">
                         <?php echo $row->user_fname;?> <?php echo $row->user_lname;?> <i class="mdi mdi-chevron-down"></i> 
                     </span>
@@ -88,7 +89,7 @@
                         <span>Dashboard</span>
                     </a>
                     <?php
-                     // Assuming $regtype and $row->tesdatraining_id are available
+                  
                        // Use switch statement to set the appropriate ID based on $regtype
                      switch ($regtype) {
                        case 'Employment':
@@ -196,17 +197,19 @@
         </ul>
 
         <!-- LOGO -->
-        <div class="logo-box">
+        <!-- <div class="logo-box">
             <a href="mis_user_dashboard.php" class="logo text-center">
                 <span class="logo-lg">
                     <img src="assets/images/Peso_log.png" alt="" height="50">
-                    <!-- <span class="logo-lg-text-light">UBold</span> -->
+                    
                 </span>
                 <span class="logo-sm">
-                    <!-- <span class="logo-sm-text-dark">U</span> -->
+                   
                     <img src="assets/images/Peso_log.png" alt="" height="30">
                 </span>
             </a>
-        </div>
+        </div> -->
+        <!-- <span class="logo-lg-text-light">UBold</span> -->
+         <!-- <span class="logo-sm-text-dark">U</span> -->
     </div>
 <?php }?>
