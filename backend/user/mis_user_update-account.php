@@ -217,12 +217,12 @@
                                                             </div>
                                                             <div id="file-name"></div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <!-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="regtype">Registration Type</label>
                                                                 <input required="required" type="text" name="regtype" class="form-control" id="regtype" placeholder="<?php echo $row->regtype;?>" disabled>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         
                                                     </div> <!-- end row -->
 

@@ -47,15 +47,15 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
-                    <div class="dropdown-header noti-title">
+                    <!-- <div class="dropdown-header noti-title">
                         <h6 class="text-overflow m-0">Welcome !</h6>
-                    </div>
+                    </div> -->
 
                     <!-- item-->
-                    <a href="mis_user_dashboard.php" class="dropdown-item notify-item">
+                    <!-- <a href="mis_user_dashboard.php" class="dropdown-item notify-item">
                         <i class="fas fa-user"></i>
                         <span>Dashboard</span>
-                    </a>
+                    </a> -->
                     <?php
                   
                        // Use switch statement to set the appropriate ID based on $regtype
@@ -82,10 +82,10 @@
                         if (!empty($id)) {
                             // $id is not empty, generate the link to update the user
                             ?>
-                            <a href="#" class="dropdown-item notify-item" id="updateLink" onclick="updateRegtype('<?php echo strtolower($regtype); ?>',<?php echo $id; ?>)">
+                            <!-- <a href="#" class="dropdown-item notify-item" id="updateLink" onclick="updateRegtype('<?php echo strtolower($regtype); ?>',<?php echo $id; ?>)">
                                 <i class="fas fa-user-tag"></i>
                                 <span><?php echo $regtype; ?></span>
-                            </a>
+                            </a> -->
                             <script>
                                 function updateRegtype(regtype, id) {
                                     var confirmUpdate = confirm("You are going to update?");
@@ -101,10 +101,10 @@
                         } else {
                             // $id is empty, show a confirmation prompt to register first
                             ?>
-                            <a href="#" class="dropdown-item notify-item" id="registerLink" onclick="registerFirst('<?php echo strtolower($regtype); ?>')">
+                            <!-- <a href="#" class="dropdown-item notify-item" id="registerLink" onclick="registerFirst('<?php echo strtolower($regtype); ?>')">
                                 <i class="fas fa-user-plus"></i>
                                 <span>Register <?php echo $regtype; ?></span>
-                            </a>
+                            </a> -->
                             <script>
                                 function registerFirst(regtype) {
                                     var confirmRegister = confirm("You are going to proceed with registration?");
@@ -121,10 +121,10 @@
                             // Check if registration is successful, then display the update link
                             if (!empty($id)) {
                                 ?>
-                                <a href="#" class="dropdown-item notify-item" id="updateLinkAfterRegister" onclick="updateRegtype('<?php echo strtolower($regtype); ?>',<?php echo $id; ?>)">
+                                <!-- <a href="#" class="dropdown-item notify-item" id="updateLinkAfterRegister" onclick="updateRegtype('<?php echo strtolower($regtype); ?>',<?php echo $id; ?>)">
                                     <i class="fas fa-user-tag"></i>
                                     <span>Update <?php echo $regtype; ?></span>
-                                </a>
+                                </a> -->
                             <script>
                                 function updateRegtype(regtype, id) {
                                     var confirmUpdate = confirm("You are going to update?");
@@ -142,10 +142,10 @@
                         ?>
 
 
-                    <a href="mis_user_update-account.php" class="dropdown-item notify-item">
+                    <!-- <a href="mis_user_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
                         <span>Manage Account</span>
-                    </a>
+                    </a> -->
 
 
                     <div class="dropdown-divider"></div>

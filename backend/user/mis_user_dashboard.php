@@ -1,13 +1,13 @@
 
-<?php
+<!-- <?php
   session_start();
   include('assets/inc/config.php');
   include('assets/inc/checklogin.php');
   check_login();
-  $aid=$_SESSION['user_id'];
+  $user=$_SESSION['user_id'];
   $user_email = $_SESSION['user_email'];
 
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="en">
     

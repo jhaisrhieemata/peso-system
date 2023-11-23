@@ -78,7 +78,7 @@
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
             <?php
-                $aid=$_SESSION['ad_id'];
+                 $aid=$_SESSION['ad_id'];
                 $ret="select * from mis_admin where ad_id=?";
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$aid);

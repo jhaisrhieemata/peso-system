@@ -1,6 +1,6 @@
 <?php
      $aid=$_SESSION['ad_id'];
-    $ret="select * from mis_admin where ad_id=?";
+    $ret="SELECT  * FROM mis_admin WHERE ad_id= ?";
     $stmt= $mysqli->prepare($ret) ;
     $stmt->bind_param('i',$aid);
     $stmt->execute() ;//ok
@@ -12,7 +12,7 @@
     <div class="navbar-custom">
         <ul class="list-unstyled topnav-menu float-right mb-0">
 
-            <li class="d-none d-sm-block">
+            <!-- <li class="d-none d-sm-block">
                 <form class="app-search">
                     <div class="app-search-box">
                         <div class="input-group">
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </form>
-            </li>
+            </li> -->
 
             
             <li class="dropdown notification-list">
@@ -42,10 +42,10 @@
                     </div> -->
 
                     <!-- item-->
-                    <a href="mis_admin_account.php" class="dropdown-item notify-item">
+                    <!-- <a href="mis_admin_account.php" class="dropdown-item notify-item">
                         <i class="fe-user"></i>
                         <span>My Account</span>
-                    </a>
+                    </a> -->
 
 
                     <div class="dropdown-divider"></div> 

@@ -53,10 +53,10 @@ $dateFormatted = $dt->format('D, F d Y | H:i:s a');
                        <li><a href="https://web.manolofortich.gov.ph/">LGU MANOLO FORTICH</a></li>
                        <li class="menu-active"><a href="admin_index.php">Home</a></li>
                        <!-- <li><a href="https://whattime.is/en/time-in/Philippines/Manolo+Fortich"><?php echo $dateFormatted; ?></a></li> -->
-                        <!-- <li><a href="https://peis.philjobnet.ph/index.aspx">PESO OFFICE NATIONAL</a></li> -->
                         <!-- <li><a href="https://www.facebook.com/pesomanolo">FACEBOOK</a></li> -->
-                        <li><a href="backend/admin/mis_admin_register.php">Sign Up</a></li>
-                        <li><a href="backend/admin/index.php">Login</a></li>
+                        <!-- <li><a href="backend/admin/mis_admin_register.php">Sign Up</a></li> -->
+                        <li><a href="backend/user/index.php">STAFF LOGIN</a></li>
+                        <li><a href="backend/admin/index.php">ADMIN LOGIN</a></li>
                        
                     </ul>
                 </nav><!-- #nav-menu-container -->		    		

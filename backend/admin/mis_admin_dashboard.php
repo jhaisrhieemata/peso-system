@@ -1,10 +1,10 @@
-<?php
+<!-- <?php
   session_start();
   include('assets/inc/config.php');
   include('assets/inc/checklogin.php');
 check_login();
   $ad_id=$_SESSION['ad_id'];
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="en">
     
