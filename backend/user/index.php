@@ -5,17 +5,17 @@ include('assets/inc/config.php');
 if (isset($_POST['user_login'])) {
     $user_email = $_POST['user_email'];
     $user_pwd = sha1(md5($_POST['user_pwd'])); // double encrypt to increase security
-    // $regtype = $_POST['regtype'];
 
-    $stmt = $mysqli->prepare("SELECT user_email, user_pwd, regtype, user_id FROM mis_user WHERE user_email = ? AND user_pwd = ?");
+
+    $stmt = $mysqli->prepare("SELECT user_email, user_pwd, user_id FROM mis_user WHERE user_email = ? AND user_pwd = ?");
     $stmt->bind_param('ss', $user_email, $user_pwd);
     $stmt->execute();
-    $stmt->bind_result($user_email, $user_pwd, $regtype, $user_id);
+    $stmt->bind_result($user_email, $user_pwd, $user_id);
     $rs = $stmt->fetch();
 
     $_SESSION['user_id'] = $user_id;
     $_SESSION['user_email'] = $user_email;
-    $_SESSION['regtype'] = $regtype;
+
 
     if ($rs) {
         header("location: mis_user_dashboard.php");
@@ -24,8 +24,8 @@ if (isset($_POST['user_login'])) {
     }
 }
 //     if ($rs) {
-//         // Check 'regtype' value and navigate to a specific page accordingly
-//         switch ($regtype) {
+//         // Check  value and navigate to a specific page accordingly
+//         switch ( {
 //             case "Employment":
 //                 header("Location: mis_user_register_employment.php");
 //                 break;
@@ -43,7 +43,7 @@ if (isset($_POST['user_login'])) {
 //                 break;
 //             // Add other cases as needed
 //             default:
-//                 $err = "Invalid regtype"; // Handling other regtype values
+//                 $err = "Invalid; // Handling othervalues
 //                 break;
 //         }
 //     } else {

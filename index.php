@@ -49,13 +49,10 @@ $dateFormatted = $dt->format('D, F d Y | H:i:s a');
                 </div>
                 <nav id="nav-menu-container" >
                     <ul class="nav-menu">
-                       <li><a href="admin_index.php"><?php echo $dateFormatted; ?></a></li>
+                       <li><a href="index.php"><?php echo $dateFormatted; ?></a></li>
                        <li><a href="https://web.manolofortich.gov.ph/">LGU MANOLO FORTICH</a></li>
-                       <li class="menu-active"><a href="admin_index.php">Home</a></li>
-                       <!-- <li><a href="https://whattime.is/en/time-in/Philippines/Manolo+Fortich"><?php echo $dateFormatted; ?></a></li> -->
-                        <!-- <li><a href="https://www.facebook.com/pesomanolo">FACEBOOK</a></li> -->
-                        <!-- <li><a href="backend/admin/mis_admin_register.php">Sign Up</a></li> -->
-                        <li><a href="backend/user/index.php">STAFF LOGIN</a></li>
+                       <li class="menu-active"><a href="index.php">Home</a></li>
+                        <li><a href="backend/user/index.php">USER LOGIN</a></li>
                         <li><a href="backend/admin/index.php">ADMIN LOGIN</a></li>
                        
                     </ul>

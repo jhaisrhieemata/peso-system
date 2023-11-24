@@ -7,20 +7,17 @@
   if(isset($_GET['delete']))
   {
         $id=intval($_GET['delete']);
-        $adn="delete from mis_user where user_id=?";
+        $adn="DELETE  from mis_user where user_id=?";
         $stmt= $mysqli->prepare($adn);
         $stmt->bind_param('i',$id);
         $stmt->execute();
         $stmt->close();	 
   
-          if($stmt)
-          {
+        if($stmt) {
             $success = "User Employee Deleted";
-          }
-            else
-            {
-                $err = "Try Again Later";
-            }
+        } else {
+            $err = "Error: " . $mysqli->error;
+        }
     }
 ?>
 
@@ -96,7 +93,6 @@
                                                 <th data-toggle="true">Name</th>
                                                 <th data-hide="phone">Email</th>
                                                 <th data-hide="phone">Contact Number</th>
-                                                <th data-hide="phone">Registration Type</th>
                                                 <th data-hide="phone">Action</th>
                                             </tr>
                                             </thead>
@@ -105,7 +101,7 @@
                                                 *get details of alluser
                                                 *
                                             */
-                                            $ret = "SELECT * FROM mis_user ORDER BY user_id ASC";
+                                            $ret = "SELECT * FROM mis_user ORDER BY user_id ";
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -121,12 +117,9 @@
                                                     <td><?php echo $row->user_fname;?> <?php echo $row->user_lname;?></td>
                                                     <td><?php echo $row->user_email;?></td>
                                                     <td><?php echo $row->user_number;?></td>
-                                                    <td><?php echo $row->regtype;?></td>
-                                                    
-                                                    
                                                     <td>
-                                                        <a href="mis_admin_manage_user.php?delete=<?php echo $row->user_id;?>" class="badge badge-danger"><i class=" mdi mdi-trash-can-outline "></i> Delete</a>
-                                                        <a href="mis_admin_view_single_user.php?user_id=<?php echo $row->user_id;?>&&user_id=<?php echo $row->user_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                    <a href="mis_admin_manage_users.php?delete=<?php echo $row->user_id;?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
+                                                        <a href="mis_admin_view_single_user.php?user_id=<?php echo $row->user_id;?>&user_number=<?php echo $row->user_number;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
                                                         <a href="mis_admin_update_single_user.php?user_id=<?php echo $row->user_id;?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline "></i> Update</a>
                                                     </td>
                                                 </tr>

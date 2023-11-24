@@ -160,7 +160,7 @@ $middlenameInitials = '';
 
 // Iterate through the words and extract the first character as an initial
 foreach ($middlenameWords as $word) {
-    $middlenameInitials .= $word[0]; // Append the first character to the initials string
+    $middlenameInitials .= $word; //  $word[0];   Append the first character to the initials string
 }
 
 // Output the name with initials

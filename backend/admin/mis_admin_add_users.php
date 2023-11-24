@@ -10,13 +10,12 @@
             $user_number=$_POST['user_number'];
             $user_pwd=sha1(md5($_POST['user_pwd']));//double encrypt to increase security
             $user_pwd_confirm=sha1(md5($_POST['user_pwd_confirm']));//double encrypt to increase security
-            $regtype=$_POST['regtype'];
             $user_dpic=$_POST['user_dpic'];
             
             //sql to insert captured values
-			$query="INSERT INTO mis_user (user_fname, user_lname, user_email, user_number, user_pwd, user_pwd_confirm, regtype, user_dpic) values(?,?,?,?,?,?,?,?)";
+			$query="INSERT INTO mis_user (user_fname, user_lname, user_email, user_number, user_pwd, user_pwd_confirm, user_dpic) values(?,?,?,?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssssssss', $user_fname, $user_lname, $user_email, $user_number, $user_pwd, $user_pwd_confirm, $regtype, $user_dpic);
+			$rc=$stmt->bind_param('sssssss', $user_fname, $user_lname, $user_email, $user_number, $user_pwd, $user_pwd_confirm, $user_dpic);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -117,24 +116,17 @@
                                                        <input required="required" type="number" name="user_number" class="form-control"  id="inputcontact" placeholder="Contact Number" pattern="\d{11}" title="Please enter 11 digits">
                                                  </div>
                                             </div>
-
                                             <div class="form-row">
-                                               <div class="form-group col-md-6">
-                                                    <label for="regtype" class="col-form-label">Registration Type</label>
-                                                    <select id="regtype" required="required" name="regtype" class="form-control">
-                                                    <option value="">-Select-</option>
-                                                       <option>Employment</option>
-                                                        <option>Scholarship</option>
-                                                        <option>SPES</option>
-                                                        <option>GIP</option>
-                                                        <option>TesdaTraining</option>
-                                                    </select>
-                                                </div>
-                                            
+
                                                  <div class="form-group col-md-6">
                                                     <label for="user_pwd" class="col-form-label">Password</label>
                                                     <input required="required" type="password" name="user_pwd" class="form-control" id="user_pwd" placeholder="Password">
                                                 </div>
+                                                <div class="form-group col-md-6">
+                                                     <label for="user_pwd_confirm">Confirm Password</label>
+                                                     <input required="required"  type="password" name="user_pwd_confirm" class="form-control"   id="user_pwd_confirm" placeholder="Confirm Password"> 
+                                                     <span id="password-error" style="color: red;"></span>                   
+                                                 </div>
                                             </div>
 
                                             <div class="form-row">     
@@ -142,11 +134,7 @@
                                                     <label for="inputprofilepic" class="col-form-label">Profile Picture</label>
                                                     <input required="required"  type="file" name="user_dpic" class="btn btn-success form-control"  id="inputprofilepic" >
                                                 </div>
-                                                <div class="form-group col-md-6">
-                                                     <label for="user_pwd_confirm">Confirm Password</label>
-                                                     <input required="required"  type="password" name="user_pwd_confirm" class="form-control"   id="user_pwd_confirm" placeholder="Confirm Password"> 
-                                                     <span id="password-error" style="color: red;"></span>                   
-                                                 </div>
+                                              
                                             </div>
 
                                             <button type="submit" name="add_user" class="ladda-button btn btn-success" data-style="expand-right">Add User</button>
@@ -193,22 +181,22 @@
 
         <!-- Buttons init js-->
         <script src="assets/js/pages/loading-btn.init.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                                                    <script>
-                                                                          $(document).ready(function() {
-                                                                             $("#user_pwd_confirm").on("keyup", function() {
-                                                                            var password = $("#user_pwd").val();
-                                                                               var confirmPassword = $(this).val();
-                                                                            var passwordError = $("#password-error");
-
-                                                                           if (password !== confirmPassword) {
-                                                                            passwordError.text("Passwords do not match");
-                                                                           } else {
-                                                                             passwordError.text("");
-                                                                                 }
-                                                                              });
-                                                                           });
-                                                                       </script>
+        <script src="assets/js/jquery-3.6.0.min.js"></script>
+        <script>
+              $(document).ready(function() {
+                 $("#user_pwd_confirm").on("keyup", function() {
+                var password = $("#user_pwd").val();
+                   var confirmPassword = $(this).val();
+                var passwordError = $("#password-error");
+           
+               if (password !== confirmPassword) {
+                passwordError.text("Passwords do not match");
+               } else {
+                 passwordError.text("");
+                     }
+                  });
+               });
+           </script>
         
     </body>
 

@@ -8,7 +8,6 @@
 			$user_lname=$_POST['user_lname'];
             $user_email=$_POST['user_email'];
             $user_number=$_POST['user_number'];
-            $regtype=$_POST['regtype'];
             $user_pwd=sha1(md5($_POST['user_pwd']));//double encrypt to increase security
             $user_pwd_confirm=sha1(md5($_POST['user_pwd_confirm']));//double encrypt to increase security
             // $user_pwd=sha1(md5($_POST['user_pwd']));
@@ -16,9 +15,9 @@
 		    move_uploaded_file($_FILES["user_dpic"]["tmp_name"],"../user/assets/images/users/".$_FILES["user_dpic"]["name"]);
 
             //sql to insert captured values
-			$query="UPDATE mis_user SET user_fname=?, user_lname=?,user_email=?, user_number=?, regtype=?, user_pwd=?, user_pwd_confirm=?, user_dpic=? WHERE user_id = ?";
+			$query="UPDATE mis_user SET user_fname=?, user_lname=?,user_email=?, user_number=?, user_pwd=?, user_pwd_confirm=?, user_dpic=? WHERE user_id = ?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssssssssi', $user_fname, $user_lname,$user_email, $user_number, $regtype, $user_pwd, $user_pwd_confirm, $user_dpic, $user_id);
+			$rc=$stmt->bind_param('sssssssi', $user_fname, $user_lname,$user_email, $user_number, $user_pwd, $user_pwd_confirm, $user_dpic, $user_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -121,35 +120,21 @@
                                                   </div>
                                             </div>
                                              <div class="form-row">
-                                              <div class="form-group col-md-6">
-                                                    <label for="regtype" class="col-form-label">Registration Type</label>
-                                                    <select id="regtype" required="required" name="regtype" class="form-control">
-                                                    <option value="">-Select-</option>
-                                                       <option value="Employment" <?php if ($row->regtype == 'Employment') echo 'selected'; ?>>Employment</option>
-                                                       <option value="Scholarship" <?php if ($row->regtype == 'Scholarship') echo 'selected'; ?>>Scholarship</option>
-                                                       <option value="SPES" <?php if ($row->regtype == 'SPES') echo 'selected'; ?>>SPES</option>
-                                                       <option value="GIP" <?php if ($row->regtype == 'GIP') echo 'selected'; ?>>GIP</option>
-                                                       <option value="TesdaTraining" <?php if ($row->regtype == 'TesdaTraining') echo 'selected'; ?>>TesdaTraining</option>
-                                                    </select>
-                                                </div>
                                                   <div class="form-group col-md-6">
                                                        <label for="user_pwd" class="col-form-label">Password</label>
-                                                       <input required="required" type="password"  name="user_pwd" class="form-control"  id="user_pwd" placeholder="Password">
+                                                       <input required="required" type="password" name="user_pwd" class="form-control"  id="user_pwd" placeholder="Password">
                                                    </div>
+                                                     <div class="form-group col-md-6">
+                                                          <label for="user_pwd_confirm">Confirm Password</label>
+                                                          <input required="required"  type="password" name="user_pwd_confirm" class="form-control"   id="user_pwd_confirm" placeholder="Confirm Password"> 
+                                                          <span id="password-error" style="color: red;"></span>                   
+                                                      </div>  
                                             </div> 
                                                 <div class="form-row"> 
                                                 <div class="form-group col-md-6">
                                                     <label for="inputuserprofilepicture" class="col-form-label">Profile Picture</label>
                                                     <input required="required" type="file" value="<?php echo $row->user_dpic;?>"  name="user_dpic" class="btn btn-success form-control"  id="inputuserprofilepicture">
                                                 </div>  
-                                                 <div class="form-group col-md-6">
-                                                     <label for="user_pwd_confirm">Confirm Password</label>
-                                                     <input required="required"  type="password" name="user_pwd_confirm" class="form-control"   id="user_pwd_confirm" placeholder="Confirm Password"> 
-                                                     <span id="password-error" style="color: red;"></span>                   
-                                                 </div>   
-                                             
-                                           
-                                                
                                             </div>                                            
 
                                             <button type="submit" name="update_user" class="ladda-button btn btn-success" data-style="expand-right">Update User</button>
@@ -198,22 +183,22 @@
         <!-- Buttons init js-->
         <script src="assets/js/pages/loading-btn.init.js"></script>
         
-                                                               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                                                    <script>
-                                                                          $(document).ready(function() {
-                                                                             $("#user_pwd_confirm").on("keyup", function() {
-                                                                            var password = $("#user_pwd").val();
-                                                                               var confirmPassword = $(this).val();
-                                                                            var passwordError = $("#password-error");
-
-                                                                           if (password !== confirmPassword) {
-                                                                            passwordError.text("Passwords do not match");
-                                                                           } else {
-                                                                             passwordError.text("");
-                                                                                 }
-                                                                              });
-                                                                           });
-                                                                       </script>
+        <script src="assets/js/jquery-3.6.0.min.js"></script>
+             <script>
+                   $(document).ready(function() {
+                      $("#user_pwd_confirm").on("keyup", function() {
+                     var password = $("#user_pwd").val();
+                        var confirmPassword = $(this).val();
+                     var passwordError = $("#password-error");
+         
+                    if (password !== confirmPassword) {
+                     passwordError.text("Passwords do not match");
+                    } else {
+                      passwordError.text("");
+                          }
+                       });
+                    });
+                </script>
         
     </body>
 
