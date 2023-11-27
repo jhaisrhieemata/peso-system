@@ -3,11 +3,11 @@ session_start();
 include('assets/inc/config.php');
 include('assets/inc/checklogin.php');
 check_login();
-$user_id = $_SESSION['user_id'];
+$user_id=$_SESSION['user_id'];
 if(isset($_GET['delete']))
 {
       $id=intval($_GET['delete']);
-      $adn="delete from mis_employment where employment_id=?";
+      $adn="DELETE from mis_spes where spes_id=?";
       $stmt= $mysqli->prepare($adn);
       $stmt->bind_param('i',$id);
       $stmt->execute();
@@ -15,7 +15,7 @@ if(isset($_GET['delete']))
 
         if($stmt)
         {
-          $success = "Employment Records Deleted";
+          $success = "SPES Records Deleted";
         }
           else
           {
@@ -24,20 +24,20 @@ if(isset($_GET['delete']))
   } 
 
 // Function to retrieve employment records based on search and filter criteria
-function getEmploymentRecords($mysqli, $search, $dateJoined, $employmentStatus)
+function getScholarshipRecords($mysqli, $search, $dateJoined, $typeapplication)
 {
-    $query = "SELECT * FROM mis_employment WHERE 1";
+    $query = "SELECT * FROM mis_spes WHERE 1";
 
     if (!empty($search)) {
-        $query .= " AND CONCAT(employment_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
+        $query .= " AND CONCAT(spes_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
     }
 
     if (!empty($dateJoined)) {
         $query .= " AND date_joined = '$dateJoined'";
     }
 
-    if (!empty($employmentStatus)) {
-        $query .= " AND employment_status = '$employmentStatus'";
+    if (!empty($typeapplication)) {
+        $query .= " AND type_of_application = '$typeapplication'";
     }
 
     $result = $mysqli->query($query);
@@ -46,15 +46,15 @@ function getEmploymentRecords($mysqli, $search, $dateJoined, $employmentStatus)
 }
 
 // Initial query to retrieve all employment records
-$employmentRecords = getEmploymentRecords($mysqli, '', '', '');
+$ScholarshipRecords = getScholarshipRecords($mysqli, '', '', '');
 
-if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employment_status'])) {
+if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['type_of_application'])) {
     // If search or filter parameters are provided in the URL, re-query the database
     $search = isset($_GET['search']) ? $_GET['search'] : '';
     $dateJoined = isset($_GET['date_joined']) ? $_GET['date_joined'] : '';
-    $employmentStatus = isset($_GET['employment_status']) ? $_GET['employment_status'] : '';
+    $typeapplication = isset($_GET['type_of_application']) ? $_GET['type_of_application'] : '';
 
-    $employmentRecords = getEmploymentRecords($mysqli, $search, $dateJoined, $employmentStatus);
+    $ScholarshipRecords = getScholarshipRecords($mysqli, $search, $dateJoined, $typeapplication);
 }
 ?>
 
@@ -85,11 +85,11 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Employment</a></li>
-                                        <li class="breadcrumb-item active">Manage Employment</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">SPES</a></li>
+                                        <li class="breadcrumb-item active">Manage SPES</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Manage Employment Details</h4>
+                                <h4 class="page-title">Manage SPES Details</h4>
                             </div>
                         </div>
                     </div>
@@ -107,50 +107,65 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                                                                                         } ?>" name="search" placeholder="Search" autocomplete="on"> -->
                                                                                                                         <!-- <button type="Submit" class="btn btn-primary">Search</button> -->
                                                 <input type="date" name="date_joined" value="<?= isset($_GET['date_joined']) == true ? $_GET['date_joined'] : '' ?>" class="form-control">
-                                                <select name="employment_status" class="form-control">
+                                                <select name="type_of_application" class="form-control">
                                                     <option value="-select-">-select-</option>
-                                                    <option value="Employed" <?= isset($_GET['employment_status']) == true ? ($_GET['employment_status'] == 'Employed' ? 'selected' : '') : '' ?>>Employed</option>
-                                                    <option value="Unemployed" <?= isset($_GET['employment_status']) == true ? ($_GET['employment_status'] == 'Unemployed' ? 'selected' : '') : '' ?>>Unemployed</option>
+                                                    <option value="For College" <?= isset($_GET['type_of_application']) == true ? ($_GET['type_of_application'] == 'For College' ? 'selected' : '') : '' ?>>For College</option>
+                                                    <option value="For Senior High School" <?= isset($_GET['type_of_application']) == true ? ($_GET['type_of_application'] == 'For Senior High School' ? 'selected' : '') : '' ?>>For Senior High School</option>
                                                 </select>
                                                 <button type="Submit" class="btn btn-primary">Filter</button>
-                                                <a href="mis_admin_manage_employment.php" class="btn btn-danger">Reset</a>
+                                                <a href="mis_admin_manage_spes.php" class="btn btn-danger">Reset</a>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
+                                <!-- Search input -->
+                                <div class="mb-2">
+                                        <div class="row">
+                                            <div class="col-12 text-sm-center form-inline" >
+                                                <div class="form-group mr-2" style="display:none">
+                                                    <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
+                                                        <option value="">Show all</option>
+                                                    </select>
+                                                  </div>
+                                                    <div class="form-group">
+                                                    <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                                   </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <div class="table-responsive">
                                     <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
                                         <thead>
                                             <tr>
                                                 <th>id</th>
-                                                <th>Full Name</th>
-                                                <th>Date of Birth</th>
-                                                <th>Sex</th>
-                                                <th>Civil Status</th>
+                                                <th>applicant no</th>
+                                                <th>Full Name</th>           
                                                 <th>Contact</th>
-                                                <th>Employment Status</th>
+                                                <th>Address</th>
+                                                <th>Sex</th>
+                                                <th>Type of Application</th>
                                                 <th>Created</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            if ($employmentRecords->num_rows > 0) {
-                                                while ($row = $employmentRecords->fetch_assoc()) {
+                                            if ($ScholarshipRecords->num_rows > 0) {
+                                                while ($row = $ScholarshipRecords->fetch_assoc()) {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['employment_id']; ?></td>
+                                                        <td><?php echo $row['spes_id']; ?></td>
+                                                        <td><?php echo $row['applicant_no']; ?></td>
                                                         <td><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['surname']; ?></td>
-                                                        <td><?php echo $row['date_of_birth']; ?></td>
-                                                        <td><?php echo $row['sex']; ?></td>
-                                                        <td><?php echo $row['civil_status']; ?></td>
-                                                        <td><?php echo $row['contact_number']; ?></td>
-                                                        <td><?php echo $row['employment_status']; ?></td>
+                                                        <td><?php echo $row['contact']; ?></td>
+                                                        <td><?php echo $row['app_barangay'] . ' ' . $row['app_municipality'] . ' ' . $row['app_province']; ?></td>
+                                                        <td><?php echo $row['sex']; ?></td>     
+                                                        <td><?php echo $row['type_of_application']; ?></td>
                                                         <td><?php echo $row['date_joined']; ?></td>
                                                         <td>
-                                                            <a href="mis_user_manage_employment.php?delete=<?php echo $row['employment_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
-                                                            <a href="mis_user_view_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
-                                                            <a href="mis_user_update_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
+                                                            <a href="mis_admin_manage_spes.php?delete=<?php echo $row['spes_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
+                                                            <a href="mis_admin_view_single_spes.php?spes_id=<?php echo $row['spes_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                            <a href="mis_admin_update_single_spes.php?spes_id=<?php echo $row['spes_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
                                                         </td>
                                                     </tr>
                                             <?php

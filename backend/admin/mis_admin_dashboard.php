@@ -47,7 +47,7 @@ check_login();
                         
 
                         <div class="row">
-                            <!--Start OutPatients-->
+                            <!--Start employment-->
                             <div class="col-md-6 col-xl-4">
                             <a href="mis_admin_view_employment.php">
                                 <div class="widget-rounded-circle card-box">
@@ -341,7 +341,7 @@ check_login();
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Contact Number</th>
-                                                    <th>Registration Type</th>
+                                                    <!-- <th>Registration Type</th> -->
                                                     <!-- <th>Department</th> -->
                                                     <th>Action</th>
                                                 </tr>
@@ -372,9 +372,9 @@ check_login();
                                                     <td>
                                                         <?php echo $row->user_number;?>
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <?php echo $row->regtype;?>
-                                                    </td> 
+                                                    </td>  -->
                                                     <td>
                                                         <a href="mis_admin_view_single_user.php?user_id=<?php echo $row->user_id;?>&&user_email=<?php echo $row->user_email;?>" class="btn btn-xs btn-primary"><i class="mdi mdi-eye"></i> View</a>
                                                     </td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

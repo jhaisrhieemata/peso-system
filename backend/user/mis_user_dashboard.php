@@ -31,19 +31,8 @@
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
             <?php
-                $user_id=$_SESSION['user_id'];
-                $ret="SELECT 
-                mis_employment.employment_id, 
-                mis_employment.special_skill,
-                mis_scholarship.scholarship_id,
-                mis_user.user_id,
-                mis_user.user_email, 
-                mis_user.user_fname, 
-                mis_user.user_lname 
-            FROM mis_user
-            LEFT JOIN mis_employment ON mis_user.user_id = mis_employment.user_id
-            LEFT JOIN mis_scholarship ON mis_user.user_id = mis_scholarship.user_id
-                 WHERE mis_user.user_id = ?";
+                // $user_id=$_SESSION['user_id'];
+                $ret="SELECT * From mis_user Where user_id=?";
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$user_id );
                 $stmt->execute() ;//ok
@@ -121,23 +110,81 @@
                                                                 </a>
                                                                         <!-- Add more menu items as needed -->
                                                                         <div class="dropdown-divider"></div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
+                                                             </div>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="navbar-nav">
+                                                       <li class="nav-item dropdown">
+                                                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                               Management
+                                                               <i class="mdi mdi-chevron-down"></i>
+                                                           </a>
+                                                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                               <a class="dropdown-item" href="mis_user_manage_employment.php">
+                                                                   <i class="far fa-user-circle"></i> 
+                                                                   <span>Employment</span>
+                                                               </a>
+                                                               <a class="dropdown-item" href="mis_user_manage_scholarship.php">
+                                                                   <i class="fa fa-graduation-cap"></i> 
+                                                                   <span>Scholarship</span>
+                                                               </a>
+                                                               <a class="dropdown-item" href="mis_user_manage_spes.php">
+                                                                   <i class="fas fa-user-edit"></i> 
+                                                                   <span>SPES</span>
+                                                               </a>
+                                                               <a href="mis_user_register_gip.php" class="dropdown-item">
+                                                                   <i class="fas fa-user-edit"></i>
+                                                                  <span>GIP</span>
+                                                                </a>
+                                                                <a href="mis_user_add_clearance.php" class="dropdown-item">
+                                                                    <i class="fa fa-address-card "></i>
+                                                                    <span>Peso Clearance</span>
+                                                                </a>
+                                                                <a href="mis_user_register_joboffer.php" class="dropdown-item">
+                                                                    <i class="fa fa-newspaper"></i>
+                                                                    <span>Job Opening</span>
+                                                                </a>  
+                                                                <a href="mis_user_add_agency.php" class="dropdown-item">
+                                                                    <i class="fas fa-ellipsis-h"></i>
+                                                                    <span>Agency</span>
+                                                                </a> 
+                                                                <a href="mis_user_register_tesdatraining.php" class="dropdown-item">
+                                                                    <i class="fas fa-chalkboard-teacher"></i>
+                                                                    <span>Tesda Training</span>
+                                                                </a>
+                                                                <a href="mis_user_register_Tesda_Course.php" class="dropdown-item">
+                                                                    <i class="fas fa-users"></i>
+                                                                    <span>Tesda Course</span>
+                                                                </a>
+                                                                        <!-- Add more menu items as needed -->
+                                                                        <div class="dropdown-divider"></div>
+                                                             </div>
+                                                        </li>
+                                                    </ul>
 
 
                                                       <li class="nav-item"> <a class="nav-link " aria-current="page" href="#1a" data-toggle="tab">Matched jobs</a>
                                                       </li>
-                                                      <li class="nav-item"> <a class="nav-link"  href="#2a" data-toggle="tab">Job List</a>
-                                                      </li>
-                                                      <li class="nav-item"> <a class="nav-link"  href="#3a" data-toggle="tab">Tesda Course List</a>
-                                                      </li>
+                                                      <!-- <li class="nav-item"> <a class="nav-link"  href="#2a" data-toggle="tab">Job List</a>
+                                                      </li> -->
+                                                      <!-- <li class="nav-item"> <a class="nav-link"  href="#3a" data-toggle="tab">Tesda Course List</a>
+                                                      </li> -->
                                                       </li>
                                       
                                             </ul>
                                                  <div class="tab-content clearfix">
 			                                           <div class="tab-pane active" id="1a">
                                                            <?php
+
+                                                           // $user_id=$_SESSION['user_id'];
+                                                                    $ret="SELECT * From mis_employment Where employment_id=?";
+                                                                    $stmt= $mysqli->prepare($ret) ;
+                                                                    $stmt->bind_param('i',$user_id );
+                                                                    $stmt->execute() ;//ok
+                                                                    $res=$stmt->get_result();
+                                                                    //$cnt=1;
+                                                                    while($row=$res->fetch_object())
+                                                                {
                                                                  $special_skill = $row->special_skill;
                                                                  $job_prediction = "";
                                                              
@@ -164,6 +211,7 @@
                                                                  }
                                                               ?>
 				                                          </div>
+                                                          <?php }?>
 			                                                                 <div class="tab-pane" id="2a">
                                                                                         <?php
                                                                                               //code for summing up number of out jobseeker 

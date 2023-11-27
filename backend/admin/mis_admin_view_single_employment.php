@@ -95,13 +95,8 @@
                             
                             <?php }?>
                             <div class="col-lg-4 col-xl-4">
-                                <!-- <div class="card-box">
+                                <div class="card-box">
                                     <ul class="nav nav-pills navtab-bg nav-justified">
-                                        <li class="nav-item">
-                                            <a href="#aboutme" data-toggle="tab" aria-expanded="false" class="nav-link active">
-                                                Browse Job
-                                            </a>
-                                        </li>
                                         <li class="nav-item">
                                             <a href="#timeline" data-toggle="tab" aria-expanded="true" class="nav-link ">
                                                  Job Match
@@ -110,10 +105,11 @@
                                 
                                     </ul>
                                    
-                               </div>  -->
+                               </div> 
                                <!-- end card-box-->
 
-                            </div> <!-- end col -->
+                            </div> 
+                            <!-- end col -->
                         </div>
                         <!-- end row-->
                         <div class="mt-4 mb-1">
