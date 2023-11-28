@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 05:48 PM
+-- Generation Time: Nov 28, 2023 at 08:05 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `expertise` (
   `skill_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `skill_name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -37,18 +36,18 @@ CREATE TABLE `expertise` (
 -- Dumping data for table `expertise`
 --
 
-INSERT INTO `expertise` (`skill_id`, `user_id`, `skill_name`) VALUES
-(1, 1, 'Coding/Programming'),
-(2, 4, 'Data Analysis'),
-(3, 12, 'Digital Marketing'),
-(4, 14, 'Communication'),
-(5, 5, 'Project Management'),
-(6, 3, 'Problem Solving'),
-(7, 10, 'Adaptability'),
-(8, 6, 'Customer Service'),
-(9, 9, 'Creativity'),
-(10, 8, 'Foreign Language Proficiency'),
-(13, 7, 'Coding/Programming');
+INSERT INTO `expertise` (`skill_id`, `skill_name`) VALUES
+(1, 'Coding/Programming'),
+(2, 'Data Analysis'),
+(3, 'Digital Marketing'),
+(4, 'Communication'),
+(5, 'Project Management'),
+(6, 'Problem Solving'),
+(7, 'Adaptability'),
+(8, 'Customer Service'),
+(9, 'Creativity'),
+(10, 'Foreign Language Proficiency'),
+(13, 'Coding/Programming');
 
 -- --------------------------------------------------------
 
@@ -124,7 +123,11 @@ CREATE TABLE `mis_claimclearance` (
 --
 
 INSERT INTO `mis_claimclearance` (`claimclearance_id`, `employment_id`, `agency_id`, `or_no`, `date_issued`) VALUES
-(1, 1, 1, '0017', '2023-11-14');
+(1, 1, 1, '0017', '2023-11-14'),
+(2, NULL, NULL, '0019', '2023-11-22'),
+(3, NULL, NULL, '020', '2023-11-24'),
+(4, NULL, NULL, '020', '2023-11-24'),
+(5, NULL, NULL, '0019', '2023-11-24');
 
 -- --------------------------------------------------------
 
@@ -134,9 +137,8 @@ INSERT INTO `mis_claimclearance` (`claimclearance_id`, `employment_id`, `agency_
 
 CREATE TABLE `mis_employment` (
   `employment_id` int(11) NOT NULL,
-  `job_opening_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `claimclearance_id` int(11) DEFAULT NULL,
+  `job_opening_id` int(11) NOT NULL DEFAULT 0,
+  `claimclearance_id` int(11) NOT NULL DEFAULT 0,
   `or_no` varchar(20) DEFAULT NULL,
   `surname` varchar(256) DEFAULT NULL,
   `firstname` varchar(256) DEFAULT NULL,
@@ -186,15 +188,13 @@ CREATE TABLE `mis_employment` (
 -- Dumping data for table `mis_employment`
 --
 
-INSERT INTO `mis_employment` (`employment_id`, `job_opening_id`, `user_id`, `claimclearance_id`, `or_no`, `surname`, `firstname`, `middlename`, `suffix`, `date_of_birth`, `sex`, `street_village`, `barangay`, `municipality`, `province`, `religion`, `civil_status`, `tin`, `disability`, `height`, `contact_number`, `email`, `employment_status`, `employment_status_employed`, `employment_status_unemployed`, `Are_you_ofw`, `are_you_a_former_ofw`, `beneficiary`, `prefered_occupation`, `prefered_work_location`, `language_dialect`, `currently_in_school`, `education_level`, `course`, `training`, `hours_of_training`, `training_institution`, `skill_acquired`, `certificates_received`, `eligibility_civil_service`, `professional_licence`, `company_name`, `position`, `number_of_months`, `special_skill`, `referred_to`, `date_joined`) VALUES
-(1, NULL, 1, 1, '0017', 'Emata', 'Jhaisrhie', 'P', 'NA', '1992-04-21', 'Male', 'Zone 1', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Seventh-day Adventist', 'Single', 'NA', 'NA', '5\'6\'\'', '9156583019', 'sample@mail.com', 'Employed', 'Self-employed (Freelancer)', 'NA', 'No', 'No', 'No', 'Support Technician', 'SULADS Radyo Manolo Fortich SDA Church', 'Cebuano', 'Yes', '4TH YEAR COLLEGE LEVEL', 'NA', 'SMAW ', '48', 'Tagoloan Vocational Institute', 'Welder', 'NCII', 'NA', 'Na', 'RRISMONDO', 'Welder', '48', 'Coding/Programming', 'SPES', '2023-10-24'),
-(14, NULL, 8, NULL, '0019', 'Lumala ', 'Sarah ', 'B', 'NA', '1987-09-19', 'Female', 'Zone 1 ', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0', '9346423891', 'sar@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'BEED', 'Na', '1', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', '1', 'Foreign Language Proficiency ', 'SPES', '2023-11-16'),
-(16, NULL, 9, NULL, '0018', 'Zambrano', 'Arian joy', 'M', 'NA', '2001-11-15', 'Female', 'Zone 1 ', 'Dalirig', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0', '9876545464', 'arian@mail.com', 'Employed', 'Wage employed', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'BSEE', 'Na', '1', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', '1', 'Creativity', 'SPES', '2023-11-16'),
-(20, NULL, 10, NULL, NULL, 'Caare', 'Daina', 'M', 'NA', '2006-06-15', 'Female', 'Zone5 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'na', 'NA', '5', '9376358689', 'daina@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'na', 'na', 'Cebuano', 'Yes', '3RD YEAR COLLEGE LEVEL', 'Na', 'na', '0', 'na', 'Adaptability ', 'na', 'na', 'na', 'na', 'na', '0', 'Adaptability ', 'SPES', '2023-11-20'),
-(21, NULL, 12, NULL, NULL, 'Javier', 'Dan Marc', 'p', 'NA', '2004-02-10', 'Male', 'zone1', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'na', 'NA', '5', '09837363726', 'mac@mail.com', 'Employed', 'Wage employed', 'NA', 'No', 'No', 'No', 'na', 'na', 'Cebuano', 'Yes', '1ST YEAR COLLEGE LEVEL', 'Na', 'na', '0', 'na', 'na', 'na', 'na', 'na', 'na', 'na', '0', 'Digital Marketing ', 'SPES', '2023-11-20'),
-(22, NULL, NULL, NULL, NULL, 'Pongasi', 'Roldan', 'Gumonan', 'NA', '2000-01-08', 'Male', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'5', '09453810680', 'roldan@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', 'N/A', 'Rebisco', 'Supervisor ', '9', 'Hardware ', 'GIP', '2023-11-20'),
-(28, NULL, NULL, NULL, NULL, 'Pongasi ', 'Rina', 'Gumonan', 'NA', '2006-11-20', 'Female', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'5', '09453810680', 'rina@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'Welder', 'Sankanan ', 'Cebuano', 'Yes', 'HIGH SCHOOL GRADUATE', 'Manolo Fortich National High school ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', 'N/A', 'DMPI', 'Production', '6', 'Hardware ', 'GIP', '2023-11-20'),
-(31, NULL, NULL, NULL, NULL, 'Sayagnon ', 'Ronila', 'Gumonan ', 'NA', '1985-11-20', 'Female', 'Zone 4 ', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Married', '4321', 'NA', '5\'4', '09453810680', 'ronila@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', 'N/A', 'Rebisco', 'Production', '9', 'Hardware ', 'GIP', '2023-11-20');
+INSERT INTO `mis_employment` (`employment_id`, `job_opening_id`, `claimclearance_id`, `or_no`, `surname`, `firstname`, `middlename`, `suffix`, `date_of_birth`, `sex`, `street_village`, `barangay`, `municipality`, `province`, `religion`, `civil_status`, `tin`, `disability`, `height`, `contact_number`, `email`, `employment_status`, `employment_status_employed`, `employment_status_unemployed`, `Are_you_ofw`, `are_you_a_former_ofw`, `beneficiary`, `prefered_occupation`, `prefered_work_location`, `language_dialect`, `currently_in_school`, `education_level`, `course`, `training`, `hours_of_training`, `training_institution`, `skill_acquired`, `certificates_received`, `eligibility_civil_service`, `professional_licence`, `company_name`, `position`, `number_of_months`, `special_skill`, `referred_to`, `date_joined`) VALUES
+(1, 5, 0, '0020', 'Emata', 'Jhaisrhie', 'P', 'NA', '1992-04-21', 'Male', 'Zone 1', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Seventh-day Adventist', 'Single', 'NA', 'NA', '5\'6\'\'', '9156583019', 'sample@mail.com', 'Employed', 'Self-employed (Freelancer)', 'NA', 'No', 'No', 'No', 'Support Technician', 'SULADS Radyo Manolo Fortich SDA Church', 'Cebuano', 'Yes', '4TH YEAR COLLEGE LEVEL', 'NA', 'SMAW ', '48', 'Tagoloan Vocational Institute', 'Welder', 'NCII', 'NA', 'Na', 'RRISMONDO', 'Welder', '48', 'Coding/Programming', 'SPES', '2023-10-24'),
+(14, 0, 0, '0019', 'Lumala ', 'Sarah ', 'B', 'NA', '1987-09-19', 'Female', 'Zone 1 ', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0', '9346423891', 'sar@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'BEED', 'Na', '1', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', '1', 'Foreign Language Proficiency ', 'SPES', '2023-11-16'),
+(16, 0, 0, '0018', 'Zambrano', 'Arian joy', 'M', 'NA', '2001-11-15', 'Female', 'Zone 1 ', 'Dalirig', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0', '9876545464', 'arian@mail.com', 'Employed', 'Wage employed', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'BSEE', 'Na', '1', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', '1', 'Creativity', 'SPES', '2023-11-16'),
+(20, 0, 0, NULL, 'Caare', 'Daina', 'M', 'NA', '2006-06-15', 'Female', 'Zone5 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'na', 'NA', '5', '9376358689', 'daina@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'na', 'na', 'Cebuano', 'Yes', '3RD YEAR COLLEGE LEVEL', 'Na', 'na', '0', 'na', 'Adaptability ', 'na', 'na', 'na', 'na', 'na', '0', 'Adaptability ', 'SPES', '2023-11-20'),
+(21, 0, 0, NULL, 'Javier', 'Dan Marc', 'p', 'NA', '2004-02-10', 'Male', 'zone1', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'na', 'NA', '5', '09837363726', 'mac@mail.com', 'Employed', 'Wage employed', 'NA', 'No', 'No', 'No', 'na', 'na', 'Cebuano', 'Yes', '1ST YEAR COLLEGE LEVEL', 'Na', 'na', '0', 'na', 'na', 'na', 'na', 'na', 'na', 'na', '0', 'Digital Marketing ', 'SPES', '2023-11-20'),
+(22, 0, 0, NULL, 'Pongasi', 'Roldan', 'Gumonan', 'NA', '2000-01-08', 'Male', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'5', '09453810680', 'roldan@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', 'N/A', 'Rebisco', 'Supervisor ', '9', 'Hardware ', 'GIP', '2023-11-20');
 
 -- --------------------------------------------------------
 
@@ -258,7 +258,9 @@ CREATE TABLE `mis_employment_backup` (
 
 INSERT INTO `mis_employment_backup` (`employment_id`, `job_opening_id`, `user_id`, `claimclearance_id`, `or_no`, `surname`, `firstname`, `middlename`, `suffix`, `date_of_birth`, `sex`, `street_village`, `barangay`, `municipality`, `province`, `religion`, `civil_status`, `tin`, `disability`, `height`, `contact_number`, `email`, `employment_status`, `employment_status_employed`, `employment_status_unemployed`, `Are_you_ofw`, `are_you_a_former_ofw`, `beneficiary`, `prefered_occupation`, `prefered_work_location`, `language_dialect`, `currently_in_school`, `education_level`, `course`, `training`, `hours_of_training`, `training_institution`, `skill_acquired`, `certificates_received`, `eligibility_civil_service`, `professional_licence`, `company_name`, `position`, `number_of_months`, `other_skills`, `referred_to`, `date_joined`) VALUES
 (15, NULL, 11, NULL, NULL, 'Salas', 'Von', 'S', 'NA', '2003-02-05', 'Male', 'Zone 1 ', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0\"', '09877563750', 'von@mail.com', 'Unemployed', 'NA', 'New Emtrant/Fresh Graduate', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', 'HIGH SCHOOL LEVEL', 'na', 'Na', '1', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', '1', 'Na', 'SPES', '2023-11-16'),
-(17, NULL, NULL, NULL, '', 'Caare', 'Daina', 'M', 'NA', '2004-05-27', 'Female', 'Zone 1 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0', '9376358689', 'daina@mail.com', 'Employed', 'Wage employed', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', '3RD YEAR COLLEGE LEVEL', 'na', 'Na', 'Na', 'Na', 'Teacher ', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'SPES', '2023-11-16');
+(17, NULL, NULL, NULL, '', 'Caare', 'Daina', 'M', 'NA', '2004-05-27', 'Female', 'Zone 1 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0', '9376358689', 'daina@mail.com', 'Employed', 'Wage employed', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', '3RD YEAR COLLEGE LEVEL', 'na', 'Na', 'Na', 'Na', 'Teacher ', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'Na', 'SPES', '2023-11-16'),
+(31, NULL, NULL, NULL, NULL, 'Sayagnon ', 'Ronila', 'Gumonan ', 'NA', '1985-11-20', 'Female', 'Zone 4 ', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Married', '4321', 'NA', '5\'4', '09453810680', 'ronila@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', 'N/A', 'Rebisco', 'Production', '9', 'Hardware ', 'GIP', '2023-11-20'),
+(28, NULL, NULL, NULL, NULL, 'Pongasi ', 'Rina', 'Gumonan', 'NA', '2006-11-20', 'Female', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'5', '09453810680', 'rina@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'Welder', 'Sankanan ', 'Cebuano', 'Yes', 'HIGH SCHOOL GRADUATE', 'Manolo Fortich National High school ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', 'N/A', 'DMPI', 'Production', '6', 'Hardware ', 'GIP', '2023-11-20');
 
 -- --------------------------------------------------------
 
@@ -268,7 +270,6 @@ INSERT INTO `mis_employment_backup` (`employment_id`, `job_opening_id`, `user_id
 
 CREATE TABLE `mis_gip` (
   `gip_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `applicant_no` varchar(256) DEFAULT NULL,
   `gip_compliant` varchar(256) DEFAULT NULL,
   `type_of_application` varchar(256) DEFAULT NULL,
@@ -331,9 +332,9 @@ CREATE TABLE `mis_gip` (
 -- Dumping data for table `mis_gip`
 --
 
-INSERT INTO `mis_gip` (`gip_id`, `user_id`, `applicant_no`, `gip_compliant`, `type_of_application`, `surname`, `firstname`, `middlename`, `suffix`, `contact`, `civil_status`, `sex`, `date_of_birth`, `age_`, `blood_type`, `app_zone_no`, `app_barangay`, `app_municipality`, `app_province`, `religion`, `citizenship`, `language_dialect`, `father_surname`, `father_firstname`, `father_middlename`, `father_occupation`, `number_of_brother`, `mother_surname`, `mother_firstname`, `mother_middlename`, `mother_occupation`, `number_of_sister`, `pa_zone_no`, `pa_barangay`, `pa_municipality`, `pa_province`, `elementary_school`, `elem_type_of_school`, `elem_school_address`, `elem_year_graduated`, `high_school`, `hs_type_of_school`, `strand`, `hs_year_level`, `hs_lastyear_attended`, `hs_school_address`, `college`, `col_type_of_school`, `course`, `col_school_address`, `col_lastyear_attended`, `pre_strand_course`, `psc_school`, `special_skill`, `income_of_parent`, `date_of_application`, `recieved_by`, `date_joined`) VALUES
-(1, 4, '01', 'Yes', 'For College', 'Sayagnon ', 'Joshua ', 'B', 'NA', '9156325865', 'Single', 'Male', '2001-07-18', '22', 'O', 'Zone 1 ', 'Lindaban', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Filipino ', 'Cebuano', 'Na', 'Na', 'Na', 'NA', '2', 'Na', 'Na', 'Na', 'NA', '2', 'Zone 2 ', 'Lindaban', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'Na', '2019', 'Na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2022', 'Na', 'Na', 'Public', 'BSIT ', 'Ba', '2023', 'Na', 'Na', 'Data Analysis ', '5,000 and below', '2023-11-14', 'Na', '2023-11-14'),
-(2, 7, '02', 'Yes', 'For College', 'Sigongan', 'Jerome ', 'S', 'NA', '09159643182', 'Single', 'Male', '1994-07-06', NULL, 'O', 'Zone 1', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Catholic', 'Filipino', 'Cebuano', 'na', 'na', 'na', 'NA', '4', 'na', 'na', 'na', 'NA', '3', 'Zone 1 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'na', '2015', 'na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2017', 'na', 'NBSC', 'Public', 'BSIT', 'Na', '2023', 'na', 'na', 'Coding/Programming ', '5,000 and below', '2023-11-20', 'na', '2023-11-20');
+INSERT INTO `mis_gip` (`gip_id`, `applicant_no`, `gip_compliant`, `type_of_application`, `surname`, `firstname`, `middlename`, `suffix`, `contact`, `civil_status`, `sex`, `date_of_birth`, `age_`, `blood_type`, `app_zone_no`, `app_barangay`, `app_municipality`, `app_province`, `religion`, `citizenship`, `language_dialect`, `father_surname`, `father_firstname`, `father_middlename`, `father_occupation`, `number_of_brother`, `mother_surname`, `mother_firstname`, `mother_middlename`, `mother_occupation`, `number_of_sister`, `pa_zone_no`, `pa_barangay`, `pa_municipality`, `pa_province`, `elementary_school`, `elem_type_of_school`, `elem_school_address`, `elem_year_graduated`, `high_school`, `hs_type_of_school`, `strand`, `hs_year_level`, `hs_lastyear_attended`, `hs_school_address`, `college`, `col_type_of_school`, `course`, `col_school_address`, `col_lastyear_attended`, `pre_strand_course`, `psc_school`, `special_skill`, `income_of_parent`, `date_of_application`, `recieved_by`, `date_joined`) VALUES
+(1, '01', 'Yes', 'For College', 'Sayagnon ', 'Joshua ', 'B', 'NA', '9156325865', 'Single', 'Male', '2001-07-18', '22', 'O', 'Zone 1 ', 'Lindaban', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Filipino ', 'Cebuano', 'Na', 'Na', 'Na', 'NA', '2', 'Na', 'Na', 'Na', 'NA', '2', 'Zone 2 ', 'Lindaban', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'Na', '2019', 'Na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2022', 'Na', 'Na', 'Public', 'BSIT ', 'Ba', '2023', 'Na', 'Na', 'Data Analysis ', '5,000 and below', '2023-11-14', 'Na', '2023-11-14'),
+(2, '02', 'Yes', 'For College', 'Sigongan', 'Jerome ', 'S', 'NA', '09159643182', 'Single', 'Male', '1994-07-06', NULL, 'O', 'Zone 1', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Catholic', 'Filipino', 'Cebuano', 'na', 'na', 'na', 'NA', '4', 'na', 'na', 'na', 'NA', '3', 'Zone 1 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'na', '2015', 'na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2017', 'na', 'NBSC', 'Public', 'BSIT', 'Na', '2023', 'na', 'na', 'Coding/Programming ', '5,000 and below', '2023-11-20', 'na', '2023-11-20');
 
 -- --------------------------------------------------------
 
@@ -343,7 +344,7 @@ INSERT INTO `mis_gip` (`gip_id`, `user_id`, `applicant_no`, `gip_compliant`, `ty
 
 CREATE TABLE `mis_job_opening` (
   `job_opening_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `employment_id` int(11) DEFAULT NULL,
   `job_name` varchar(256) NOT NULL,
   `job_description` longtext NOT NULL,
   `com_name` varchar(256) NOT NULL,
@@ -357,7 +358,7 @@ CREATE TABLE `mis_job_opening` (
 -- Dumping data for table `mis_job_opening`
 --
 
-INSERT INTO `mis_job_opening` (`job_opening_id`, `user_id`, `job_name`, `job_description`, `com_name`, `address`, `contact`, `email`, `date_posted`) VALUES
+INSERT INTO `mis_job_opening` (`job_opening_id`, `employment_id`, `job_name`, `job_description`, `com_name`, `address`, `contact`, `email`, `date_posted`) VALUES
 (1, NULL, 'Mechanical Techician', 'Plant Maintenance', 'SMC REPAIRS & MAINTENANCE', 'Manolo Fortich Bukidnon', 'NA', 'careers@rmi.sanmiguel.com.ph', '2023-09-27'),
 (4, NULL, 'Warehouse Coordinator', 'Management inventory, maintaining accurate record ', 'VIENOVO FEED FOR LIFE', 'Manolo Fortich Bukidnon', '09178086976', 'sample@mail.com', '2023-10-17'),
 (5, 1, 'Software Developer', 'Full stack dev', 'Amazon', 'USSR', '404', 'amazon@mail.com', '2023-11-19'),
@@ -373,12 +374,21 @@ INSERT INTO `mis_job_opening` (`job_opening_id`, `user_id`, `job_name`, `job_des
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mis_prediction`
+--
+
+CREATE TABLE `mis_prediction` (
+  `predict_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mis_scholarship`
 --
 
 CREATE TABLE `mis_scholarship` (
   `scholarship_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `applicant_no` varchar(256) DEFAULT NULL,
   `type_of_application` varchar(256) DEFAULT NULL,
   `surname` varchar(256) DEFAULT NULL,
@@ -440,9 +450,8 @@ CREATE TABLE `mis_scholarship` (
 -- Dumping data for table `mis_scholarship`
 --
 
-INSERT INTO `mis_scholarship` (`scholarship_id`, `user_id`, `applicant_no`, `type_of_application`, `surname`, `firstname`, `middlename`, `suffix`, `contact`, `civil_status`, `sex`, `date_of_birth`, `age_`, `blood_type`, `app_zone_no`, `app_barangay`, `app_municipality`, `app_province`, `religion`, `citizenship`, `language_dialect`, `father_surname`, `father_firstname`, `father_middlename`, `father_occupation`, `number_of_brother`, `mother_surname`, `mother_firstname`, `mother_middlename`, `mother_occupation`, `number_of_sister`, `pa_zone_no`, `pa_barangay`, `pa_municipality`, `pa_province`, `elementary_school`, `elem_type_of_school`, `elem_school_address`, `elem_year_graduated`, `high_school`, `hs_type_of_school`, `strand`, `hs_year_level`, `hs_lastyear_attended`, `hs_school_address`, `college`, `col_type_of_school`, `course`, `col_school_address`, `col_lastyear_attended`, `pre_strand_course`, `psc_school`, `special_skill`, `income_of_parent`, `date_of_application`, `recieved_by`, `date_joined`) VALUES
-(1, 2, '01', 'For College', 'Zulita ', 'Sharlene ', 'M', 'NA', '9464543431', 'Married', 'Female', '2000-06-10', '23', 'O', 'Zone 1 ', 'Ticala', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Filipino ', 'Cebuano', 'Na', 'Na', 'Na', 'NA', '5', 'Na', 'Na', 'Na', 'NA', '3', 'Zone 2 ', 'Ticala', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'Na', '2018', 'Na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2021', 'Na', 'Na', 'Public', 'BSIT ', 'Ba', '2023', 'Na', 'Na', 'Foreign Language Proficiency ', '5,000 and below', '2023-11-14', 'Na', '2023-11-14'),
-(3, 6, '02', 'For Senior High School', 'Israel', 'Stephen', 'I', 'NA', '09158646431', 'Single', 'Male', '2006-09-01', '17', 'O', 'Zone4', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Filipino', 'Cebuano', 'na', 'na', 'na', 'NA', '2', 'na', 'na', 'na', 'NA', '2', 'Zone5', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'na', '2023', 'na', 'Public', 'ICT', '3RD YEAR HIGH SCHOOL/GRADE IX (FOR K TO 12)', '2023', 'na', 'MFNH', 'Public', 'Na', 'Na', '2023', 'na', 'na', 'Customer Service ', '5,000 and below', '2023-11-20', 'na', '2023-11-20');
+INSERT INTO `mis_scholarship` (`scholarship_id`, `applicant_no`, `type_of_application`, `surname`, `firstname`, `middlename`, `suffix`, `contact`, `civil_status`, `sex`, `date_of_birth`, `age_`, `blood_type`, `app_zone_no`, `app_barangay`, `app_municipality`, `app_province`, `religion`, `citizenship`, `language_dialect`, `father_surname`, `father_firstname`, `father_middlename`, `father_occupation`, `number_of_brother`, `mother_surname`, `mother_firstname`, `mother_middlename`, `mother_occupation`, `number_of_sister`, `pa_zone_no`, `pa_barangay`, `pa_municipality`, `pa_province`, `elementary_school`, `elem_type_of_school`, `elem_school_address`, `elem_year_graduated`, `high_school`, `hs_type_of_school`, `strand`, `hs_year_level`, `hs_lastyear_attended`, `hs_school_address`, `college`, `col_type_of_school`, `course`, `col_school_address`, `col_lastyear_attended`, `pre_strand_course`, `psc_school`, `special_skill`, `income_of_parent`, `date_of_application`, `recieved_by`, `date_joined`) VALUES
+(1, '01', 'For College', 'Zulita ', 'Sharlene ', 'M', 'NA', '9464543431', 'Married', 'Female', '2000-06-10', '23', 'O', 'Zone 1 ', 'Ticala', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Filipino ', 'Cebuano', 'Na', 'Na', 'Na', 'NA', '5', 'Na', 'Na', 'Na', 'NA', '3', 'Zone 2 ', 'Ticala', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'Na', '2018', 'Na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2021', 'Na', 'Na', 'Public', 'BSIT ', 'Ba', '2023', 'Na', 'Na', 'Foreign Language Proficiency ', '5,000 and below', '2023-11-14', 'Na', '2023-11-14');
 
 -- --------------------------------------------------------
 
@@ -527,7 +536,6 @@ INSERT INTO `mis_spes` (`spes_id`, `user_id`, `applicant_no`, `spes_compliant`, 
 
 CREATE TABLE `mis_tesdatraining` (
   `tesdatraining_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `surname` varchar(256) DEFAULT NULL,
   `firstname` varchar(256) DEFAULT NULL,
   `middlename` varchar(256) DEFAULT NULL,
@@ -576,8 +584,8 @@ CREATE TABLE `mis_tesdatraining` (
 -- Dumping data for table `mis_tesdatraining`
 --
 
-INSERT INTO `mis_tesdatraining` (`tesdatraining_id`, `user_id`, `surname`, `firstname`, `middlename`, `suffix`, `date_of_birth`, `sex`, `street_village`, `barangay`, `municipality`, `province`, `religion`, `civil_status`, `tin`, `disability`, `height`, `contact_number`, `email`, `employment_status`, `employment_status_employed`, `employment_status_unemployed`, `Are_you_ofw`, `are_you_a_former_ofw`, `beneficiary`, `prefered_occupation`, `prefered_work_location`, `language_dialect`, `currently_in_school`, `education_level`, `course`, `training`, `hours_of_training`, `training_institution`, `skill_acquired`, `certificates_received`, `eligibility_civil_service`, `professional_licence`, `company_name`, `position`, `number_of_months`, `special_skill`, `referred_to`, `date_joined`) VALUES
-(1, 5, 'Montimar', 'James', 'M', 'NA', '2004-02-04', 'Male', 'Purok 13 ', 'Damilag', 'Manolo Fortich', 'Bukidnon', 'SDA ', 'Single', 'N/A', 'NA', '5\'2', 'N/A', 'james.montimar@gmail.com', 'NA', 'NA', 'NA', 'No', 'No', 'No', 'N/A', 'N/A', 'English', 'No', '1ST YEAR COLLEGE LEVEL', 'BSIT', 'N/A', 'N/A', 'N/A', 'Project Management ', 'N/A', 'N/A', 'N/A', 'Computer shop', 'Cleaner', '10 days', 'Project Management', 'GIP', '2023-11-20 05:01:20.451403');
+INSERT INTO `mis_tesdatraining` (`tesdatraining_id`, `surname`, `firstname`, `middlename`, `suffix`, `date_of_birth`, `sex`, `street_village`, `barangay`, `municipality`, `province`, `religion`, `civil_status`, `tin`, `disability`, `height`, `contact_number`, `email`, `employment_status`, `employment_status_employed`, `employment_status_unemployed`, `Are_you_ofw`, `are_you_a_former_ofw`, `beneficiary`, `prefered_occupation`, `prefered_work_location`, `language_dialect`, `currently_in_school`, `education_level`, `course`, `training`, `hours_of_training`, `training_institution`, `skill_acquired`, `certificates_received`, `eligibility_civil_service`, `professional_licence`, `company_name`, `position`, `number_of_months`, `special_skill`, `referred_to`, `date_joined`) VALUES
+(1, 'Montimar', 'James', 'M', 'NA', '2004-02-04', 'Male', 'Purok 13 ', 'Damilag', 'Manolo Fortich', 'Bukidnon', 'SDA ', 'Single', 'N/A', 'NA', '5\'2', 'N/A', 'james.montimar@gmail.com', 'NA', 'NA', 'NA', 'No', 'No', 'No', 'N/A', 'N/A', 'English', 'No', '1ST YEAR COLLEGE LEVEL', 'BSIT', 'N/A', 'N/A', 'N/A', 'Project Management ', 'N/A', 'N/A', 'N/A', 'Computer shop', 'Cleaner', '10 days', 'Problem Solving ', 'GIP', '2023-11-22 12:30:13.704184');
 
 -- --------------------------------------------------------
 
@@ -611,15 +619,13 @@ INSERT INTO `mis_tesda_course` (`tesda_course_id`, `course_offered`, `trainer_ho
 
 CREATE TABLE `mis_user` (
   `user_id` int(11) NOT NULL,
-  `regtype_id` int(11) DEFAULT NULL,
-  `skill_id` int(11) DEFAULT NULL,
+  `employment_id` int(11) DEFAULT NULL,
   `user_fname` varchar(200) DEFAULT NULL,
   `user_lname` varchar(200) DEFAULT NULL,
   `user_number` varchar(200) DEFAULT NULL,
   `user_email` varchar(200) DEFAULT NULL,
   `user_pwd` varchar(200) DEFAULT NULL,
   `user_pwd_confirm` varchar(200) DEFAULT NULL,
-  `regtype` varchar(256) DEFAULT NULL,
   `user_dpic` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -627,24 +633,8 @@ CREATE TABLE `mis_user` (
 -- Dumping data for table `mis_user`
 --
 
-INSERT INTO `mis_user` (`user_id`, `regtype_id`, `skill_id`, `user_fname`, `user_lname`, `user_number`, `user_email`, `user_pwd`, `user_pwd_confirm`, `regtype`, `user_dpic`) VALUES
-(1, 1, 1, 'jhaisrhie', 'Emata', '09156583019', 'jhai@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', '135866136_434805517706014_1505728466535786495_n.jpg'),
-(2, 2, 10, 'Sharlene', 'Zulita', '09356748476', 'shar@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Scholarship', 'sharlene.png'),
-(3, 3, 6, 'Francis', 'Talipan', '098756335421', 'fran@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'SPES', 'franz.png'),
-(4, 4, 2, 'Joshua', 'Sayagnon', '09458736352', 'jos@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'GIP', 'joshua.png'),
-(5, 5, 5, 'james', 'montimar', '09164527252', 'james@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'TesdaTraining', 'user1.jpg'),
-(6, 2, 8, 'Stephen', 'Israel', '09158646431', 'step@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Scholarship', '16999740510351933569357333252198.jpg'),
-(7, 4, NULL, 'Jerome ', 'Sigongan', '09159643182', 'jerome@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'GIP', '16999773405569113899911983231109.jpg'),
-(8, 1, NULL, 'Sarah ', 'Lumala', '09162365852', 'sar@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'User Default.png'),
-(9, 1, 9, 'Arian zoy ', 'Zambrano ', '09319431365', 'arian@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'user-default-2-min.png'),
-(10, 1, NULL, 'Daina', 'Caare', '09376358689', 'daina@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'User Default.png'),
-(11, 1, NULL, 'Von', 'salas', '09863683921', 'von@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'user1.jpg'),
-(12, 1, NULL, 'dan marc', 'javier', '09837363726', 'mac@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'user1.jpg'),
-(13, 1, NULL, 'Pj', 'Martinez', '9187674634', 'pj@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'user1.jpg'),
-(14, 3, 4, 'Jermae', 'Martos', '09577576831', 'jermae@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'SPES', 'User Default.png'),
-(15, NULL, NULL, 'Roldan', 'Pongasi', '09453810680', 'roldan@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'VID20231022135702.mp4'),
-(16, NULL, NULL, 'Rina', 'Pongasi ', '09453810680', 'rina@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'IMG_20231105_164854.jpg'),
-(17, NULL, NULL, 'Ronila', 'Sayagnon ', '09453810680', 'ronila@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', 'Employment', 'IMG20230820133024.jpg');
+INSERT INTO `mis_user` (`user_id`, `employment_id`, `user_fname`, `user_lname`, `user_number`, `user_email`, `user_pwd`, `user_pwd_confirm`, `user_dpic`) VALUES
+(1, 1, 'user', 'peso', '09784765749', 'user@mail.com', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', NULL);
 
 -- --------------------------------------------------------
 
@@ -654,7 +644,6 @@ INSERT INTO `mis_user` (`user_id`, `regtype_id`, `skill_id`, `user_fname`, `user
 
 CREATE TABLE `regtypes` (
   `regtype_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `regtype_name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -662,21 +651,21 @@ CREATE TABLE `regtypes` (
 -- Dumping data for table `regtypes`
 --
 
-INSERT INTO `regtypes` (`regtype_id`, `user_id`, `regtype_name`) VALUES
-(1, 1, 'Employment'),
-(2, 2, 'Scholarship'),
-(3, 3, 'SPES'),
-(4, 4, 'GIP'),
-(5, 5, 'TesdaTraining'),
-(6, 6, 'Scholarship'),
-(7, 7, 'GIP'),
-(8, 8, 'Employment'),
-(9, 9, 'Employment'),
-(10, 10, 'Employment'),
-(11, 11, 'Employment'),
-(12, 12, 'Employment'),
-(13, 13, 'Employment'),
-(14, 14, 'SPES');
+INSERT INTO `regtypes` (`regtype_id`, `regtype_name`) VALUES
+(1, 'Employment'),
+(2, 'Scholarship'),
+(3, 'SPES'),
+(4, 'GIP'),
+(5, 'TesdaTraining'),
+(6, 'Scholarship'),
+(7, 'GIP'),
+(8, 'Employment'),
+(9, 'Employment'),
+(10, 'Employment'),
+(11, 'Employment'),
+(12, 'Employment'),
+(13, 'Employment'),
+(14, 'SPES');
 
 --
 -- Indexes for dumped tables
@@ -686,8 +675,7 @@ INSERT INTO `regtypes` (`regtype_id`, `user_id`, `regtype_name`) VALUES
 -- Indexes for table `expertise`
 --
 ALTER TABLE `expertise`
-  ADD PRIMARY KEY (`skill_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`skill_id`);
 
 --
 -- Indexes for table `mis_admin`
@@ -716,29 +704,32 @@ ALTER TABLE `mis_claimclearance`
 ALTER TABLE `mis_employment`
   ADD PRIMARY KEY (`employment_id`),
   ADD KEY `job_opening_id` (`job_opening_id`),
-  ADD KEY `user_id` (`user_id`),
   ADD KEY `claimclearance_id` (`claimclearance_id`);
 
 --
 -- Indexes for table `mis_gip`
 --
 ALTER TABLE `mis_gip`
-  ADD PRIMARY KEY (`gip_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`gip_id`);
 
 --
 -- Indexes for table `mis_job_opening`
 --
 ALTER TABLE `mis_job_opening`
   ADD PRIMARY KEY (`job_opening_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `employment_id` (`employment_id`);
+
+--
+-- Indexes for table `mis_prediction`
+--
+ALTER TABLE `mis_prediction`
+  ADD PRIMARY KEY (`predict_id`);
 
 --
 -- Indexes for table `mis_scholarship`
 --
 ALTER TABLE `mis_scholarship`
-  ADD PRIMARY KEY (`scholarship_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`scholarship_id`);
 
 --
 -- Indexes for table `mis_spes`
@@ -751,8 +742,7 @@ ALTER TABLE `mis_spes`
 -- Indexes for table `mis_tesdatraining`
 --
 ALTER TABLE `mis_tesdatraining`
-  ADD PRIMARY KEY (`tesdatraining_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`tesdatraining_id`);
 
 --
 -- Indexes for table `mis_tesda_course`
@@ -765,15 +755,13 @@ ALTER TABLE `mis_tesda_course`
 --
 ALTER TABLE `mis_user`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `regtype_id` (`regtype_id`),
-  ADD KEY `skill_id` (`skill_id`);
+  ADD KEY `employment_id` (`employment_id`);
 
 --
 -- Indexes for table `regtypes`
 --
 ALTER TABLE `regtypes`
-  ADD PRIMARY KEY (`regtype_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`regtype_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -801,7 +789,7 @@ ALTER TABLE `mis_agency`
 -- AUTO_INCREMENT for table `mis_claimclearance`
 --
 ALTER TABLE `mis_claimclearance`
-  MODIFY `claimclearance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `claimclearance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `mis_employment`
@@ -820,6 +808,12 @@ ALTER TABLE `mis_gip`
 --
 ALTER TABLE `mis_job_opening`
   MODIFY `job_opening_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `mis_prediction`
+--
+ALTER TABLE `mis_prediction`
+  MODIFY `predict_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mis_scholarship`
@@ -849,7 +843,7 @@ ALTER TABLE `mis_tesda_course`
 -- AUTO_INCREMENT for table `mis_user`
 --
 ALTER TABLE `mis_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `regtypes`
@@ -862,12 +856,6 @@ ALTER TABLE `regtypes`
 --
 
 --
--- Constraints for table `expertise`
---
-ALTER TABLE `expertise`
-  ADD CONSTRAINT `expertise_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mis_user` (`user_id`);
-
---
 -- Constraints for table `mis_agency`
 --
 ALTER TABLE `mis_agency`
@@ -877,52 +865,19 @@ ALTER TABLE `mis_agency`
 -- Constraints for table `mis_employment`
 --
 ALTER TABLE `mis_employment`
-  ADD CONSTRAINT `mis_employment_ibfk_5` FOREIGN KEY (`job_opening_id`) REFERENCES `mis_job_opening` (`job_opening_id`),
-  ADD CONSTRAINT `mis_employment_ibfk_6` FOREIGN KEY (`user_id`) REFERENCES `mis_user` (`user_id`),
-  ADD CONSTRAINT `mis_employment_ibfk_7` FOREIGN KEY (`claimclearance_id`) REFERENCES `mis_claimclearance` (`claimclearance_id`);
-
---
--- Constraints for table `mis_gip`
---
-ALTER TABLE `mis_gip`
-  ADD CONSTRAINT `mis_gip_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mis_user` (`user_id`);
+  ADD CONSTRAINT `mis_employment_ibfk_5` FOREIGN KEY (`job_opening_id`) REFERENCES `mis_job_opening` (`job_opening_id`);
 
 --
 -- Constraints for table `mis_job_opening`
 --
 ALTER TABLE `mis_job_opening`
-  ADD CONSTRAINT `mis_job_opening_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mis_user` (`user_id`);
-
---
--- Constraints for table `mis_scholarship`
---
-ALTER TABLE `mis_scholarship`
-  ADD CONSTRAINT `mis_scholarship_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mis_user` (`user_id`);
-
---
--- Constraints for table `mis_spes`
---
-ALTER TABLE `mis_spes`
-  ADD CONSTRAINT `mis_spes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mis_user` (`user_id`);
-
---
--- Constraints for table `mis_tesdatraining`
---
-ALTER TABLE `mis_tesdatraining`
-  ADD CONSTRAINT `mis_tesdatraining_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mis_user` (`user_id`);
+  ADD CONSTRAINT `mis_job_opening_ibfk_1` FOREIGN KEY (`employment_id`) REFERENCES `mis_employment` (`employment_id`);
 
 --
 -- Constraints for table `mis_user`
 --
 ALTER TABLE `mis_user`
-  ADD CONSTRAINT `mis_user_ibfk_6` FOREIGN KEY (`regtype_id`) REFERENCES `regtypes` (`regtype_id`),
-  ADD CONSTRAINT `mis_user_ibfk_7` FOREIGN KEY (`skill_id`) REFERENCES `expertise` (`skill_id`);
-
---
--- Constraints for table `regtypes`
---
-ALTER TABLE `regtypes`
-  ADD CONSTRAINT `regtypes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mis_user` (`user_id`);
+  ADD CONSTRAINT `mis_user_ibfk_1` FOREIGN KEY (`employment_id`) REFERENCES `mis_employment` (`employment_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
