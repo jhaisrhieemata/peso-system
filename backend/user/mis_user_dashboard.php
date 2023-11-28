@@ -165,10 +165,10 @@
 
                                                       <li class="nav-item"> <a class="nav-link " aria-current="page" href="#1a" data-toggle="tab">Matched jobs</a>
                                                       </li>
-                                                      <!-- <li class="nav-item"> <a class="nav-link"  href="#2a" data-toggle="tab">Job List</a>
-                                                      </li> -->
-                                                      <!-- <li class="nav-item"> <a class="nav-link"  href="#3a" data-toggle="tab">Tesda Course List</a>
-                                                      </li> -->
+                                                             <li class="nav-item"> <a class="nav-link"  href="#2a" data-toggle="tab">Job List</a>
+                                                             </li>
+                                                             <li class="nav-item"> <a class="nav-link"  href="#3a" data-toggle="tab">Tesda Course List</a>
+                                                             </li>
                                                       </li>
                                       
                                             </ul>
