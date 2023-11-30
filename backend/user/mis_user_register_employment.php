@@ -435,8 +435,8 @@
                                             <h4 class="header-title">TECHNICAL/VOCATIONAL TRAINING</h4>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="inputTraining" class="col-form-label">Training</label>
-                                                    <input type="text"  name="training" class="form-control" id="inputTraining" placeholder="Training">
+                                                    <label for="inputTraining" class="col-form-label">Training/Vocational Course</label>
+                                                    <input type="text"  name="training" class="form-control" id="inputTraining" placeholder="Training/Vocational Course">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                 <label for="inputHoursOfTraining" class="col-form-label">Hours Of Training</label>

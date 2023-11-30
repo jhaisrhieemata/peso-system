@@ -1,6 +1,7 @@
 <!--Server side code to handle  Pesoclient Registration-->
 <?php
 	session_start();
+    $ad_id=$_SESSION['ad_id'];
 	include('assets/inc/config.php');
 		if(isset($_POST['add_user']))
 		{

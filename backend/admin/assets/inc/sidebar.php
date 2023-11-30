@@ -226,12 +226,20 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="mis_admin_manage_trash.php">
-                                    <i class="icon-trash"></i>
-                                    <span> Trash </span>
+                                <a href="matched_job.php">
+                                    <i class="fe-airplay"></i>
+                                    <span> Matched Job </span>
                                 </a>
                                 
                             </li>
+                            <li>
+                                <a href="mis_admin_manage_trash.php">
+                                    <i class="icon-trash"></i>
+                                    <span> Back up</span>
+                                </a>
+                                
+                            </li>
+                           
                         </ul>
 
                     </div>

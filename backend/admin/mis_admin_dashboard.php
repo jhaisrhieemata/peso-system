@@ -39,7 +39,7 @@ check_login();
                             <div class="col-12">
                                 <div class="page-title-box">
                                     
-                                    <h4 class="page-title">Management Information System Dashboard</h4>
+                                    <h4 class="page-title">Public Employment Service Office Dashboard</h4>
                                 </div>
                             </div>
                         </div>     
@@ -69,7 +69,7 @@ check_login();
                                                     $stmt->close();
                                                 ?>
                                                 <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $employment;?></span></h3>
-                                                <p class="text-muted mb-1 text-truncate">Employment</p>
+                                                <p class="text-muted mb-1 text-truncate">Job Seeker</p>
                                             </div>
                                         </div>
                                     </div> <!-- end row-->
@@ -165,7 +165,7 @@ check_login();
                                                     $stmt->close();
                                                 ?>
                                                 <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $pesoclearance;?></span></h3>
-                                                <p class="text-muted mb-1 text-truncate">Clearance</p>
+                                                <p class="text-muted mb-1 text-truncate">Claim Clearance</p>
                                             </div>
                                         </div>
                                     </div> <!-- end row-->
@@ -195,7 +195,7 @@ check_login();
                                                     $stmt->close();
                                                 ?>
                                                 <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $scholarship;?></span></h3>
-                                                <p class="text-muted mb-1 text-truncate">Scholar</p>
+                                                <p class="text-muted mb-1 text-truncate"> LGU Scholar</p>
                                             </div>
                                         </div>
                                     </div> <!-- end row-->

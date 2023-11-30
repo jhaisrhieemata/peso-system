@@ -4,24 +4,6 @@
   include('assets/inc/checklogin.php');
   check_login();
   $aid=$_SESSION['ad_id'];
-  if(isset($_GET['delete']))
-  {
-        $id=intval($_GET['delete']);
-        $adn="delete from mis_tesdatraining where tesdatraining_id=?";
-        $stmt= $mysqli->prepare($adn);
-        $stmt->bind_param('i',$id);
-        $stmt->execute();
-        $stmt->close();	 
-  
-          if($stmt)
-          {
-            $success = "Tesda Training Records Deleted";
-          }
-            else
-            {
-                $err = "Try Again Later";
-            }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -59,11 +41,11 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tesda Training</a></li>
-                                            <li class="breadcrumb-item active">Manage Tesda Training</li>
+                                            <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Peso Clients</a></li> -->
+                                            <li class="breadcrumb-item active">View Matched Job</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Manage Tesda Training</h4>
+                                    <h4 class="page-title">List of Matched Job </h4>
                                 </div>
                             </div>
                         </div>     
@@ -77,10 +59,10 @@
                                         <div class="row">
                                             <div class="col-12 text-sm-center form-inline" >
                                             <div class="form-group mr-2" style="display:none">
-                                                     <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
-                                                         <option value="">Show all</option>
-                                                     </select>
-                                                 </div>
+                                                    <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
+                                                        <option value="">Show all</option>
+                                                    </select>
+                                                  </div>
                                                 <div class="form-group">
                                                     <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
                                                 </div>
@@ -93,21 +75,22 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th data-toggle="true">Training Offered</th>
-                                                <th data-hide="phone">Training Hours</th>
-                                                <th data-hide="phone">Training Discription</th>
-                                                <th data-hide="phone">Trainer</th>
-                                                <th data-hide="phone">Status</th>
+                                                <th data-toggle="true">Full Name</th>
+                                                <th data-hide="phone">Date of Birth</th>
+                                                <th data-hide="phone">Sex</th>
+                                                <th data-hide="phone">Civil Status</th>
+                                                <th data-hide="phone">Contact</th>
+                                                <!-- <th data-hide="phone">Employment Status</th> -->
                                                 <th data-hide="phone">Action</th>
                                             </tr>
                                             </thead>
                                             <?php
                                             /*
-                                                *get details of alljobseeker
+                                                *get details of all Jobseeker
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_tesda_course ORDER BY tesda_course_id ASC"; 
-                                                //sql code to get to ten jobseeker  randomly
+                                                $ret="SELECT * FROM  mis_employment ORDER BY employment_id ASC "; 
+                                                //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
                                                 $res=$stmt->get_result();
@@ -119,23 +102,21 @@
                                                 <tbody>
                                                 <tr>
                                                     <td><?php echo $cnt;?></td>
-                                                    <td><?php echo $row->course_offered;?></td>
-                                                    <td><?php echo $row->training_hours;?></td> 
-                                                    <td><?php echo $row->training_discription;?></td>
-                                                    <td><?php echo $row->trainer;?></td>
-                                                    <td><?php echo $row->status;?></td>
+                                                    <td><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></td>
+                                                    <td><?php echo $row->date_of_birth;?></td>
+                                                    <td><?php echo $row->sex;?></td>
+                                                    <td><?php echo $row->civil_status;?></td>
+                                                    <td><?php echo $row->contact_number;?></td>
+                                                    <!-- <td><?php echo $row->employment_status;?></td> -->
                                                     
-                                                    <td>
-                                                        <a href="mis_admin_manage_tesda_course_list.php?delete=<?php echo $row->tesda_course_id;?>" class="badge badge-danger"><i class=" mdi mdi-trash-can-outline "></i> Delete</a>
-                                                        <a href="mis_admin_view_single_tesda_course.php?tesda_course_id=<?php echo $row->tesda_course_id;?>&&course_offered=<?php echo $row->course_offered;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
-                                                        <a href="mis_admin_update_single_tesda_course.php?tesda_course_id=<?php echo $row->tesda_course_id;?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline "></i> Update</a>
-                                                    </td>
+                                                    
+                                                    <td><a href="mis_admin_view_single_employment.php?employment_id=<?php echo $row->employment_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>
                                             <?php  $cnt = $cnt +1 ; }?>
                                             <tfoot>
                                             <tr class="active">
-                                                <td colspan="8">
+                                                <td colspan="10">
                                                     <div class="text-right">
                                                         <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0"></ul>
                                                     </div>
