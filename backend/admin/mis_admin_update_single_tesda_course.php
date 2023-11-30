@@ -6,14 +6,15 @@
 		{
 			$tesda_course_id=$_GET['tesda_course_id'];
             $course_offered=$_POST['course_offered'];
-			$trainer_hours=$_POST['trainer_hours'];
+			$training_hours=$_POST['training_hours'];
+            $training_discription=$_POST['training_discription'];
 			$trainer=$_POST['trainer']; 
             $status=$_POST['status'];
            
             //sql to insert captured values
-			$query="UPDATE mis_tesda_course SET course_offered=?, trainer_hours=?, trainer=?, status=? WHERE tesda_course_id = ?";
+			$query="UPDATE mis_tesda_course SET course_offered=?, training_hours=?, training_discription=?, trainer=?, status=? WHERE tesda_course_id = ?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssssi', $course_offered, $trainer_hours, $trainer ,$status, $tesda_course_id);
+			$rc=$stmt->bind_param('sssssi', $course_offered, $training_hours,$training_discription, $trainer ,$status, $tesda_course_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -22,7 +23,7 @@
 			//declare a varible which will be passed to alert function
 			if($stmt)
 			{
-				$success = "Tesda Course Updated";
+				$success = "Tesda Training Updated";
 			}
 			else {
 				$err = "Please Try Again Or Try Later";
@@ -102,10 +103,14 @@
                                                        <input type="text" required="required" value="<?php echo $row->course_offered;?>" name="course_offered" class="form-control" id="inputagencyname" placeholder="Course Offered">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="inputtrainer_hours" class="col-form-label">Training Hours</label>
-                                                    <input required="required" type="number" value="<?php echo $row->trainer_hours;?>" name="trainer_hours" class="form-control"  id="inputtrainer_hours" placeholder="Training Hours">
+                                                    <label for="inputtraining_hours" class="col-form-label">Training Hours</label>
+                                                    <input required="required" type="number" value="<?php echo $row->training_hours;?>" name="training_hours" class="form-control"  id="inputtraining_hours" placeholder="Training Hours">
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                     <label for="inputjobname" class="col-form-label">Training Discription</label>
+                                                     <input required="required" type="text" value="<?php echo $row->training_discription;?>" class="form-control" name="training_discription" id="inputjobname" placeholder="Training Discription">
+                                                   </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                        <label for="inputtrainer" class="col-form-label">Trainer</label>
