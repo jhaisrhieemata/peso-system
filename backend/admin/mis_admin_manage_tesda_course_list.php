@@ -58,7 +58,7 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tesda Course</a></li>
                                             <li class="breadcrumb-item active">Manage Tesda Course</li>
                                         </ol>
@@ -95,6 +95,7 @@
                                                 <th>#</th>
                                                 <th data-toggle="true">Course Offer</th>
                                                 <th data-hide="phone">Training Hours</th>
+                                                <th data-hide="phone">Training Discription</th>
                                                 <th data-hide="phone">Trainer</th>
                                                 <th data-hide="phone">Status</th>
                                                 <th data-hide="phone">Action</th>
@@ -118,8 +119,9 @@
                                                 <tbody>
                                                 <tr>
                                                     <td><?php echo $cnt;?></td>
-                                                    <td><?php echo $row->course_offered;?> 
-                                                    <td><?php echo $row->trainer_hours;?></td>
+                                                    <td><?php echo $row->course_offered;?></td>
+                                                    <td><?php echo $row->training_hours;?></td> 
+                                                    <td><?php echo $row->training_discription;?></td>
                                                     <td><?php echo $row->trainer;?></td>
                                                     <td><?php echo $row->status;?></td>
                                                     
