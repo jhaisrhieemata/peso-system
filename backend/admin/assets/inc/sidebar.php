@@ -26,15 +26,15 @@
                                             <li>
                                                 <a href="javascript: void(0);">
                                                 <i class=" far fa-user-circle "></i>
-                                                <span> Peso </span>
+                                                <span>Applicant Entry</span>
                                                 <span class="menu-arrow"></span>
                                                  </a>                                     
                                                  <ul class="nav-third-level" aria-expanded="false">
                                                       <li>
-                                                         <a href="mis_admin_register_employment.php">Employment</a>
+                                                         <a href="mis_admin_register_employment.php">Job Seeker</a>
                                                      </li>
                                                        <li>
-                                                         <a href="mis_admin_register_scholarship.php">Scholarship</a>
+                                                         <a href="mis_admin_register_scholarship.php">LGU Scholar</a>
                                                      </li>
                                            
                                                       <li>
@@ -43,12 +43,6 @@
                                                        <li>
                                                        <a href="mis_admin_register_gip.php">GIP</a>
                                                        </li>
-                                                         <li>
-                                                      <a href="mis_admin_register_joboffer.php">Job Opening</a>
-                                                      </li>
-                                                         <li>
-                                                         <a href="mis_admin_add_agency.php">Agency</a>
-                                                        </li> 
                                                             <!-- <li>
                                                         <a href="mis_admin_register_otherprogram.php">Other Program</a>
                                                             </li> -->
@@ -59,17 +53,47 @@
                                                 <li>
                                                      <a href="javascript: void(0);">
                                                           <i class=" fas fa-chalkboard-teacher "></i>
-                                                           <span> Tesda </span>
+                                                           <span> Tesda Entry </span>
                                                            <span class="menu-arrow"></span>
                                                     </a>
                                        
                                                                  <ul class="nav-third-level" aria-expanded="false">
                                                                       <li>
-                                                                      <a href="mis_admin_register_tesdatraining.php">Tesda Training </a>
+                                                                      <a href="mis_admin_register_tesdatraining.php">Tesda Applicant </a>
                                                                       </li>                
                                                                       <li>
-                                                                        <a href="mis_admin_add_Tesda_Course_list.php">Tesda Course</a>
+                                                                        <a href="mis_admin_add_Tesda_Course_list.php">Tesda Training</a>
                                                                         </li>
+                                                                 </ul>
+                                             </li>
+                                         </ul>
+                                         <ul class="nav-second-level" aria-expanded="false">
+                                                <li>
+                                                     <a href="javascript: void(0);">
+                                                          <i class=" fas fa-chalkboard-teacher "></i>
+                                                           <span> Job Posting Entry </span>
+                                                           <span class="menu-arrow"></span>
+                                                    </a>
+                                       
+                                                                 <ul class="nav-third-level" aria-expanded="false">
+                                                                      <li>
+                                                                      <a href="mis_admin_register_joboffer.php">New Job</a>
+                                                                      </li>                
+                                                                 </ul>
+                                             </li>
+                                         </ul>
+                                         <ul class="nav-second-level" aria-expanded="false">
+                                                <li>
+                                                     <a href="javascript: void(0);">
+                                                          <i class=" fas fa-chalkboard-teacher "></i>
+                                                           <span> Agency Entry </span>
+                                                           <span class="menu-arrow"></span>
+                                                    </a>
+                                       
+                                                                 <ul class="nav-third-level" aria-expanded="false">
+                                                                      <li>
+                                                                      <a href="mis_admin_add_agency.php">New Agency </a>
+                                                                      </li>                
                                                                  </ul>
                                              </li>
                                          </ul>
@@ -85,15 +109,15 @@
                                        <li>
                                             <a href="javascript: void(0);">
                                                 <i class=" far fa-user-circle "></i>
-                                                <span> Peso </span>
+                                                <span> Applicant List </span>
                                                 <span class="menu-arrow"></span>
                                             </a>                                     
                                             <ul class="nav-third-level" aria-expanded="false">
                                                 <li>
-                                                     <a href="mis_admin_manage_employment.php">Employment </a>
+                                                     <a href="mis_admin_manage_employment.php">Job Seeker </a>
                                                </li>
                                                 <li>
-                                                     <a href="mis_admin_manage_scholarship.php">Scholarship</a>
+                                                     <a href="mis_admin_manage_scholarship.php">LGU Scholar</a>
                                                </li>                                
                                                 <li>
                                                     <a href="mis_admin_manage_spes.php">SPES</a>
@@ -101,50 +125,84 @@
                                                 <li>
                                                     <a href="mis_admin_manage_gip.php">GIP</a>
                                                 </li>
-                                                <li>
-                                                    <a href="mis_admin_manage_joboffer.php">Job Opening</a>
+                                                <!-- <li>
+                                                    <a href="mis_admin_manage_joboffer.php">Job Posting List</a>
                                                </li>
                                                 <li>
-                                                    <a href="mis_admin_manage_agency.php">Agency</a>
-                                               </li>
+                                                    <a href="mis_admin_manage_agency.php">Agency Profile List</a>
+                                               </li> -->
                                                 <!-- <li>
                                                    <a href="mis_admin_manage_otherprogram.php">Other Program </a>
                                                 </li> -->
                                             </ul>
                                         </li>
                                     </ul>
+                                    
                                           <ul class="nav-second-level" aria-expanded="false">
                                                 <li>
                                                      <a href="javascript: void(0);">
                                                           <i class=" fas fa-chalkboard-teacher "></i>
-                                                           <span> Tesda </span>
+                                                           <span> Tesda List </span>
                                                            <span class="menu-arrow"></span>
                                                     </a>
                                        
                                                   <ul class="nav-third-level" aria-expanded="false">
                                                      <li> 
-                                                        <a href="mis_admin_manage_tesdatraining.php">Tesda Training </a>
+                                                        <a href="mis_admin_manage_tesdatraining.php">Trainee </a>
                                                      </li>
                                                      <li>
-                                                     <a href="mis_admin_manage_tesda_course_list.php">Tesda Course</a>
+                                                     <a href="mis_admin_manage_tesda_course_list.php">Training </a>
                                                      </li>
                                                   </ul>
                                              </li>
                                          </ul>
+                                         <ul class="nav-second-level" aria-expanded="false">
+                                                <li>
+                                                     <a href="javascript: void(0);">
+                                                          <i class=" fas fa-chalkboard-teacher "></i>
+                                                           <span> Job Posting List  </span>
+                                                           <span class="menu-arrow"></span>
+                                                    </a>
+                                       
+                                                                 <ul class="nav-third-level" aria-expanded="false">
+                                                                      <li>
+                                                                      <a href="mis_admin_manage_joboffer.php">Job Posting</a>
+                                                                      </li>                
+                                                                 </ul>
+                                             </li>
+                                         </ul>
+                                         <ul class="nav-second-level" aria-expanded="false">
+                                                <li>
+                                                     <a href="javascript: void(0);">
+                                                          <i class=" fas fa-chalkboard-teacher "></i>
+                                                           <span> Agency List  </span>
+                                                           <span class="menu-arrow"></span>
+                                                    </a>
+                                       
+                                                                 <ul class="nav-third-level" aria-expanded="false">
+                                                                      <li>
+                                                                      <a href="mis_admin_manage_agency.php">Agency </a>
+                                                                      </li>                
+                                                                 </ul>
+                                             </li>
+                                         </ul>
                                  </li>
+
+                                       
                                  <li>
+                                    
                 
                                 <a href="javascript: void(0);">
                                     <i class="fa fa-address-card "></i>
-                                    <span>Clearance</span>
+                                    <span>PESO Clearance</span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li>
-                                        <a href="mis_admin_add_clearance.php">Add</a>
+                                        <a href="mis_admin_add_clearance.php">Add New</a>
                                     </li>
                                     <li>
-                                        <a href="mis_admin_manage_claimclearance.php">Manage</a>
+                                        <a href="mis_admin_manage_claimclearance.php">Manage List</a>
                                     </li>
 
                                 </ul>
@@ -159,10 +217,10 @@
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li>
-                                        <a href="mis_admin_add_users.php">Add</a>
+                                        <a href="mis_admin_add_users.php">Add User</a>
                                     </li>
                                     <li>
-                                        <a href="mis_admin_manage_users.php">Manage</a>
+                                        <a href="mis_admin_manage_users.php">Manage User List</a>
                                     </li>
 
                                 </ul>
