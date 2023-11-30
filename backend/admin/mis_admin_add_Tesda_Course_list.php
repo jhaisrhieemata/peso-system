@@ -5,14 +5,15 @@
 		if(isset($_POST['add_tesda_course']))
 		{
 			$course_offered=$_POST['course_offered'];
-			$trainer_hours=$_POST['trainer_hours'];
+			$training_hours=$_POST['training_hours'];
+            $training_discription=$_POST['training_discription'];
 			$trainer=$_POST['trainer']; 
             $status=$_POST['status'];
            
             //sql to insert captured values
-			$query="INSERT into mis_tesda_course (course_offered, trainer_hours, trainer, status) values(?,?,?,?)";
+			$query="INSERT into mis_tesda_course (course_offered, training_hours, training_discription, trainer, status) values(?,?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssss', $course_offered, $trainer_hours, $trainer ,$status);
+			$rc=$stmt->bind_param('sssss', $course_offered, $training_hours, $training_discription, $trainer ,$status);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -67,11 +68,11 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tesda Course</a></li>
-                                            <li class="breadcrumb-item active">New Tesda Course</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tesda Training</a></li>
+                                            <li class="breadcrumb-item active">New Tesda Training</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Create New Tesda Course </h4>
+                                    <h4 class="page-title">Create New Tesda Training </h4>
                                 </div>
                             </div>
                         </div>     
@@ -86,14 +87,19 @@
                                         <form method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="inputagencyname" class="col-form-label">Course Offerred</label>
-                                                    <input type="text" required="required" name="course_offered" class="form-control" id="inputagencyname" placeholder="Course Offerred">
+                                                    <label for="inputagencyname" class="col-form-label">Training Offerred</label>
+                                                    <input type="text" required="required" name="course_offered" class="form-control" id="inputagencyname" placeholder="Training Offerred">
                                                 </div>
+                                               
                                                 <div class="form-group col-md-6">
-                                                    <label for="inputtrainer_hours" class="col-form-label">Training Hours</label>
-                                                    <input required="required" type="number" name="trainer_hours" class="form-control"  id="inputtrainer_hours" placeholder="Training Hour">
+                                                    <label for="inputtraining_hours" class="col-form-label">Training Hours</label>
+                                                    <input required="required" type="number" name="training_hours" class="form-control"  id="inputtraining_hours" placeholder="Training Hour">
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                     <label for="inputjobname" class="col-form-label">Training Discription</label>
+                                                     <input required="required" type="text" class="form-control" name="training_discription" id="inputjobname" placeholder="Training Discription">
+                                                   </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                        <label for="inputtrainer" class="col-form-label">Trainer</label>
