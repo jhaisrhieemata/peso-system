@@ -154,7 +154,7 @@
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fas fa-users"></i>
-                                    <span> Users </span>
+                                    <span> Peso Staff </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">

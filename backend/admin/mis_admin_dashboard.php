@@ -131,7 +131,7 @@ check_login();
                                                     $stmt->close();
                                                 ?>
                                                 <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $user_employee;?></span></h3>
-                                                <p class="text-muted mb-1 text-truncate">Users</p>
+                                                <p class="text-muted mb-1 text-truncate">Peso Staff</p>
                                             </div>
                                         </div>
                                     </div> <!-- end row-->
