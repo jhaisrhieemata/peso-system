@@ -4,7 +4,7 @@ session_start();
 include('assets/inc/config.php');
 if (isset($_POST['update_job_seeker'])) {
     $job_seeker_id = $_GET['job_seeker_id'];
-    $or_no = $_POST['or_no'];
+    // $or_no = $_POST['or_no'];
     $surname = $_POST['surname'];
     $firstname = $_POST['firstname'];
     $middlename = $_POST['middlename'];
@@ -52,9 +52,9 @@ if (isset($_POST['update_job_seeker'])) {
     $referred_to = $_POST['referred_to'];
     $date_joined = $_POST['date_joined'];
     //sql to update captured values
-    $query = "UPDATE  job_seeker SET or_no=?, surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, date_taken=?, professional_licence=?, valid_until=?, company_name=?, position=?, number_of_months=?, work_address=?, work_status=?, special_skill=?, referred_to=?, date_joined=? WHERE job_seeker_id=?";
+    $query = "UPDATE  job_seeker SET surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, date_taken=?, professional_licence=?, valid_until=?, company_name=?, position=?, number_of_months=?, work_address=?, work_status=?, special_skill=?, referred_to=?, date_joined=? WHERE job_seeker_id=?";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssssssi', $or_no, $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $special_skill, $referred_to, $date_joined, $job_seeker_id);
+    $rc = $stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssssi', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $special_skill, $referred_to, $date_joined, $job_seeker_id);
     $stmt->execute();
     /*
 			*Use Sweet Alerts Instead Of This Javascript Alerts
@@ -138,10 +138,10 @@ if (isset($_POST['update_job_seeker'])) {
                                                 <input type="checkbox" id="enableFields" class="form-check-input">
                                                 <label for="enableFields" class="form-check-label" id="enableFieldsLabel">Enable Fields</label>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="inputor_no" class="col-form-label"></label>
                                                 <input type="text" id="inputor_no" name="or_no" class="form-control" value="<?php echo $row->or_no; ?>">
-                                            </div>
+                                            </div> -->
                                             <style>
                                                 #enableFieldsLabel {
                                                     color: red;
