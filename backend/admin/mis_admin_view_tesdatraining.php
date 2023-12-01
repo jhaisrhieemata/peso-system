@@ -89,7 +89,7 @@
                                                 *get details of all Jobseeker
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_tesdatraining ORDER BY tesdatraining_id ";
+                                                $ret="SELECT * FROM  tesda_applicant ORDER BY tesda_applicant_id ";
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -109,7 +109,7 @@
                                                     <td><?php echo $row->contact_number;?></td>
                                                     <td><?php echo $row->employment_status;?></td>
                                                     
-                                                    <td><a href="mis_admin_view_single_tesdatraining.php?tesdatraining_id=<?php echo $row->tesdatraining_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                    <td><a href="mis_admin_view_single_tesdatraining.php?tesda_applicant_id=<?php echo $row->tesda_applicant_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>
                                             <?php  $cnt = $cnt +1 ; }?>

@@ -10,7 +10,7 @@
             $email=$_POST['email'];
            
             //sql to insert captured values
-			$query="INSERT into mis_agency (agency_name, address, contact, email) values(?,?,?,?)";
+			$query="INSERT into agency (agency_name, address, contact, email) values(?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('ssss', $agency_name, $address, $contact ,$email);
 			$stmt->execute();

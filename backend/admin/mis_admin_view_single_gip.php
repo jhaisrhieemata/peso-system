@@ -32,7 +32,7 @@
             <?php
                 // $middlename=$_GET['middlename'];
                 $gip_id=$_GET['gip_id'];
-                $ret="SELECT  * FROM mis_gip WHERE gip_id=?";
+                $ret="SELECT  * FROM gip WHERE gip_id=?";
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$gip_id);
                 $stmt->execute() ;//ok

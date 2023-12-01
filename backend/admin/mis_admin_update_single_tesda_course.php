@@ -2,9 +2,9 @@
 <?php
 	session_start();
 	include('assets/inc/config.php');
-		if(isset($_POST['update_tesda_course']))
+		if(isset($_POST['update_tesda_training']))
 		{
-			$tesda_course_id=$_GET['tesda_course_id'];
+			$tesda_training_id=$_GET['tesda_training_id'];
             $course_offered=$_POST['course_offered'];
 			$training_hours=$_POST['training_hours'];
             $training_discription=$_POST['training_discription'];
@@ -12,9 +12,9 @@
             $status=$_POST['status'];
            
             //sql to insert captured values
-			$query="UPDATE mis_tesda_course SET course_offered=?, training_hours=?, training_discription=?, trainer=?, status=? WHERE tesda_course_id = ?";
+			$query="UPDATE  tesda_training SET course_offered=?, training_hours=?, training_discription=?, trainer=?, status=? WHERE tesda_training_id = ?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('sssssi', $course_offered, $training_hours,$training_discription, $trainer ,$status, $tesda_course_id);
+			$rc=$stmt->bind_param('sssssi', $course_offered, $training_hours,$training_discription, $trainer ,$status, $tesda_training_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -80,10 +80,10 @@
                         <!-- end page title --> 
                         <!-- Form row -->
                         <?php
-                            $tesda_course_id=$_GET['tesda_course_id'];
-                            $ret="SELECT  * FROM  mis_tesda_course WHERE tesda_course_id=?";
+                            $tesda_training_id=$_GET['tesda_training_id'];
+                            $ret="SELECT  * FROM   tesda_training WHERE tesda_training_id=?";
                             $stmt= $mysqli->prepare($ret) ;
-                            $stmt->bind_param('i',$tesda_course_id);
+                            $stmt->bind_param('i',$tesda_training_id);
                             $stmt->execute() ;//ok
                             $res=$stmt->get_result();
                             //$cnt=1;
@@ -122,7 +122,7 @@
                                                 </div>
                                             </div>
                                 
-                                           <button type="submit" name="update_tesda_course" class="ladda-button btn btn-primary" data-style="expand-right">Update Tesda Course</button>
+                                           <button type="submit" name="update_tesda_training" class="ladda-button btn btn-primary" data-style="expand-right">Update Tesda Course</button>
                                         </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->

@@ -2,7 +2,7 @@
 <?php
 	session_start();
 	include('assets/inc/config.php');
-		if(isset($_POST['add_job_opening']))
+		if(isset($_POST['add_job_posting']))
 		{
 			$job_name=$_POST['job_name'];
             $job_description=$_POST['job_description'];
@@ -13,7 +13,7 @@
             $date_posted=$_POST['date_posted'];
             
             //sql to insert captured values
-			$query="insert into mis_job_opening (job_name, job_description, com_name, address, contact, email, date_posted) values(?,?,?,?,?,?,?)";
+			$query="insert into job_posting (job_name, job_description, com_name, address, contact, email, date_posted) values(?,?,?,?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('sssssss', $job_name, $job_description, $com_name, $address, $contact, $email, $date_posted);
 			$stmt->execute();
@@ -131,7 +131,7 @@
 
                                             
 
-                                           <button type="submit" name="add_job_opening" class="ladda-button btn btn-primary" data-style="expand-right">Add Job Opening</button>
+                                           <button type="submit" name="add_job_posting" class="ladda-button btn btn-primary" data-style="expand-right">Add Job Opening</button>
                                         </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->

@@ -89,7 +89,7 @@
                                                 *get details of allpatients
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_job_opening ORDER BY job_opening_id "; 
+                                                $ret="SELECT * FROM  job_posting ORDER BY job_posting_id "; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -108,7 +108,7 @@
                                                     <td><?php echo $row->address;?></td> 
                                                     <td><?php echo $row->contact;?></td> 
                                                     <td><?php echo $row->email;?></td>                                                      
-                                                    <td><a href="mis_admin_view_single_joboffer.php?job_opening_id=<?php echo $row->job_opening_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                    <td><a href="mis_admin_view_single_joboffer.php?job_posting_id=<?php echo $row->job_posting_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>
                                             <?php  $cnt = $cnt +1 ; }?>

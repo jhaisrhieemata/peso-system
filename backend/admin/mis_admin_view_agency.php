@@ -88,7 +88,7 @@
                                                 *get details of allpatients
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_agency ORDER BY agency_id "; 
+                                                $ret="SELECT * FROM  agency ORDER BY agency_id "; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok

@@ -7,7 +7,7 @@
   if(isset($_GET['delete']))
   {
         $id=intval($_GET['delete']);
-        $adn="DELETE  from mis_user where user_id=?";
+        $adn="DELETE  from user_staff where user_id=?";
         $stmt= $mysqli->prepare($adn);
         $stmt->bind_param('i',$id);
         $stmt->execute();
@@ -101,7 +101,7 @@
                                                 *get details of alluser
                                                 *
                                             */
-                                            $ret = "SELECT * FROM mis_user ORDER BY user_id ";
+                                            $ret = "SELECT * FROM user_staff ORDER BY user_id ";
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok

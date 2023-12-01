@@ -5,7 +5,7 @@
     {
         $ad_email=$_POST['ad_email'];
         $ad_pwd=sha1(md5($_POST['ad_pwd']));//double encrypt to increase security
-        $stmt=$mysqli->prepare("SELECT ad_email ,ad_pwd , ad_id FROM mis_admin WHERE ad_email=? AND ad_pwd=? ");//sql to log in user
+        $stmt=$mysqli->prepare("SELECT ad_email ,ad_pwd , ad_id FROM admin WHERE ad_email=? AND ad_pwd=? ");//sql to log in user
         $stmt->bind_param('ss',$ad_email,$ad_pwd);//bind fetched parameters
         $stmt->execute();//execute bind
         $stmt -> bind_result($ad_email,$ad_pwd,$ad_id);//bind result

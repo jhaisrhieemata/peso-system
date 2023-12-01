@@ -7,7 +7,7 @@ $aid = $_SESSION['ad_id'];
 if(isset($_GET['delete']))
 {
       $id=intval($_GET['delete']);
-      $adn="delete from mis_scholarship where scholarship_id=?";
+      $adn="delete from lgu_scholarship where lgu_scholarship_id=?";
       $stmt= $mysqli->prepare($adn);
       $stmt->bind_param('i',$id);
       $stmt->execute();
@@ -26,10 +26,10 @@ if(isset($_GET['delete']))
 // Function to retrieve employment records based on search and filter criteria
 function getScholarshipRecords($mysqli, $search, $dateJoined, $typeapplication)
 {
-    $query = "SELECT * FROM mis_scholarship WHERE 1";
+    $query = "SELECT * FROM lgu_scholarship WHERE 1";
 
     if (!empty($search)) {
-        $query .= " AND CONCAT(scholarship_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
+        $query .= " AND CONCAT(lgu_scholarship_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
     }
 
     if (!empty($dateJoined)) {
@@ -155,7 +155,7 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['type_o
                                                 while ($row = $ScholarshipRecords->fetch_assoc()) {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['scholarship_id']; ?></td>
+                                                        <td><?php echo $row['lgu_scholarship_id']; ?></td>
                                                         <td><?php echo $row['applicant_no']; ?></td>
                                                         <td><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['surname']; ?></td>
                                                         <td><?php echo $row['contact']; ?></td>
@@ -164,9 +164,9 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['type_o
                                                         <td><?php echo $row['type_of_application']; ?></td>
                                                         <td><?php echo $row['date_joined']; ?></td>
                                                         <td>
-                                                            <a href="mis_admin_manage_scholarship.php?delete=<?php echo $row['scholarship_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
-                                                            <a href="mis_admin_view_single_scholarship.php?scholarship_id=<?php echo $row['scholarship_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
-                                                            <a href="mis_admin_update_single_scholarship.php?scholarship_id=<?php echo $row['scholarship_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
+                                                            <a href="mis_admin_manage_scholarship.php?delete=<?php echo $row['lgu_scholarship_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
+                                                            <a href="mis_admin_view_single_scholarship.php?lgu_scholarship_id=<?php echo $row['lgu_scholarship_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                            <a href="mis_admin_update_single_scholarship.php?lgu_scholarship_id=<?php echo $row['lgu_scholarship_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
                                                         </td>
                                                     </tr>
                                             <?php

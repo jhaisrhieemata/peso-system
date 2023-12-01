@@ -31,16 +31,16 @@
             <!--Get Details Of A Single User And Display Them Here-->
             <?php
                 // $middlename=$_GET['middlename'];
-                $tesda_training_id=$_GET['tesda_training_id'];
-                $ret="SELECT  * FROM tesda_training WHERE tesda_training_id=?";
+                $job_seeker_id=$_GET['job_seeker_id'];
+                $ret="SELECT * FROM job_seeker_backup WHERE job_seeker_id=?";
                 $stmt= $mysqli->prepare($ret) ;
-                $stmt->bind_param('i',$tesda_training_id);
+                $stmt->bind_param('i',$job_seeker_id);
                 $stmt->execute() ;//ok
                 $res=$stmt->get_result();
                 //$cnt=1;
                 while($row=$res->fetch_object())
             {
-                // $mysqlDateTime = $row->date_created;
+                $mysqlDateTime = $row->date_joined;
             ?>
             <div class="content-page">
                 <div class="content">
@@ -54,11 +54,12 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
-                                            <li class="breadcrumb-item active">View Course Offered</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Peso Client</a></li>
+                                            <li class="breadcrumb-item active">Profile Peso client</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title"><?php echo $row->course_offered;?> Information</h4>
+                                    <h4 class="page-title"><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?>'s Profile</h4>
                                 </div>
                             </div>
                         </div>
@@ -71,15 +72,18 @@
 
                                     <div class="text-left mt-3">
                                         
-                                        <p class="text-muted mb-2 font-13"><strong>Course Offered :</strong> <span class="ml-2"><?php echo $row->course_offered;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Training Hours:</strong><span class="ml-2"><?php echo $row->training_hours;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Training Discription:</strong><span class="ml-2"><?php echo $row->training_discription;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Trainer:</strong> <span class="ml-2"><?php echo $row->trainer;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Status:</strong> <span class="ml-2"><?php echo $row->status;?></span></p>
-                                        <!-- <p class="text-muted mb-2 font-13"><strong>Date Posted :</strong> <span class="ml-2"><?php echo $row->date_created;?></span></p> -->
-                                        <!-- <hr>
+                                        <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2"><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Date Of Birth:</strong><span class="ml-2"><?php echo $row->date_of_birth;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Sex :</strong> <span class="ml-2"><?php echo $row->sex;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Address :</strong> <span class="ml-2"><?php echo $row->barangay;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Religion :</strong> <span class="ml-2"><?php echo $row->religion;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Civil Status :</strong> <span class="ml-2"><?php echo $row->civil_status;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Contact :</strong> <span class="ml-2"><?php echo $row->contact_number;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Employment Status :</strong> <span class="ml-2"><?php echo $row->employment_status;?></span></p>
+                                        <hr>
                                         <p class="text-muted mb-2 font-13"><strong>Date Recorded :</strong> <span class="ml-2"><?php echo date("d/m/Y - h:m", strtotime($mysqlDateTime));?></span></p>
-                                        <hr> -->
+                                        <hr>
+
 
 
 
@@ -91,13 +95,8 @@
                             
                             <?php }?>
                             <div class="col-lg-4 col-xl-4">
-                                <!-- <div class="card-box">
+                                <div class="card-box">
                                     <ul class="nav nav-pills navtab-bg nav-justified">
-                                        <li class="nav-item">
-                                            <a href="#aboutme" data-toggle="tab" aria-expanded="false" class="nav-link active">
-                                                Browse Job
-                                            </a>
-                                        </li>
                                         <li class="nav-item">
                                             <a href="#timeline" data-toggle="tab" aria-expanded="true" class="nav-link ">
                                                  Job Match
@@ -105,12 +104,12 @@
                                         </li>
                                 
                                     </ul>
-                                </div>  -->
-                                    <!--employment History-->
-                              
+                                   
+                               </div> 
                                <!-- end card-box-->
 
-                            </div> <!-- end col -->
+                            </div> 
+                            <!-- end col -->
                         </div>
                         <!-- end row-->
                         <div class="mt-4 mb-1">

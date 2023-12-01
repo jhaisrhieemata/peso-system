@@ -2,6 +2,6 @@
 $dbuser="root";
 $dbpass="";
 $host="localhost";
-$db="peso_manolodb";
+$db="manolo_pesodb";
 $mysqli=new mysqli($host,$dbuser, $dbpass, $db);
 ?>

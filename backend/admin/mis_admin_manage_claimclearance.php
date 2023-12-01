@@ -7,7 +7,7 @@ $aid = $_SESSION['ad_id'];
 if(isset($_GET['delete']))
 {
       $id=intval($_GET['delete']);
-      $adn="delete from mis_employment where employment_id=?";
+      $adn="delete from job_seeker where job_seeker_id=?";
       $stmt= $mysqli->prepare($adn);
       $stmt->bind_param('i',$id);
       $stmt->execute();
@@ -26,10 +26,10 @@ if(isset($_GET['delete']))
 // Function to retrieve employment records based on search and filter criteria
 function getEmploymentRecords($mysqli, $search)
 {
-    $query = "SELECT * FROM mis_employment WHERE 1";
+    $query = "SELECT * FROM job_seeker WHERE 1";
 
     if (!empty($search)) {
-        $query .= " AND CONCAT(employment_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
+        $query .= " AND CONCAT(job_seeker_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
     }
 
     $result = $mysqli->query($query);
@@ -140,7 +140,7 @@ if (isset($_GET['search'])) {
                                                 while ($row = $employmentRecords->fetch_assoc()) {
                                                     ?>
                                                     <!-- <tr>
-                                                    <td><?php echo $employment_id;?></td>
+                                                    <td><?php echo $job_seeker_id;?></td>
                                                     <td><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></td>
                                                     <td><?php echo $row->barangay;?> <?php echo $row->municipality;?> <?php echo $row->province;?> </td>
                                                     <td><?php echo $row->sex;?></td>
@@ -151,7 +151,7 @@ if (isset($_GET['search'])) {
                                                     
                                                     <td> -->
                                                     <tr>
-                                                        <td><?php echo $row['employment_id']; ?></td>
+                                                        <td><?php echo $row['job_seeker_id']; ?></td>
                                                         <td><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['surname']; ?></td>
                                                         <td><?php echo $row['barangay'] . ' ' . $row['municipality'] . ' ' . $row['province']; ?></td>
                                                         <td><?php echo $row['sex']; ?></td>
@@ -160,10 +160,10 @@ if (isset($_GET['search'])) {
                                                         <td><?php echo $row['contact_number']; ?></td>
                                                         <td><?php echo $row['employment_status']; ?></td>                           
                                                         <td>
-                                                            <a href="mis_admin_manage_claimclearance.php?delete=<?php echo $row['employment_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
-                                                            <!-- <a href="mis_admin_view_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a> -->
-                                                            <a href="mis_admin_update_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
-                                                            <a href="mis_admin_print_clearance.php?employment_id=<?php echo $row['employment_id']; ?>" class="badge badge-warning"><i class="fas fa-print"></i> Print</a>
+                                                            <a href="mis_admin_manage_claimclearance.php?delete=<?php echo $row['job_seeker_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
+                                                            <!-- <a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a> -->
+                                                            <a href="mis_admin_update_single_employment.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
+                                                            <a href="mis_admin_print_clearance.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>" class="badge badge-warning"><i class="fas fa-print"></i> Print</a>
                                                         </td>
                                                     </tr>
                                             <?php

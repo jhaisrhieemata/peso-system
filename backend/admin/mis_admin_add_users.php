@@ -14,7 +14,7 @@
             $user_dpic=$_POST['user_dpic'];
             
             //sql to insert captured values
-			$query="INSERT INTO mis_user (user_fname, user_lname, user_email, user_number, user_pwd, user_pwd_confirm, user_dpic) values(?,?,?,?,?,?,?)";
+			$query="INSERT INTO user_staff (user_fname, user_lname, user_email, user_number, user_pwd, user_pwd_confirm, user_dpic) values(?,?,?,?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('sssssss', $user_fname, $user_lname, $user_email, $user_number, $user_pwd, $user_pwd_confirm, $user_dpic);
 			$stmt->execute();

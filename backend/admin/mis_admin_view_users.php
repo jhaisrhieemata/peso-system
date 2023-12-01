@@ -78,7 +78,7 @@
                                                 <th data-toggle="true">Name</th>
                                                 <th data-hide="phone">Email</th>
                                                 <th data-hide="phone">Contact Number</th>
-                                                <th data-hide="phone">Regitration Type</th>
+                                                <!-- <th data-hide="phone">Regitration Type</th> -->
                                                 <th data-hide="phone">Action</th>
                                             </tr>
                                             </thead>
@@ -87,7 +87,7 @@
                                                 *get details of allpatients
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_user ORDER BY user_id ASC"; 
+                                                $ret="SELECT * FROM  user_staff ORDER BY user_id ASC"; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -103,7 +103,7 @@
                                                     <td><?php echo $row->user_fname;?> <?php echo $row->user_lname;?></td>
                                                     <td><?php echo $row->user_email;?></td> 
                                                     <td><?php echo $row->user_number;?></td>  
-                                                    <td><?php echo $row->regtype;?></td>                                                  
+                                                    <!-- <td><?php echo $row->regtype;?></td>                                                   -->
                                                     <td><a href="mis_admin_view_single_user.php?user_id=<?php echo $row->user_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>

@@ -11,7 +11,7 @@
             $email=$_POST['email'];
            
             //sql to insert captured values
-			$query="UPDATE mis_agency SET agency_name=?, address=?, contact=?, email=? WHERE agency_id = ?";
+			$query="UPDATE agency SET agency_name=?, address=?, contact=?, email=? WHERE agency_id = ?";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('ssssi', $agency_name, $address, $contact ,$email, $agency_id);
 			$stmt->execute();
@@ -80,7 +80,7 @@
                         <!-- Form row -->
                         <?php
                             $agency_id=$_GET['agency_id'];
-                            $ret="SELECT  * FROM  mis_agency WHERE agency_id=?";
+                            $ret="SELECT  * FROM  agency WHERE agency_id=?";
                             $stmt= $mysqli->prepare($ret) ;
                             $stmt->bind_param('i',$agency_id);
                             $stmt->execute() ;//ok

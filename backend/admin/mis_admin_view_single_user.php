@@ -31,7 +31,7 @@
             <!--Get Details Of A Single User And Display Them Here-->
             <?php
                 $user_id=$_GET['user_id'];
-                $ret="SELECT  * FROM mis_user WHERE user_id=?";
+                $ret="SELECT  * FROM user_staff WHERE user_id=?";
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$user_id);
                 $stmt->execute() ;//ok

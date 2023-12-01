@@ -11,7 +11,7 @@
             $status=$_POST['status'];
            
             //sql to insert captured values
-			$query="INSERT into mis_tesda_course (course_offered, training_hours, training_discription, trainer, status) values(?,?,?,?,?)";
+			$query="INSERT into tesda_training (course_offered, training_hours, training_discription, trainer, status) values(?,?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('sssss', $course_offered, $training_hours, $training_discription, $trainer ,$status);
 			$stmt->execute();

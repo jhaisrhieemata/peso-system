@@ -2,7 +2,7 @@
 <?php
 	session_start();
 	include('assets/inc/config.php');
-		if(isset($_POST['add_TesdaClient']))
+		if(isset($_POST['add_tesda_applicant']))
 		{
 			$surname=$_POST['surname'];
 			$firstname=$_POST['firstname'];
@@ -46,7 +46,7 @@
             $special_skill=$_POST['special_skill'];
             $referred_to=$_POST['referred_to'];
             //sql to insert captured values
-			$query="insert into mis_tesdatraining (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, professional_licence, company_name, position, number_of_months, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			$query="insert into tesda_applicant (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, professional_licence, company_name, position, number_of_months, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('sssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $professional_licence, $company_name, $position, $number_of_months, $special_skill, $referred_to);
 			$stmt->execute();
@@ -506,7 +506,7 @@
                                                      </div>
                                             
                                                    
-                                           <button type="submit" name="add_TesdaClient" class="ladda-button btn btn-primary" data-style="expand-right">Add Tesda Trainee</button>
+                                           <button type="submit" name="add_tesda_applicant" class="ladda-button btn btn-primary" data-style="expand-right">Add Tesda Trainee</button>
                                         </form>
                                         <!--End tesda training Form-->
                                     </div> <!-- end card-body -->

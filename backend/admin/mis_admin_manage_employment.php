@@ -9,14 +9,14 @@ if (isset($_POST['delete'])) {
     $id = intval($_POST['delete']);
     
     // Backup the deleted record to the backup table
-    $backupQuery = "INSERT INTO mis_employment_backup SELECT * FROM mis_employment WHERE employment_id = ?";
+    $backupQuery = "INSERT INTO job_seeker_backup SELECT * FROM job_seeker WHERE job_seeker_id = ?";
     $backupStmt = $mysqli->prepare($backupQuery);
     $backupStmt->bind_param('i', $id);
     $backupStmt->execute();
     $backupStmt->close();
 
     // Delete the record from the original table
-    $deleteQuery = "DELETE FROM mis_employment WHERE employment_id = ?";
+    $deleteQuery = "DELETE FROM job_seeker WHERE job_seeker_id = ?";
     $deleteStmt = $mysqli->prepare($deleteQuery);
     $deleteStmt->bind_param('i', $id);
     $deleteStmt->execute();
@@ -32,10 +32,10 @@ if (isset($_POST['delete'])) {
 // Function to retrieve employment records based on search and filter criteria
 function getEmploymentRecords($mysqli, $search, $dateJoined, $employmentStatus)
 {
-    $query = "SELECT * FROM mis_employment WHERE 1";
+    $query = "SELECT * FROM job_seeker WHERE 1";
 
     if (!empty($search)) {
-        $query .= " AND CONCAT(employment_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
+        $query .= " AND CONCAT(job_seeker_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
     }
 
     if (!empty($dateJoined)) {
@@ -163,7 +163,7 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                 while ($row = $employmentRecords->fetch_assoc()) {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['employment_id']; ?></td>
+                                                        <td><?php echo $row['job_seeker_id']; ?></td>
                                                         <td><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['surname']; ?></td>
                                                         <td><?php echo $row['date_of_birth']; ?></td>
                                                         <td><?php echo $row['sex']; ?></td>
@@ -173,13 +173,13 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                         <td><?php echo $row['date_joined']; ?></td>
                                                         <td>
                                                         <form action="mis_admin_manage_employment.php" method="POST" style="display: red-inline;">
-                                                            <input type="hidden" name="delete" value="<?php echo $row['employment_id']; ?>">
+                                                            <input type="hidden" name="delete" value="<?php echo $row['job_seeker_id']; ?>">
                                                             <button type="submit" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this record?')">
                                                                 <i class="mdi mdi-trash-can-outline"></i> Delete
                                                             </button>
                                                         </form>
-                                                            <a href="mis_admin_view_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
-                                                            <a href="mis_admin_update_single_employment.php?employment_id=<?php echo $row['employment_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
+                                                            <a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                            <a href="mis_admin_update_single_employment.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
                                                         </td>
                                                     </tr>
                                             <?php

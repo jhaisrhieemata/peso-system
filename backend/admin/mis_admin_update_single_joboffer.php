@@ -2,9 +2,9 @@
 <?php
 	session_start();
 	include('assets/inc/config.php');
-		if(isset($_POST['update_job_opening']))
+		if(isset($_POST['update_job_posting']))
 		{
-			$job_opening_id=$_GET['job_opening_id'];
+			$job_posting_id=$_GET['job_posting_id'];
             $job_name=$_POST['job_name'];
             $job_description=$_POST['job_description'];
 			$com_name=$_POST['com_name'];
@@ -14,9 +14,9 @@
             $date_posted=$_POST['date_posted'];
             
             //sql to insert captured values
-			$query="UPDATE mis_job_opening SET job_name=?, job_description=?, com_name=?, address=?, contact=?, email=?, date_posted=? WHERE job_opening_id =?";
+			$query="UPDATE job_posting SET job_name=?, job_description=?, com_name=?, address=?, contact=?, email=?, date_posted=? WHERE job_posting_id =?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('sssssssi', $job_name, $job_description, $com_name, $address, $contact, $email, $date_posted, $job_opening_id);
+			$rc=$stmt->bind_param('sssssssi', $job_name, $job_description, $com_name, $address, $contact, $email, $date_posted, $job_posting_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -82,10 +82,10 @@
                         <!-- end page title --> 
                         <!-- Form row -->
                         <?php
-                            $job_opening_id=$_GET['job_opening_id'];
-                            $ret="SELECT  * FROM  mis_job_opening WHERE job_opening_id=?";
+                            $job_posting_id=$_GET['job_posting_id'];
+                            $ret="SELECT  * FROM  job_posting WHERE job_posting_id=?";
                             $stmt= $mysqli->prepare($ret) ;
-                            $stmt->bind_param('i',$job_opening_id);
+                            $stmt->bind_param('i',$job_posting_id);
                             $stmt->execute() ;//ok
                             $res=$stmt->get_result();
                             //$cnt=1;
@@ -143,7 +143,7 @@
 
                                             
 
-                                           <button type="submit" name="update_job_opening" class="ladda-button btn btn-primary" data-style="expand-right">Add Job Opening</button>
+                                           <button type="submit" name="update_job_posting" class="ladda-button btn btn-primary" data-style="expand-right">Add Job Opening</button>
                                         </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->

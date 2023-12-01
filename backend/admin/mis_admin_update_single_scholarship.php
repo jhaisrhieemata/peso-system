@@ -5,10 +5,10 @@
     include('assets/inc/checklogin.php');
     check_login();
     $aid = $_SESSION['ad_id'];
-		if(isset($_POST['update_scholarship']))
+		if(isset($_POST['update_lgu_scholarship']))
 		{
 			
-            $scholarship_id=$_GET['scholarship_id'];
+            $lgu_scholarship_id=$_GET['lgu_scholarship_id'];
             $applicant_no=$_POST['applicant_no'];
             $type_of_application=$_POST['type_of_application'];
             $surname=$_POST['surname'];
@@ -65,9 +65,9 @@
             $recieved_by=$_POST['recieved_by'];
            
             //sql to update captured values
-		    $query="UPDATE mis_scholarship SET applicant_no=?, type_of_application=?, surname=?, firstname=?, middlename=?, suffix=?, contact=?, civil_status=?, sex=?, date_of_birth=?, age_=?, blood_type=?, app_zone_no=?, app_barangay=?, app_municipality=?, app_province=?, religion=?, citizenship=?, language_dialect=?, father_surname=?, father_firstname=?, father_middlename=?, father_occupation=?, number_of_brother=?, mother_surname=?, mother_firstname=?, mother_middlename=?, mother_occupation=?, number_of_sister=?, pa_zone_no=?, pa_barangay=?, pa_municipality=?, pa_province=?, elementary_school=?, elem_type_of_school=?, elem_school_address=?, elem_year_graduated=?, high_school=?, hs_type_of_school=?, strand=?, hs_year_level=?, hs_lastyear_attended=?, hs_school_address=?, college=?, col_type_of_school=?, course=?, col_school_address=?, col_lastyear_attended=?, pre_strand_course=?, psc_school=?, special_skill=?, income_of_parent=?, date_of_application=?, recieved_by=? WHERE scholarship_id = ?";
+		    $query="UPDATE lgu_scholarship SET applicant_no=?, type_of_application=?, surname=?, firstname=?, middlename=?, suffix=?, contact=?, civil_status=?, sex=?, date_of_birth=?, age_=?, blood_type=?, app_zone_no=?, app_barangay=?, app_municipality=?, app_province=?, religion=?, citizenship=?, language_dialect=?, father_surname=?, father_firstname=?, father_middlename=?, father_occupation=?, number_of_brother=?, mother_surname=?, mother_firstname=?, mother_middlename=?, mother_occupation=?, number_of_sister=?, pa_zone_no=?, pa_barangay=?, pa_municipality=?, pa_province=?, elementary_school=?, elem_type_of_school=?, elem_school_address=?, elem_year_graduated=?, high_school=?, hs_type_of_school=?, strand=?, hs_year_level=?, hs_lastyear_attended=?, hs_school_address=?, college=?, col_type_of_school=?, course=?, col_school_address=?, col_lastyear_attended=?, pre_strand_course=?, psc_school=?, special_skill=?, income_of_parent=?, date_of_application=?, recieved_by=? WHERE lgu_scholarship_id = ?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssssssssssssi', $applicant_no, $type_of_application, $surname, $firstname, $middlename, $suffix, $contact, $civil_status, $sex, $date_of_birth, $age_, $blood_type, $app_zone_no, $app_barangay, $app_municipality, $app_province, $religion, $citizenship, $language_dialect, $father_surname, $father_firstname, $father_middlename, $father_occupation, $number_of_brother, $mother_surname, $mother_firstname, $mother_middlename, $mother_occupation, $number_of_sister, $pa_zone_no, $pa_barangay, $pa_municipality, $pa_province, $elementary_school, $elem_type_of_school, $elem_school_address, $elem_year_graduated, $high_school, $hs_type_of_school, $strand, $hs_year_level, $hs_lastyear_attended, $hs_school_address, $college, $col_type_of_school, $course, $col_school_address, $col_lastyear_attended, $pre_strand_course, $psc_school, $special_skill, $income_of_parent, $date_of_application, $recieved_by, $scholarship_id);
+			$rc=$stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssssssssssssi', $applicant_no, $type_of_application, $surname, $firstname, $middlename, $suffix, $contact, $civil_status, $sex, $date_of_birth, $age_, $blood_type, $app_zone_no, $app_barangay, $app_municipality, $app_province, $religion, $citizenship, $language_dialect, $father_surname, $father_firstname, $father_middlename, $father_occupation, $number_of_brother, $mother_surname, $mother_firstname, $mother_middlename, $mother_occupation, $number_of_sister, $pa_zone_no, $pa_barangay, $pa_municipality, $pa_province, $elementary_school, $elem_type_of_school, $elem_school_address, $elem_year_graduated, $high_school, $hs_type_of_school, $strand, $hs_year_level, $hs_lastyear_attended, $hs_school_address, $college, $col_type_of_school, $course, $col_school_address, $col_lastyear_attended, $pre_strand_course, $psc_school, $special_skill, $income_of_parent, $date_of_application, $recieved_by, $lgu_scholarship_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -135,10 +135,10 @@
                         <!-- end page title --> 
                         <!-- Form row -->
                         <?php
-                            $scholarship_id=$_GET['scholarship_id'];
-                            $ret="SELECT  * FROM  mis_scholarship WHERE scholarship_id=?";
+                            $lgu_scholarship_id=$_GET['lgu_scholarship_id'];
+                            $ret="SELECT  * FROM  lgu_scholarship WHERE lgu_scholarship_id=?";
                             $stmt= $mysqli->prepare($ret) ;
-                            $stmt->bind_param('i',$scholarship_id);
+                            $stmt->bind_param('i',$lgu_scholarship_id);
                             $stmt->execute() ;//ok
                             $res=$stmt->get_result();
                             //$cnt=1;
@@ -559,7 +559,7 @@
                                                       <input required="required" type="text" value="<?php echo $row->recieved_by;?>" name="recieved_by" class="form-control"  id="inputrecievedby" placeholder="Recieved by">
                                                 </div>  
                                             </div>                      
-                                           <button type="submit" name="update_scholarship" class="ladda-button btn btn-primary" data-style="expand-right">Update Scholarship</button>
+                                           <button type="submit" name="update_lgu_scholarship" class="ladda-button btn btn-primary" data-style="expand-right">Update Scholarship</button>
                                         </form>
                                         <!--End scholarship Form-->
                                     </div> <!-- end card-body -->

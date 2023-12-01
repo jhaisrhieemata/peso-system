@@ -31,10 +31,10 @@
             <!--Get Details Of A Single User And Display Them Here-->
             <?php
                 // $middlename=$_GET['middlename'];
-                $job_opening_id=$_GET['job_opening_id'];
-                $ret="SELECT  * FROM mis_job_opening WHERE job_opening_id=?";
+                $job_posting_id=$_GET['job_posting_id'];
+                $ret="SELECT  * FROM  job_posting WHERE job_posting_id=?";
                 $stmt= $mysqli->prepare($ret) ;
-                $stmt->bind_param('i',$job_opening_id);
+                $stmt->bind_param('i',$job_posting_id);
                 $stmt->execute() ;//ok
                 $res=$stmt->get_result();
                 //$cnt=1;

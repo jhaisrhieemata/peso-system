@@ -12,7 +12,7 @@
 		    move_uploaded_file($_FILES["ad_dpic"]["tmp_name"],"assets/images/users/".$_FILES["ad_dpic"]["name"]);
 
             //sql to insert captured values
-			$query="UPDATE mis_admin SET ad_fname=?, ad_lname=?,  ad_email=?, ad_dpic=? WHERE ad_id = ?";
+			$query="UPDATE admin SET ad_fname=?, ad_lname=?,  ad_email=?, ad_dpic=? WHERE ad_id = ?";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('ssssi', $ad_fname, $ad_lname, $ad_email, $ad_dpic, $ad_id);
 			$stmt->execute();
@@ -38,7 +38,7 @@
             $ad_pwd=sha1(md5($_POST['ad_pwd']));//double encrypt 
             
             //sql to insert captured values
-			$query="UPDATE mis_admin SET ad_pwd =? WHERE ad_id = ?";
+			$query="UPDATE admin SET ad_pwd =? WHERE ad_id = ?";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('si', $ad_pwd, $ad_id);
 			$stmt->execute();
@@ -79,7 +79,7 @@
             <!-- ============================================================== -->
             <?php
                  $aid=$_SESSION['ad_id'];
-                $ret="select * from mis_admin where ad_id=?";
+                $ret="select * from admin where ad_id=?";
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$aid);
                 $stmt->execute() ;//ok
@@ -100,7 +100,7 @@
                                     <div class="page-title-box">
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
                                                 <li class="breadcrumb-item active">Profile</li>
                                             </ol>
                                         </div>

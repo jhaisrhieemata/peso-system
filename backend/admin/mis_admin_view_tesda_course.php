@@ -87,7 +87,7 @@
                                                 *get details of allpatients
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_tesda_course ORDER BY tesda_course_id ASC "; 
+                                                $ret="SELECT * FROM  tesda_training ORDER BY tesda_training_id ASC "; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -104,7 +104,7 @@
                                                     <td><?php echo $row->trainer_hours;?></td>  
                                                     <td><?php echo $row->trainer;?></td> 
                                                     <td><?php echo $row->status;?></td>                                                
-                                                    <td><a href="mis_admin_view_single_tesda_course.php?tesda_course_id=<?php echo $row->tesda_course_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                    <td><a href="mis_admin_view_single_tesda_course.php?tesda_training_id=<?php echo $row->tesda_training_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>
                                             <?php  $cnt = $cnt +1 ; }?>

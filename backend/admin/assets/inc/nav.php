@@ -1,6 +1,6 @@
 <?php
      $aid=$_SESSION['ad_id'];
-    $ret="SELECT  * FROM mis_admin WHERE ad_id= ?";
+    $ret="SELECT  * FROM admin WHERE ad_id= ?";
     $stmt= $mysqli->prepare($ret) ;
     $stmt->bind_param('i',$aid);
     $stmt->execute() ;//ok

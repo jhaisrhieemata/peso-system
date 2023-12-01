@@ -6,7 +6,7 @@ include('assets/inc/config.php');
 if ($mysqli->connect_error) {
     die("Connection Failed: " . $mysqli->connect_error);
 }
-if (isset($_POST['add_employment'])) {
+if (isset($_POST['add_job_seeker'])) {
     $surname = $_POST['surname'];
     $firstname = $_POST['firstname'];
     $middlename = $_POST['middlename'];
@@ -49,11 +49,11 @@ if (isset($_POST['add_employment'])) {
     $position = $_POST['position'];
     $number_of_months = $_POST['number_of_months'];
     $work_address=$_POST['work_address'];
-    $work_status=$_POSt['work_status'];
+    $work_status=$_POST['work_status'];
     $special_skill = $_POST['special_skill'];
     $referred_to = $_POST['referred_to'];
     //sql to insert captured values
-    $query = "insert into mis_employment (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, date_taken, professional_licence, valid_until, company_name, position, number_of_months, work_address, work_status, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $query = "insert into  job_seeker (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, date_taken, professional_licence, valid_until, company_name, position, number_of_months, work_address, work_status, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($query);
     $rc = $stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months,$work_address, $work_status, $special_skill, $referred_to);
     $stmt->execute();
@@ -559,7 +559,7 @@ if (isset($_POST['add_employment'])) {
                                         </div>
 
 
-                                        <button type="submit" name="add_employment" class="ladda-button btn btn-primary" data-style="expand-right">Add Job Seeker</button>
+                                        <button type="submit" name="add_job_seeker" class="ladda-button btn btn-primary" data-style="expand-right">Add Job Seeker</button>
                                     </form>
                                     <!--End employment Form-->
                                 </div> <!-- end card-body -->

@@ -2,8 +2,8 @@
 <?php
 session_start();
 include('assets/inc/config.php');
-if (isset($_POST['update_employment'])) {
-    $employment_id = $_GET['employment_id'];
+if (isset($_POST['update_job_seeker'])) {
+    $job_seeker_id = $_GET['job_seeker_id'];
     $or_no = $_POST['or_no'];
     $surname = $_POST['surname'];
     $firstname = $_POST['firstname'];
@@ -47,14 +47,14 @@ if (isset($_POST['update_employment'])) {
     $position = $_POST['position'];
     $number_of_months = $_POST['number_of_months'];
     $work_address=$_POST['work_address'];
-    $work_status=$_POST['work_status'];
+    $work_status =$_POST['work_status'];
     $special_skill = $_POST['special_skill'];
     $referred_to = $_POST['referred_to'];
     $date_joined = $_POST['date_joined'];
     //sql to update captured values
-    $query = "UPDATE  mis_employment SET or_no=?, surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, date_taken=?, professional_licence=?, valid_until=?, company_name=?, position=?, number_of_months=?, work_address=?, work_status=?, special_skill=?, referred_to=?, date_joined=? WHERE employment_id = ?";
+    $query = "UPDATE  job_seeker SET or_no=?, surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, date_taken=?, professional_licence=?, valid_until=?, company_name=?, position=?, number_of_months=?, work_address=?, work_status=?, special_skill=?, referred_to=?, date_joined=? WHERE job_seeker_id=?";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssssssi', $or_no, $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $special_skill, $referred_to, $date_joined, $employment_id);
+    $rc = $stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssssssi', $or_no, $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $special_skill, $referred_to, $date_joined, $job_seeker_id);
     $stmt->execute();
     /*
 			*Use Sweet Alerts Instead Of This Javascript Alerts
@@ -118,12 +118,12 @@ if (isset($_POST['update_employment'])) {
                     <!-- Form row -->
                     <!--LETS GET DETAILS OF SINGLE jobseeker GIVEN THEIR ID-->
                     <?php
-                    $employment_id = $_GET['employment_id'];
-                    $ret = "SELECT  * FROM  mis_employment WHERE employment_id=?";
-                    $stmt = $mysqli->prepare($ret);
-                    $stmt->bind_param('i', $employment_id);
+                    $job_seeker_id=$_GET['job_seeker_id'];
+                    $ret="SELECT * FROM job_seeker WHERE job_seeker_id=?";
+                    $stmt=$mysqli->prepare($ret);
+                    $stmt->bind_param('i', $job_seeker_id);
                     $stmt->execute(); //ok
-                    $res = $stmt->get_result();
+                    $res=$stmt->get_result();
                     //$cnt=1;
                     while ($row = $res->fetch_object()) {
                     ?>
@@ -574,7 +574,7 @@ if (isset($_POST['update_employment'])) {
                                                 </div>
                                             </div>
 
-                                            <button type="submit" id="update_employment" name="update_employment" class="ladda-button btn btn-primary" data-style="expand-right" disabled>Update Employment</button>
+                                            <button type="submit" id="update_job_seeker" name="update_job_seeker" class="ladda-button btn btn-primary" data-style="expand-right" disabled>Update Employment</button>
                                         </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->
@@ -629,7 +629,7 @@ if (isset($_POST['update_employment'])) {
                 var isChecked = $(this).is(':checked');
 
                 // Get all input fields that should be enabled/disabled
-                var inputFields = $('#inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputdatetaken, #inputprc, #inputvaliduntil, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputworkaddress, #inputworkaddress, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_employment'); // Add more fields if needed
+                var inputFields = $('#inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputdatetaken, #inputprc, #inputvaliduntil, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputworkaddress, #inputworkstatus, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_job_seeker'); // Add more fields if needed
 
                 // Enable or disable the input fields based on the global checkbox state
                 inputFields.prop('disabled', !isChecked);

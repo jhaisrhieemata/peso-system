@@ -11,7 +11,7 @@ if(isset($_POST['add_print']))
     
     $or_no=$_POST['or_no'];
     $date_issued=$_POST['date_issued'];
-    $query="INSERT into mis_claimclearance (or_no, date_issued) values(?,?)";
+    $query="INSERT into claim_clearance (or_no, date_issued) values(?,?)";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('ss',$or_no, $date_issued);
 			$stmt->execute();
@@ -123,10 +123,10 @@ if(isset($_POST['add_print']))
 <body>
        <!-- this query to get data from employment table -->
 <?php
-                            $employment_id=$_GET['employment_id'];
-                            $ret="SELECT  * FROM  mis_employment WHERE employment_id=?";
+                            $job_seeker_id=$_GET['job_seeker_id'];
+                            $ret="SELECT * FROM job_seeker WHERE job_seeker_id=?";
                             $stmt= $mysqli->prepare($ret) ;
-                            $stmt->bind_param('i',$employment_id);
+                            $stmt->bind_param('i',$job_seeker_id);
                             $stmt->execute() ;//ok
                             $res=$stmt->get_result();
                             //$cnt=1;

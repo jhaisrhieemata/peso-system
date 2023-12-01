@@ -89,7 +89,7 @@
                                                 *get details of all Jobseeker
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_employment_backup ORDER BY employment_id "; 
+                                                $ret="SELECT * FROM  job_seeker_backup ORDER BY job_seeker_id ASC "; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -110,7 +110,7 @@
                                                     <td><?php echo $row->employment_status;?></td>
                                                     
                                                     
-                                                    <td><a href="mis_admin_view_single_employment.php?employment_id=<?php echo $row->employment_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                    <td><a href="mis_admin_view_single_backup_jobseeker.php?job_seeker_id=<?php echo $row->job_seeker_id;?>&&surname=<?php echo $row->surname;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>
                                             <?php  $cnt = $cnt +1 ; }?>

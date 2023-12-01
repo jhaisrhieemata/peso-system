@@ -7,7 +7,7 @@ $aid = $_SESSION['ad_id'];
 if(isset($_GET['delete']))
 {
       $id=intval($_GET['delete']);
-      $adn="DELETE from mis_agency where agency_id=?";
+      $adn="DELETE from agency where agency_id=?";
       $stmt= $mysqli->prepare($adn);
       $stmt->bind_param('i',$id);
       $stmt->execute();
@@ -26,7 +26,7 @@ if(isset($_GET['delete']))
 // Function to retrieve employment records based on search and filter criteria
 function getagencyRecords($mysqli, $dateposted, $typeagency)
 {
-    $query = "SELECT * FROM  mis_agency WHERE 1";
+    $query = "SELECT * FROM  agency WHERE 1";
 
     if (!empty($dateposted)) {
         $query .= " AND date_created = '$dateposted'";

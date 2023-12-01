@@ -7,7 +7,7 @@
   if(isset($_GET['delete']))
   {
         $id=intval($_GET['delete']);
-        $adn="delete from mis_tesdatraining where tesdatraining_id=?";
+        $adn="delete from tesda_applicant where tesda_applicant_id=?";
         $stmt= $mysqli->prepare($adn);
         $stmt->bind_param('i',$id);
         $stmt->execute();
@@ -107,7 +107,7 @@
                                                 *get details of alljobseeker
                                                 *
                                             */
-                                                $ret="SELECT * FROM  mis_tesdatraining ORDER BY tesdatraining_id ASC"; 
+                                                $ret="SELECT * FROM  tesda_applicant ORDER BY tesda_applicant_id ASC"; 
                                                 //sql code to get to ten jobseeker  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -128,9 +128,9 @@
                                                     <td><?php echo $row->employment_status;?></td>
                                                     
                                                     <td>
-                                                        <a href="mis_admin_manage_tesdatraining.php?delete=<?php echo $row->tesdatraining_id;?>" class="badge badge-danger"><i class=" mdi mdi-trash-can-outline "></i> Delete</a>
-                                                        <a href="mis_admin_view_single_tesdatraining.php?tesdatraining_id=<?php echo $row->tesdatraining_id;?>&&surname=<?php echo $row->surname;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
-                                                        <a href="mis_admin_update_single_tesdaclient.php?tesdatraining_id=<?php echo $row->tesdatraining_id;?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline "></i> Update</a>
+                                                        <a href="mis_admin_manage_tesdatraining.php?delete=<?php echo $row->tesda_applicant_id;?>" class="badge badge-danger"><i class=" mdi mdi-trash-can-outline "></i> Delete</a>
+                                                        <a href="mis_admin_view_single_tesdatraining.php?tesda_applicant_id=<?php echo $row->tesda_applicant_id;?>&&surname=<?php echo $row->surname;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                        <a href="mis_admin_update_single_tesdaclient.php?tesda_applicant_id=<?php echo $row->tesda_applicant_id;?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline "></i> Update</a>
                                                     </td>
                                                 </tr>
                                                 </tbody>

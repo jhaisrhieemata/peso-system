@@ -2,9 +2,9 @@
 <?php
 	session_start();
 	include('assets/inc/config.php');
-		if(isset($_POST['update_tesdatraining']))
+		if(isset($_POST['update_tesda_applicant']))
 		{
-            $tesdatraining_id=$_GET['tesdatraining_id'];
+            $tesda_applicant_id=$_GET['tesda_applicant_id'];
 			$surname=$_POST['surname'];
 			$firstname=$_POST['firstname'];
 			$middlename=$_POST['middlename'];
@@ -47,9 +47,9 @@
             $special_skill=$_POST['special_skill'];
             $referred_to=$_POST['referred_to'];
             //sql to insert captured values
-		    $query="UPDATE  mis_tesdatraining SET surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?,  certificates_received=?, eligibility_civil_service=?, professional_licence=?, company_name=?, position=?, number_of_months=?, special_skill=?, referred_to=?  WHERE tesdatraining_id = ?";
+		    $query="UPDATE  tesda_applicant SET surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?,  certificates_received=?, eligibility_civil_service=?, professional_licence=?, company_name=?, position=?, number_of_months=?, special_skill=?, referred_to=?  WHERE tesda_applicant_id = ?";
 			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssi', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $professional_licence, $company_name, $position, $number_of_months, $special_skill, $referred_to, $tesdatraining_id);
+			$rc=$stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssi', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $professional_licence, $company_name, $position, $number_of_months, $special_skill, $referred_to, $tesda_applicant_id);
 			$stmt->execute();
 			/*
 			*Use Sweet Alerts Instead Of This Javascript Alerts
@@ -117,10 +117,10 @@
                         <!-- Form row -->
                         <!--LETS GET DETAILS OF SINGLE jobseeker GIVEN THEIR ID-->
                         <?php
-                            $tesdatraining_id=$_GET['tesdatraining_id'];
-                            $ret="SELECT  * FROM  mis_tesdatraining WHERE tesdatraining_id=?";
+                            $tesda_applicant_id=$_GET['tesda_applicant_id'];
+                            $ret="SELECT  * FROM  tesda_applicant WHERE tesda_applicant_id=?";
                             $stmt= $mysqli->prepare($ret) ;
-                            $stmt->bind_param('i',$tesdatraining_id);
+                            $stmt->bind_param('i',$tesda_applicant_id);
                             $stmt->execute() ;//ok
                             $res=$stmt->get_result();
                             //$cnt=1;
@@ -522,7 +522,7 @@
                                                                                          </script> -->
                                                           </div>    
                                                      </div>
-                                           <button type="submit" name="update_tesdatraining" class="ladda-button btn btn-primary" data-style="expand-right">Update Tesda Trainee</button>
+                                           <button type="submit" name="update_tesda_applicant" class="ladda-button btn btn-primary" data-style="expand-right">Update Tesda Trainee</button>
                                         </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->

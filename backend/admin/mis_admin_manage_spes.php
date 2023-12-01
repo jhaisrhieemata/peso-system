@@ -7,7 +7,7 @@ $aid = $_SESSION['ad_id'];
 if(isset($_GET['delete']))
 {
       $id=intval($_GET['delete']);
-      $adn="DELETE from mis_spes where spes_id=?";
+      $adn="DELETE from spes where spes_id=?";
       $stmt= $mysqli->prepare($adn);
       $stmt->bind_param('i',$id);
       $stmt->execute();
@@ -26,7 +26,7 @@ if(isset($_GET['delete']))
 // Function to retrieve employment records based on search and filter criteria
 function getScholarshipRecords($mysqli, $search, $dateJoined, $typeapplication)
 {
-    $query = "SELECT * FROM mis_spes WHERE 1";
+    $query = "SELECT * FROM spes WHERE 1";
 
     if (!empty($search)) {
         $query .= " AND CONCAT(spes_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";

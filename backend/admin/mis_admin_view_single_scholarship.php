@@ -31,10 +31,10 @@
             <!--Get Details Of A Single User And Display Them Here-->
             <?php
                 // $middlename=$_GET['middlename'];
-                $scholarship_id=$_GET['scholarship_id'];
-                $ret="SELECT  * FROM mis_scholarship WHERE scholarship_id=?";
+                $lgu_scholarship_id=$_GET['lgu_scholarship_id'];
+                $ret="SELECT * FROM lgu_scholarship WHERE lgu_scholarship_id=?";
                 $stmt= $mysqli->prepare($ret) ;
-                $stmt->bind_param('i',$scholarship_id);
+                $stmt->bind_param('i',$lgu_scholarship_id);
                 $stmt->execute() ;//ok
                 $res=$stmt->get_result();
                 //$cnt=1;
@@ -54,7 +54,7 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Peso Client</a></li>
                                             <li class="breadcrumb-item active">Profile Peso client</li>
                                         </ol>

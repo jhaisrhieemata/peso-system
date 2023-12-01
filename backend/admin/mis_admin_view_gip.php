@@ -89,7 +89,7 @@
                                                 *get details of all Jobseeker
                                                 *
                                             */
-                                                $ret="SELECT * FROM   mis_gip ORDER BY gip_id  "; 
+                                                $ret="SELECT * FROM gip ORDER BY gip_id  "; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok

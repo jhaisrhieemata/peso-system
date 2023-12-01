@@ -31,10 +31,10 @@
             <!--Get Details Of A Single User And Display Them Here-->
             <?php
                 $middlename=$_GET['middlename'];
-                $tesdatraining_id=$_GET['tesdatraining_id'];
-                $ret="SELECT  * FROM mis_tesdatraining WHERE tesdatraining_id=?";
+                $tesda_applicant_id=$_GET['tesda_applicant_id'];
+                $ret="SELECT  * FROM  tesda_applicant WHERE tesda_applicant_id=?";
                 $stmt= $mysqli->prepare($ret) ;
-                $stmt->bind_param('i',$tesdatraining_id);
+                $stmt->bind_param('i',$tesda_applicant_id);
                 $stmt->execute() ;//ok
                 $res=$stmt->get_result();
                 //$cnt=1;

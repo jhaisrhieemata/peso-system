@@ -89,7 +89,7 @@
                                                 *get details of all Jobseeker
                                                 *
                                             */
-                                                $ret="SELECT * FROM   mis_scholarship ORDER BY scholarship_id  "; 
+                                                $ret="SELECT * FROM   lgu_scholarship ORDER BY lgu_scholarship_id  "; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -110,7 +110,7 @@
                                                     <td><?php echo $row->type_of_application;?></td>
                                                     
                                                     
-                                                    <td><a href="mis_admin_view_single_scholarship.php?scholarship_id=<?php echo $row->scholarship_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                    <td><a href="mis_admin_view_single_scholarship.php?lgu_scholarship_id=<?php echo $row->lgu_scholarship_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>
                                             <?php  $cnt = $cnt +1 ; }?>

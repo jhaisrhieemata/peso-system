@@ -15,7 +15,7 @@
 		    move_uploaded_file($_FILES["user_dpic"]["tmp_name"],"../user/assets/images/users/".$_FILES["user_dpic"]["name"]);
 
             //sql to insert captured values
-			$query="UPDATE mis_user SET user_fname=?, user_lname=?,user_email=?, user_number=?, user_pwd=?, user_pwd_confirm=?, user_dpic=? WHERE user_id = ?";
+			$query="UPDATE user_staff SET user_fname=?, user_lname=?,user_email=?, user_number=?, user_pwd=?, user_pwd_confirm=?, user_dpic=? WHERE user_id = ?";
 			$stmt = $mysqli->prepare($query);
 			$rc=$stmt->bind_param('sssssssi', $user_fname, $user_lname,$user_email, $user_number, $user_pwd, $user_pwd_confirm, $user_dpic, $user_id);
 			$stmt->execute();
@@ -83,7 +83,7 @@
                         <!-- Form row -->
                         <?php
                             $user_id=$_GET['user_id'];
-                            $ret="SELECT  * FROM mis_user WHERE user_id=?";
+                            $ret="SELECT  * FROM user_staff WHERE user_id=?";
                             $stmt= $mysqli->prepare($ret) ;
                             $stmt->bind_param('i',$user_id);
                             $stmt->execute() ;//ok

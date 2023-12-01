@@ -7,7 +7,7 @@ include('assets/inc/checklogin.php');
 if(isset($_GET['delete']))
 {
       $id=intval($_GET['delete']);
-      $adn="DELETE from mis_job_opening where job_opening_id=?";
+      $adn="DELETE from job_posting where job_posting_id=?";
       $stmt= $mysqli->prepare($adn);
       $stmt->bind_param('i',$id);
       $stmt->execute();
@@ -26,10 +26,10 @@ if(isset($_GET['delete']))
 // Function to retrieve employment records based on search and filter criteria
 function getjobRecords($mysqli, $search, $dateposted, $typejob)
 {
-    $query = "SELECT * FROM  mis_job_opening WHERE 1";
+    $query = "SELECT * FROM  job_posting WHERE 1";
 
     if (!empty($search)) {
-        $query .= " AND CONCAT(job_opening_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
+        $query .= " AND CONCAT(job_posting_id LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR surname LIKE '%$search%' OR date_of_birth LIKE '%$search%' OR sex LIKE '%$search%' OR civil_status LIKE '%$search%' OR contact_number LIKE '%$search%' OR employment_status LIKE '%$search%' OR date_joined LIKE '%$search%')";
     }
 
     if (!empty($dateposted)) {
@@ -155,7 +155,7 @@ if (isset($_GET['search']) || isset($_GET['date_posted']) || isset($_GET['job_na
                                                 while ($row = $jobRecords->fetch_assoc()) {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['job_opening_id']; ?></td>
+                                                        <td><?php echo $row['job_posting_id']; ?></td>
                                                         <td><?php echo $row['com_name']; ?></td>
                                                         <td><?php echo $row['job_name']; ?></td>
                                                         <td><?php echo $row['job_description']; ?></td>
@@ -164,9 +164,9 @@ if (isset($_GET['search']) || isset($_GET['date_posted']) || isset($_GET['job_na
                                                         <td><?php echo $row['email']; ?></td>
                                                         <td><?php echo $row['date_posted']; ?></td>
                                                         <td>
-                                                            <a href="mis_admin_manage_joboffer.php?delete=<?php echo $row['job_opening_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
-                                                            <a href="mis_admin_view_single_joboffer.php?job_opening_id=<?php echo $row['job_opening_id']; ?>&&job_name=<?php echo $row['job_name']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
-                                                            <a href="mis_admin_update_single_joboffer.php?job_opening_id=<?php echo $row['job_opening_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
+                                                            <a href="mis_admin_manage_joboffer.php?delete=<?php echo $row['job_posting_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
+                                                            <a href="mis_admin_view_single_joboffer.php?job_posting_id=<?php echo $row['job_posting_id']; ?>&&job_name=<?php echo $row['job_name']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                            <a href="mis_admin_update_single_joboffer.php?job_posting_id=<?php echo $row['job_posting_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
                                                         </td>
                                                     </tr>
                                             <?php
