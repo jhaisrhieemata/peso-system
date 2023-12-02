@@ -81,7 +81,7 @@
                                                 <th>OR NO</th>
                                                 <th>Date Issued</th>
                                                 <th>Contact</th>
-                                                <th>Employment Status</th>
+                                                <th>Agency</th>
                                                 <!-- <th>Email</th> -->
                                                 <th>Action</th>
                                             </tr>
@@ -110,7 +110,7 @@
                                                     <td><?php echo $row->or_no;?></td>
                                                     <td><?php echo $row->date_joined;?></td>
                                                     <td><?php echo $row->contact_number;?></td>
-                                                    <td><?php echo $row->employment_status;?></td>
+                                                    <td><?php echo $row->agency_name;?></td>
                                                     <!-- <td><?php echo $row->email;?></td> -->
                                                     
                                                     

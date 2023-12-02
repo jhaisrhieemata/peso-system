@@ -7,7 +7,7 @@ $aid = $_SESSION['ad_id'];
 
 if (isset($_POST['delete'])) {
     $id = intval($_POST['delete']);
-    
+
     // Backup the deleted record to the backup table
     $backupQuery = "INSERT INTO job_seeker_backup SELECT * FROM job_seeker WHERE job_seeker_id = ?";
     $backupStmt = $mysqli->prepare($backupQuery);
@@ -110,9 +110,9 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                         <div class="form-row">
                                             <div class="input-group mb-3">
                                                 <!-- <input id="demo-foo-search" type="text" class="form-control" value="<?php if (isset($_GET['search'])) {
-                                                                                                                            echo $_GET['search'];
-                                                                                                                        } ?>" name="search" placeholder="Search" autocomplete="on"> -->
-                                                                                                                        <!-- <button type="Submit" class="btn btn-primary">Search</button> -->
+                                                                                                                                echo $_GET['search'];
+                                                                                                                            } ?>" name="search" placeholder="Search" autocomplete="on"> -->
+                                                <!-- <button type="Submit" class="btn btn-primary">Search</button> -->
                                                 <input type="date" name="date_joined" value="<?= isset($_GET['date_joined']) == true ? $_GET['date_joined'] : '' ?>" class="form-control">
                                                 <!-- <select name="employment_status" class="form-control">
                                                     <option value="-select-">-select-</option>
@@ -129,19 +129,19 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                 </div>
                                 <!-- Search input -->
                                 <div class="mb-2">
-                                        <div class="row">
-                                            <div class="col-12 text-sm-center form-inline" >
-                                                <div class="form-group mr-2" style="display:none">
-                                                    <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
-                                                        <option value="">Show all</option>
-                                                    </select>
-                                                  </div>
-                                                    <div class="form-group">
-                                                    <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
-                                                   </div>
+                                    <div class="row">
+                                        <div class="col-12 text-sm-center form-inline">
+                                            <div class="form-group mr-2" style="display:none">
+                                                <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
+                                                    <option value="">Show all</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
                                         <thead>
@@ -161,7 +161,7 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                             <?php
                                             if ($employmentRecords->num_rows > 0) {
                                                 while ($row = $employmentRecords->fetch_assoc()) {
-                                                    ?>
+                                            ?>
                                                     <tr>
                                                         <td><?php echo $row['job_seeker_id']; ?></td>
                                                         <td><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['surname']; ?></td>
@@ -172,17 +172,17 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                         <td><?php echo $row['employment_status']; ?></td>
                                                         <td><?php echo $row['date_joined']; ?></td>
                                                         <td>
-                                                        <form action="mis_admin_manage_employment.php" method="POST" style="display: red-inline;">
-                                                            <input type="hidden" name="delete" value="<?php echo $row['job_seeker_id']; ?>">
-                                                            <button type="submit" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this record?')">
-                                                                <i class="mdi mdi-trash-can-outline"></i> Delete
-                                                            </button>
-                                                        </form>
+                                                            <form action="mis_admin_manage_employment.php" method="POST" style="display: red-inline;">
+                                                                <input type="hidden" name="delete" value="<?php echo $row['job_seeker_id']; ?>">
+                                                                <button type="submit" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this record?')">
+                                                                    <i class="mdi mdi-trash-can-outline"></i> Delete
+                                                                </button>
+                                                            </form>
                                                             <a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
                                                             <a href="mis_admin_update_single_employment.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
                                                         </td>
                                                     </tr>
-                                            <?php
+                                                <?php
                                                 }
                                             } else {
                                                 ?>
@@ -230,4 +230,5 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
     <!-- App js -->
     <script src="assets/js/app.min.js"></script>
 </body>
+
 </html>

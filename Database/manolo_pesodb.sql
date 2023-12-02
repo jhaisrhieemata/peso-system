@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 10:38 AM
--- Server version: 10.4.24-MariaDB
+-- Generation Time: Dec 02, 2023 at 11:32 AM
+-- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -34,7 +34,7 @@ CREATE TABLE `admin` (
   `ad_email` varchar(200) DEFAULT NULL,
   `ad_pwd` varchar(200) DEFAULT NULL,
   `ad_dpic` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `admin`
@@ -52,29 +52,29 @@ INSERT INTO `admin` (`ad_id`, `ad_fname`, `ad_lname`, `ad_email`, `ad_pwd`, `ad_
 
 CREATE TABLE `agency` (
   `agency_id` int(11) NOT NULL,
-  `job_seeker_id` int(11) DEFAULT NULL,
+  `job_seeker_id` int(11) NOT NULL DEFAULT 0,
   `agency_name` varchar(256) DEFAULT NULL,
   `address` varchar(256) DEFAULT NULL,
   `contact` varchar(256) DEFAULT NULL,
   `email` varchar(256) DEFAULT NULL,
   `date_created` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `agency`
 --
 
 INSERT INTO `agency` (`agency_id`, `job_seeker_id`, `agency_name`, `address`, `contact`, `email`, `date_created`) VALUES
-(1, 1, 'General Services Cooperative', 'BORJA ROAD, DAMILAG, 8705 Manolo Fortich', '0983893988938', 'sample@mail.com', '2023-10-17'),
-(2, NULL, 'Asiapro Cooperative', 'Camp Phillips, Bukidnon', '+63882233607', 'sample@mail.com', '2023-10-17'),
-(3, NULL, 'SK General merchandise Virginia Food Inc. Distributor ', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
-(4, NULL, 'Good life Damayan Insurance agency ', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
-(5, NULL, 'RN QuiÃ±o Trucking Services Inc.', 'Lingi-on Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
-(6, NULL, 'FNK Realty Services Corporation ', 'Alae, Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
-(7, NULL, 'Pinutos sa Kanto', 'San Miguel, Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
-(8, NULL, 'Jollibee ', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
-(9, NULL, 'Sky high Manpower Recruitment ', 'Cagayan de Oro City', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
-(10, NULL, 'Prince Hypermart ', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20');
+(1, 2, 'General Services Cooperative', 'BORJA ROAD, DAMILAG, 8705 Manolo Fortich', '0983893988938', 'sample@mail.com', '2023-10-17'),
+(2, 0, 'Asiapro Cooperative', 'Camp Phillips, Bukidnon', '+63882233607', 'sample@mail.com', '2023-10-17'),
+(3, 0, 'SK General merchandise Virginia Food Inc. Distributor ', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(4, 0, 'Good life Damayan Insurance agency ', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(5, 0, 'RN QuiÃ±o Trucking Services Inc.', 'Lingi-on Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(6, 0, 'FNK Realty Services Corporation ', 'Alae, Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(7, 0, 'Pinutos sa Kanto', 'San Miguel, Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(8, 0, 'Jollibee ', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(9, 0, 'Sky high Manpower Recruitment ', 'Cagayan de Oro City', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(10, 0, 'Prince Hypermart ', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20');
 
 -- --------------------------------------------------------
 
@@ -84,22 +84,17 @@ INSERT INTO `agency` (`agency_id`, `job_seeker_id`, `agency_name`, `address`, `c
 
 CREATE TABLE `claim_clearance` (
   `claim_clearance_id` int(11) NOT NULL,
-  `job_seeker_id` int(11) DEFAULT NULL,
-  `agency_id` int(11) DEFAULT NULL,
-  `or_no` varchar(256) DEFAULT NULL,
-  `date_issued` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `job_seeker_id` int(11) NOT NULL DEFAULT 0,
+  `agency_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `claim_clearance`
 --
 
-INSERT INTO `claim_clearance` (`claim_clearance_id`, `job_seeker_id`, `agency_id`, `or_no`, `date_issued`) VALUES
-(1, 1, 1, '0017', '2023-11-14'),
-(2, NULL, NULL, '0019', '2023-11-22'),
-(3, NULL, NULL, '020', '2023-11-24'),
-(4, NULL, NULL, '020', '2023-11-24'),
-(5, NULL, NULL, '0019', '2023-11-24');
+INSERT INTO `claim_clearance` (`claim_clearance_id`, `job_seeker_id`, `agency_id`) VALUES
+(7, 3, NULL),
+(8, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -110,7 +105,7 @@ INSERT INTO `claim_clearance` (`claim_clearance_id`, `job_seeker_id`, `agency_id
 CREATE TABLE `expertise` (
   `skill_id` int(11) NOT NULL,
   `skill_name` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `expertise`
@@ -193,15 +188,7 @@ CREATE TABLE `gip` (
   `date_of_application` varchar(256) DEFAULT NULL,
   `recieved_by` varchar(256) DEFAULT NULL,
   `date_joined` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `gip`
---
-
-INSERT INTO `gip` (`gip_id`, `applicant_no`, `gip_compliant`, `type_of_application`, `surname`, `firstname`, `middlename`, `suffix`, `contact`, `civil_status`, `sex`, `date_of_birth`, `age_`, `blood_type`, `app_zone_no`, `app_barangay`, `app_municipality`, `app_province`, `religion`, `citizenship`, `language_dialect`, `father_surname`, `father_firstname`, `father_middlename`, `father_occupation`, `number_of_brother`, `mother_surname`, `mother_firstname`, `mother_middlename`, `mother_occupation`, `number_of_sister`, `pa_zone_no`, `pa_barangay`, `pa_municipality`, `pa_province`, `elementary_school`, `elem_type_of_school`, `elem_school_address`, `elem_year_graduated`, `high_school`, `hs_type_of_school`, `strand`, `hs_year_level`, `hs_lastyear_attended`, `hs_school_address`, `college`, `col_type_of_school`, `course`, `col_school_address`, `col_lastyear_attended`, `pre_strand_course`, `psc_school`, `special_skill`, `income_of_parent`, `date_of_application`, `recieved_by`, `date_joined`) VALUES
-(1, '01', 'Yes', 'For College', 'Sayagnon ', 'Joshua ', 'B', 'NA', '9156325865', 'Single', 'Male', '2001-07-18', '22', 'O', 'Zone 1 ', 'Lindaban', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Filipino ', 'Cebuano', 'Na', 'Na', 'Na', 'NA', '2', 'Na', 'Na', 'Na', 'NA', '2', 'Zone 2 ', 'Lindaban', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'Na', '2019', 'Na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2022', 'Na', 'Na', 'Public', 'BSIT ', 'Ba', '2023', 'Na', 'Na', 'Data Analysis ', '5,000 and below', '2023-11-14', 'Na', '2023-11-14'),
-(2, '02', 'Yes', 'For College', 'Sigongan', 'Jerome ', 'S', 'NA', '9159643182', 'Single', 'Male', '1994-07-07', '29', 'O', 'Zone 1', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Catholic', 'Filipino', 'Cebuano', 'na', 'na', 'na', 'NA', '4', 'na', 'na', 'na', 'NA', '3', 'Zone 1 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'na', '2015', 'na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2017', 'na', 'NBSC', 'Public', 'BSIT', 'Na', '2023', 'na', 'na', 'Coding/Programming ', '5,000 and below', '2023-11-20', 'na', '2023-11-20');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -219,7 +206,24 @@ CREATE TABLE `job_posting` (
   `contact` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `date_posted` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `job_posting`
+--
+
+INSERT INTO `job_posting` (`job_posting_id`, `job_seeker_id`, `job_name`, `job_description`, `com_name`, `address`, `contact`, `email`, `date_posted`) VALUES
+(1, NULL, 'Mechanical Techician', 'Plant Maintenance', 'SMC REPAIRS & MAINTENANCE', 'Manolo Fortich Bukidnon', 'NA', 'careers@rmi.sanmiguel.com.ph', '2023-09-27'),
+(4, NULL, 'Warehouse Coordinator', 'Management inventory, maintaining accurate record ', 'VIENOVO FEED FOR LIFE', 'Manolo Fortich Bukidnon', '09178086976', 'sample@mail.com', '2023-10-17'),
+(5, NULL, 'Software Developer', 'Full stack dev', 'Amazon', 'USSR', '404', 'amazon@mail.com', '2023-11-19'),
+(7, NULL, 'Data scientist ', 'mathematics ', 'Google', 'New york', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(8, NULL, 'Marketing Manager', 'mathematics ', 'Rebisco', 'Alae, manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(9, NULL, 'Project Manager ', 'mathematics ', 'Google', 'San Pedro Laguna', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(10, NULL, 'Problem Solver', 'mathematics ', 'Google', 'Cagayan de Oro City', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(11, NULL, 'Adaptability Specialist ', 'mathematics ', 'Google', 'Libona Bukidnon', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(12, NULL, 'Customer service ', 'mathematics ', 'Jollibee', 'Manolo Fortich Bukidnon ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(13, NULL, 'Creative Designer', 'mathematics ', 'Google', 'Las Vegas', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20'),
+(14, NULL, 'Language Interpreter ', 'Teacher', 'Google', 'Australia ', '09453810680', 'joshuareysayagnon4@gmail.com', '2023-11-20');
 
 -- --------------------------------------------------------
 
@@ -231,11 +235,13 @@ CREATE TABLE `job_seeker` (
   `job_seeker_id` int(11) NOT NULL,
   `job_posting_id` int(11) NOT NULL,
   `claim_clearance_id` int(11) NOT NULL,
-  `agency_id` int(11) NOT NULL,
+  `agency_id` int(11) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL,
   `ad_id` int(11) NOT NULL,
   `matched_job_id` int(11) NOT NULL,
   `or_no` varchar(20) DEFAULT NULL,
+  `agency_name` varchar(256) NOT NULL,
+  `date_issued` varchar(256) NOT NULL,
   `surname` varchar(256) DEFAULT NULL,
   `firstname` varchar(256) DEFAULT NULL,
   `middlename` varchar(256) DEFAULT NULL,
@@ -282,27 +288,25 @@ CREATE TABLE `job_seeker` (
   `special_skill` varchar(256) DEFAULT NULL,
   `referred_to` varchar(256) DEFAULT NULL,
   `date_joined` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `job_seeker`
 --
 
-INSERT INTO `job_seeker` (`job_seeker_id`, `job_posting_id`, `claim_clearance_id`, `agency_id`, `user_id`, `ad_id`, `matched_job_id`, `or_no`, `surname`, `firstname`, `middlename`, `suffix`, `date_of_birth`, `sex`, `street_village`, `barangay`, `municipality`, `province`, `religion`, `civil_status`, `tin`, `disability`, `height`, `contact_number`, `email`, `employment_status`, `employment_status_employed`, `employment_status_unemployed`, `Are_you_ofw`, `are_you_a_former_ofw`, `beneficiary`, `prefered_occupation`, `prefered_work_location`, `language_dialect`, `currently_in_school`, `education_level`, `course`, `training`, `hours_of_training`, `training_institution`, `skill_acquired`, `certificates_received`, `eligibility_civil_service`, `date_taken`, `professional_licence`, `valid_until`, `company_name`, `position`, `number_of_months`, `work_address`, `work_status`, `special_skill`, `referred_to`, `date_joined`) VALUES
-(1, 0, 0, 0, 0, 0, 0, NULL, 'Sayagnon ', 'Joshua Rey', 'Gumonan', 'NA', '2001-12-25', 'Male', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'4', '09453810680', 'joshuareysayagnon4@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'Yes', 'COLLEGE LEVEL', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', '2023-12-01', 'N/A', '2026-12-01', 'Rebisco', 'Production', '6', 'Alae', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
-(2, 0, 0, 0, 0, 0, 0, NULL, 'Sayagnon ', 'Joshua Rey', 'Gumonan', 'NA', '2001-12-25', 'Male', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'4', '09453810680', 'joshuareysayagnon4@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'Yes', 'COLLEGE LEVEL', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', '2023-12-01', 'N/A', '2026-12-01', 'Rebisco', 'Production', '6', 'Alae', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
-(3, 0, 0, 0, 0, 0, 0, NULL, 'Nadal', 'Kick', 'Pan', 'NA', '2023-12-01', 'Male', 'Zone 2', 'Damilag', 'Manolo Fortich', 'Bukidnon', 'NA', 'Single', '', 'NA', '64.5', '09976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', '', '', 'Cebuano', 'Yes', 'HIGH SCHOOL GRADUATE', 'NA', 'NA', '12', 'NA', 'NA', 'NA', 'francisxaviernadal@gmail.com', '2023-12-01', 'francisxaviernadal@gmail.com', '2023-12-01', 'Osas', 'NA', '12', 'Alae', 'Part-time', 'NA', 'TUPAD', '2023-12-01'),
-(4, 0, 0, 0, 0, 0, 0, NULL, 'Bajao', 'Jayrald', 'D', 'NA', '2005-12-01', 'Male', 'Dicklum', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'Baptist', 'Single', '12345', 'NA', '5\'5', '64983156742', 'jayrald@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'Welder', 'Tankulan', 'Cebuano', 'No', 'HIGH SCHOOL GRADUATE', 'N/A', 'ICT', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2028-01-11', 'DMPI', 'Supervisor ', '5', 'Agusan', 'Probationary', 'Hardware ', 'GIP', '2023-12-01'),
-(5, 0, 0, 0, 0, 0, 0, NULL, 'Taliban', 'Hamas', 'Pan', 'NA', '2023-12-10', 'Male', 'Zone5', 'Guilang-guilang', 'Manolo Fortich', 'Bukidnon', 'NA', 'Single', '', 'NA', '67.1', '09976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'NA', 'NA', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'NA', 'NA', '12', 'NA', 'NA', 'NA', 'francisxaviernadal@gmail.com', '2023-12-26', 'francisxaviernadal@gmail.com', '2023-12-05', 'Oasis', 'NA', '12', 'L.A', 'Part-time', 'NA', 'SPES', '2023-12-01'),
-(6, 0, 0, 0, 0, 0, 0, NULL, 'Void', 'Faceless ', 'Sayrax', 'NA', '2023-09-18', 'Male', 'Zone9', 'Lindaban', 'Manolo Fortich', 'Bukidnon', 'NA', 'Single', '', 'NA', '61.3', '09976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'NA', 'NA', 'Cebuano', 'Yes', 'MASTERAL/POST GRADUATE', 'NA', 'NA', '12', 'NA', 'NA', 'NA', 'francisxaviernadal@gmail.com', '2023-07-17', 'francisxaviernadal@gmail.com', '2023-07-16', 'Oasis', 'NA', '12', 'L A', 'Part-time', 'NA', 'NA', '2023-12-01'),
-(7, 0, 0, 0, 0, 0, 0, NULL, 'Dumay', 'Calvin', 'D', 'NA', '1998-12-01', 'Male', 'Zone 5', 'Lingion', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Married', '6789', 'NA', '', '61589456234', 'Calvin@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Tankulan', 'Cebuano', 'No', 'COLLEGE LEVEL', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2024-02-14', 'DMPI', 'Production', '9', 'Agusan', 'Permanent', 'Hardware ', 'TESDA Training', '2023-12-01'),
-(8, 0, 0, 0, 0, 0, 0, NULL, 'George', 'Paul', 'Nowitzki', 'NA', '2023-06-18', 'Male', 'Zone2', 'Agusan Canyon', 'Manolo Fortich', 'Bukidnon', 'NA', 'Single', '', 'NA', '70.1', '09976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'NA', 'NA', 'Cebuano', 'Yes', 'MASTERAL/POST GRADUATE LEVEL', 'NA', 'NA', '12', 'Na', 'Na', 'Na', 'francisxaviernadal@gmail.com', '2023-05-20', 'francisxaviernadal@gmail.com', '2023-12-03', 'Oasis', 'Na', '11', 'L.A', 'Part-time', 'Na', 'NA', '2023-12-01'),
-(9, 0, 0, 0, 0, 0, 0, NULL, 'Libayao', 'Rahmat', 'S', 'NA', '2000-12-01', 'Male', 'Kihare', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'Muslim', 'Single', '3425', 'NA', '5\'5', '89456138794', 'Mattzy@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Welder', 'Tankulan', 'Cebuano', 'No', 'HIGH SCHOOL LEVEL', 'N/A', 'ICT', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2026-12-01', 'DMPI', 'Production', '6', 'Sankanan ', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
-(10, 0, 0, 0, 0, 0, 0, NULL, 'Ebabacol', 'Christian ', 'C', 'NA', '2002-12-01', 'Male', 'Fatima Subdivision ', 'Alae', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '7892', 'NA', '5\'9', '09425165346', 'Ebacs@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Welder', 'Tankulan', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'ICT', '6', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2027-12-01', 'Jollibee ', 'Production', '6', 'Tankulan ', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
-(11, 0, 0, 0, 0, 0, 0, NULL, 'Talipan ', 'Francis ', 'Xavier ', 'NA', '2023-10-06', 'Male', 'Zone 1', 'Lingion', 'Manolo Fortich', 'Bukidnon', 'Na', 'Single', '', 'NA', '80 .2', '09976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'Na', 'Na', '12', 'Na', 'Na', 'Na', 'francisxaviernadal@gmail.com', '2023-09-10', 'francisxaviernadal@gmail.com', '2023-05-21', 'Oasis', 'Na', '12', 'L.A', 'Permanent', 'Na', 'NA', '2023-12-01'),
-(12, 0, 0, 0, 0, 0, 0, NULL, 'Maestrado', 'Jesse', 'A', 'NA', '2001-10-15', 'Female', 'Zone 2', 'Sto NiÃ±o', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '3567', 'NA', '5\'5', '09423184675', 'Jess@mail.com', 'Unemployed', 'NA', 'Finish Contract', 'No', 'No', 'No', 'IT programmer ', 'Tankulan', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2027-09-27', 'Mcdo', 'Production', '6', 'Cagayan de Oro City ', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
-(13, 0, 0, 0, 0, 0, 0, NULL, 'Pongasi', 'Roldan', 'G', 'NA', '2000-01-08', 'Male', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '2985', 'NA', '5\'7', '09453812654', 'Roldan@mail.com', 'Employed', 'Others', 'NA', 'No', 'No', 'No', 'IT programmer ', 'Tankulan', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'ICT', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '', 'N/A', '2031-12-01', 'Jollibee ', 'Production', '6', 'Tankulan ', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
-(14, 0, 0, 0, 0, 0, 0, NULL, 'Baconguis', 'Mayet', 'G', 'NA', '1991-02-05', 'Female', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '6012', 'NA', '5\'5', '09564186743', 'Mayet@mail.com', 'Employed', 'WageEmployed', 'NA', 'No', 'No', 'No', 'Teacher', 'MFCES', 'Cebuano', 'No', 'MASTERAL/POST GRADUATE LEVEL', 'USTP', 'Computer ', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2008-12-01', 'N/A', '2023-12-01', 'Mcdo', 'Supervisor ', '9', 'Cagayan de Oro City ', 'Permanent', 'Hardware ', 'TESDA Training', '2023-12-01');
+INSERT INTO `job_seeker` (`job_seeker_id`, `job_posting_id`, `claim_clearance_id`, `agency_id`, `user_id`, `ad_id`, `matched_job_id`, `or_no`, `agency_name`, `date_issued`, `surname`, `firstname`, `middlename`, `suffix`, `date_of_birth`, `sex`, `street_village`, `barangay`, `municipality`, `province`, `religion`, `civil_status`, `tin`, `disability`, `height`, `contact_number`, `email`, `employment_status`, `employment_status_employed`, `employment_status_unemployed`, `Are_you_ofw`, `are_you_a_former_ofw`, `beneficiary`, `prefered_occupation`, `prefered_work_location`, `language_dialect`, `currently_in_school`, `education_level`, `course`, `training`, `hours_of_training`, `training_institution`, `skill_acquired`, `certificates_received`, `eligibility_civil_service`, `date_taken`, `professional_licence`, `valid_until`, `company_name`, `position`, `number_of_months`, `work_address`, `work_status`, `special_skill`, `referred_to`, `date_joined`) VALUES
+(1, 0, 0, 0, 0, 0, 0, '000101', 'General Services multipurpose Cooperative', '2023-12-02', 'Sayagnon ', 'Joshua Rey', 'Gumonan', 'NA', '2001-12-25', 'Male', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'4', '9453810680', 'joshuareysayagnon4@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'Yes', 'COLLEGE LEVEL', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', '2023-12-01', 'N/A', '2026-12-01', 'Rebisco', 'Production', '6', 'Alae', 'Contractual', 'Hardware ', 'GIP', '2023-12-01'),
+(3, 0, 0, 0, 0, 0, 0, '000104', 'General Services Cooperative', '2023-12-02', 'Nadal', 'Kick', 'Pan', 'NA', '2023-12-01', 'Male', 'Zone 2', 'Damilag', 'Manolo Fortich', 'Bukidnon', 'NA', 'Single', '', 'NA', '64.5', '9976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', '', '', 'Cebuano', 'Yes', 'HIGH SCHOOL GRADUATE', 'NA', 'NA', '12', 'NA', 'NA', 'NA', 'francisxaviernadal@gmail.com', '2023-12-01', 'francisxaviernadal@gmail.com', '2023-12-01', 'Osas', 'NA', '12', 'Alae', 'Part-time', 'NA', 'TUPAD', '2023-12-01'),
+(5, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Taliban', 'Hamas', 'Pan', 'NA', '2023-12-10', 'Male', 'Zone5', 'Guilang-guilang', 'Manolo Fortich', 'Bukidnon', 'NA', 'Single', '', 'NA', '67.1', '09976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'NA', 'NA', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'NA', 'NA', '12', 'NA', 'NA', 'NA', 'francisxaviernadal@gmail.com', '2023-12-26', 'francisxaviernadal@gmail.com', '2023-12-05', 'Oasis', 'NA', '12', 'L.A', 'Part-time', 'NA', 'SPES', '2023-12-01'),
+(6, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Void', 'Faceless ', 'Sayrax', 'NA', '2023-09-18', 'Male', 'Zone9', 'Lindaban', 'Manolo Fortich', 'Bukidnon', 'NA', 'Single', '', 'NA', '61.3', '09976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'NA', 'NA', 'Cebuano', 'Yes', 'MASTERAL/POST GRADUATE', 'NA', 'NA', '12', 'NA', 'NA', 'NA', 'francisxaviernadal@gmail.com', '2023-07-17', 'francisxaviernadal@gmail.com', '2023-07-16', 'Oasis', 'NA', '12', 'L A', 'Part-time', 'NA', 'NA', '2023-12-01'),
+(7, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Dumay', 'Calvin', 'D', 'NA', '1998-12-01', 'Male', 'Zone 5', 'Lingion', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Married', '6789', 'NA', '', '61589456234', 'Calvin@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Tankulan', 'Cebuano', 'No', 'COLLEGE LEVEL', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2024-02-14', 'DMPI', 'Production', '9', 'Agusan', 'Permanent', 'Hardware ', 'TESDA Training', '2023-12-01'),
+(8, 0, 0, 0, 0, 0, 0, NULL, '', '', 'George', 'Paul', 'Nowitzki', 'NA', '2023-06-18', 'Male', 'Zone2', 'Agusan Canyon', 'Manolo Fortich', 'Bukidnon', 'NA', 'Single', '', 'NA', '70.1', '09976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'NA', 'NA', 'Cebuano', 'Yes', 'MASTERAL/POST GRADUATE LEVEL', 'NA', 'NA', '12', 'Na', 'Na', 'Na', 'francisxaviernadal@gmail.com', '2023-05-20', 'francisxaviernadal@gmail.com', '2023-12-03', 'Oasis', 'Na', '11', 'L.A', 'Part-time', 'Na', 'NA', '2023-12-01'),
+(9, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Libayao', 'Rahmat', 'S', 'NA', '2000-12-01', 'Male', 'Kihare', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'Muslim', 'Single', '3425', 'NA', '5\'5', '89456138794', 'Mattzy@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Welder', 'Tankulan', 'Cebuano', 'No', 'HIGH SCHOOL LEVEL', 'N/A', 'ICT', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2026-12-01', 'DMPI', 'Production', '6', 'Sankanan ', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
+(10, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Ebabacol', 'Christian ', 'C', 'NA', '2002-12-01', 'Male', 'Fatima Subdivision ', 'Alae', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '7892', 'NA', '5\'9', '09425165346', 'Ebacs@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Welder', 'Tankulan', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'ICT', '6', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2027-12-01', 'Jollibee ', 'Production', '6', 'Tankulan ', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
+(11, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Talipan ', 'Francis ', '-', 'NA', '2023-10-06', 'Male', 'Zone 1', 'Lingion', 'Manolo Fortich', 'Bukidnon', 'Na', 'Single', '', 'NA', '80 .2', '9976222951', 'francisxaviernadal@gmail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'Na', 'Na', '12', 'Na', 'Na', 'Na', 'francisxaviernadal@gmail.com', '2023-09-10', 'francisxaviernadal@gmail.com', '2023-05-21', 'Oasis', 'Na', '12', 'L.A', 'Permanent', 'Na', 'NA', '2023-12-01'),
+(12, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Maestrado', 'Jesse', 'A', 'NA', '2001-10-15', 'Female', 'Zone 2', 'Sto NiÃ±o', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '3567', 'NA', '5\'5', '09423184675', 'Jess@mail.com', 'Unemployed', 'NA', 'Finish Contract', 'No', 'No', 'No', 'IT programmer ', 'Tankulan', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2023-12-01', 'N/A', '2027-09-27', 'Mcdo', 'Production', '6', 'Cagayan de Oro City ', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
+(13, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Pongasi', 'Roldan', 'G', 'NA', '2000-01-08', 'Male', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '2985', 'NA', '5\'7', '09453812654', 'Roldan@mail.com', 'Employed', 'Others', 'NA', 'No', 'No', 'No', 'IT programmer ', 'Tankulan', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'ICT', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '', 'N/A', '2031-12-01', 'Jollibee ', 'Production', '6', 'Tankulan ', 'Contractual', 'Hardware ', 'TESDA Training', '2023-12-01'),
+(14, 0, 0, 0, 0, 0, 0, NULL, '', '', 'Baconguis', 'Mayet', 'G', 'NA', '1991-02-05', 'Female', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '6012', 'NA', '5\'5', '09564186743', 'Mayet@mail.com', 'Employed', 'WageEmployed', 'NA', 'No', 'No', 'No', 'Teacher', 'MFCES', 'Cebuano', 'No', 'MASTERAL/POST GRADUATE LEVEL', 'USTP', 'Computer ', '5', 'TESDA', 'Programmer ', '6 months ', 'N/A', '2008-12-01', 'N/A', '2023-12-01', 'Mcdo', 'Supervisor ', '9', 'Cagayan de Oro City ', 'Permanent', 'Hardware ', 'TESDA Training', '2023-12-01');
 
 -- --------------------------------------------------------
 
@@ -365,16 +369,16 @@ CREATE TABLE `job_seeker_backup` (
   `special_skill` varchar(256) DEFAULT NULL,
   `referred_to` varchar(256) DEFAULT NULL,
   `date_joined` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `job_seeker_backup`
 --
 
 INSERT INTO `job_seeker_backup` (`job_seeker_id`, `job_posting_id`, `claim_clearance_id`, `agency_id`, `user_id`, `ad_id`, `matched_job_id`, `or_no`, `surname`, `firstname`, `middlename`, `suffix`, `date_of_birth`, `sex`, `street_village`, `barangay`, `municipality`, `province`, `religion`, `civil_status`, `tin`, `disability`, `height`, `contact_number`, `email`, `employment_status`, `employment_status_employed`, `employment_status_unemployed`, `Are_you_ofw`, `are_you_a_former_ofw`, `beneficiary`, `prefered_occupation`, `prefered_work_location`, `language_dialect`, `currently_in_school`, `education_level`, `course`, `training`, `hours_of_training`, `training_institution`, `skill_acquired`, `certificates_received`, `eligibility_civil_service`, `date_taken`, `professional_licence`, `valid_until`, `company_name`, `position`, `number_of_months`, `work_address`, `work_status`, `special_skill`, `referred_to`, `date_joined`) VALUES
-(15, NULL, NULL, NULL, 11, NULL, 0, NULL, 'Salas', 'Von', 'S', 'NA', '2003-02-05', 'Male', 'Zone 1 ', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0', '09877563750', 'von@mail.com', 'Unemployed', 'NA', 'New Emtrant/Fresh Graduate', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', 'HIGH SCHOOL LEVEL', 'na', 'Na', '1', 'Na', 'Na', 'Na', 'Na', NULL, 'Na', NULL, 'Na', 'Na', '1', NULL, NULL, 'Na', 'SPES', '2023-11-16'),
-(17, NULL, NULL, NULL, NULL, NULL, 0, '', 'Caare', 'Daina', 'M', 'NA', '2004-05-27', 'Female', 'Zone 1 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\'0', '9376358689', 'daina@mail.com', 'Employed', 'Wage employed', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', '3RD YEAR COLLEGE LEVEL', 'na', 'Na', 'Na', 'Na', 'Teacher ', 'Na', 'Na', NULL, 'Na', NULL, 'Na', 'Na', 'Na', NULL, NULL, 'Na', 'SPES', '2023-11-16'),
-(31, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Sayagnon ', 'Ronila', 'Gumonan ', 'NA', '1985-11-20', 'Female', 'Zone 4 ', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Married', '4321', 'NA', '5\'4', '09453810680', 'ronila@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', NULL, 'N/A', NULL, 'Rebisco', 'Production', '9', NULL, NULL, 'Hardware ', 'GIP', '2023-11-20'),
+(15, NULL, NULL, NULL, 11, NULL, 0, NULL, 'Salas', 'Von', 'S', 'NA', '2003-02-05', 'Male', 'Zone 1 ', 'Tankulan', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\0', '09877563750', 'von@mail.com', 'Unemployed', 'NA', 'New Emtrant/Fresh Graduate', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', 'HIGH SCHOOL LEVEL', 'na', 'Na', '1', 'Na', 'Na', 'Na', 'Na', NULL, 'Na', NULL, 'Na', 'Na', '1', NULL, NULL, 'Na', 'SPES', '2023-11-16'),
+(17, NULL, NULL, NULL, NULL, NULL, 0, '', 'Caare', 'Daina', 'M', 'NA', '2004-05-27', 'Female', 'Zone 1 ', 'Dicklum', 'Manolo Fortich', 'Bukidnon', 'SDA', 'Single', 'Na', 'NA', '5\0', '9376358689', 'daina@mail.com', 'Employed', 'Wage employed', 'NA', 'No', 'No', 'No', 'Na', 'Na', 'Cebuano', 'Yes', '3RD YEAR COLLEGE LEVEL', 'na', 'Na', 'Na', 'Na', 'Teacher ', 'Na', 'Na', NULL, 'Na', NULL, 'Na', 'Na', 'Na', NULL, NULL, 'Na', 'SPES', '2023-11-16'),
+(31, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Sayagnon ', 'Ronila', 'Gumonan ', 'NA', '1985-11-20', 'Female', 'Zone 4 ', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Married', '4321', 'NA', '54', '09453810680', 'ronila@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'No', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', NULL, 'N/A', NULL, 'Rebisco', 'Production', '9', NULL, NULL, 'Hardware ', 'GIP', '2023-11-20'),
 (28, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Pongasi ', 'Rina', 'Gumonan', 'NA', '2006-11-20', 'Female', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'5', '09453810680', 'rina@mail.com', 'Unemployed', 'NA', 'NA', 'No', 'No', 'No', 'Welder', 'Sankanan ', 'Cebuano', 'Yes', 'HIGH SCHOOL GRADUATE', 'Manolo Fortich National High school ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', NULL, 'N/A', NULL, 'DMPI', 'Production', '6', NULL, NULL, 'Hardware ', 'GIP', '2023-11-20'),
 (22, 0, 0, 0, 0, 0, 0, NULL, 'Pongasi', 'Roldan', 'Gumonan', 'NA', '2000-01-08', 'Male', 'Zone 4', 'Sankanan', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Single', '4321', 'NA', '5\'5', '09453810680', 'roldan@mail.com', 'Employed', 'NA', 'NA', 'No', 'No', 'No', 'Driver', 'Sankanan ', 'Cebuano', 'Yes', 'COLLEGE GRADUATE', 'Northern Bukidnon State college ', 'Computer ', '5', 'TESDA', 'Driving', '6 months ', 'N/A', NULL, 'N/A', NULL, 'Rebisco', 'Supervisor ', '9', NULL, NULL, 'Hardware ', 'GIP', '2023-11-20');
 
@@ -441,14 +445,7 @@ CREATE TABLE `lgu_scholarship` (
   `date_of_application` varchar(256) DEFAULT NULL,
   `recieved_by` varchar(256) DEFAULT NULL,
   `date_joined` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `lgu_scholarship`
---
-
-INSERT INTO `lgu_scholarship` (`lgu_scholarship_id`, `applicant_no`, `type_of_application`, `surname`, `firstname`, `middlename`, `suffix`, `contact`, `civil_status`, `sex`, `date_of_birth`, `age_`, `blood_type`, `app_zone_no`, `app_barangay`, `app_municipality`, `app_province`, `religion`, `citizenship`, `language_dialect`, `father_surname`, `father_firstname`, `father_middlename`, `father_occupation`, `number_of_brother`, `mother_surname`, `mother_firstname`, `mother_middlename`, `mother_occupation`, `number_of_sister`, `pa_zone_no`, `pa_barangay`, `pa_municipality`, `pa_province`, `elementary_school`, `elem_type_of_school`, `elem_school_address`, `elem_year_graduated`, `high_school`, `hs_type_of_school`, `strand`, `hs_year_level`, `hs_lastyear_attended`, `hs_school_address`, `college`, `col_type_of_school`, `course`, `col_school_address`, `col_lastyear_attended`, `pre_strand_course`, `psc_school`, `special_skill`, `income_of_parent`, `date_of_application`, `recieved_by`, `date_joined`) VALUES
-(1, '01', 'For College', 'Zulita ', 'Sharlene ', 'M', 'NA', '9464543431', 'Married', 'Female', '2000-06-10', '23', 'O', 'Zone 1 ', 'Ticala', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Filipino ', 'Cebuano', 'Na', 'Na', 'Na', 'NA', '5', 'Na', 'Na', 'Na', 'NA', '3', 'Zone 2 ', 'Ticala', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'Na', '2018', 'Na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2021', 'Na', 'Na', 'Public', 'BSIT ', 'Ba', '2023', 'Na', 'Na', 'Foreign Language Proficiency ', '5,000 to 7,000', '2023-11-14', 'Na', '2023-11-14');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -458,8 +455,9 @@ INSERT INTO `lgu_scholarship` (`lgu_scholarship_id`, `applicant_no`, `type_of_ap
 
 CREATE TABLE `matched_job` (
   `matchedjob_id` int(11) NOT NULL,
-  `job_seeker_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `job_seeker_id` int(11) NOT NULL,
+  `claim_clearance_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -469,7 +467,7 @@ CREATE TABLE `matched_job` (
 
 CREATE TABLE `prediction` (
   `predict_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -480,7 +478,7 @@ CREATE TABLE `prediction` (
 CREATE TABLE `regtypes` (
   `regtype_id` int(11) NOT NULL,
   `regtype_name` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `regtypes`
@@ -567,15 +565,7 @@ CREATE TABLE `spes` (
   `date_of_application` varchar(256) DEFAULT NULL,
   `recieved_by` varchar(256) DEFAULT NULL,
   `date_joined` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `spes`
---
-
-INSERT INTO `spes` (`spes_id`, `user_id`, `applicant_no`, `spes_compliant`, `type_of_application`, `surname`, `firstname`, `middlename`, `suffix`, `contact`, `civil_status`, `sex`, `date_of_birth`, `age_`, `blood_type`, `app_zone_no`, `app_barangay`, `app_municipality`, `app_province`, `religion`, `citizenship`, `language_dialect`, `father_surname`, `father_firstname`, `father_middlename`, `father_occupation`, `number_of_brother`, `mother_surname`, `mother_firstname`, `mother_middlename`, `mother_occupation`, `number_of_sister`, `pa_zone_no`, `pa_barangay`, `pa_municipality`, `pa_province`, `elementary_school`, `elem_type_of_school`, `elem_school_address`, `elem_year_graduated`, `high_school`, `hs_type_of_school`, `strand`, `hs_year_level`, `hs_lastyear_attended`, `hs_school_address`, `college`, `col_type_of_school`, `course`, `col_school_address`, `col_lastyear_attended`, `pre_strand_course`, `psc_school`, `special_skill`, `income_of_parent`, `date_of_application`, `recieved_by`, `date_joined`) VALUES
-(1, 3, '01', 'Yes', 'For College', 'Talipan ', 'Francis ', 'D', 'NA', '9234281363', 'Single', 'Male', '2000-06-15', '23', 'Ab', 'Zone 1 ', 'Lingion', 'Manolo Fortich', 'Bukidnon', 'Catholic ', 'Filipino ', 'Cebuano', 'Na', 'Na', 'Na', 'Employed', '2', 'Na', 'Na', 'Na', 'Employed', '2', 'Zone 2 ', 'Lingion', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'Na', '1992', 'Na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2023', 'Na', 'Na', 'Public', 'BSIT ', 'Ba', '2023', 'Na', 'Na', 'Problem Solving ', '5,000 and below', '2023-11-14', 'Na', '2023-11-14'),
-(2, 14, '02', 'Yes', 'For College', 'Martos', 'Jermae', 'M', 'NA', '9577576831', 'Single', 'Female', '2002-07-05', '21', 'AB+', 'Zone 4', 'Damilag', 'Manolo Fortich', 'Bukidnon', 'Catholic', 'Filipino', 'Cebuano', 'na', 'na', 'na', 'NA', '3', 'na', 'na', 'na', 'NA', '3', 'Zone4', 'Damilag', 'Manolo Fortich', 'Bukidnon', 'Na', 'Public', 'na', '2021', 'na', 'Public', 'ICT', 'HIGH SCHOOL GRADUATE', '2021', 'na', 'NBSC', 'Public', 'BSIT', 'MF', '2023', 'na', 'na', 'Communication', '5,000 to 7,000', '2023-11-17', 'na', '2023-11-17');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -627,7 +617,7 @@ CREATE TABLE `tesda_applicant` (
   `special_skill` varchar(256) DEFAULT NULL,
   `referred_to` varchar(256) DEFAULT NULL,
   `date_joined` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tesda_applicant`
@@ -661,7 +651,7 @@ CREATE TABLE `tesda_training` (
   `training_discription` varchar(256) DEFAULT NULL,
   `trainer` varchar(256) DEFAULT NULL,
   `status` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -679,7 +669,7 @@ CREATE TABLE `user_staff` (
   `user_pwd` varchar(200) DEFAULT NULL,
   `user_pwd_confirm` varchar(200) DEFAULT NULL,
   `user_dpic` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user_staff`
@@ -810,7 +800,7 @@ ALTER TABLE `agency`
 -- AUTO_INCREMENT for table `claim_clearance`
 --
 ALTER TABLE `claim_clearance`
-  MODIFY `claim_clearance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `claim_clearance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `expertise`
@@ -828,13 +818,13 @@ ALTER TABLE `gip`
 -- AUTO_INCREMENT for table `job_posting`
 --
 ALTER TABLE `job_posting`
-  MODIFY `job_posting_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `job_posting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `job_seeker`
 --
 ALTER TABLE `job_seeker`
-  MODIFY `job_seeker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `job_seeker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `lgu_scholarship`
@@ -883,6 +873,16 @@ ALTER TABLE `tesda_training`
 --
 ALTER TABLE `user_staff`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `claim_clearance`
+--
+ALTER TABLE `claim_clearance`
+  ADD CONSTRAINT `claim_clearance_ibfk_1` FOREIGN KEY (`job_seeker_id`) REFERENCES `job_seeker` (`job_seeker_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

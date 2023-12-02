@@ -76,11 +76,11 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th data-toggle="true">Full Name</th>
-                                                <th data-hide="phone">Date of Birth</th>
-                                                <th data-hide="phone">Sex</th>
-                                                <th data-hide="phone">Civil Status</th>
-                                                <th data-hide="phone">Contact</th>
-                                                <!-- <th data-hide="phone">Employment Status</th> -->
+                                                <th data-hide="phone">Skill</th>
+                                                <th data-hide="phone">Position</th>
+                                                <th data-hide="phone">Number Of Month</th>
+                                                <th data-hide="phone">Other Skill</th>
+                                                <!-- <th data-hide="phone">Work Status</th> -->
                                                 <th data-hide="phone">Action</th>
                                             </tr>
                                             </thead>
@@ -103,11 +103,11 @@
                                                 <tr>
                                                     <td><?php echo $cnt;?></td>
                                                     <td><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></td>
-                                                    <td><?php echo $row->date_of_birth;?></td>
-                                                    <td><?php echo $row->sex;?></td>
-                                                    <td><?php echo $row->civil_status;?></td>
-                                                    <td><?php echo $row->contact_number;?></td>
-                                                    <!-- <td><?php echo $row->employment_status;?></td> -->
+                                                    <td><?php echo $row->skill_acquired;?></td>
+                                                    <td><?php echo $row->position;?></td>
+                                                    <td><?php echo $row->number_of_months;?></td>
+                                                    <td><?php echo $row->special_skill;?></td>
+                                                    <!-- <td><?php echo $row->work_status;?></td> -->
                                                     
                                                     
                                                     <td><a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row->job_seeker_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>

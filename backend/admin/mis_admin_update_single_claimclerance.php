@@ -5,6 +5,9 @@ include('assets/inc/config.php');
 if (isset($_POST['update_job_seeker'])) {
     $job_seeker_id = $_GET['job_seeker_id'];
     // $or_no = $_POST['or_no'];
+    $or_no = $_POST['or_no'];
+    $agency_name = $_POST['agency_name'];
+    $date_issued = $_POST['date_issued'];
     $surname = $_POST['surname'];
     $firstname = $_POST['firstname'];
     $middlename = $_POST['middlename'];
@@ -52,9 +55,9 @@ if (isset($_POST['update_job_seeker'])) {
     $referred_to = $_POST['referred_to'];
     $date_joined = $_POST['date_joined'];
 
-    $query = "UPDATE  job_seeker SET surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, date_taken=?, professional_licence=?, valid_until=?, company_name=?, position=?, number_of_months=?, work_address=?, work_status=?, special_skill=?, referred_to=?, date_joined=? WHERE job_seeker_id=?";
+    $query = "UPDATE  job_seeker SET or_no=?, agency_name=?, date_issued=?, surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, date_taken=?, professional_licence=?, valid_until=?, company_name=?, position=?, number_of_months=?, work_address=?, work_status=?, special_skill=?, referred_to=?, date_joined=? WHERE job_seeker_id=?";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssssi', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $special_skill, $referred_to, $date_joined, $job_seeker_id);
+    $rc = $stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssssssssi', $or_no, $agency_name, $date_issued, $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $special_skill, $referred_to, $date_joined, $job_seeker_id);
     $stmt->execute();
   
     if ($stmt) {
@@ -143,11 +146,11 @@ if (isset($_POST['update_job_seeker'])) {
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="his_admin_dashboard.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Update Employment</a></li>
-                                        <li class="breadcrumb-item active">Manage Update Employment</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Manage Clearance</a></li>
+                                        <li class="breadcrumb-item active">Manage Update Clearance</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Update Employment Details</h4>
+                                <h4 class="page-title">Update Clearance Details</h4>
                             </div>
                         </div>
                     </div>
@@ -168,22 +171,33 @@ if (isset($_POST['update_job_seeker'])) {
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title">PERSONAL INFORMATION</h4>
+                                        <h4 class="header-title">TESDA  APPLICANT INFORMATION</h4>
                                         <!--Add Jobseeker Form-->
                                         <form method="post">
                                             <div class="form-check">
                                                 <input type="checkbox" id="enableFields" class="form-check-input">
                                                 <label for="enableFields" class="form-check-label" id="enableFieldsLabel">Enable Fields</label>
                                             </div>
-                                            <!-- <div class="form-group">
-                                                <label for="inputor_no" class="col-form-label"></label>
-                                                <input type="text" id="inputor_no" name="or_no" class="form-control" value="<?php echo $row->or_no; ?>">
-                                            </div> -->
                                             <style>
                                                 #enableFieldsLabel {
                                                     color: red;
                                                 }
                                             </style>
+                                            
+                                        <div class="form-row">                                      
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputor_no" class="col-form-label">OR NO</label>
+                                                    <input required="required" value="<?php echo $row->or_no; ?>" type="text" name="or_no" class="form-control" id="inputor_no" placeholder="OR NO" disabled>
+                                                </div>
+                                              <div class="form-group col-md-4">
+                                                    <label for="inputdate_issued" class="col-form-label">Date Issued</label>
+                                                    <input required="required" value="<?php echo $row->date_issued; ?>" type="date" name="date_issued" class="form-control" id="inputdate_issued" disabled>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputagency_name" class="col-form-label">Agency</label>
+                                                    <input required="required" value="<?php echo $row->agency_name; ?>"  type="text" name="agency_name" class="form-control" id="inputagency_name" placeholder="Agency" disabled>
+                                                </div>
+                                            </div>
 
 
 
@@ -666,7 +680,7 @@ if (isset($_POST['update_job_seeker'])) {
                 var isChecked = $(this).is(':checked');
 
                 // Get all input fields that should be enabled/disabled
-                var inputFields = $('#inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputdatetaken, #inputprc, #inputvaliduntil, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputworkaddress, #inputworkstatus, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_job_seeker'); // Add more fields if needed
+                var inputFields = $('#inputor_no, #inputdate_issued, #inputagency_name, #inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputdatetaken, #inputprc, #inputvaliduntil, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputworkaddress, #inputworkstatus, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_job_seeker'); // Add more fields if needed
 
                 // Enable or disable the input fields based on the global checkbox state
                 inputFields.prop('disabled', !isChecked);

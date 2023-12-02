@@ -127,8 +127,8 @@ if (isset($_GET['search'])) {
                                                 <th>Sex</th>
                                                 <th>OR NO</th>
                                                 <th>Date Issued</th>
-                                                <th>Contact</th>
-                                                <th>Employment Status</th>
+                                                <!-- <th>Contact</th> -->
+                                                <th>Agency</th>
                                                 <!-- <th>Email</th> -->
                                                 <th>Action</th>
                                             </tr>
@@ -147,7 +147,7 @@ if (isset($_GET['search'])) {
                                                     <td><?php echo $row->or_no;?></td>
                                                     <td><?php echo $row->date_joined;?></td>
                                                     <td><?php echo $row->contact_number;?></td>
-                                                    <td><?php echo $row->employment_status;?></td>
+                                                    <td><?php echo $row->agency_name;?></td>
                                                     
                                                     <td> -->
                                                     <tr>
@@ -156,13 +156,13 @@ if (isset($_GET['search'])) {
                                                         <td><?php echo $row['barangay'] . ' ' . $row['municipality'] . ' ' . $row['province']; ?></td>
                                                         <td><?php echo $row['sex']; ?></td>
                                                         <td><?php echo $row['or_no']; ?></td>
-                                                        <td><?php echo $row['date_joined']; ?></td>
-                                                        <td><?php echo $row['contact_number']; ?></td>
-                                                        <td><?php echo $row['employment_status']; ?></td>                           
+                                                        <td><?php echo $row['date_issued']; ?></td>
+                                                        <!-- <td><?php echo $row['contact_number']; ?></td> -->
+                                                        <td><?php echo $row['agency_name']; ?></td>                           
                                                         <td>
                                                             <a href="mis_admin_manage_claimclearance.php?delete=<?php echo $row['job_seeker_id']; ?>" class="badge badge-danger"><i class="mdi mdi-trash-can-outline"></i> Delete</a>
                                                             <!-- <a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>&&surname=<?php echo $row['surname']; ?> " class="badge badge-success"><i class="mdi mdi-eye"></i> View</a> -->
-                                                            <a href="mis_admin_update_single_employment.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
+                                                            <a href="mis_admin_update_single_claimclerance.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline"></i> Update</a>
                                                             <a href="mis_admin_print_clearance.php?job_seeker_id=<?php echo $row['job_seeker_id']; ?>" class="badge badge-warning"><i class="fas fa-print"></i> Print</a>
                                                         </td>
                                                     </tr>
