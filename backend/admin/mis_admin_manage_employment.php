@@ -152,7 +152,7 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                 <th>Sex</th>
                                                 <th>Civil Status</th>
                                                 <th>Contact</th>
-                                                <th>Employment Status</th>
+                                                <th>Other Skill</th>
                                                 <th>Created</th>
                                                 <th>Action</th>
                                             </tr>
@@ -169,7 +169,7 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                                         <td><?php echo $row['sex']; ?></td>
                                                         <td><?php echo $row['civil_status']; ?></td>
                                                         <td><?php echo $row['contact_number']; ?></td>
-                                                        <td><?php echo $row['employment_status']; ?></td>
+                                                        <td><?php echo $row['special_skill']; ?></td>
                                                         <td><?php echo $row['date_joined']; ?></td>
                                                         <td>
                                                             <form action="mis_admin_manage_employment.php" method="POST" style="display: red-inline;">

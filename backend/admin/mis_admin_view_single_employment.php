@@ -32,7 +32,28 @@
             <?php
                 // $middlename=$_GET['middlename'];
                 $job_seeker_id=$_GET['job_seeker_id'];
-                $ret="SELECT * FROM job_seeker WHERE job_seeker_id=?";
+                $ret = "SELECT
+                job_seeker.job_seeker_id,
+               job_seeker.firstname,
+               job_seeker.middlename,
+               job_seeker.surname,
+               job_seeker.date_of_birth,
+               job_seeker.sex,
+               job_seeker.barangay,
+               job_seeker.religion,
+               job_seeker.civil_status,
+               job_seeker.contact_number,
+               job_seeker.employment_status,
+               job_seeker.special_skill,
+               job_seeker.date_joined,
+               job_posting.job_posting_id,
+               job_posting.job_name
+           FROM
+               job_seeker
+           JOIN job_posting ON job_seeker.job_seeker_id = job_posting.job_posting_id
+           WHERE
+               job_seeker.job_seeker_id = ?";
+
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$job_seeker_id);
                 $stmt->execute() ;//ok
@@ -93,15 +114,16 @@
 
                             </div> <!-- end col-->
                             
-                            <?php }?>
+                            
                             <div class="col-lg-4 col-xl-4">
                                 <div class="card-box">
                                     <ul class="nav nav-pills navtab-bg nav-justified">
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a href="#timeline" data-toggle="tab" aria-expanded="true" class="nav-link ">
                                                  Job Match
                                             </a>
-                                        </li>
+                                        </li> -->
+                                        <p class="text-muted mb-2 font-13"><strong>Job Matched:</strong> <span class="ml-2"><?php echo $row->job_name;?></span></p>
                                 
                                     </ul>
                                    
@@ -111,6 +133,7 @@
                             </div> 
                             <!-- end col -->
                         </div>
+                    <?php }?>
                         <!-- end row-->
                         <div class="mt-4 mb-1">
                                             <!-- <div class="text-right d-print-none">
