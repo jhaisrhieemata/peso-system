@@ -50,12 +50,13 @@ if (isset($_POST['add_job_seeker'])) {
     $number_of_months = $_POST['number_of_months'];
     $work_address=$_POST['work_address'];
     $work_status=$_POST['work_status'];
+    $good_communication_skill=$_POST['good_communication_skill'];
     $special_skill = $_POST['special_skill'];
     $referred_to = $_POST['referred_to'];
     //sql to insert captured values
-    $query = "insert into  job_seeker (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, date_taken, professional_licence, valid_until, company_name, position, number_of_months, work_address, work_status, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $query = "insert into  job_seeker (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, date_taken, professional_licence, valid_until, company_name, position, number_of_months, work_address, work_status, good_communication_skill, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months,$work_address, $work_status, $special_skill, $referred_to);
+    $rc = $stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months,$work_address, $work_status, $good_communication_skill, $special_skill, $referred_to);
     $stmt->execute();
     /*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -489,18 +490,26 @@ if (isset($_POST['add_job_seeker'])) {
                                             </div>
                                         </div>
                                         <div class="form-row"> 
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-4">
                                                 <label for="inputworkaddress" class="col-form-label">Work Address</label>
                                                 <input required="required" type="text" name="work_address" class="form-control" id="inputworkaddress" placeholder=" Work Address">
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputworkstatus" class="col-form-label">Status</label>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputworkstatus" class="col-form-label">Work Status</label>
                                                 <select id="inputworkstatus" required="required" name="work_status" class="form-control">
                                                     <option value="select">-Select-</option>
                                                     <option value="Permanent">Permanent</option>
                                                     <option value="Contractual">Contractual</option>
                                                     <option value="Part-time">Part-time</option>
                                                     <option value="Probationary">Probationary</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputgcs" class="col-form-label">Good Communication Skill?</label>
+                                                <select id="inputgcs" required="required" name="good_communication_skill" class="form-control">
+                                                    <option value="select">-Select-</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
                                                 </select>
                                             </div>
                                         </div>

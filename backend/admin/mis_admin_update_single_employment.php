@@ -48,13 +48,18 @@ if (isset($_POST['update_job_seeker'])) {
     $number_of_months = $_POST['number_of_months'];
     $work_address=$_POST['work_address'];
     $work_status =$_POST['work_status'];
+    $good_communication_skill=$_POST['good_communication_skill'];
+    // $goodCommunicationSkill = $_POST['good_communication_skill']; // Assuming you're using POST method
+    // // Convert to numeric value
+    // $numericValue = ($goodCommunicationSkill === 'Yes') ? 1 : 0;
+    // Now $numericValue contains the converted value (1 or 0)
     $special_skill = $_POST['special_skill'];
     $referred_to = $_POST['referred_to'];
     $date_joined = $_POST['date_joined'];
 
-    $query = "UPDATE  job_seeker SET surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, date_taken=?, professional_licence=?, valid_until=?, company_name=?, position=?, number_of_months=?, work_address=?, work_status=?, special_skill=?, referred_to=?, date_joined=? WHERE job_seeker_id=?";
+    $query = "UPDATE  job_seeker SET surname=?, firstname=?, middlename=?, suffix=?, date_of_birth=?, sex=?, street_village=?, barangay=?, municipality=?, province=?, religion=?, civil_status=?, tin=?, disability=?, height=?, contact_number=?, email=?, employment_status=?, employment_status_employed=?, employment_status_unemployed=?, Are_you_ofw=?, are_you_a_former_ofw=?, beneficiary=?, prefered_occupation=?, prefered_work_location=?, language_dialect=?, currently_in_school=?, education_level=?, course=?, training=?, hours_of_training=?, training_institution=?, skill_acquired=?, certificates_received=?, eligibility_civil_service=?, date_taken=?, professional_licence=?, valid_until=?, company_name=?, position=?, number_of_months=?, work_address=?, work_status=?, good_communication_skill=?, special_skill=?, referred_to=?, date_joined=? WHERE job_seeker_id=?";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssssi', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $special_skill, $referred_to, $date_joined, $job_seeker_id);
+    $rc = $stmt->bind_param('sssssssssssssssssssssssssssssssssssssssssssssssi', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $good_communication_skill, $special_skill, $referred_to, $date_joined, $job_seeker_id);
     $stmt->execute();
   
     if ($stmt) {
@@ -537,12 +542,12 @@ if (isset($_POST['update_job_seeker'])) {
                                                 </div>
                                             </div>
                                             <div class="form-row"> 
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-4">
                                                     <label for="inputworkaddress" class="col-form-label">Work Address</label>
                                                     <input required="required" type="text"value="<?php echo $row->work_address; ?>"  name="work_address" class="form-control" id="inputworkaddress" placeholder=" Work Address" disabled>
                                                 </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputworkstatus" class="col-form-label">Status</label>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputworkstatus" class="col-form-label">Work Status</label>
                                                     <select id="inputworkstatus" required="required" name="work_status" class="form-control" disabled>
                                                         <option value="select">-Select-</option>
                                                         <option value="Permanent" <?php if ($row->work_status == 'Permanent') echo 'selected'; ?>>Permanent</option>
@@ -551,6 +556,24 @@ if (isset($_POST['update_job_seeker'])) {
                                                         <option value="Probationary" <?php if ($row->work_status == 'Probationary') echo 'selected'; ?>>Probationary</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputgcs" class="col-form-label">Good Communication Skill?</label>
+                                                    <select id="inputgcs" required="required" name="good_communication_skill" class="form-control" disabled>
+                                                        <option value="select">-Select-</option>
+                                                        <option value="Yes" <?php if ($row->good_communication_skill == 'Yes') echo 'selected'; ?>>Yes</option>
+                                                        <option value="No" <?php if ($row->good_communication_skill == 'No') echo 'selected'; ?>>No</option>
+                                                    </select>
+                                                    <!-- <script>
+                                                    document.getElementById('inputgcs').addEventListener('change', function () {
+                                                        var selectedValue = this.value;
+                                                        var convertedValue = (selectedValue === 'Yes') ? 1 : 0;
+                                                
+                                                        // You can use convertedValue as needed, for example, log it to the console
+                                                        console.log(convertedValue);
+                                                    });
+                                                </script> -->
+                                                </div>
+                                                
                                             </div>
                                             <h4 class="header-title">OTHER SKILLS ACQUIRED WITHOUT CERTIFICATE</h4>
 
@@ -666,7 +689,7 @@ if (isset($_POST['update_job_seeker'])) {
                 var isChecked = $(this).is(':checked');
 
                 // Get all input fields that should be enabled/disabled
-                var inputFields = $('#inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputdatetaken, #inputprc, #inputvaliduntil, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputworkaddress, #inputworkstatus, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_job_seeker'); // Add more fields if needed
+                var inputFields = $('#inputSurName, #inputFirstName, #inputMiddleName, #inputSuffix, #inputDateofBirth, #inputSex, #inputstreetvillage, #inputbarangay, #inputMunicipality, #inputprovince, #inputReligion, #inputcivilstatus, #inputTIN, #inputHeight, #inputContactNumber, #inputDisability, #inputEmail, #inpuEmploymentStatus, #input_emplo_stat_employed, #input_emplo_stat_unemployed, #inputAreyouOFW, #inputAreyouaformerOFW, #inputAreyoua4Psbeneficiary, #inputPreferedOccupation, #inputPreferedWorkLocation, #inputLanguage, #inputCurrentlyinSchool, #inputLevel, #inputCourse, #inputTraining, #inputHoursOfTraining, #inputTrainingInstitution, #inputSkillAcquired, #inputCertificatesReceived, #inputcivilservice, #inputdatetaken, #inputprc, #inputvaliduntil, #inputCompanyName, #inputPosition, #inputNumberofMonths, #inputworkaddress, #inputworkstatus, #inputgcs, #inputOtherSkills, #inputReferredTo, #inputDateJoined, #update_job_seeker'); // Add more fields if needed
 
                 // Enable or disable the input fields based on the global checkbox state
                 inputFields.prop('disabled', !isChecked);

@@ -72,149 +72,124 @@ $aid = $_SESSION['ad_id'];
 
                                 <div class="table-responsive">
 
-                                    <?php
-
-                                    function determineJob($employmentStatus, $preferedOccupation, $educationLevel, $skillAcquired, $professionalLicence, $position, $specialSkill, $experience, $communication)
-                                    {
-                                        // Initialize matched job
-                                        $matchedJob = "No matched job";
-
-                                        switch (true) {
-                                                // Case for employmentStatus
-                                            case $employmentStatus === 'Yes':
-                                                // Nested switch for experience
-                                                switch (true) {
-                                                    case $experience > 36 && $communication === 'Yes':
-                                                        $matchedJob = "Software Developer";
-                                                        break;
-                                                    case $experience > 84 && $communication === 'Yes':
-                                                        $matchedJob = "Project Manager";
-                                                        break;
-                                                }
-                                                break;
-
-                                                // Case for preferedOccupation
-                                            case $preferedOccupation === 'Yes':
-                                                // Nested switch for experience
-                                                switch (true) {
-                                                    case $experience > 36 && $communication === 'Yes':
-                                                        $matchedJob = "Mechanical Technician";
-                                                        break;
-                                                    case $experience > 84 && $communication === 'Yes':
-                                                        $matchedJob = "Warehouse Coordinator";
-                                                        break;
-                                                }
-                                                break;
-
-                                                // Add similar cases for other conditions...
-
-                                            default:
-                                                // No matched job for other cases
-                                                break;
+                                <?php
+                                        
+                                        
+                                        if ($mysqli->connect_error) {
+                                            die("Connection failed: " . $mysqli->connect_error);
                                         }
-
-                                        return $matchedJob;
-                                    }
-
-                                    // Example usage:
-                                    $employmentStatus = 'Yes';
-                                    $preferedOccupation = 'Yes';
-                                    $educationLevel = 'Yes';
-                                    $skillAcquired = 'Yes';
-                                    $professionalLicence = 'Yes';
-                                    $position = 'Yes';
-                                    $specialSkill = 'Yes';
-                                    $experience = 42;
-                                    $communication = 'Yes';
-
-                                    $matchedJob = determineJob($employmentStatus, $preferedOccupation, $educationLevel, $skillAcquired, $professionalLicence, $position, $specialSkill, $experience, $communication);
-
-                                    echo "Matched Job: " . $matchedJob;
-                                    ?>
-
-                                    <?php
-
-                                    if ($mysqli->connect_error) {
-                                        die("Connection failed: " . $mysqli->connect_error);
-                                    }
-
-                                    $ret = "SELECT
-          job_seeker.job_seeker_id,
-          job_seeker.surname,
-          job_seeker.firstname,
-          job_seeker.middlename,
-          job_seeker.employment_status_employed,
-          job_seeker.prefered_occupation,
-          job_seeker.education_level,
-          job_seeker.skill_acquired,
-          job_seeker.professional_licence,
-          job_seeker.position,
-          job_seeker.number_of_months,
-          job_seeker.special_skill,
-          job_posting.job_name,
-          job_posting.job_posting_id
-      FROM
-          job_seeker
-      INNER JOIN job_posting ON job_seeker.job_seeker_id = job_posting.job_posting_id
-      ORDER BY
-          job_seeker_id ASC";
-
-                                    $stmt = $mysqli->prepare($ret);
-                                    $stmt->execute();
-                                    $res = $stmt->get_result();
-                                    $cnt = 1;
-                                    ?>
-
-                                    <!-- HTML Table -->
-<table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th data-toggle="true">Full Name</th>
-            <th data-hide="phone">Skill</th>
-            <th data-hide="phone">Position</th>
-            <th data-hide="phone">Number Of Months</th>
-            <th data-hide="phone">Other Skill</th>
-            <th data-hide="phone">Match Job</th>
-            <th data-hide="phone">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $cnt = 1;
-        while ($row = $res->fetch_object()) {
-            ?>
-            <tr>
-                <td><?php echo $cnt; ?></td>
-                <td><?php echo $row->firstname; ?> <?php echo $row->middlename; ?> <?php echo $row->surname; ?></td>
-                <td><?php echo $row->skill_acquired; ?></td>
-                <td><?php echo $row->position; ?></td>
-                <td><?php echo $row->number_of_months; ?></td>
-                <td><?php echo $row->special_skill; ?></td>
-                <td><?php echo determineJob($row->employment_status_employed, $row->prefered_occupation, $row->education_level, $row->skill_acquired, $row->professional_licence, $row->position, $row->special_skill, $row->number_of_months, 'Yes'); ?></td>
-                <td><a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row->job_seeker_id; ?>&&middlename=<?php echo $row->middlename; ?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
-            </tr>
-            <?php
-            $cnt = $cnt + 1;
-        }
-        ?>
-    </tbody>
-    <tfoot>
-        <tr class="active">
-            <td colspan="8">
-                <div class="text-right">
-                    <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0"></ul>
-                </div>
-            </td>
-        </tr>
-    </tfoot>
-</table>
+                                        
+                                        $ret = "SELECT
+                                        job_seeker.job_seeker_id,
+                                        job_seeker.surname,
+                                        job_seeker.firstname,
+                                        job_seeker.middlename,
+                                        job_seeker.position,
+                                        job_seeker.number_of_months,
+                                        job_seeker.good_communication_skill,
+                                        matched_job.job_seeker_id,
+                                        matched_job.matchedjob_id,
+                                        matched_job.job_name
+                                    FROM
+                                        job_seeker
+                                    LEFT JOIN matched_job ON job_seeker.job_seeker_id = matched_job.matchedjob_id
+                                    ORDER BY
+                                       job_seeker.job_seeker_id ASC";
+                                        
+                                        $stmt = $mysqli->prepare($ret);
+                                        $stmt->execute();
+                                        $res = $stmt->get_result();
+                                        $cnt = 1;
+                                        
+                                        ?>
+                                        
+                                        <!-- HTML Table -->
+                                        <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th data-toggle="true">Full Name</th>
+                                                    <!-- <th data-hide="phone">Skill</th> -->
+                                                    <th data-hide="phone">Position</th>
+                                                    <th data-hide="phone">Exp of Months</th>
+                                                    <th data-hide="phone">Good Communication Skill</th>
+                                                    <th data-hide="phone">Match Job</th>
+                                                    <th data-hide="phone">Job</th>
+                                                    <th data-hide="phone">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                                   while ($row = $res->fetch_object()) {
+                                                       // Initialize matched job
+                                                       $matchedJob = $row->job_name;
+                                                       $relevantskill = $row->position;
+                                                   
+                                                       // Decision Tree Logic
+                                                       if (strcasecmp($relevantskill, $row->position) == 0 || in_array(strtolower($row->position), ["NA", "na", "n/a"])) {
+                                                           if ($row->number_of_months >= 36 || $row->number_of_months >= 84) {  // 36 = 3 years || 84 = 7 years
+                                                               // Check for good communication
+                                                               if ($row->good_communication_skill == "Yes") {
+                                                                   $matchedJob = "Matched Job ";
+                                                                   // Display the value of $row->job_name when $matchedJob is "Matched Job "
+                                                                   // echo $row->job_name;
+                                                               } else {
+                                                                   $matchedJob = "No Matched Job (pending, wait for job posting updates !)"; // if NO below 36 months
+                                                               }
+                                                           } else {
+                                                               $matchedJob = "No Matched Job (pending, wait for job posting updates !!)"; // if Yes below 36 months of exp
+                                                           }
+                                                       } else {
+                                                           $matchedJob = "No Matched Job (pending, wait for job posting updates !!!)";
+                                                       }
+                                                       
+                                                       // If $row->position is "NA," "na," or "N/A", set a custom message
+                                                       if (in_array(strtolower($row->position), ["NA", "na", "n/a"])) {
+                                                           $matchedJob = "No Matched Job (pending, wait for job posting updates !!!)";
+                                                       }
+                                                       
+                                                       // If $row->number_of_months >= 84 and $row->good_communication_skill == "Yes", set a custom message
+                                                       if ($row->number_of_months >= 84 && $row->good_communication_skill == "Yes") {
+                                                           $matchedJob = "Matched Job ";
+                                                       }
+                                                       ?>
 
 
-                                    <?php
-                                    $stmt->close();
-                                    $mysqli->close();
-                                    ?>
+                                                <tr>
+                                                        <td><?php echo $cnt; ?></td>
+                                                        <td><?php echo $row->firstname . ' ' . $row->middlename . ' ' . $row->surname; ?></td>                          
+                                                        <td><?php echo $row->position; ?></td>
+                                                        <td><?php echo $row->number_of_months; ?></td>
+                                                        <td><?php echo $row->good_communication_skill; ?></td>
+                                                        <td><?php echo $matchedJob; ?></td>
+                                                        <?php if ($matchedJob === "Matched Job "): ?>
+                                                            <td><?php echo $row->job_name; ?></td>
+                                                        <?php else: ?>
+                                                            <td></td> <!-- Empty cell if not a matched job -->
+                                                        <?php endif; ?>
+                                                        <td><a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row->job_seeker_id; ?>&&middlename=<?php echo $row->middlename; ?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                    </tr>
+                                                    <?php
+                                                    $cnt = $cnt + 1;
+                                                }
+                                                ?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="active">
+                                                    <td colspan="8">
+                                                        <div class="text-right">
+                                                            <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0"></ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        
+                                        <?php
+                                        $stmt->close();
+                                        $mysqli->close();
+                                        ?>
+
 
 
                                 </div> <!-- end .table-responsive-->
