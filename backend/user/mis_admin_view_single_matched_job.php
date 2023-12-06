@@ -31,11 +31,24 @@
             <!--Get Details Of A Single User And Display Them Here-->
             <?php
                 // $middlename=$_GET['middlename'];
-                $job_seeker_id=$_GET['job_seeker_id'];
-                $ret = "SELECT * FROM job_seeker WHERE job_seeker_id = ?";
+                $matchedjob_id=$_GET['matchedjob_id'];
+                $ret = "SELECT
+                matched_job.matchedjob_id,
+                job_seeker.job_seeker_id,
+                job_seeker.surname,
+                job_seeker.firstname,
+                job_seeker.middlename,
+                job_seeker.position,
+                job_seeker.number_of_months,
+                job_seeker.good_communication_skill,
+                matched_job.job_name
+            FROM
+                matched_job
+                LEFT JOIN job_seeker ON matched_job.matchedjob_id=job_seeker.job_seeker_id
+                WHERE matched_job.matchedjob_id =?";
 
                 $stmt= $mysqli->prepare($ret) ;
-                $stmt->bind_param('i',$job_seeker_id);
+                $stmt->bind_param('i',$matchedjob_id);
                 $stmt->execute() ;//ok
                 $res=$stmt->get_result();
                 //$cnt=1;
@@ -74,13 +87,13 @@
                                     <div class="text-left mt-3">
                                         
                                         <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2"><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Date Of Birth:</strong><span class="ml-2"><?php echo $row->date_of_birth;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Sex :</strong> <span class="ml-2"><?php echo $row->sex;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Address :</strong> <span class="ml-2"><?php echo $row->barangay;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Religion :</strong> <span class="ml-2"><?php echo $row->religion;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Civil Status :</strong> <span class="ml-2"><?php echo $row->civil_status;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Contact :</strong> <span class="ml-2"><?php echo $row->contact_number;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Position :</strong> <span class="ml-2"><?php echo $row->position;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Position:</strong><span class="ml-2"><?php echo $row->position;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Exp of Months :</strong> <span class="ml-2"><?php echo $row->number_of_months;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Good Communication Skill:</strong> <span class="ml-2"><?php echo $row->good_communication_skill;?></span></p>
+                                        <!-- <p class="text-muted mb-2 font-13"><strong>DSS Result:</strong> <span class="ml-2"><?php echo $row->matchedJob;?></span></p> -->
+                                        <p class="text-muted mb-2 font-13"><strong>Job Offer:</strong> <span class="ml-2"><?php echo $row->job_name?></span></p>
+                                        <!-- <p class="text-muted mb-2 font-13"><strong>Contact :</strong> <span class="ml-2"><?php echo $row->contact_number;?></span></p> -->
+                                        <!-- <p class="text-muted mb-2 font-13"><strong>Employment Status :</strong> <span class="ml-2"><?php echo $row->employment_status;?></span></p> -->
                                         <hr>
                                         <p class="text-muted mb-2 font-13"><strong>Date Recorded :</strong> <span class="ml-2"><?php echo date("d/m/Y - h:m", strtotime($mysqlDateTime));?></span></p>
                                         <hr>
@@ -109,9 +122,10 @@
                                                }
                                            </style>
                                            
-                                           <a href="matched_job.php" class="badge badge-primary custom-link" aria-expanded="true">
-                                           Job Offer List!
-                                           </a>
+                                           <!-- <a href="matched_job.php" class="badge badge-primary custom-link" aria-expanded="true">
+                                           Matched Job
+                                           </a> -->
+                                           <a href="#" class="badge badge-primary custom-link"><?php echo $row->job_name;?></a>
 
                                         </li>
                                     </ul>

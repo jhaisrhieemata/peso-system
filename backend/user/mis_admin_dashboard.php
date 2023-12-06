@@ -21,7 +21,7 @@ check_login();
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-            <!-- <?php include('assets/inc/sidebar.php');?> -->
+            <?php include('assets/inc/sidebar.php');?>
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -123,7 +123,7 @@ check_login();
                                             <div class="text-right">
                                                 <?php
                                                     //code for summing up number of user employee  
-                                                    $result ="SELECT count(*) FROM user_staff ";
+                                                    $result ="SELECT count(*) FROM tesda_training ";
                                                     $stmt = $mysqli->prepare($result);
                                                     $stmt->execute();
                                                     $stmt->bind_result($user_employee);
@@ -131,7 +131,7 @@ check_login();
                                                     $stmt->close();
                                                 ?>
                                                 <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $user_employee;?></span></h3>
-                                                <p class="text-muted mb-1 text-truncate">Peso Staff</p>
+                                                <p class="text-muted mb-1 text-truncate">Tesda Training</p>
                                             </div>
                                         </div>
                                     </div> <!-- end row-->

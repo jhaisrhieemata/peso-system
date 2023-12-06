@@ -227,8 +227,8 @@
                             </li>
                             <li>
                                 <a href="matched_job.php">
-                                    <i class="fe-airplay"></i>
-                                    <span> Matched Job </span>
+                                    <i class="far fa-user-circle"></i>
+                                    <span> Job OfFer List</span>
                                 </a>
                                 
                             </li>
@@ -236,6 +236,13 @@
                                 <a href="mis_admin_manage_trash.php">
                                     <i class="icon-trash"></i>
                                     <span> Back up</span>
+                                </a>
+                                
+                            </li>
+                            <li>
+                                <a href="mis_admin_export_employment.php">
+                                <i class="fa fa-file" aria-hidden="true"></i>
+                                    <span>Report</span>
                                 </a>
                                 
                             </li>

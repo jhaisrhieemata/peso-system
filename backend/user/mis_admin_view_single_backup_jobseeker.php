@@ -32,8 +32,7 @@
             <?php
                 // $middlename=$_GET['middlename'];
                 $job_seeker_id=$_GET['job_seeker_id'];
-                $ret = "SELECT * FROM job_seeker WHERE job_seeker_id = ?";
-
+                $ret="SELECT * FROM job_seeker_backup WHERE job_seeker_id=?";
                 $stmt= $mysqli->prepare($ret) ;
                 $stmt->bind_param('i',$job_seeker_id);
                 $stmt->execute() ;//ok
@@ -80,7 +79,7 @@
                                         <p class="text-muted mb-2 font-13"><strong>Religion :</strong> <span class="ml-2"><?php echo $row->religion;?></span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Civil Status :</strong> <span class="ml-2"><?php echo $row->civil_status;?></span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Contact :</strong> <span class="ml-2"><?php echo $row->contact_number;?></span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Position :</strong> <span class="ml-2"><?php echo $row->position;?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Employment Status :</strong> <span class="ml-2"><?php echo $row->employment_status;?></span></p>
                                         <hr>
                                         <p class="text-muted mb-2 font-13"><strong>Date Recorded :</strong> <span class="ml-2"><?php echo date("d/m/Y - h:m", strtotime($mysqlDateTime));?></span></p>
                                         <hr>
@@ -94,35 +93,24 @@
 
                             </div> <!-- end col-->
                             
-                            
+                            <?php }?>
                             <div class="col-lg-4 col-xl-4">
                                 <div class="card-box">
                                     <ul class="nav nav-pills navtab-bg nav-justified">
                                         <li class="nav-item">
-                                        <style>
-                                               .custom-link {
-                                                   font-family: 'YourFont', sans-serif;
-                                                   font-size: 16px;
-                                                   font-weight: none;
-                                                   text-decoration: none;
-                                                   color: #fff;
-                                               }
-                                           </style>
-                                           
-                                           <a href="matched_job.php" class="badge badge-primary custom-link" aria-expanded="true">
-                                           Job Offer List!
-                                           </a>
-
+                                            <a href="#timeline" data-toggle="tab" aria-expanded="true" class="nav-link ">
+                                                 Job Match
+                                            </a>
                                         </li>
+                                
                                     </ul>
-
+                                   
                                </div> 
                                <!-- end card-box-->
 
                             </div> 
                             <!-- end col -->
                         </div>
-                    <?php }?>
                         <!-- end row-->
                         <div class="mt-4 mb-1">
                                             <!-- <div class="text-right d-print-none">

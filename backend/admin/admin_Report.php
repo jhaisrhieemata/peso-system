@@ -116,7 +116,7 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                         <li class="breadcrumb-item active">Manage Employment</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Manage Employment Details</h4>
+                                <h4 class="page-title">Manage Report Employment Details</h4>
                             </div>
                         </div>
                     </div>

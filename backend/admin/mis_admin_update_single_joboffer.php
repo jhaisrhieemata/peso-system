@@ -5,7 +5,9 @@
 		if(isset($_POST['update_job_posting']))
 		{
 			$job_posting_id=$_GET['job_posting_id'];
+          
             $job_name=$_POST['job_name'];
+            $job_seeker_id=$_POST['job_seeker_id']; // this is fk
             $job_description=$_POST['job_description'];
 			$com_name=$_POST['com_name'];
             $address=$_POST['address'];
@@ -14,22 +16,25 @@
             $date_posted=$_POST['date_posted'];
             
             //sql to insert captured values
-			$query="UPDATE job_posting SET job_name=?, job_description=?, com_name=?, address=?, contact=?, email=?, date_posted=? WHERE job_posting_id =?";
-			$stmt = $mysqli->prepare($query);
-			$rc=$stmt->bind_param('sssssssi', $job_name, $job_description, $com_name, $address, $contact, $email, $date_posted, $job_posting_id);
-			$stmt->execute();
-			/*
-			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
-			*echo"<script>alert('Successfully Created Account Proceed To Log In ');</script>";
-			*/ 
-			//declare a varible which will be passed to alert function
-			if($stmt)
-			{
-				$success = "Details Added";
-			}
-			else {
-				$err = "Please Try Again Or Try Later";
-			}
+			$updateQuery="UPDATE job_posting SET job_name=?, job_seeker_id=?, job_description=?, com_name=?, address=?, contact=?, email=?, date_posted=? WHERE job_posting_id =?";
+			$stmtUpdate = $mysqli->prepare($updateQuery);
+			$stmtUpdate->bind_param('ssssssssi', $job_name, $job_seeker_id, $job_description, $com_name, $address, $contact, $email, $date_posted, $job_posting_id);
+			$stmtUpdate->execute();
+            $stmtUpdate->close();
+             
+            
+			// INSERT query into another table
+            $insertQuery = "INSERT INTO matched_job (job_posting_id, job_name ) VALUES (?,?)";
+            $stmtInsert = $mysqli->prepare($insertQuery);
+            $stmtInsert->bind_param('ss', $job_posting_id, $job_name);
+            $stmtInsert->execute();
+            $stmtInsert->close();
+       
+            if ($updateQuery && $insertQuery) {
+               $success = "Successfully Updated and Inserted";
+           } else {
+               $err = "Try Again Later";
+           }
 			
 			
 		}
@@ -83,7 +88,20 @@
                         <!-- Form row -->
                         <?php
                             $job_posting_id=$_GET['job_posting_id'];
-                            $ret="SELECT  * FROM  job_posting WHERE job_posting_id=?";
+                            $ret="SELECT
+                            job_seeker.job_seeker_id,
+                           job_posting.job_posting_id,
+                           job_posting.job_name,
+                           job_posting.job_description,
+                           job_posting.com_name,
+                           job_posting.address,
+                           job_posting.contact,
+                           job_posting.email,
+                           job_posting.date_posted
+                       FROM
+                           job_posting
+                       LEFT JOIN job_seeker ON job_posting.job_posting_id = job_seeker.job_seeker_id
+                       WHERE job_posting.job_posting_id=?";
                             $stmt= $mysqli->prepare($ret) ;
                             $stmt->bind_param('i',$job_posting_id);
                             $stmt->execute() ;//ok
@@ -99,9 +117,16 @@
                                         <h4 class="header-title">JOB OPENING INFORMATION</h4>
                                         <!--Add Jobseeker Form-->
                                         <form method="post">
-                                        <div class="form-group">
-                                                <label for="inputjobname" class="col-form-label">Job Name</label>
-                                                <input required="required" type="text" class="form-control" value="<?php echo $row->job_name;?>" name="job_name" id="inputjobname" placeholder="Job Name">
+                                         <div class="form-group">
+                                           <div class="form-row">
+                                             <div class="form-group col-md-6">
+                                                  <label for="inputjobname" class="col-form-label">Job Name</label>
+                                                  <input required="required" type="text" class="form-control" value="<?php echo $row->job_name;?>" name="job_name" id="inputjobname" placeholder="Job Name">
+                                                </div>
+                                                <div class="form-group col-md-6" style="display: none;">
+                                                  <label for="inputrfp" class="col-form-label">Requires for Position</label>
+                                                  <input required="required" type="text" class="form-control" value="<?php echo $row->job_seeker_id;?>" name="job_seeker_id" id="inputrfp" placeholder="Requires for position">
+                                                </div>
                                             </div>
                                             <div class="form-row">
                                             <div class="form-group col-md-6">

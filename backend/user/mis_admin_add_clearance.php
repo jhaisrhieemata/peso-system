@@ -2,11 +2,10 @@
 <?php
 session_start();
 include('assets/inc/config.php');
-
-if ($mysqli->connect_error) {
-    die("Connection Failed: " . $mysqli->connect_error);
-}
-if (isset($_POST['add_job_seeker'])) {
+if (isset($_POST['add_employment'])) {
+    $or_no = $_POST['or_no'];
+    $agency_name = $_POST['agency_name'];
+    $date_issued = $_POST['date_issued'];
     $surname = $_POST['surname'];
     $firstname = $_POST['firstname'];
     $middlename = $_POST['middlename'];
@@ -42,21 +41,16 @@ if (isset($_POST['add_job_seeker'])) {
     $skill_acquired = $_POST['skill_acquired'];
     $certificates_received = $_POST['certificates_received'];
     $eligibility_civil_service = $_POST['eligibility_civil_service'];
-    $date_taken = $_POST['date_taken'];
     $professional_licence = $_POST['professional_licence'];
-    $valid_until = $_POST['valid_until'];
     $company_name = $_POST['company_name'];
     $position = $_POST['position'];
     $number_of_months = $_POST['number_of_months'];
-    $work_address=$_POST['work_address'];
-    $work_status=$_POST['work_status'];
-    $good_communication_skill=$_POST['good_communication_skill'];
-    $special_skill = $_POST['special_skill'];
+    $other_skills = $_POST['other_skills'];
     $referred_to = $_POST['referred_to'];
     //sql to insert captured values
-    $query = "insert into  job_seeker (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, date_taken, professional_licence, valid_until, company_name, position, number_of_months, work_address, work_status, good_communication_skill, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $query = "insert into job_seeker (or_no, agency_name, date_issued, surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, professional_licence, company_name, position, number_of_months, other_skills, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months,$work_address, $work_status, $good_communication_skill, $special_skill, $referred_to);
+    $rc = $stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssss', $or_no, $agency_name, $date_issued, $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $professional_licence, $company_name, $position, $number_of_months, $other_skills, $referred_to);
     $stmt->execute();
     /*
 			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
@@ -108,11 +102,11 @@ if (isset($_POST['add_job_seeker'])) {
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Employment</a></li>
-                                        <li class="breadcrumb-item active">New Employment</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Clearance</a></li>
+                                        <li class="breadcrumb-item active">New Clearance</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Create New Employment </h4>
+                                <h4 class="page-title">Create New Clearance </h4>
                             </div>
                         </div>
                     </div>
@@ -125,10 +119,25 @@ if (isset($_POST['add_job_seeker'])) {
                                     <h4 class="header-title">PERSONAL INFORMATION</h4>
                                     <!--Add Jobseeker Form-->
                                     <form method="post">
+                                    
+                                        <div class="form-row">                                      
+                                                <div class="form-group col-md-4">
+                                                    <label for="or_no" class="col-form-label">OR NO</label>
+                                                    <input required="required" type="text" name="or_no" class="form-control" id="or_no" placeholder="OR NO">
+                                                </div>
+                                              <div class="form-group col-md-4">
+                                                    <label for="date_issued" class="col-form-label">Date Issued</label>
+                                                    <input required="required" type="date" name="date_issued" class="form-control" id="date_issued">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="agency_name" class="col-form-label">Agency</label>
+                                                    <input required="required" type="text" name="agency_name" class="form-control" id="agency_name" placeholder="Agency">
+                                                </div>
+                                            </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="inputSurName" class="col-form-label">Surname</label>
-                                                <input type="text" required="required" name="surname" class="form-control" id="inputSurName" placeholder="Surname">
+                                                <input type="text" required="required" name="surname" class="form-control" id="inputSurName" placeholder="SurName">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inputFirstName" class="col-form-label">First Name</label>
@@ -140,12 +149,12 @@ if (isset($_POST['add_job_seeker'])) {
                                             <div class="form-group col-md-6">
                                                 <label for="inputMiddleName" class="col-form-label">Middle Name</label>
                                                 <input type="text" required="required" name="middlename" class="form-control" id="inputMiddleName" placeholder="Put hyphen (-) if not applicable">
-
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inputSuffix" class="col-form-label">Suffix</label>
-                                                <select id="inputSuffix" name="suffix" class="form-control">
-                                                    <option value="NA">NA</option>
+                                                <select id="inputSuffix" required="required" name="suffix" class="form-control">
+                                                    <option value="">-Select-</option>
+                                                    <option>NA</option>
                                                     <option>Sr</option>
                                                     <option>Jr</option>
                                                     <option>III</option>
@@ -223,7 +232,7 @@ if (isset($_POST['add_job_seeker'])) {
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="inputReligion" class="col-form-label">Religion</label>
-                                                <input type="text" name="religion" class="form-control" id="inputReligion" placeholder="Religion">
+                                                <input required="required" type="text" name="religion" class="form-control" id="inputReligion" placeholder="Religion">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputcivilstatus" class="col-form-label">Civil Status</label>
@@ -236,7 +245,7 @@ if (isset($_POST['add_job_seeker'])) {
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputTIN" class="col-form-label">TIN</label>
-                                                <input type="text" name="tin" class="form-control" id="inputTIN" placeholder="TIN">
+                                                <input required="required" type="text" name="tin" class="form-control" id="inputTIN" placeholder="TIN">
                                             </div>
                                         </div>
 
@@ -244,7 +253,8 @@ if (isset($_POST['add_job_seeker'])) {
                                             <div class="form-group col-md-4">
                                                 <label for="inputDisability" class="col-form-label">Disability</label>
                                                 <select id="inputDisability" required="required" name="disability" class="form-control">
-                                                    <option value="NA">NA</option>
+                                                    <option value="">-Select-</option>
+                                                    <option>NA</option>
                                                     <option>Visual</option>
                                                     <option>Hearing</option>
                                                     <option>Speech</option>
@@ -256,18 +266,18 @@ if (isset($_POST['add_job_seeker'])) {
 
                                             <div class="form-group col-md-4">
                                                 <label for="inputHeight" class="col-form-label">Height(ft.)</label>
-                                                <input type="text" name="height" class="form-control" id="inputHeight" placeholder="Height">
+                                                <input required="required" type="text" name="height" class="form-control" id="inputHeight" placeholder="Height">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputContactNumber" class="col-form-label">Contact Number</label>
-                                                <input required="required" type="number" name="contact_number" class="form-control" id="inputContactNumber" placeholder="Contact Number" pattern="\d{11}" title="Please enter 11 digits">
+                                                <input required="required" type="text" name="contact_number" class="form-control" id="inputContactNumber" placeholder="Contact Number">
                                             </div>
                                         </div>
 
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="inputEmail" class="col-form-label">Email</label>
-                                                <input required="required" type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                <input type="email" required="required" name="email" class="form-control" id="inputEmail" placeholder="Email">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inpuEmploymentStatus" class="col-form-label">Employment Status</label>
@@ -281,45 +291,25 @@ if (isset($_POST['add_job_seeker'])) {
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="input_emplo_stat_employed" class="col-form-label">Employed</label>
-                                                <select id="input_emplo_stat_employed" required="required" name="employment_status_employed" class="form-control" onchange="checkEmploymentStatus()">
-                                                    <option value="NA">NA</option>
-                                                    <option value="WageEmployed">Wage employed</option>
-                                                    <option value="SelfEmployedFisherman">Self-employed (Fisherman/Fisherfolk)</option>
-                                                    <option value="SelfEmployedVendor">Self-employed (Vendor/Retailer)</option>
-                                                    <option value="SelfEmployedHomeBased">Self-employed (home-based worker)</option>
-                                                    <option value="SelfEmployedTransport">Self-employed (Transport)</option>
-                                                    <option value="SelfEmployedDomestic">Self-employed (Domestic Worker)</option>
-                                                    <option value="SelfEmployedFreelancer">Self-employed (Freelancer)</option>
-                                                    <option value="SelfEmployedArtisan">Self-employed (Artisan/Craft Worker)</option>
-                                                    <option value="Others">Others</option>
+                                                <select id="input_emplo_stat_employed" required="required" name="employment_status_employed" class="form-control">
+                                                    <option value="">-Select-</option>
+                                                    <option>NA</option>
+                                                    <option>Wage employed</option>
+                                                    <option>Self-employed (Fisherman/Fisherfolk)</option>
+                                                    <option>Self-employed (Vendor/Retailer)</option>
+                                                    <option>Self-employed (home-based worker)</option>
+                                                    <option>Self-employed (Transport)</option>
+                                                    <option>Self-employed (Domistic Worker)</option>
+                                                    <option>Self-employed (Freelancer)</option>
+                                                    <option>Self-employed (Artisan/Craft WOrker)</option>
+                                                    <option>others</option>
                                                 </select>
-                                                <!-- to display other specify -->
-                                                <!-- <div id="otherEmploymentStatus" class="form-group" style="display:none;">
-                                                           <label for="input_other_employment_status" class="col-form-label">Please Specify</label>
-                                                          
-                                                   </div> -->
                                             </div>
-
-
-
-                                            <!-- <script>
-                                                       function checkEmploymentStatus() {
-                                                           var selectedValue = document.getElementById("input_emplo_stat_employed").value;
-                                                           var otherEmploymentStatusDiv = document.getElementById("otherEmploymentStatus");
-                                                   
-                                                           if (selectedValue === "Others") {
-                                                               otherEmploymentStatusDiv.style.display = "block";
-                                                           } else {
-                                                               otherEmploymentStatusDiv.style.display = "none";
-                                                           }
-                                                       }
-                                                   </script> -->
-
-
                                             <div class="form-group col-md-6">
                                                 <label for="input_emplo_stat_unemployed" class="col-form-label">Unemployed</label>
                                                 <select id="input_emplo_stat_unemployed" required="required" name="employment_status_unemployed" class="form-control">
-                                                    <option value="NA">NA</option>
+                                                    <option value="">-Select-</option>
+                                                    <option>NA</option>
                                                     <option>New Emtrant/Fresh Graduate</option>
                                                     <option>Finish Contract</option>
                                                     <option>Resigned</option>
@@ -335,22 +325,25 @@ if (isset($_POST['add_job_seeker'])) {
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="inputAreyouOFW?" class="col-form-label">Are you OFW?</label>
-                                                <select id="inputAreyouOFW?" name="Are_you_ofw" class="form-control">
-                                                    <option value="No">No</option>
+                                                <select id="inputAreyouOFW?" required="required" name="Are_you_ofw" class="form-control">
+                                                    <option value="">-Select-</option>
+                                                    <option>No</option>
                                                     <option>Yes</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputAreyouaformerOFW?" class="col-form-label">Are you a former OFW?</label>
-                                                <select id="inputAreyouaformerOFW?" name="are_you_a_former_ofw" class="form-control">
-                                                    <option value="No">No</option>
+                                                <select id="inputAreyouaformerOFW?" required="required" name="are_you_a_former_ofw" class="form-control">
+                                                    <option value="">-Select-</option>
+                                                    <option>No</option>
                                                     <option>Yes</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputAreyoua4Psbeneficiary?" class="col-form-label">Are you a 4Ps beneficiary?</label>
-                                                <select id="inputAreyoua4Psbeneficiary?" name="beneficiary" class="form-control">
-                                                    <option value="No">No</option>
+                                                <select id="inputAreyoua4Psbeneficiary?" required="required" name="beneficiary" class="form-control">
+                                                    <option value="">-Select-</option>
+                                                    <option>No</option>
                                                     <option>Yes</option>
                                                 </select>
                                             </div>
@@ -369,7 +362,8 @@ if (isset($_POST['add_job_seeker'])) {
                                             <div class="form-group col-md-4">
                                                 <label for="inputLanguage" class="col-form-label">Language/Dialect</label>
                                                 <select id="inputLanguage" required="required" name="language_dialect" class="form-control">
-                                                    <option value="Cebuano">Cebuano</option>
+                                                    <option value="">-Select-</option>
+                                                    <option>Cebuano</option>
                                                     <option>Tagalog</option>
                                                     <option>English</option>
                                                 </select>
@@ -425,18 +419,18 @@ if (isset($_POST['add_job_seeker'])) {
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputCourse" class="col-form-label">If College Graduate / Post Graduate</label>
-                                                <input type="text" name="course" class="form-control" id="inputCourse" placeholder="please specify course">
+                                                <input required="required" type="text" name="course" class="form-control" id="inputCourse" placeholder="please specify course">
                                             </div>
                                         </div>
-                                        <h4 class="header-title">TECHNICAL / VOCATIONAL AND OTHER TRAINING</h4>
+                                        <h4 class="header-title">TECHNICAL/VOCATIONAL TRAINING</h4>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="inputTraining" class="col-form-label">Training/Vocational Course</label>
-                                                <input type="text" name="training" class="form-control" id="inputTraining" placeholder="Training/Vocational Course">
+                                                <label for="inputTraining" class="col-form-label">Training</label>
+                                                <input type="text" name="training" class="form-control" id="inputTraining" placeholder="Training">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="inputHoursOfTraining" class="col-form-label">Hours of Training</label>
-                                                <input type="number" name="hours_of_training" class="form-control" id="inputHoursOfTraining" placeholder="Hours of Training">
+                                                <label for="inputHoursOfTraining" class="col-form-label">Hours Of Training</label>
+                                                <input type="text" name="hours_of_training" class="form-control" id="inputHoursOfTraining" placeholder="Hours Of Training">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -449,29 +443,19 @@ if (isset($_POST['add_job_seeker'])) {
                                                 <input type="text" name="skill_acquired" class="form-control" id="inputSkillAcquired" placeholder="Skill Acquired">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="inputCertificatesReceived" class="col-form-label">Certificates Received (NC I,NC II,NC III,NC IV,ect.)</label>
-                                                <input type="text" name="certificates_received" class="form-control" id="inputCertificatesReceived" placeholder="Certificates">
+                                                <label for="inputCertificatesReceived" class="col-form-label">Certificates Received</label>
+                                                <input type="text" name="certificates_received" class="form-control" id="inputCertificatesReceived" placeholder="Number of Months">
                                             </div>
                                         </div>
-                                        <h4 class="header-title">ELIGIBILITY / PROFESSIONAL LICENSE</h4>
+                                        <h4 class="header-title">ELIGIBILITY/LICENSE</h4>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4" class="col-form-label">Eligibility (Civil Service)</label>
-                                                <input type="text" name="eligibility_civil_service" class="form-control" id="inputEmail4" placeholder="Eligibility (Civil Service)">
+                                                <label for="inputEmail4" class="col-form-label">Eligibility (Civil service)</label>
+                                                <input type="text" name="eligibility_civil_service" class="form-control" id="inputEmail4" placeholder="Eligibility">
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="datetaken" class="col-form-label"> Date Taken</label>
-                                                <input type="date" name="date_taken" class="form-control" id="datetaken">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="inputEmail4" class="col-form-label">Professional Licence (PRC)</label>
-                                                <input type="text" name="professional_licence" class="form-control" id="inputEmail4" placeholder="Professional Licence">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="validuntil" class="col-form-label">Valid Until</label>
-                                                <input type="date" name="valid_until" class="form-control" id="validuntil" placeholder="Valid Until">
+                                                <input type="text" name="professional_licence" class="form-control" id="inputEmail4" placeholder="Professional Licence ">
                                             </div>
                                         </div>
                                         <h4 class="header-title">WORK EXPERIENCE</h4>
@@ -484,56 +468,16 @@ if (isset($_POST['add_job_seeker'])) {
                                                 <label for="inputPosition" class="col-form-label">Position</label>
                                                 <input required="required" type="text" name="position" class="form-control" id="Position" placeholder="Position">
                                             </div>
-                                            <!-- <div class="form-group col-md-4" style="display: none;">
-                                                <label for="inputmj" class="col-form-label">firstname</label>
-                                                <input required="required" type="text" name="firstname" class="form-control" id="inputmj" >
-                                                <label for="inputmj" class="col-form-label">middlename</label>
-                                                <input required="required" type="text" name="middlename" class="form-control" id="inputmj" >
-                                                <label for="inputmj" class="col-form-label">surname</label>
-                                                <input required="required" type="text" name="surname" class="form-control" id="inputmj" >
-                                                <label for="inputmj" class="col-form-label">Position</label>
-                                                <input required="required" type="text" name="position" class="form-control" id="inputmj" >
-                                                <label for="inputmj" class="col-form-label">Exp of Months</label>
-                                                <input required="required" type="text" name="number_of_months" class="form-control" id="inputmj" >
-                                                <label for="inputmj" class="col-form-label">Good Communication Skill</label>
-                                                <input required="required" type="text" name="good_communication_skill" class="form-control" id="inputmj" >
-                                                <label for="inputmj" class="col-form-label">job_name</label>
-                                                <input required="required" type="text" name="job_name" class="form-control" id="inputmj" >   
-                                            </div> -->
                                             <div class="form-group col-md-4">
                                                 <label for="inputNumberofMonths" class="col-form-label">Number of Months</label>
-                                                <input required="required" type="number" name="number_of_months" class="form-control" id="inputNumberofMonths" placeholder="Number of Months">
-                                            </div>
-                                        </div>
-                                        <div class="form-row"> 
-                                            <div class="form-group col-md-4">
-                                                <label for="inputworkaddress" class="col-form-label">Work Address</label>
-                                                <input required="required" type="text" name="work_address" class="form-control" id="inputworkaddress" placeholder=" Work Address">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="inputworkstatus" class="col-form-label">Work Status</label>
-                                                <select id="inputworkstatus" required="required" name="work_status" class="form-control">
-                                                    <option value="select">-Select-</option>
-                                                    <option value="Permanent">Permanent</option>
-                                                    <option value="Contractual">Contractual</option>
-                                                    <option value="Part-time">Part-time</option>
-                                                    <option value="Probationary">Probationary</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="inputgcs" class="col-form-label">Good Communication Skill?</label>
-                                                <select id="inputgcs" required="required" name="good_communication_skill" class="form-control">
-                                                    <option value="select">-Select-</option>
-                                                    <option value="Yes">Yes</option>
-                                                    <option value="No">No</option>
-                                                </select>
+                                                <input required="required" type="text" name="number_of_months" class="form-control" id="inputNumberofMonths" placeholder="Number of Months">
                                             </div>
                                         </div>
                                         <h4 class="header-title">OTHER SKILLS ACQUIRED WITHOUT CERTIFICATE</h4>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="inputOtherSkillsclass=" col-form-label>Other Skills</label>
-                                                <input type="text" name="special_skill" class="form-control" id="inputOtherSkillsclass" placeholder="Other Skills">
+                                                <input type="text" name="other_skills" class="form-control" id="inputOtherSkillsclass" placeholder="Other Skills">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inputReferredTo" col-form-label>Referred To</label>
@@ -584,7 +528,7 @@ if (isset($_POST['add_job_seeker'])) {
                                         </div>
 
 
-                                        <button type="submit" name="add_job_seeker" class="ladda-button btn btn-primary" data-style="expand-right">Add Job Seeker</button>
+                                        <button type="submit" name="add_employment" class="ladda-button btn btn-primary" data-style="expand-right">Add Employment</button>
                                     </form>
                                     <!--End employment Form-->
                                 </div> <!-- end card-body -->
@@ -626,31 +570,6 @@ if (isset($_POST['add_job_seeker'])) {
 
     <!-- Buttons init js-->
     <script src="assets/js/pages/loading-btn.init.js"></script>
-
-    <!-- // jQuery code  employed enable or disable -->
-    <!-- <script>
-      
-      $(document).ready(function() {
-          // Attach an event listener to the Employment Status select box
-          $("#inpuEmploymentStatus").change(function() {
-              // Get the selected value
-              var selectedValue = $(this).val();
-
-              // Disable or enable the corresponding select boxes based on the selected value
-              if (selectedValue === "Employed") {
-                  $("#input_emplo_stat_unemployed").prop("disabled", true);
-                  $("#input_emplo_stat_employed").prop("disabled", false);
-              } else if (selectedValue === "Unemployed") {
-                  $("#input_emplo_stat_unemployed").prop("disabled", false);
-                  $("#input_emplo_stat_employed").prop("disabled", true);
-              } else {
-                  // Reset if neither Employed nor Unemployed is selected
-                  $("#input_emplo_stat_unemployed").prop("disabled", true);
-                  $("#input_emplo_stat_employed").prop("disabled", true);
-              }
-          });
-      });
-  </script> -->
 
 </body>
 

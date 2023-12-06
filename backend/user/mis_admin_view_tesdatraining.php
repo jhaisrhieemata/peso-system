@@ -41,11 +41,11 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
-                                            <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Peso Clients</a></li> -->
-                                            <li class="breadcrumb-item active">View Job Seeker</li>
+                                            <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Tesda Clients</a></li> -->
+                                            <li class="breadcrumb-item active">View Tesda Client</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">List of Job Seeker Work Experience</h4>
+                                    <h4 class="page-title"> List of Tesda Client</h4>
                                 </div>
                             </div>
                         </div>     
@@ -58,11 +58,11 @@
                                     <div class="mb-2">
                                         <div class="row">
                                             <div class="col-12 text-sm-center form-inline" >
-                                            <div class="form-group mr-2" style="display:none">
+                                                <div class="form-group mr-2" style="display:none">
                                                     <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
                                                         <option value="">Show all</option>
                                                     </select>
-                                                  </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
                                                 </div>
@@ -71,16 +71,16 @@
                                     </div>
                                     
                                     <div class="table-responsive">
-                                        <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="10">
+                                        <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="7">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th data-toggle="true">Full Name</th>
-                                                <th data-hide="phone">Company Name</th>
-                                                <th data-hide="phone">Position</th>
-                                                <th data-hide="phone">Number of Months</th>
-                                                <th data-hide="phone">Work Address</th>
-                                                <th data-hide="phone">Work Status</th>
+                                                <th data-hide="phone">Date of Birth</th>
+                                                <th data-hide="phone">Sex</th>
+                                                <th data-hide="phone">Civil Status</th>
+                                                <th data-hide="phone">Contact</th>
+                                                <th data-hide="phone">Employment Status</th>
                                                 <th data-hide="phone">Action</th>
                                             </tr>
                                             </thead>
@@ -89,7 +89,7 @@
                                                 *get details of all Jobseeker
                                                 *
                                             */
-                                                $ret="SELECT * FROM  job_seeker ORDER BY job_seeker_id ASC "; 
+                                                $ret="SELECT * FROM  tesda_applicant ORDER BY tesda_applicant_id ";
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -101,22 +101,21 @@
 
                                                 <tbody>
                                                 <tr>
-                                                    <td><?php echo $cnt;?></td>
+                                                <td><?php echo $cnt;?></td>
                                                     <td><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></td>
-                                                    <td><?php echo $row->company_name;?></td>
-                                                    <td><?php echo $row->position;?></td>
-                                                    <td><?php echo $row->number_of_months;?></td>
-                                                    <td><?php echo $row->work_address;?></td>
-                                                    <td><?php echo $row->work_status;?></td>
+                                                    <td><?php echo $row->date_of_birth;?></td>
+                                                    <td><?php echo $row->sex;?></td>
+                                                    <td><?php echo $row->civil_status;?></td>
+                                                    <td><?php echo $row->contact_number;?></td>
+                                                    <td><?php echo $row->employment_status;?></td>
                                                     
-                                                    
-                                                    <td><a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row->job_seeker_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                    <td><a href="mis_admin_view_single_tesdatraining.php?tesda_applicant_id=<?php echo $row->tesda_applicant_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>
                                             <?php  $cnt = $cnt +1 ; }?>
                                             <tfoot>
                                             <tr class="active">
-                                                <td colspan="10">
+                                                <td colspan="8">
                                                     <div class="text-right">
                                                         <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0"></ul>
                                                     </div>

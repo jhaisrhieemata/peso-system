@@ -3,7 +3,7 @@
     // $user_fname=$_SESSION['user_fname'];
     // $user_lname=$_SESSION['user_lname'];
     $user_email = $_SESSION['user_email'];
-    $ret="SELECT * FROM  mis_user WHERE user_id = ? AND user_email = ?";
+    $ret="SELECT * FROM  user_staff WHERE user_id = ? AND user_email = ?";
     $stmt= $mysqli->prepare($ret) ;
     $stmt->bind_param('is',$user_id, $user_email);
     $stmt->execute() ;//ok
@@ -15,10 +15,24 @@
     <div class="navbar-custom">
         <ul class="list-unstyled topnav-menu float-right mb-0">
 
+            <!-- <li class="d-none d-sm-block">
+                <form class="app-search">
+                    <div class="app-search-box">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button class="btn" type="submit">
+                                    <i class="fe-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li> -->
 
             
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+            <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <!-- <img src="assets/images/users/<?php echo $row->user_dpic;?>"  alt="pic" class="rounded-circle"> -->
                     <span><img src="assets/images/Peso_logo.png" alt="" height="50"></span>
                     <span class="pro-user-name ml-1">
@@ -32,27 +46,21 @@
                     </div> -->
 
                     <!-- item-->
-                    <a href="mis_user_dashboard.php" class="dropdown-item notify-item">
-                        <i class="fas fa-user"></i>
-                        <span>Dashboard</span>
-                    </a>
-
-                    <!-- <a href="mis_user_update-account.php" class="dropdown-item notify-item">
-                        <i class="fas fa-user-tag"></i>
-                        <span>Manage Account</span>
+                    <!-- <a href="mis_admin_account.php" class="dropdown-item notify-item">
+                        <i class="fe-user"></i>
+                        <span>My Account</span>
                     </a> -->
 
 
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider"></div> 
 
                     <!-- item-->
-                    <a href="mis_user_logout_partial.php" class="dropdown-item notify-item">
+                    <a href="mis_admin_logout_partial.php" class="dropdown-item notify-item">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
                     </a>
 
                 </div>
-        
             </li>
 
            
@@ -60,19 +68,102 @@
         </ul>
 
         <!-- LOGO -->
-        <!-- <div class="logo-box">
-            <a href="mis_user_dashboard.php" class="logo text-center">
+        <div class="logo-box">
+            <a href="mis_admin_dashboard.php" class="logo text-center">
                 <span class="logo-lg">
                     <img src="assets/images/Peso_log.png" alt="" height="50">
-                    
+                    <!-- <span class="logo-lg-text-light">UBold</span> -->
                 </span>
                 <span class="logo-sm">
-                   
+                    <!-- <span class="logo-sm-text-dark">U</span> -->
                     <img src="assets/images/Peso_log.png" alt="" height="30">
                 </span>
             </a>
-        </div> -->
-        <!-- <span class="logo-lg-text-light">UBold</span>
-         <span class="logo-sm-text-dark">U</span> -->
+        </div>
+
+        <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+            <li>
+                <button class="button-menu-mobile waves-effect waves-light">
+                    <i class="fe-menu"></i>
+                </button>
+            </li>
+
+            <li class="dropdown d-none d-lg-block">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    Create New
+                    <i class="mdi mdi-chevron-down"></i> 
+                </a>
+                <div class="dropdown-menu">
+
+                    <!-- item-->
+                    <a href="mis_admin_register_employment.php" class="dropdown-item">
+                        <i class="far fa-user-circle"></i>
+                        <span>Employment</span>
+                    </a> 
+                    <a href="mis_admin_register_scholarship.php" class="dropdown-item">
+                        <i class="fa fa-graduation-cap"></i>
+                        <span>Scholarship</span>
+                    </a>
+                    
+                    <a href="mis_admin_register_scholarship.php" class="dropdown-item">
+                        <i class="fas fa-user-edit"></i>
+                        <span>SPES</span>
+                    </a> 
+                    <a href="mis_admin_register_scholarship.php" class="dropdown-item">
+                        <i class="fas fa-user-edit"></i>
+                        <span>GIP</span>
+                    </a>
+                    <a href="mis_admin_add_clearance.php" class="dropdown-item">
+                        <i class="fa fa-address-card "></i>
+                        <span>Peso Clearance</span>
+                    </a>
+                    <a href="mis_admin_register_joboffer.php" class="dropdown-item">
+                        <i class="fa fa-newspaper"></i>
+                        <span>Job Opening</span>
+                    </a>  
+                    <a href="mis_admin_add_agency.php" class="dropdown-item">
+                        <i class="fas fa-ellipsis-h"></i>
+                        <span>Agency</span>
+                    </a> 
+                    <a href="mis_admin_register_tesdatraining.php" class="dropdown-item">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Tesda Training</span>
+                    </a>
+                    <!-- <a href="mis_admin_register_assessment.php" class="dropdown-item">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Assessment</span>
+                    </a> -->
+                      
+                 
+                    
+                  
+                   
+                    
+                    
+                                        <!-- item-->
+                    <a href="mis_admin_add_users.php" class="dropdown-item">
+                        <i class="fas fa-users"></i>
+                        <span>User Employee</span>
+                    </a>
+
+
+                    
+                     <div class="dropdown-divider"></div>
+
+                    
+                </div>
+            </li>
+
+        </ul>
     </div>
+    <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 <?php }?>

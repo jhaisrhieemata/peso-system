@@ -41,11 +41,11 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
-                                            <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Peso Clients</a></li> -->
-                                            <li class="breadcrumb-item active">View Job Seeker</li>
+                                            <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li> -->
+                                            <li class="breadcrumb-item active">View User </li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">List of Job Seeker Work Experience</h4>
+                                    <h4 class="page-title">List of Users</h4>
                                 </div>
                             </div>
                         </div>     
@@ -58,11 +58,11 @@
                                     <div class="mb-2">
                                         <div class="row">
                                             <div class="col-12 text-sm-center form-inline" >
-                                            <div class="form-group mr-2" style="display:none">
+                                                <div class="form-group mr-2" style="display:none">
                                                     <select id="demo-foo-filter-status" class="custom-select custom-select-sm">
                                                         <option value="">Show all</option>
                                                     </select>
-                                                  </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <input id="demo-foo-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
                                                 </div>
@@ -75,21 +75,19 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th data-toggle="true">Full Name</th>
-                                                <th data-hide="phone">Company Name</th>
-                                                <th data-hide="phone">Position</th>
-                                                <th data-hide="phone">Number of Months</th>
-                                                <th data-hide="phone">Work Address</th>
-                                                <th data-hide="phone">Work Status</th>
+                                                <th data-toggle="true">Name</th>
+                                                <th data-hide="phone">Email</th>
+                                                <th data-hide="phone">Contact Number</th>
+                                                <!-- <th data-hide="phone">Regitration Type</th> -->
                                                 <th data-hide="phone">Action</th>
                                             </tr>
                                             </thead>
                                             <?php
                                             /*
-                                                *get details of all Jobseeker
+                                                *get details of allpatients
                                                 *
                                             */
-                                                $ret="SELECT * FROM  job_seeker ORDER BY job_seeker_id ASC "; 
+                                                $ret="SELECT * FROM  user_staff ORDER BY user_id ASC"; 
                                                 //sql code to get to ten user  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -102,21 +100,17 @@
                                                 <tbody>
                                                 <tr>
                                                     <td><?php echo $cnt;?></td>
-                                                    <td><?php echo $row->firstname;?> <?php echo $row->middlename;?> <?php echo $row->surname;?></td>
-                                                    <td><?php echo $row->company_name;?></td>
-                                                    <td><?php echo $row->position;?></td>
-                                                    <td><?php echo $row->number_of_months;?></td>
-                                                    <td><?php echo $row->work_address;?></td>
-                                                    <td><?php echo $row->work_status;?></td>
-                                                    
-                                                    
-                                                    <td><a href="mis_admin_view_single_employment.php?job_seeker_id=<?php echo $row->job_seeker_id;?>&&middlename=<?php echo $row->middlename;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
+                                                    <td><?php echo $row->user_fname;?> <?php echo $row->user_lname;?></td>
+                                                    <td><?php echo $row->user_email;?></td> 
+                                                    <td><?php echo $row->user_number;?></td>  
+                                                    <!-- <td><?php echo $row->regtype;?></td>                                                   -->
+                                                    <td><a href="mis_admin_view_single_user.php?user_id=<?php echo $row->user_id;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a></td>
                                                 </tr>
                                                 </tbody>
                                             <?php  $cnt = $cnt +1 ; }?>
                                             <tfoot>
                                             <tr class="active">
-                                                <td colspan="10">
+                                                <td colspan="8">
                                                     <div class="text-right">
                                                         <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0"></ul>
                                                     </div>

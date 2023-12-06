@@ -1,56 +1,35 @@
+<!--Server side code to handle  sign up-->
 <?php
-session_start();
-include('assets/inc/config.php');
-
-if (isset($_POST['user_login'])) {
-    $user_email = $_POST['user_email'];
-    $user_pwd = sha1(md5($_POST['user_pwd'])); // double encrypt to increase security
-
-
-    $stmt = $mysqli->prepare("SELECT user_email, user_pwd, user_id FROM user_staff WHERE user_email = ? AND user_pwd = ?");
-    $stmt->bind_param('ss', $user_email, $user_pwd);
-    $stmt->execute();
-    $stmt->bind_result($user_email, $user_pwd, $user_id);
-    $rs = $stmt->fetch();
-
-    $_SESSION['user_id'] = $user_id;
-    $_SESSION['user_email'] = $user_email;
-
-
-    if ($rs) {
-        header("location: mis_user_dashboard.php");
-    } else {
-        $err = "Access Denied. Please check your credentials.";
-    }
-}
-//     if ($rs) {
-//         // Check  value and navigate to a specific page accordingly
-//         switch ( {
-//             case "Employment":
-//                 header("Location: user_staff_register_employment.php");
-//                 break;
-//             case "Scholarship":
-//                 header("Location: user_staff_register_scholarship.php");
-//                 break;
-//             case "SPES":
-//                 header("Location: user_staff_register_spes.php");
-//                 break;
-//             case "GIP":
-//                 header("Location: user_staff_register_gip.php");
-//                 break;
-//             case "TesdaTraining":
-//                 header("Location: user_staff_register_tesdatraining.php");
-//                 break;
-//             // Add other cases as needed
-//             default:
-//                 $err = "Invalid; // Handling othervalues
-//                 break;
-//         }
-//     } else {
-//         $err = "Access Denied. Please check your credentials.";
-//     }
-// }
+	session_start();
+	include('assets/inc/config.php');
+		if(isset($_POST['admin_sup']))
+		{
+			$ad_fname=$_POST['ad_fname'];
+			$ad_lname=$_POST['ad_lname'];
+			$ad_email=$_POST['ad_email'];
+			$ad_pwd=sha1(md5($_POST['ad_pwd']));//double encrypt to increase security
+            //sql to insert captured values
+			$query="insert into admin (ad_fname, ad_lname, ad_email, ad_pwd) values(?,?,?,?)";
+			$stmt = $mysqli->prepare($query);
+			$rc=$stmt->bind_param('ssss', $ad_fname, $ad_lname, $ad_email, $ad_pwd);
+			$stmt->execute();
+			/*
+			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
+			*echo"<script>alert('Successfully Created Account Proceed To Log In ');</script>";
+			*/ 
+			//declare a varible which will be passed to alert function
+			if($stmt)
+			{
+				$success = "Created Account Proceed To Log In";
+			}
+			else {
+				$err = "Please Try Again Or Try Later";
+			}
+			
+			
+		}
 ?>
+<!--End Server Side-->
 <!--End Login-->
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +38,8 @@ if (isset($_POST['user_login'])) {
         <meta charset="utf-8" />
         <title>PESO Manolo Fortich</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="" name="description" />
-        <meta content="" name="MartDevelopers" />
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/Peso_log.png">
@@ -70,7 +49,6 @@ if (isset($_POST['user_login'])) {
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
         <!--Load Sweet Alert Javascript-->
-        
         <script src="assets/js/swal.js"></script>
         <!--Inject SWAL-->
         <?php if(isset($success)) {?>
@@ -90,14 +68,12 @@ if (isset($_POST['user_login'])) {
                 <script>
                             setTimeout(function () 
                             { 
-                                swal("Failed","<?php echo $err;?>","error");
+                                swal("Failed","<?php echo $err;?>","Failed");
                             },
                                 100);
                 </script>
 
         <?php } ?>
-
-
 
     </head>
 
@@ -112,35 +88,39 @@ if (isset($_POST['user_login'])) {
                             <div class="card-body p-4">
                                 
                                 <div class="text-center w-75 m-auto">
-                                    <a href="index.php">
-                                        <span><img src="assets/images/Peso_log.png" alt="" height="100"></span>
+                                    <a href="his_admin_register.php">
+                                        <span><img src="assets/images/logo-dark.png" alt="" height="22"></span>
                                     </a>
-                                    <p class="text-muted mb-4 mt-3">Enter your email address and password to access User panel.</p>
+                                    <p class="text-muted mb-4 mt-3">Don't have an account? Create your account, it takes less than a minute</p>
                                 </div>
 
-                                <form method='post' >
+                                <form  method='post'>
 
-                                    <div class="form-group mb-3">
-                                        <label for="emailaddress">User Email </label>
-                                        <input class="form-control" name="user_email" type="text" id="emailaddress" required="" placeholder="Enter your Email">
+                                    <div class="form-group">
+                                        <label for="fullname">First Name</label>
+                                        <input class="form-control" type="text"  name = "ad_fname" id="fullname" placeholder="Enter your name" required>
                                     </div>
-
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
+                                        <label for="fullname">Last Name</label>
+                                        <input class="form-control" type="text" name="ad_lname" id="fullname" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="emailaddress">Email address</label>
+                                        <input class="form-control" name="ad_email" type="email" id="emailaddress" required placeholder="Enter your email">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input class="form-control" name="user_pwd" type="password" required="" id="password" placeholder="Enter your password">
+                                        <input class="form-control" name="ad_pwd" type="password" required id="password" placeholder="Enter your password">
                                     </div>
-
+                                    
                                     <div class="form-group mb-0 text-center">
-                                        <button class="btn btn-success btn-block" name="user_login" type="submit"> Log In </button>
+                                        <button class="btn btn-primary btn-block" name="admin_sup" type="submit"> Sign Up </button>
                                     </div>
 
                                 </form>
-
-                                <!--
-                                For Now Lets Disable This 
-                                This feature will be implemented on later versions
+                                <!--Lets Disable This For We tryna implement it in later versions of this system
                                 <div class="text-center">
-                                    <h5 class="mt-3 text-muted">Sign in with</h5>
+                                    <h5 class="mt-3 text-muted">Sign up using</h5>
                                     <ul class="social-list list-inline mt-3 mb-0">
                                         <li class="list-inline-item">
                                             <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
@@ -155,7 +135,7 @@ if (isset($_POST['user_login'])) {
                                             <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github-circle"></i></a>
                                         </li>
                                     </ul>
-                                </div> 
+                                </div>
                                 -->
 
                             </div> <!-- end card-body -->
@@ -164,8 +144,7 @@ if (isset($_POST['user_login'])) {
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <!-- <p> <a href="user_staff_reset_pwd.php" class="text-white-50 ml-1">Forgot your password?</a></p> -->
-                               <p class="text-white-50">Don't have an account? <a href="user_staff_register.php" class="text-white ml-1"><b>Sign Up</b></a></p>
+                                <p class="text-white-50">Already have account?  <a href="index.php" class="text-white ml-1"><b>Sign In</b></a></p>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
@@ -178,8 +157,9 @@ if (isset($_POST['user_login'])) {
         </div>
         <!-- end page -->
 
-
-        <?php include ("assets/inc/footer1.php");?>
+        <!--Footer-->
+            <?php include("assets/inc/footer1.php");?>
+        <!-- End Footer-->
 
         <!-- Vendor js -->
         <script src="assets/js/vendor.min.js"></script>
