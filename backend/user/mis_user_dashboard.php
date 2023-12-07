@@ -1,10 +1,12 @@
-<!-- <?php
+<?php
   session_start();
   include('assets/inc/config.php');
   include('assets/inc/checklogin.php');
-check_login();
-  $ad_id=$_SESSION['ad_id'];
-?> -->
+  check_login();
+  $user_id=$_SESSION['user_id'];
+  $user_number = $_SESSION['user_email'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -53,8 +55,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="far fa-user-circle  font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="far fa-user-circle  font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -85,8 +87,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="fas fa-chalkboard-teacher font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="fas fa-chalkboard-teacher font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -96,11 +98,11 @@ check_login();
                                                     $result ="SELECT count(*) FROM tesda_applicant";
                                                     $stmt = $mysqli->prepare($result);
                                                     $stmt->execute();
-                                                    $stmt->bind_result($tesda_applicant);
+                                                    $stmt->bind_result($tesdatraining);
                                                     $stmt->fetch();
                                                     $stmt->close();
                                                 ?>
-                                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $tesda_applicant;?></span></h3>
+                                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $tesdatraining;?></span></h3>
                                                 <p class="text-muted mb-1 text-truncate">Tesda Applicant</p>
                                             </div>
                                         </div>
@@ -115,8 +117,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="fas fa-users font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="fas fa-users font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -126,17 +128,17 @@ check_login();
                                                     $result ="SELECT count(*) FROM tesda_training ";
                                                     $stmt = $mysqli->prepare($result);
                                                     $stmt->execute();
-                                                    $stmt->bind_result($tesda_training);
+                                                    $stmt->bind_result($user_employee);
                                                     $stmt->fetch();
                                                     $stmt->close();
                                                 ?>
-                                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $tesda_training;?></span></h3>
+                                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><?php echo $user_employee;?></span></h3>
                                                 <p class="text-muted mb-1 text-truncate">Tesda Training Course</p>
                                             </div>
                                         </div>
                                     </div> <!-- end row-->
                                 </div> <!-- end widget-rounded-circle-->
-                             </a>
+                              </a>
                             </div> <!-- end col-->
                             <!--End Employees-->
                         
@@ -149,8 +151,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="fa fa-address-card font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="fa fa-address-card font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -179,8 +181,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="fa fa-graduation-cap font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="fa fa-graduation-cap font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -208,8 +210,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="fa fa-newspaper  font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="fa fa-newspaper  font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -237,8 +239,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="fa fa-graduation-cap font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="fa fa-graduation-cap font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -267,8 +269,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="fa fa-graduation-cap font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="fa fa-graduation-cap font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -298,8 +300,8 @@ check_login();
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                <i class="fa fa-newspaper  font-22 avatar-title text-primary"></i>
+                                            <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+                                                <i class="fa fa-newspaper  font-22 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -323,70 +325,7 @@ check_login();
                             </div> <!-- end col-->
                             <!--Start Employees-->
                         </div>
-                        
-
-                        
-                        <!--Recently Employed Employees-->
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card-box">
-                                    <h4 class="header-title mb-3">Users</h4>
-
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless table-hover table-centered m-0">
-
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th colspan="2">Picture</th>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Contact Number</th>
-                                                    <!-- <th>Registration Type</th> -->
-                                                    <!-- <th>Department</th> -->
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <?php
-                                                $ret = "SELECT * FROM user_staff ORDER BY user_id ASC LIMIT 5";
-                                                //sql code to get to ten user  randomly
-                                                $stmt= $mysqli->prepare($ret) ;
-                                                $stmt->execute() ;//ok
-                                                $res=$stmt->get_result();
-                                                $cnt=1;
-                                                while($row=$res->fetch_object())
-                                                {
-                                            ?>
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width: 36px;">
-                                                        <img src="../user/assets/images/users/<?php echo $row->user_dpic;?>" alt="img" title="contact-img" class="rounded-circle avatar-sm" />
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->user_fname;?> <?php echo $row->user_lname;?>
-                                                    </td>    
-                                                    <td>
-                                                        <?php echo $row->user_email;?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $row->user_number;?>
-                                                    </td>
-                                                    <!-- <td>
-                                                        <?php echo $row->regtype;?>
-                                                    </td>  -->
-                                                    <td>
-                                                        <a href="mis_admin_view_single_user.php?user_id=<?php echo $row->user_id;?>&&user_email=<?php echo $row->user_email;?>" class="btn btn-xs btn-primary"><i class="mdi mdi-eye"></i> View</a>
-                                                    </td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                </tr>
-                                            </tbody>
-                                            <?php }?>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->                                                                                                                                                                                                                                         
-                        </div>
-                        <!-- end row -->
+                    
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card-box">
