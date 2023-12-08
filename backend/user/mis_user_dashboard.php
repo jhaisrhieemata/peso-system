@@ -113,7 +113,7 @@
 
                             <!--Start Employees-->
                             <div class="col-md-6 col-xl-4">
-                             <a href="mis_admin_view_users.php">
+                             <a href="mis_admin_view_tesda_course.php">
                                 <div class="widget-rounded-circle card-box">
                                     <div class="row">
                                         <div class="col-6">

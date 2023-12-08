@@ -3,7 +3,7 @@ session_start();
 include('assets/inc/config.php');
 include('assets/inc/checklogin.php');
 
-$aid = $_SESSION['ad_id'];
+$aid = $_SESSION['user_id'];
 
 if (isset($_POST['delete'])) {
     $id = intval($_POST['delete']);
