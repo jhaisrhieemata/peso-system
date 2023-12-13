@@ -17,11 +17,11 @@
                                 
                             </li>
                              <li>
-                                   <a href="javascript: void(0);">
+                                   <!-- <a href="javascript: void(0);">
                                       <i class="far fa-user-circle "></i>
                                      <span>Registration</span>
                                       <span class="menu-arrow"></span>
-                                   </a>
+                                   </a> -->
                                    <ul class="nav-second-level" aria-expanded="false">
                                             <li>
                                                 <a href="javascript: void(0);">

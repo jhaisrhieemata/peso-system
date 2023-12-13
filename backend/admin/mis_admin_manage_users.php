@@ -14,7 +14,7 @@
         $stmt->close();	 
   
         if($stmt) {
-            $success = "User Employee Deleted";
+            $success = "User PESO Staff Deleted";
         } else {
             $err = "Error: " . $mysqli->error;
         }

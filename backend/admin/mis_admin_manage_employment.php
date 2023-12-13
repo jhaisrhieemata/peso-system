@@ -23,7 +23,7 @@ if (isset($_POST['delete'])) {
     $deleteStmt->close();
 
     if ($backupStmt && $deleteStmt) {
-        $success = "Employment Record Deleted and Backed Up";
+        $success = "Job Seeker Record Deleted and Backed Up";
     } else {
         $err = "Try Again Later";
     }

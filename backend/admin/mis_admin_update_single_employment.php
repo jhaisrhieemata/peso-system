@@ -63,7 +63,7 @@ if (isset($_POST['update_job_seeker'])) {
     $stmt->execute();
   
     if ($stmt) {
-        $success = "Employment Details Updated";
+        $success = "Job Seeker Updated";
     } else {
         $err = "Please Try Again Or Try Later";
     }
@@ -634,7 +634,7 @@ if (isset($_POST['update_job_seeker'])) {
                                                 </div>
                                             </div>
 
-                                            <button type="submit" id="update_job_seeker" name="update_job_seeker" class="ladda-button btn btn-primary" data-style="expand-right" disabled>Update Employment</button>
+                                            <button type="submit" id="update_job_seeker" name="update_job_seeker" class="ladda-button btn btn-primary" data-style="expand-right" disabled>Update Job Seeker</button>
                                         </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->

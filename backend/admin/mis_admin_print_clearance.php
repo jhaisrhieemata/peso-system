@@ -100,7 +100,7 @@ if (isset($_POST['add_print'])) {
      $stmtInsert->close();
 
      if ($updateQuery && $insertQuery) {
-        $success = "Successfully Updated and Inserted";
+        $success = "Successfully Generated";
     } else {
         $err = "Try Again Later";
     }
@@ -323,7 +323,7 @@ if (isset($_POST['add_print'])) {
                     </div> <!-- end card-box -->
                     <div class="no-print">
                         <form method="post" onsubmit="return validateForm();">
-                            <div class="form-group col-md-2" >
+                            <div class="form-group col-md-2" style="display: none;" >
                                 <label for="agencyname" class="col-form-label">Job seeker ID</label>
                                 <input type="text" name="job_seeker_id" required="required" class="form-control" value="<?php echo $row->job_seeker_id; ?>">
                             </div>

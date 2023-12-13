@@ -94,11 +94,11 @@
                     <!-- item-->
                     <a href="mis_admin_register_employment.php" class="dropdown-item">
                         <i class="far fa-user-circle"></i>
-                        <span>Employment</span>
+                        <span>Job Seeker</span>
                     </a> 
                     <a href="mis_admin_register_scholarship.php" class="dropdown-item">
                         <i class="fa fa-graduation-cap"></i>
-                        <span>Scholarship</span>
+                        <span>LGU Scholar</span>
                     </a>
                     
                     <a href="mis_admin_register_scholarship.php" class="dropdown-item">
@@ -115,7 +115,7 @@
                     </a>
                     <a href="mis_admin_register_joboffer.php" class="dropdown-item">
                         <i class="fa fa-newspaper"></i>
-                        <span>Job Opening</span>
+                        <span>Job Posting</span>
                     </a>  
                     <a href="mis_admin_add_agency.php" class="dropdown-item">
                         <i class="fas fa-ellipsis-h"></i>
@@ -139,7 +139,7 @@
                                         <!-- item-->
                     <a href="mis_admin_add_users.php" class="dropdown-item">
                         <i class="fas fa-users"></i>
-                        <span>User Employee</span>
+                        <span>User PESO Staff</span>
                     </a>
 
 
