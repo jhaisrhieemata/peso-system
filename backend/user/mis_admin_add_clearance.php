@@ -528,7 +528,7 @@ if (isset($_POST['add_employment'])) {
                                         </div>
 
 
-                                        <button type="submit" name="add_employment" class="ladda-button btn btn-primary" data-style="expand-right">Add Employment</button>
+                                        <button type="submit" name="add_employment" class="ladda-button btn btn-primary" data-style="expand-right">Add Clearance</button>
                                     </form>
                                     <!--End employment Form-->
                                 </div> <!-- end card-body -->

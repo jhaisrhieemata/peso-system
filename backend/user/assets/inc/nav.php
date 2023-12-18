@@ -38,9 +38,9 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
-                    <div class="dropdown-header noti-title">
+                    <!-- <div class="dropdown-header noti-title">
                         <h6 class="text-overflow m-0">Welcome !</h6>
-                    </div>
+                    </div> -->
 
                     <!-- item-->
                     <!-- <a href="mis_user_account.php" class="dropdown-item notify-item">
@@ -104,7 +104,7 @@
                     <!-- item-->
                     <a href="mis_admin_register_employment.php" class="dropdown-item">
                         <i class="far fa-user-circle"></i>
-                        <span>Employment</span>
+                        <span>Job Seeker</span>
                     </a> 
                     <a href="mis_admin_register_scholarship.php" class="dropdown-item">
                         <i class="fa fa-graduation-cap"></i>
@@ -125,7 +125,7 @@
                     </a>
                     <a href="mis_admin_register_joboffer.php" class="dropdown-item">
                         <i class="fa fa-newspaper"></i>
-                        <span>Job Opening</span>
+                        <span>Job Posting</span>
                     </a>  
                     <a href="mis_admin_add_agency.php" class="dropdown-item">
                         <i class="fas fa-ellipsis-h"></i>

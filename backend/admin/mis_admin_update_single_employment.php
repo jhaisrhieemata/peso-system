@@ -148,11 +148,11 @@ if (isset($_POST['update_job_seeker'])) {
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="his_admin_dashboard.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Update Employment</a></li>
-                                        <li class="breadcrumb-item active">Manage Update Employment</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Update Job Seeker</a></li>
+                                        <li class="breadcrumb-item active">Manage Update Job Seeker</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Update Employment Details</h4>
+                                <h4 class="page-title">Update Job Seeker Details</h4>
                             </div>
                         </div>
                     </div>
