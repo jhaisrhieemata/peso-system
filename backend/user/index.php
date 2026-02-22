@@ -140,7 +140,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p> <a href="mis_user_reset_pwd.php" class="text-white-50 ml-1">Forgot your password?</a></p>
+                                <!-- <p> <a href="mis_user_reset_pwd.php" class="text-white-50 ml-1">Forgot your password?</a></p> -->
                                <p class="text-white-50">Don't have an account? <a href="mis_user_register.php" class="text-white ml-1"><b>Sign Up</b></a></p>
                             </div> <!-- end col -->
                         </div>

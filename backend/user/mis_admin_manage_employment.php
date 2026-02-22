@@ -112,11 +112,11 @@ if (isset($_GET['search']) || isset($_GET['date_joined']) || isset($_GET['employ
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Employment</a></li>
-                                        <li class="breadcrumb-item active">Manage Employment</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Job Seeker</a></li>
+                                        <li class="breadcrumb-item active">Manage Job Seeker</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Manage Employment Details</h4>
+                                <h4 class="page-title">Manage Job Seeker Details</h4>
                             </div>
                         </div>
                     </div>

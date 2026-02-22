@@ -108,11 +108,11 @@ if (isset($_POST['add_job_seeker'])) {
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="mis_admin_dashboard.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Employment</a></li>
-                                        <li class="breadcrumb-item active">New Employment</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Job Seeker</a></li>
+                                        <li class="breadcrumb-item active">New Job Seeker</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Create New Employment </h4>
+                                <h4 class="page-title">Create New Job Seeker </h4>
                             </div>
                         </div>
                     </div>

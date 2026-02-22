@@ -26,7 +26,7 @@
 			//declare a varible which will be passed to alert function
 			if($stmt)
 			{
-				$success = "User Employee Details Updated";
+				$success = "User PESO Staff Updated";
 			}
 			else {
 				$err = "Please Try Again Or Try Later";

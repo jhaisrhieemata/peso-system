@@ -48,27 +48,60 @@ if (isset($_POST['add_job_seeker'])) {
     $company_name = $_POST['company_name'];
     $position = $_POST['position'];
     $number_of_months = $_POST['number_of_months'];
-    $work_address=$_POST['work_address'];
-    $work_status=$_POST['work_status'];
-    $good_communication_skill=$_POST['good_communication_skill'];
+    $work_address = $_POST['work_address'];
+    $work_status = $_POST['work_status'];
+    $good_communication_skill = $_POST['good_communication_skill'];
     $special_skill = $_POST['special_skill'];
     $referred_to = $_POST['referred_to'];
-    //sql to insert captured values
-    $query = "insert into  job_seeker (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, date_taken, professional_licence, valid_until, company_name, position, number_of_months, work_address, work_status, good_communication_skill, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months,$work_address, $work_status, $good_communication_skill, $special_skill, $referred_to);
-    $stmt->execute();
-    /*
-			*Use Sweet Alerts Instead Of This Fucked Up Javascript Alerts
-			*echo"<script>alert('Successfully Created Account Proceed To Log In ');</script>";
-			*/
-    //declare a varible which will be passed to alert function
-    if ($stmt) {
-        $success = "Details Added";
+
+    // Check if the record already exists
+    $checkQuery = "SELECT COUNT(*) AS count FROM job_seeker WHERE surname = ? AND firstname = ?";
+    $checkStmt = $mysqli->prepare($checkQuery);
+    $checkStmt->bind_param('ss', $surname, $firstname);
+    $checkStmt->execute();
+    $checkResult = $checkStmt->get_result();
+    $count = $checkResult->fetch_assoc()['count'];
+
+    // If a record with the same values already exists, show an error
+    if ($count > 0) {
+        $err = "Record already exists.";
     } else {
-        $err = "Please Try Again Or Try Later";
+        // Continue with the insertion
+        // ... (your existing code for preparing and executing the INSERT statement)
+
+        //sql to insert captured values
+        $query = "insert into  job_seeker (surname, firstname, middlename, suffix, date_of_birth, sex, street_village, barangay, municipality, province, religion, civil_status, tin, disability, height, contact_number, email, employment_status, employment_status_employed, employment_status_unemployed, Are_you_ofw, are_you_a_former_ofw, beneficiary, prefered_occupation, prefered_work_location, language_dialect, currently_in_school, education_level, course, training, hours_of_training, training_institution, skill_acquired, certificates_received, eligibility_civil_service, date_taken, professional_licence, valid_until, company_name, position, number_of_months, work_address, work_status, good_communication_skill, special_skill, referred_to) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $stmt = $mysqli->prepare($query);
+        // Check for errors in the prepared statement
+        if (!$stmt) {
+            die("Error in preparing the statement: " . $mysqli->error);
+        }
+        $rc = $stmt->bind_param('ssssssssssssssssssssssssssssssssssssssssssssss', $surname, $firstname, $middlename, $suffix, $date_of_birth, $sex, $street_village, $barangay, $municipality, $province, $religion, $civil_status, $tin, $disability, $height, $contact_number, $email, $employment_status, $employment_status_employed, $employment_status_unemployed, $Are_you_ofw, $are_you_a_former_ofw, $beneficiary, $prefered_occupation, $prefered_work_location, $language_dialect, $currently_in_school, $education_level, $course, $training, $hours_of_training, $training_institution, $skill_acquired, $certificates_received, $eligibility_civil_service, $date_taken, $professional_licence, $valid_until, $company_name, $position, $number_of_months, $work_address, $work_status, $good_communication_skill, $special_skill, $referred_to);
+        $stmt->execute();
+        // Check for errors in the execution
+        if ($stmt->error) {
+            die("Error in executing the statement: " . $stmt->error);
+        }
+
+
+        // Check if the statement was successful
+        if ($stmt->affected_rows > 0) {
+            // Registration successful
+            $success = "You are Successfully Registered";
+            echo '<script>alert("' . $success . '");</script>';
+            echo '<script>window.location.href = "client_index.php";</script>';
+        } else {
+            // Registration failed
+            $err = "Please Try Again Or Try Later";
+        }
+        // Close the statement
+        $stmt->close();
     }
+    // Close the check statement
+    $checkStmt->close();
 }
+// Close the database connection
+$mysqli->close();
 ?>
 <!--End Server Side-->
 <!--End employment Registration-->
@@ -77,8 +110,39 @@ if (isset($_POST['add_job_seeker'])) {
 
 <!--Head-->
 <?php include('assets/inc/head.php'); ?>
+<script src="assets/js/swal.js"></script>
+<!--Inject SWAL-->
+<?php if(isset($success)) {?>
+        <!--This code for injecting an alert-->
+                <script>
+                            setTimeout(function () 
+                            { 
+                                swal("Success","<?php echo $success;?>","success");
+                            },
+                                100);
+                </script>
+
+        <?php } ?>
+<?php if(isset($err)) {?>
+        <!--This code for injecting an alert-->
+                <script>
+                            setTimeout(function () 
+                            { 
+                                swal("Failed","<?php echo $err;?>","error");
+                            },
+                                100);
+                </script>
+
+        <?php } ?>
 
 <body>
+    <script>
+        // Disable back button functionality
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+        };
+    </script>
 
     <!-- Begin page -->
     <div id="wrapper">
@@ -111,7 +175,7 @@ if (isset($_POST['add_job_seeker'])) {
                                         <li class="breadcrumb-item active">New Register</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Register  </h4>
+                                <h4 class="page-title">Register </h4>
                             </div>
                         </div>
                     </div>
@@ -504,7 +568,7 @@ if (isset($_POST['add_job_seeker'])) {
                                                 <input required="required" type="number" name="number_of_months" class="form-control" id="inputNumberofMonths" placeholder="Number of Months">
                                             </div>
                                         </div>
-                                        <div class="form-row"> 
+                                        <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="inputworkaddress" class="col-form-label">Work Address</label>
                                                 <input required="required" type="text" name="work_address" class="form-control" id="inputworkaddress" placeholder=" Work Address">
@@ -650,6 +714,7 @@ if (isset($_POST['add_job_seeker'])) {
           });
       });
   </script> -->
+
 
 </body>
 

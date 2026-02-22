@@ -23,7 +23,7 @@ if(isset($_POST['user_login']))
             break;
         // Add other cases as needed
         default:
-            $err = "Please Choose Registration Invalid input!."; // Handling other values
+            $err = "Please Choose Registration!."; // Handling other values
             break;
   }      
   

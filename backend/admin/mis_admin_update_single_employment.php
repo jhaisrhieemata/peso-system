@@ -63,7 +63,7 @@ if (isset($_POST['update_job_seeker'])) {
     $stmt->execute();
   
     if ($stmt) {
-        $success = "Employment Details Updated";
+        $success = "Job Seeker Updated";
     } else {
         $err = "Please Try Again Or Try Later";
     }
@@ -148,11 +148,11 @@ if (isset($_POST['update_job_seeker'])) {
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="his_admin_dashboard.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Update Employment</a></li>
-                                        <li class="breadcrumb-item active">Manage Update Employment</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Update Job Seeker</a></li>
+                                        <li class="breadcrumb-item active">Manage Update Job Seeker</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Update Employment Details</h4>
+                                <h4 class="page-title">Update Job Seeker Details</h4>
                             </div>
                         </div>
                     </div>
@@ -634,7 +634,7 @@ if (isset($_POST['update_job_seeker'])) {
                                                 </div>
                                             </div>
 
-                                            <button type="submit" id="update_job_seeker" name="update_job_seeker" class="ladda-button btn btn-primary" data-style="expand-right" disabled>Update Employment</button>
+                                            <button type="submit" id="update_job_seeker" name="update_job_seeker" class="ladda-button btn btn-primary" data-style="expand-right" disabled>Update Job Seeker</button>
                                         </form>
                                         <!--End Patient Form-->
                                     </div> <!-- end card-body -->

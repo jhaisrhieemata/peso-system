@@ -70,13 +70,14 @@
 			*echo"<script>alert('Successfully Created Account Proceed To Log In ');</script>";
 			*/ 
 			//declare a varible which will be passed to alert function
-			if($stmt)
-			{
-				$success = "Details Added";
-			}
-			else {
-				$err = "Please Try Again Or Try Later";
-			}
+			if ($stmt) {
+                $success = "You are Successfully Registered";
+                echo '<script>alert("'.$success.'");</script>';
+                echo '<script>window.location.href = "client_index.php";</script>';
+                exit(); // Ensure that no further code is executed after the redirection
+            } else {
+                $err = "Please Try Again Or Try Later";
+            }
 			
 			
 		}
@@ -88,6 +89,7 @@
     
     <!--Head-->
     <?php include('assets/inc/head.php');?>
+    <script src="assets/js/swal.js"></script>
     <body>
 
         <!-- Begin page -->

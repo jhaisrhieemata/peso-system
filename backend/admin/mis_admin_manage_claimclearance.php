@@ -15,7 +15,7 @@ if(isset($_GET['delete']))
 
         if($stmt)
         {
-          $success = "Employment Records Deleted";
+          $success = "Job Seeker Records Deleted";
         }
           else
           {
